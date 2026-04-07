@@ -1,19 +1,29 @@
 # site-matizeatelier
 
-Coming soon placeholder for [matizeatelier.pt](https://matizeatelier.pt).
+Website for [matizeatelier.pt](https://matizeatelier.pt) — Atelier de Design de Interiores.
+
+## Structure
+
+```
+/placeholder    Static coming soon page (live while WordPress is being built)
+/theme          Custom WordPress theme → wp-content/themes/matize/
+```
 
 ## Stack
 
-Static HTML — no build step, no dependencies.
-Google Fonts (Cormorant Garamond) loaded via CDN.
-Logo and favicon embedded as base64.
+- **WordPress** with a fully custom theme (no page builders)
+- **Placeholder** — static HTML, self-contained, no dependencies
 
-## Deploy
+## Deploy (SFTP)
 
-Upload `index.html` to the server root via SFTP.
-The file is self-contained — no other assets required.
+Two contexts defined in `.vscode/sftp.json` (gitignored — contains credentials):
+
+| Context       | Local         | Remote                                          |
+|---------------|---------------|-------------------------------------------------|
+| Placeholder   | /placeholder  | /public_html/                                   |
+| Theme         | /theme        | /public_html/wp/wp-content/themes/matize/       |
 
 ## Notes
 
 - Email links pending client confirmation
-- Replace placeholder with full site upon project completion
+- Placeholder stays live until WordPress launch
