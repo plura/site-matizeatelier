@@ -2,18 +2,16 @@
 
 add_action( 'wp_enqueue_scripts', function () {
 
-	$ver = wp_get_theme()->get( 'Version' );
-	$dir = get_template_directory_uri();
+	plura_wp_enqueue( [
+		// GSAP (CDN)
+		'https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js',
+		'https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js' => [
+			'deps' => [ 'gsap' ],
+		],
 
-	// Main stylesheet
-	wp_enqueue_style( 'matize', $dir . '/assets/css/main.css', [], $ver );
-
-	// GSAP
-	wp_enqueue_script( 'gsap', 'https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js', [], null, true );
-	wp_enqueue_script( 'gsap-scrolltrigger', 'https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js', [ 'gsap' ], null, true );
-
-	// Main JS
-	wp_enqueue_script( 'matize', $dir . '/assets/js/main.js', [ 'gsap' ], $ver, true );
+		// Theme assets — pattern resolves to assets/css/main.css + assets/js/main.js
+		get_template_directory() . '/assets/%s/main.%s',
+	], true, 'matize-', false );
 
 } );
 
