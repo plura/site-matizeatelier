@@ -2,7 +2,7 @@
 
 // ─── Home — Services grid ─────────────────────────────────────────────────────
 
-add_filter( 'plura_wp_post', function ( array $entry, WP_Post $post, ?string $context, array $original ): array {
+add_filter( 'plura_wp_post', function ( array $entry, WP_Post $post, ?string $context, mixed $original ): array {
 
 	if ( $context !== 'home-services' ) return $entry;
 

@@ -2,7 +2,7 @@
 
 // ─── Services — full page and archive ────────────────────────────────────────
 
-add_filter( 'plura_wp_post', function ( array $entry, WP_Post $post, ?string $context, array $original ): array {
+add_filter( 'plura_wp_post', function ( array $entry, WP_Post $post, ?string $context, mixed $original ): array {
 
 	if ( ! in_array( $context, [ 'page-services', 'archive-services' ], true ) ) return $entry;
 

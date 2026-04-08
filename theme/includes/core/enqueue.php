@@ -6,7 +6,7 @@ add_action( 'wp_enqueue_scripts', function () {
 		scripts: [
 			// GSAP (CDN)
 			'https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js'            => [ 'handle' => 'gsap' ],
-			'https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js'   => [ 'handle' => 'gsap-scrolltrigger', 'deps' => [ 'gsap' ] ],
+			'https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js'   => [ 'handle' => 'gsap-scrolltrigger', 'deps' => [ 'matize-gsap' ] ],
 
 			// Theme assets — resolves to assets/css/main.css + assets/js/main.js
 			get_template_directory() . '/assets/%s/main.%s',
