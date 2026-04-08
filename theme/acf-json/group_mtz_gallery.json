@@ -27,9 +27,9 @@
 	"location": [
 		[
 			{
-				"param": "post_type",
+				"param": "page_template",
 				"operator": "==",
-				"value": "page"
+				"value": "page-gallery.php"
 			}
 		]
 	],

@@ -1,4 +1,8 @@
-<?php get_header(); ?>
+<?php
+/**
+ * Template Name: About
+ */
+get_header(); ?>
 
 <main id="main" class="site-main page-about">
 
