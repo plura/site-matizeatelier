@@ -170,33 +170,35 @@ function plura_wp_posts(
 /**
  * Render a single post card/block.
  *
- * @param \WP_Post|int $post                    Post object or ID.
- * @param string       $class                   CSS classes.
- * @param string       $datetime_format         Date format.
- * @param int          $link                    Link mode.
- * @param array|string $meta                    Meta fields to display.
- * @param bool|string  $read_more               Read more button.
- * @param bool         $wrap                    Wrap in container.
- * @param string       $timeline_datetime_format Timeline date format.
- * @param string       $timeline_datetime_source Timeline date source.
- * @param string       $timeline_start_key       Meta key for start.
- * @param string       $timeline_end_key         Meta key for end.
- * @param string|null  $context                  Context for filters.
+ * @param \WP_Post|int $post                     Post object or ID.
+ * @param string       $class                    CSS classes.
+ * @param string       $datetime_format          Date format (default: post_date).
+ * @param int          $link                     0 = link inner elements, 1 = wrap block in link, -1 = no links.
+ * @param array|string $meta                     Meta key(s) to display.
+ * @param bool|string  $read_more                false = hidden, true = default label, string = custom label.
+ * @param bool         $wrap                     Wrap output in a container.
+ * @param string       $timeline_datetime_format Datetime format for timeline output.
+ * @param string       $timeline_datetime_source Source format for parsing raw timeline dates.
+ * @param string       $timeline_end_key         Meta key for timeline end date.
+ * @param string       $timeline_start_key       Meta key for timeline start date.
+ * @param string|null  $context                  Context tag for filters (e.g. 'archive', 'homepage').
+ * @param int|null     $index                    Post index within a list.
  * @return string
  */
 function plura_wp_post(
 	\WP_Post|int $post,
 	string $class = '',
-	string $datetime_format = '',
-	int $link = 1,
+	string $datetime_format = 'l, F jS, Y g:i A',
+	int $link = 0,
 	array|string $meta = [],
-	bool|string $read_more = false,
+	bool|string $read_more = true,
 	bool $wrap = true,
-	string $timeline_datetime_format = '',
-	string $timeline_datetime_source = '',
-	string $timeline_start_key = '',
+	string $timeline_datetime_format = 'l, F jS, Y g:i A',
+	string $timeline_datetime_source = 'Y-m-d H:i:s',
 	string $timeline_end_key = '',
+	string $timeline_start_key = '',
 	?string $context = null,
+	?int $index = null,
 ): string { return ''; }
 
 /**
