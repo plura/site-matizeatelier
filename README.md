@@ -7,6 +7,7 @@ Website for [matizeatelier.pt](https://matizeatelier.pt) — Atelier de Design d
 ```
 /placeholder    Static coming soon page (live while WordPress is being built)
 /theme          Custom WordPress theme → wp-content/themes/matize/
+/plugin         Site-specific plugin → wp-content/plugins/matize/
   /acf-json     ACF field groups (Local JSON — auto-synced by ACF on save)
   /assets       CSS and JS
   /components   Plura component system (manifest + HTML + PHP + assets)
@@ -33,10 +34,11 @@ Website for [matizeatelier.pt](https://matizeatelier.pt) — Atelier de Design d
 Two contexts defined in `.vscode/sftp.json` (gitignored — contains credentials).
 Copy `.vscode/settings.json.example` to `.vscode/settings.json` for Intelephense support.
 
-| Context     | Local        | Remote                                        |
-|-------------|--------------|-----------------------------------------------|
-| Placeholder | /placeholder | /public_html/                                 |
-| Theme       | /theme       | /public_html/wp/wp-content/themes/matize/     |
+| Context     | Local        | Remote                                            |
+|-------------|--------------|---------------------------------------------------|
+| Placeholder | /placeholder | /public_html/                                     |
+| Theme       | /theme       | /public_html/wp/wp-content/themes/matize/         |
+| Plugin      | /plugin      | /public_html/wp/wp-content/plugins/matize/        |
 
 ## Dependencies
 

@@ -23,7 +23,7 @@
 			{
 				"param": "post_type",
 				"operator": "==",
-				"value": "service"
+				"value": "mtz_service"
 			}
 		]
 	],

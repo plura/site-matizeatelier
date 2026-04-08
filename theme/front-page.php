@@ -40,7 +40,7 @@
 	<section class="home-services">
 		<?php
 		echo plura_wp_posts(
-			type: 'service',
+			type: 'mtz_service',
 			orderby: 'menu_order',
 			order: 'ASC',
 			class: 'home-services__grid',
