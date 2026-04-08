@@ -42,29 +42,33 @@
 	padding: var(--mtz-space-xs);
 }
 
-/* Show only the menu icon by default; x icon hidden */
-.site-header__menu-toggle i:last-child {
+/* Icon swap — targets wrapper spans (Lucide replaces <i> with <svg>) */
+.site-header__menu-toggle .icon-close {
 	display: none;
 }
 
-/* When open: swap icons */
-.site-header__menu-toggle[aria-expanded="true"] i:first-child {
+.site-header__menu-toggle[aria-expanded="true"] .icon-open {
 	display: none;
 }
 
-.site-header__menu-toggle[aria-expanded="true"] i:last-child {
+.site-header__menu-toggle[aria-expanded="true"] .icon-close {
 	display: flex;
 }
 
 /* Mobile: nav hidden off-screen */
 @media (max-width: 767px) {
+	.site-header {
+		background-color: var(--mtz-color-linen);
+	}
+
 	.site-nav {
 		background-color: var(--mtz-color-linen);
-		inset: 0;
-		left: auto;
+		bottom: 0;
 		overflow-y: auto;
 		padding: var(--mtz-space-3xl) var(--mtz-gutter) var(--mtz-space-xl);
 		position: fixed;
+		right: 0;
+		top: 0;
 		transform: translateX(100%);
 		transition: transform var(--mtz-transition);
 		width: min(320px, 85vw);

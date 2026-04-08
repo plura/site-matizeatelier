@@ -45,8 +45,8 @@
 				aria-expanded="false"
 				aria-controls="site-nav"
 			>
-				<i data-lucide="menu" aria-hidden="true"></i>
-				<i data-lucide="x" aria-hidden="true"></i>
+				<span class="icon-open"><i data-lucide="menu" aria-hidden="true"></i></span>
+				<span class="icon-close"><i data-lucide="x" aria-hidden="true"></i></span>
 			</button>
 		</div>
 
