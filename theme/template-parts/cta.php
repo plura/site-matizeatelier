@@ -4,7 +4,7 @@ $cta_label   = $cta_enquiry['label'] ?? '';
 ?>
 
 <button class="cta__btn" popovertarget="contact-modal">
-	<?php echo esc_html( $cta_label ?: __( 'Contactar', 'matize' ) ); ?>
+	<?php echo esc_html( $cta_label ?: __( 'Get in Touch', 'matize' ) ); ?>
 </button>
 
 <?php if ( ! defined( 'MTZ_CONTACT_MODAL_RENDERED' ) ) :
