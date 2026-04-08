@@ -38,7 +38,7 @@ add_filter( 'manage_mtz_service_posts_columns', function ( array $columns ): arr
 	foreach ( $columns as $key => $label ) {
 		$new[ $key ] = $label;
 		if ( $key === 'title' ) {
-			$new['mtz_service_excerpt'] = __( 'Resumo', 'matize' );
+			$new['mtz_service_excerpt'] = __( 'Excerpt', 'matize' );
 		}
 	}
 	return $new;
