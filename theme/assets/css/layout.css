@@ -83,3 +83,26 @@
 	font-size: var(--mtz-text-xs);
 	letter-spacing: var(--mtz-tracking-wide);
 }
+
+/* tablet: 2-column footer */
+@media (min-width: 768px) {
+	.site-footer__inner {
+		grid-template-columns: 1fr 1fr;
+	}
+
+	.site-footer__copy {
+		grid-column: 1 / -1;
+	}
+}
+
+/* desktop: brand + contact | social + nav | copy */
+@media (min-width: 1024px) {
+	.site-footer__inner {
+		align-items: start;
+		grid-template-columns: 1fr 1fr 1fr auto;
+	}
+
+	.site-footer__copy {
+		grid-column: 1 / -1;
+	}
+}
