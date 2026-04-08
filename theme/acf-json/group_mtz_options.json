@@ -3,19 +3,32 @@
 	"title": "Matize \u2014 Defini\u00e7\u00f5es do Tema",
 	"fields": [
 		{
-			"key": "field_mtz_cta_label",
-			"label": "Texto do Bot\u00e3o CTA",
-			"name": "mtz_cta_label",
-			"type": "text",
-			"instructions": "Texto apresentado no bot\u00e3o de contacto. Se deixado vazio, utiliza \u201cContactar\u201d.",
+			"key": "field_mtz_cta_enquiry",
+			"label": "CTA — Pedido",
+			"name": "mtz_cta_enquiry",
+			"type": "group",
+			"instructions": "",
 			"required": 0,
 			"conditional_logic": 0,
 			"wrapper": { "width": "", "class": "", "id": "" },
-			"default_value": "Contactar",
-			"placeholder": "",
-			"prepend": "",
-			"append": "",
-			"maxlength": ""
+			"layout": "block",
+			"sub_fields": [
+				{
+					"key": "field_mtz_cta_enquiry_label",
+					"label": "Texto do Bot\u00e3o",
+					"name": "label",
+					"type": "text",
+					"instructions": "Texto apresentado no bot\u00e3o de pedido. Se deixado vazio, utiliza \u201cContactar\u201d.",
+					"required": 0,
+					"conditional_logic": 0,
+					"wrapper": { "width": "", "class": "", "id": "" },
+					"default_value": "Contactar",
+					"placeholder": "",
+					"prepend": "",
+					"append": "",
+					"maxlength": ""
+				}
+			]
 		},
 		{
 			"key": "field_mtz_social",
