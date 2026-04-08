@@ -1,14 +1,14 @@
 [
 	{
 		"key": "group_mtz_homepage",
-		"title": "Matize \u2014 Homepage",
+		"title": "Matize \u2014 P\u00e1gina Inicial",
 		"fields": [
 			{
 				"key": "field_mtz_hero_video",
-				"label": "Hero Video",
+				"label": "V\u00eddeo Hero",
 				"name": "mtz_hero_video",
 				"type": "file",
-				"instructions": "Upload an MP4 or WebM video file for the fullscreen hero background.",
+				"instructions": "Carregue um ficheiro de v\u00eddeo MP4 ou WebM para o fundo do hero.",
 				"required": 0,
 				"conditional_logic": 0,
 				"wrapper": { "width": "", "class": "", "id": "" },
@@ -20,10 +20,10 @@
 			},
 			{
 				"key": "field_mtz_home_mood_gallery",
-				"label": "Mood Gallery",
+				"label": "Galeria de Ambiente",
 				"name": "mtz_home_mood_gallery",
 				"type": "gallery",
-				"instructions": "Images displayed in the mood gallery section.",
+				"instructions": "Imagens apresentadas na sec\u00e7\u00e3o de galeria de ambiente.",
 				"required": 0,
 				"conditional_logic": 0,
 				"wrapper": { "width": "", "class": "", "id": "" },
@@ -61,14 +61,14 @@
 	},
 	{
 		"key": "group_mtz_options",
-		"title": "Matize \u2014 Theme Settings",
+		"title": "Matize \u2014 Defini\u00e7\u00f5es do Tema",
 		"fields": [
 			{
 				"key": "field_mtz_cta_label",
-				"label": "CTA Button Label",
+				"label": "Texto do Bot\u00e3o CTA",
 				"name": "mtz_cta_label",
 				"type": "text",
-				"instructions": "Text shown on the CTA button. Defaults to \u201cContactar\u201d if left empty.",
+				"instructions": "Texto apresentado no bot\u00e3o de contacto. Se deixado vazio, utiliza \u201cContactar\u201d.",
 				"required": 0,
 				"conditional_logic": 0,
 				"wrapper": { "width": "", "class": "", "id": "" },
@@ -148,11 +148,11 @@
 	},
 	{
 		"key": "group_mtz_service",
-		"title": "Matize \u2014 Service",
+		"title": "Matize \u2014 Servi\u00e7o",
 		"fields": [
 			{
 				"key": "field_mtz_service_description",
-				"label": "Description",
+				"label": "Descri\u00e7\u00e3o",
 				"name": "mtz_service_description",
 				"type": "wysiwyg",
 				"instructions": "",
@@ -187,11 +187,11 @@
 	},
 	{
 		"key": "group_mtz_about",
-		"title": "Matize \u2014 About",
+		"title": "Matize \u2014 Sobre",
 		"fields": [
 			{
 				"key": "field_mtz_about_mission",
-				"label": "Mission",
+				"label": "Miss\u00e3o",
 				"name": "mtz_about_mission",
 				"type": "wysiwyg",
 				"instructions": "",
@@ -206,7 +206,7 @@
 			},
 			{
 				"key": "field_mtz_about_philosophy",
-				"label": "Philosophy",
+				"label": "Filosofia",
 				"name": "mtz_about_philosophy",
 				"type": "wysiwyg",
 				"instructions": "",
@@ -251,19 +251,19 @@
 		"instruction_placement": "label",
 		"hide_on_screen": [ "the_content", "excerpt", "discussion", "comments", "revisions", "author" ],
 		"active": true,
-		"description": "Refine the location rule to target only the About page once it exists in WordPress.",
+		"description": "Refinar a regra de localiza\u00e7\u00e3o para apontar apenas para a p\u00e1gina Sobre assim que existir no WordPress.",
 		"show_in_rest": 0
 	},
 	{
 		"key": "group_mtz_gallery",
-		"title": "Matize \u2014 Gallery",
+		"title": "Matize \u2014 Galeria",
 		"fields": [
 			{
 				"key": "field_mtz_gallery_items",
-				"label": "Gallery",
+				"label": "Galeria",
 				"name": "mtz_gallery_items",
 				"type": "gallery",
-				"instructions": "Images displayed in the gallery page.",
+				"instructions": "Imagens apresentadas na p\u00e1gina de galeria.",
 				"required": 0,
 				"conditional_logic": 0,
 				"wrapper": { "width": "", "class": "", "id": "" },
@@ -296,7 +296,7 @@
 		"instruction_placement": "label",
 		"hide_on_screen": [ "the_content", "excerpt", "discussion", "comments", "revisions", "author" ],
 		"active": true,
-		"description": "Refine the location rule to target only the Gallery page once it exists in WordPress.",
+		"description": "Refinar a regra de localiza\u00e7\u00e3o para apontar apenas para a p\u00e1gina de Galeria assim que existir no WordPress.",
 		"show_in_rest": 0
 	}
 ]
