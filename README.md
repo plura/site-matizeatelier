@@ -48,6 +48,16 @@ The theme requires the [Plura plugin](https://github.com/plura/wp-plugin-plura/)
 
 Field groups live in `theme/acf-json/` as Local JSON. ACF reads them automatically when the theme is active — no import needed. If a field group is edited in the WP admin on the server, download the updated JSON file via SFTP and commit it.
 
+## Translations
+
+Strings are internationalised with the `matize` text domain (both theme and plugin). Translation files go in `theme/languages/` and `plugin/languages/`.
+
+To generate/update translations:
+1. Open Poedit → **Create new** (or update existing) from source code
+2. Point it at `theme/` or `plugin/` — it extracts all `__()`, `_e()`, `esc_html_e()` etc.
+3. Save as `matize-pt_PT.po` → Poedit generates the `.mo` automatically
+4. Commit both `.po` and `.mo`
+
 ## Notes
 
 - Email links pending client confirmation
