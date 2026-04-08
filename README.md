@@ -25,7 +25,7 @@ Website for [matizeatelier.pt](https://matizeatelier.pt) — Atelier de Design d
 ## Stack
 
 - **WordPress** with a fully custom theme (no page builders, no Gutenberg)
-- **ACF Free** — sole data layer, no `the_content()` used
+- **ACF Pro** — sole data layer, no `the_content()` used (Pro required for Gallery and Repeater fields)
 - **GSAP** — animations (CDN)
 - **WPML** — PT/EN multilingual
 - **CF7** — contact form
