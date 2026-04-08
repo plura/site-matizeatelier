@@ -1,0 +1,46 @@
+{
+	"key": "group_mtz_gallery",
+	"title": "Matize \u2014 Galeria",
+	"fields": [
+		{
+			"key": "field_mtz_gallery_items",
+			"label": "Galeria",
+			"name": "mtz_gallery_items",
+			"type": "gallery",
+			"instructions": "Imagens apresentadas na p\u00e1gina de galeria.",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": { "width": "", "class": "", "id": "" },
+			"return_format": "array",
+			"library": "all",
+			"min": "",
+			"max": "",
+			"min_width": "",
+			"min_height": "",
+			"min_size": "",
+			"max_width": "",
+			"max_height": "",
+			"max_size": "",
+			"mime_types": ""
+		}
+	],
+	"location": [
+		[
+			{
+				"param": "post_type",
+				"operator": "==",
+				"value": "page"
+			}
+		]
+	],
+	"menu_order": 0,
+	"position": "normal",
+	"style": "default",
+	"label_placement": "top",
+	"instruction_placement": "label",
+	"hide_on_screen": [ "the_content", "excerpt", "discussion", "comments", "revisions", "author" ],
+	"active": true,
+	"description": "Refinar a regra de localiza\u00e7\u00e3o para apontar apenas para a p\u00e1gina de Galeria assim que existir no WordPress.",
+	"show_in_rest": 0,
+	"modified": 0
+}

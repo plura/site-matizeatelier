@@ -1,0 +1,70 @@
+{
+	"key": "group_mtz_about",
+	"title": "Matize \u2014 Sobre",
+	"fields": [
+		{
+			"key": "field_mtz_about_mission",
+			"label": "Miss\u00e3o",
+			"name": "mtz_about_mission",
+			"type": "wysiwyg",
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": { "width": "", "class": "", "id": "" },
+			"default_value": "",
+			"tabs": "all",
+			"toolbar": "basic",
+			"media_upload": 0,
+			"delay": 0
+		},
+		{
+			"key": "field_mtz_about_philosophy",
+			"label": "Filosofia",
+			"name": "mtz_about_philosophy",
+			"type": "wysiwyg",
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": { "width": "", "class": "", "id": "" },
+			"default_value": "",
+			"tabs": "all",
+			"toolbar": "basic",
+			"media_upload": 0,
+			"delay": 0
+		},
+		{
+			"key": "field_mtz_about_cv",
+			"label": "CV",
+			"name": "mtz_about_cv",
+			"type": "wysiwyg",
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": { "width": "", "class": "", "id": "" },
+			"default_value": "",
+			"tabs": "all",
+			"toolbar": "basic",
+			"media_upload": 0,
+			"delay": 0
+		}
+	],
+	"location": [
+		[
+			{
+				"param": "post_type",
+				"operator": "==",
+				"value": "page"
+			}
+		]
+	],
+	"menu_order": 0,
+	"position": "normal",
+	"style": "default",
+	"label_placement": "top",
+	"instruction_placement": "label",
+	"hide_on_screen": [ "the_content", "excerpt", "discussion", "comments", "revisions", "author" ],
+	"active": true,
+	"description": "Refinar a regra de localiza\u00e7\u00e3o para apontar apenas para a p\u00e1gina Sobre assim que existir no WordPress.",
+	"show_in_rest": 0,
+	"modified": 0
+}

@@ -1,0 +1,40 @@
+{
+	"key": "group_mtz_service",
+	"title": "Matize \u2014 Servi\u00e7o",
+	"fields": [
+		{
+			"key": "field_mtz_service_description",
+			"label": "Descri\u00e7\u00e3o",
+			"name": "mtz_service_description",
+			"type": "wysiwyg",
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": { "width": "", "class": "", "id": "" },
+			"default_value": "",
+			"tabs": "all",
+			"toolbar": "basic",
+			"media_upload": 0,
+			"delay": 0
+		}
+	],
+	"location": [
+		[
+			{
+				"param": "post_type",
+				"operator": "==",
+				"value": "service"
+			}
+		]
+	],
+	"menu_order": 0,
+	"position": "normal",
+	"style": "default",
+	"label_placement": "top",
+	"instruction_placement": "label",
+	"hide_on_screen": [ "the_content", "excerpt", "discussion", "comments", "revisions", "author" ],
+	"active": true,
+	"description": "",
+	"show_in_rest": 0,
+	"modified": 0
+}

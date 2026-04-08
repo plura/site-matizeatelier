@@ -1,5 +1,15 @@
 <?php
 
+// Local JSON — save and load field groups from /acf-json/
+add_filter( 'acf/settings/save_json', function () {
+	return get_template_directory() . '/acf-json';
+} );
+
+add_filter( 'acf/settings/load_json', function ( array $paths ): array {
+	$paths[] = get_template_directory() . '/acf-json';
+	return $paths;
+} );
+
 // Register Theme Settings options page
 if ( function_exists( 'acf_add_options_page' ) ) {
 	acf_add_options_page( [
