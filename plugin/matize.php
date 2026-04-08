@@ -12,6 +12,10 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
+add_action( 'init', function () {
+	load_plugin_textdomain( 'matize', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
+} );
+
 // ─── Autoload ────────────────────────────────────────────────────────────────
 
 foreach ( glob( plugin_dir_path( __FILE__ ) . 'includes/**/*.php' ) as $file ) {
