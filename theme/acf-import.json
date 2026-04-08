@@ -38,47 +38,6 @@
 				"max_height": "",
 				"max_size": "",
 				"mime_types": ""
-			},
-			{
-				"key": "field_mtz_home_about_heading",
-				"label": "About — Heading",
-				"name": "mtz_home_about_heading",
-				"type": "text",
-				"instructions": "",
-				"required": 0,
-				"conditional_logic": 0,
-				"wrapper": { "width": "", "class": "", "id": "" },
-				"default_value": "",
-				"placeholder": "",
-				"prepend": "",
-				"append": "",
-				"maxlength": ""
-			},
-			{
-				"key": "field_mtz_home_about_text",
-				"label": "About — Text",
-				"name": "mtz_home_about_text",
-				"type": "wysiwyg",
-				"instructions": "",
-				"required": 0,
-				"conditional_logic": 0,
-				"wrapper": { "width": "", "class": "", "id": "" },
-				"default_value": "",
-				"tabs": "all",
-				"toolbar": "basic",
-				"media_upload": 0,
-				"delay": 0
-			},
-			{
-				"key": "field_mtz_home_about_link",
-				"label": "About — Link",
-				"name": "mtz_home_about_link",
-				"type": "link",
-				"instructions": "",
-				"required": 0,
-				"conditional_logic": 0,
-				"wrapper": { "width": "", "class": "", "id": "" },
-				"return_format": "array"
 			}
 		],
 		"location": [
@@ -105,36 +64,6 @@
 		"title": "Matize \u2014 Theme Settings",
 		"fields": [
 			{
-				"key": "field_mtz_cta_heading",
-				"label": "CTA Heading",
-				"name": "mtz_cta_heading",
-				"type": "text",
-				"instructions": "",
-				"required": 0,
-				"conditional_logic": 0,
-				"wrapper": { "width": "", "class": "", "id": "" },
-				"default_value": "",
-				"placeholder": "",
-				"prepend": "",
-				"append": "",
-				"maxlength": ""
-			},
-			{
-				"key": "field_mtz_cta_text",
-				"label": "CTA Text",
-				"name": "mtz_cta_text",
-				"type": "textarea",
-				"instructions": "",
-				"required": 0,
-				"conditional_logic": 0,
-				"wrapper": { "width": "", "class": "", "id": "" },
-				"default_value": "",
-				"placeholder": "",
-				"maxlength": "",
-				"rows": 3,
-				"new_lines": "wpautop"
-			},
-			{
 				"key": "field_mtz_cta_label",
 				"label": "CTA Button Label",
 				"name": "mtz_cta_label",
@@ -151,15 +80,51 @@
 			},
 			{
 				"key": "field_mtz_social_instagram",
-				"label": "Instagram URL",
+				"label": "Instagram",
 				"name": "mtz_social_instagram",
 				"type": "url",
 				"instructions": "",
 				"required": 0,
 				"conditional_logic": 0,
-				"wrapper": { "width": "", "class": "", "id": "" },
+				"wrapper": { "width": "50", "class": "", "id": "" },
 				"default_value": "",
 				"placeholder": "https://instagram.com/..."
+			},
+			{
+				"key": "field_mtz_social_facebook",
+				"label": "Facebook",
+				"name": "mtz_social_facebook",
+				"type": "url",
+				"instructions": "",
+				"required": 0,
+				"conditional_logic": 0,
+				"wrapper": { "width": "50", "class": "", "id": "" },
+				"default_value": "",
+				"placeholder": "https://facebook.com/..."
+			},
+			{
+				"key": "field_mtz_social_pinterest",
+				"label": "Pinterest",
+				"name": "mtz_social_pinterest",
+				"type": "url",
+				"instructions": "",
+				"required": 0,
+				"conditional_logic": 0,
+				"wrapper": { "width": "50", "class": "", "id": "" },
+				"default_value": "",
+				"placeholder": "https://pinterest.com/..."
+			},
+			{
+				"key": "field_mtz_social_linkedin",
+				"label": "LinkedIn",
+				"name": "mtz_social_linkedin",
+				"type": "url",
+				"instructions": "",
+				"required": 0,
+				"conditional_logic": 0,
+				"wrapper": { "width": "50", "class": "", "id": "" },
+				"default_value": "",
+				"placeholder": "https://linkedin.com/in/..."
 			}
 		],
 		"location": [

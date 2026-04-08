@@ -2,7 +2,7 @@
 
 add_shortcode( 'matize-hero-video', function () {
 
-	$video = get_field( 'hero_video' );
+	$video = get_field( 'mtz_hero_video' );
 
 	if ( ! $video ) return '';
 

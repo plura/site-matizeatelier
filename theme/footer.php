@@ -19,7 +19,7 @@
 
 		<div class="site-footer__social">
 			<?php
-			$instagram = get_field( 'social_instagram', 'option' );
+			$instagram = get_field( 'mtz_social_instagram', 'option' );
 			if ( $instagram ) : ?>
 				<a href="<?php echo esc_url( $instagram ); ?>" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
 					Instagram

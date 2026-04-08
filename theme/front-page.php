@@ -6,7 +6,7 @@
 	<?php echo plura_wp_component( get_template_directory() . '/components/hero/manifest.json' ); ?>
 
 	<?php /* ── Mood gallery ─────────────────────────────────────────────── */ ?>
-	<?php $mood_gallery = get_field( 'home_mood_gallery' ); ?>
+	<?php $mood_gallery = get_field( 'mtz_home_mood_gallery' ); ?>
 	<?php if ( $mood_gallery ) : ?>
 		<section class="mood-gallery">
 			<div class="mood-gallery__inner">
@@ -20,25 +20,18 @@
 	<?php endif; ?>
 
 	<?php /* ── About (condensed) ────────────────────────────────────────── */ ?>
-	<?php
-	$about_heading = get_field( 'home_about_heading' );
-	$about_text    = get_field( 'home_about_text' );
-	$about_link    = get_field( 'home_about_link' );
-	?>
-	<?php if ( $about_heading || $about_text ) : ?>
+	<?php $about_page = get_page_by_path( 'about' ); ?>
+	<?php if ( $about_page ) : ?>
 		<section class="home-about">
 			<div class="home-about__inner">
-				<?php if ( $about_heading ) : ?>
-					<h2 class="home-about__heading"><?php echo esc_html( $about_heading ); ?></h2>
+				<h2 class="home-about__heading"><?php echo esc_html( get_the_title( $about_page ) ); ?></h2>
+				<?php $excerpt = get_the_excerpt( $about_page ); ?>
+				<?php if ( $excerpt ) : ?>
+					<div class="home-about__text"><?php echo wp_kses_post( $excerpt ); ?></div>
 				<?php endif; ?>
-				<?php if ( $about_text ) : ?>
-					<div class="home-about__text"><?php echo wp_kses_post( $about_text ); ?></div>
-				<?php endif; ?>
-				<?php if ( $about_link ) : ?>
-					<a href="<?php echo esc_url( $about_link['url'] ); ?>" class="home-about__link">
-						<?php echo esc_html( $about_link['title'] ); ?>
-					</a>
-				<?php endif; ?>
+				<a href="<?php echo esc_url( get_permalink( $about_page ) ); ?>" class="home-about__link">
+					<?php esc_html_e( 'Sobre nós', 'matize' ); ?>
+				</a>
 			</div>
 		</section>
 	<?php endif; ?>
@@ -59,27 +52,14 @@
 	</section>
 
 	<?php /* ── CTA ──────────────────────────────────────────────────────── */ ?>
-	<?php
-	$cta_heading = get_field( 'cta_heading', 'option' );
-	$cta_text    = get_field( 'cta_text', 'option' );
-	$cta_label   = get_field( 'cta_label', 'option' );
-	?>
-	<?php if ( $cta_heading ) : ?>
-		<section class="cta">
-			<div class="cta__inner">
-				<h2 class="cta__heading"><?php echo esc_html( $cta_heading ); ?></h2>
-				<?php if ( $cta_text ) : ?>
-					<p class="cta__text"><?php echo wp_kses_post( $cta_text ); ?></p>
-				<?php endif; ?>
-				<button
-					class="cta__btn"
-					popovertarget="contact-modal"
-				>
-					<?php echo esc_html( $cta_label ?: __( 'Contactar', 'matize' ) ); ?>
-				</button>
-			</div>
-		</section>
-	<?php endif; ?>
+	<?php $cta_label = get_field( 'mtz_cta_label', 'option' ); ?>
+	<section class="cta">
+		<div class="cta__inner">
+			<button class="cta__btn" popovertarget="contact-modal">
+				<?php echo esc_html( $cta_label ?: __( 'Contactar', 'matize' ) ); ?>
+			</button>
+		</div>
+	</section>
 
 	<?php /* ── Contact modal ────────────────────────────────────────────── */ ?>
 	<div id="contact-modal" popover>
