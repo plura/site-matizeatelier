@@ -30,3 +30,23 @@ add_action( 'init', function () {
 	] );
 
 } );
+
+// ─── Admin columns ────────────────────────────────────────────────────────────
+
+add_filter( 'manage_mtz_service_posts_columns', function ( array $columns ): array {
+	$new = [];
+	foreach ( $columns as $key => $label ) {
+		$new[ $key ] = $label;
+		if ( $key === 'title' ) {
+			$new['mtz_service_excerpt'] = __( 'Resumo', 'matize' );
+		}
+	}
+	return $new;
+} );
+
+add_action( 'manage_mtz_service_posts_custom_column', function ( string $column, int $post_id ): void {
+	if ( $column === 'mtz_service_excerpt' ) {
+		$excerpt = get_field( 'mtz_service_excerpt', $post_id );
+		echo $excerpt ? esc_html( $excerpt ) : '—';
+	}
+}, 10, 2 );
