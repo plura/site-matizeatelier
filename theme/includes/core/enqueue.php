@@ -9,6 +9,9 @@ add_action( 'wp_enqueue_scripts', function () {
 		'https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js'          => [ 'handle' => 'gsap' ],
 		'https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js' => [ 'handle' => 'gsap-scrolltrigger', 'deps' => [ 'matize-gsap' ] ],
 
+		// Lucide icons (CDN)
+		'https://unpkg.com/lucide@latest/dist/umd/lucide.min.js' => [ 'handle' => 'lucide' ],
+
 		// Theme assets — resolves to assets/css/main.css + assets/js/main.js
 		"$dir/assets/%s/main.%s",
 	];

@@ -30,6 +30,64 @@
 	list-style: none;
 }
 
+/* ── Mobile nav ── */
+
+.site-header__menu-toggle {
+	align-items: center;
+	background: none;
+	border: none;
+	color: inherit;
+	cursor: pointer;
+	display: flex;
+	padding: var(--mtz-space-xs);
+}
+
+/* Show only the menu icon by default; x icon hidden */
+.site-header__menu-toggle i:last-child {
+	display: none;
+}
+
+/* When open: swap icons */
+.site-header__menu-toggle[aria-expanded="true"] i:first-child {
+	display: none;
+}
+
+.site-header__menu-toggle[aria-expanded="true"] i:last-child {
+	display: flex;
+}
+
+/* Mobile: nav hidden off-screen */
+@media (max-width: 767px) {
+	.site-nav {
+		background-color: var(--mtz-color-linen);
+		inset: 0;
+		left: auto;
+		overflow-y: auto;
+		padding: var(--mtz-space-3xl) var(--mtz-gutter) var(--mtz-space-xl);
+		position: fixed;
+		transform: translateX(100%);
+		transition: transform var(--mtz-transition);
+		width: min(320px, 85vw);
+		z-index: 99;
+	}
+
+	.site-nav.is-open {
+		transform: translateX(0);
+	}
+
+	.site-nav__list {
+		flex-direction: column;
+		gap: var(--mtz-space-md);
+	}
+}
+
+/* Tablet+: hamburger hidden, nav always visible */
+@media (min-width: 768px) {
+	.site-header__menu-toggle {
+		display: none;
+	}
+}
+
 /* ─── Footer ─────────────────────────────────────────────────────────────────
    Dark background, light text.
    ─────────────────────────────────────────────────────────────────────────── */
@@ -69,6 +127,13 @@
 	display: flex;
 	flex-direction: column;
 	font-style: normal;
+	gap: var(--mtz-space-xs);
+}
+
+.site-footer__email,
+.site-footer__phone {
+	align-items: center;
+	display: flex;
 	gap: var(--mtz-space-xs);
 }
 

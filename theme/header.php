@@ -32,11 +32,23 @@
 			?>
 		</nav>
 
-		<?php if ( function_exists( 'plura_wpml' ) && plura_wpml() ) : ?>
-			<div class="site-header__lang">
-				<?php do_action( 'wpml_add_language_selector' ); ?>
-			</div>
-		<?php endif; ?>
+		<div class="site-header__actions">
+			<?php if ( function_exists( 'plura_wpml' ) && plura_wpml() ) : ?>
+				<div class="site-header__lang">
+					<?php do_action( 'wpml_add_language_selector' ); ?>
+				</div>
+			<?php endif; ?>
+
+			<button
+				class="site-header__menu-toggle"
+				aria-label="<?php esc_attr_e( 'Open menu', 'matize' ); ?>"
+				aria-expanded="false"
+				aria-controls="site-nav"
+			>
+				<i data-lucide="menu" aria-hidden="true"></i>
+				<i data-lucide="x" aria-hidden="true"></i>
+			</button>
+		</div>
 
 	</div>
 </header>
