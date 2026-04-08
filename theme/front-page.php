@@ -44,59 +44,50 @@
 	<?php endif; ?>
 
 	<?php /* ── Services (condensed) ─────────────────────────────────────── */ ?>
+	<section class="home-services">
+		<?php
+		echo plura_wp_posts(
+			type: 'service',
+			orderby: 'menu_order',
+			order: 'ASC',
+			class: 'home-services__grid',
+			wrap: true,
+			link: 0,
+			context: 'home-services',
+		);
+		?>
+	</section>
+
+	<?php /* ── CTA ──────────────────────────────────────────────────────── */ ?>
 	<?php
-	$services = new WP_Query( [
-		'post_type'      => 'service',
-		'posts_per_page' => -1,
-		'orderby'        => 'menu_order',
-		'order'          => 'ASC',
-		'no_found_rows'  => true,
-	] );
+	$cta_heading = get_field( 'cta_heading', 'option' );
+	$cta_text    = get_field( 'cta_text', 'option' );
+	$cta_label   = get_field( 'cta_label', 'option' );
 	?>
-	<?php if ( $services->have_posts() ) : ?>
-		<section class="home-services">
-			<div class="home-services__inner">
-				<?php while ( $services->have_posts() ) : $services->the_post(); ?>
-					<article class="home-services__item">
-						<?php if ( has_post_thumbnail() ) : ?>
-							<div class="home-services__img">
-								<?php the_post_thumbnail( 'medium', [ 'alt' => get_the_title() ] ); ?>
-							</div>
-						<?php endif; ?>
-						<h3 class="home-services__title"><?php the_title(); ?></h3>
-						<?php $desc = get_field( 'service_description' ); ?>
-						<?php if ( $desc ) : ?>
-							<div class="home-services__desc"><?php echo wp_kses_post( $desc ); ?></div>
-						<?php endif; ?>
-					</article>
-				<?php endwhile; wp_reset_postdata(); ?>
+	<?php if ( $cta_heading ) : ?>
+		<section class="cta">
+			<div class="cta__inner">
+				<h2 class="cta__heading"><?php echo esc_html( $cta_heading ); ?></h2>
+				<?php if ( $cta_text ) : ?>
+					<p class="cta__text"><?php echo wp_kses_post( $cta_text ); ?></p>
+				<?php endif; ?>
+				<button
+					class="cta__btn"
+					popovertarget="contact-modal"
+				>
+					<?php echo esc_html( $cta_label ?: __( 'Contactar', 'matize' ) ); ?>
+				</button>
 			</div>
 		</section>
 	<?php endif; ?>
 
-	<?php /* ── CTA (global) ──────────────────────────────────────────────── */ ?>
-	<?php
-	$cta_heading = get_field( 'cta_heading', 'option' );
-	$cta_text    = get_field( 'cta_text', 'option' );
-	$cta_link    = get_field( 'cta_link', 'option' );
-	?>
-	<?php if ( $cta_heading || $cta_link ) : ?>
-		<section class="cta">
-			<div class="cta__inner">
-				<?php if ( $cta_heading ) : ?>
-					<h2 class="cta__heading"><?php echo esc_html( $cta_heading ); ?></h2>
-				<?php endif; ?>
-				<?php if ( $cta_text ) : ?>
-					<p class="cta__text"><?php echo wp_kses_post( $cta_text ); ?></p>
-				<?php endif; ?>
-				<?php if ( $cta_link ) : ?>
-					<a href="<?php echo esc_url( $cta_link['url'] ); ?>" class="cta__btn">
-						<?php echo esc_html( $cta_link['title'] ); ?>
-					</a>
-				<?php endif; ?>
-			</div>
-		</section>
-	<?php endif; ?>
+	<?php /* ── Contact modal ────────────────────────────────────────────── */ ?>
+	<div id="contact-modal" popover>
+		<button class="contact-modal__close" popovertarget="contact-modal" popovertargetaction="hide" aria-label="<?php esc_attr_e( 'Fechar', 'matize' ); ?>">
+			&times;
+		</button>
+		<?php echo do_shortcode( '[contact-form-7 id="contact" title="Contacto"]' ); ?>
+	</div>
 
 </main>
 
