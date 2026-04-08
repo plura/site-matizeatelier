@@ -7,16 +7,19 @@ Website for [matizeatelier.pt](https://matizeatelier.pt) — Atelier de Design d
 ```
 /placeholder    Static coming soon page (live while WordPress is being built)
 /theme          Custom WordPress theme → wp-content/themes/matize/
-/plugin         Site-specific plugin → wp-content/plugins/matize/
-  /acf-json     ACF field groups (Local JSON — auto-synced by ACF on save)
-  /assets       CSS and JS
-  /components   Plura component system (manifest + HTML + PHP + assets)
+  /acf-json       ACF field groups (Local JSON — auto-synced by ACF on save)
+  /assets         CSS and JS
+  /components     Plura component system (manifest + HTML + PHP + assets)
   /includes
-    /core       Theme setup, Gutenberg, enqueue, ACF
-    /hooks      Page-specific filters (home, etc.)
-    /fields     ACF field groups as PHP (if exported)
-  /stubs        Intelephense stubs for Plura plugin and ACF
-  /template-parts  Reusable template parts (CTA/contact modal, etc.)
+    /core         Theme setup, Gutenberg, enqueue, ACF
+    /hooks        Page-specific filters (home, services, etc.)
+  /languages      Translation files (.pot, .po, .mo)
+  /stubs          Intelephense stubs for Plura plugin and ACF
+  /template-parts Reusable template parts (CTA/contact modal, etc.)
+/plugin         Site-specific plugin → wp-content/plugins/matize/
+  /includes
+    /post-types   Custom post type registration
+  /languages      Translation files (.pot, .po, .mo)
 ```
 
 ## Stack
@@ -33,6 +36,7 @@ Website for [matizeatelier.pt](https://matizeatelier.pt) — Atelier de Design d
 
 Two contexts defined in `.vscode/sftp.json` (gitignored — contains credentials).
 Copy `.vscode/settings.json.example` to `.vscode/settings.json` for Intelephense support.
+Remote folders are created automatically on first sync — no need to pre-create them on the server.
 
 | Context     | Local        | Remote                                            |
 |-------------|--------------|---------------------------------------------------|
