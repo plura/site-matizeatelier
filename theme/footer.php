@@ -1,14 +1,17 @@
 <?php
+$social_group  = get_field( 'mtz_social',  'option' ) ?: [];
+$contact_group = get_field( 'mtz_contact', 'option' ) ?: [];
+
 $social = [
-	'Instagram' => get_field( 'mtz_social_instagram', 'option' ),
-	'Facebook'  => get_field( 'mtz_social_facebook',  'option' ),
-	'Pinterest' => get_field( 'mtz_social_pinterest',  'option' ),
-	'LinkedIn'  => get_field( 'mtz_social_linkedin',   'option' ),
+	'Instagram' => $social_group['mtz_social_instagram'] ?? '',
+	'Facebook'  => $social_group['mtz_social_facebook']  ?? '',
+	'Pinterest' => $social_group['mtz_social_pinterest']  ?? '',
+	'LinkedIn'  => $social_group['mtz_social_linkedin']   ?? '',
 ];
 
-$contact_email   = get_field( 'mtz_contact_email',   'option' );
-$contact_phone   = get_field( 'mtz_contact_phone',   'option' );
-$contact_address = get_field( 'mtz_contact_address', 'option' );
+$contact_email   = $contact_group['mtz_contact_email']   ?? '';
+$contact_phone   = $contact_group['mtz_contact_phone']   ?? '';
+$contact_address = $contact_group['mtz_contact_address'] ?? '';
 ?>
 
 <footer id="site-footer" class="site-footer">
