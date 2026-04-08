@@ -52,22 +52,11 @@
 	</section>
 
 	<?php /* ── CTA ──────────────────────────────────────────────────────── */ ?>
-	<?php $cta_label = get_field( 'mtz_cta_label', 'option' ); ?>
 	<section class="cta">
 		<div class="cta__inner">
-			<button class="cta__btn" popovertarget="contact-modal">
-				<?php echo esc_html( $cta_label ?: __( 'Contactar', 'matize' ) ); ?>
-			</button>
+			<?php get_template_part( 'template-parts/cta' ); ?>
 		</div>
 	</section>
-
-	<?php /* ── Contact modal ────────────────────────────────────────────── */ ?>
-	<div id="contact-modal" popover>
-		<button class="contact-modal__close" popovertarget="contact-modal" popovertargetaction="hide" aria-label="<?php esc_attr_e( 'Fechar', 'matize' ); ?>">
-			&times;
-		</button>
-		<?php echo do_shortcode( '[contact-form-7 id="contact" title="Contacto"]' ); ?>
-	</div>
 
 </main>
 
