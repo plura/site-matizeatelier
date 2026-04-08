@@ -64,6 +64,45 @@
 			"wrapper": { "width": "50", "class": "", "id": "" },
 			"default_value": "",
 			"placeholder": "https://linkedin.com/in/..."
+		},
+		{
+			"key": "field_mtz_contact_email",
+			"label": "Email",
+			"name": "mtz_contact_email",
+			"type": "email",
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": { "width": "50", "class": "", "id": "" },
+			"default_value": "",
+			"placeholder": "geral@matizeatelier.pt"
+		},
+		{
+			"key": "field_mtz_contact_phone",
+			"label": "Telefone",
+			"name": "mtz_contact_phone",
+			"type": "text",
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": { "width": "50", "class": "", "id": "" },
+			"default_value": "",
+			"placeholder": "+351 000 000 000"
+		},
+		{
+			"key": "field_mtz_contact_address",
+			"label": "Morada",
+			"name": "mtz_contact_address",
+			"type": "textarea",
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": { "width": "", "class": "", "id": "" },
+			"default_value": "",
+			"placeholder": "",
+			"maxlength": "",
+			"rows": 3,
+			"new_lines": "br"
 		}
 	],
 	"location": [
