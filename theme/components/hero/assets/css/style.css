@@ -1,0 +1,36 @@
+.hero {
+	align-items: center;
+	display: flex;
+	height: 100dvh;
+	justify-content: center;
+	overflow: hidden;
+	position: relative;
+	width: 100%;
+}
+
+.hero__video {
+	height: 100%;
+	inset: 0;
+	object-fit: cover;
+	position: absolute;
+	width: 100%;
+	z-index: 0;
+}
+
+.hero__logo {
+	position: relative;
+	z-index: 1;
+}
+
+.hero__logo-svg,
+.hero__logo svg {
+	width: clamp(200px, 30vw, 480px);
+}
+
+/* Logo paths start invisible — GSAP animates stroke-dashoffset in */
+.hero__logo svg path {
+	fill: none;
+	stroke: currentColor;
+	stroke-dasharray: var(--path-length, 1000);
+	stroke-dashoffset: var(--path-length, 1000);
+}

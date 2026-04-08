@@ -3,26 +3,7 @@
 <main id="main" class="site-main page-home">
 
 	<?php /* ── Hero ─────────────────────────────────────────────────────── */ ?>
-	<section class="hero" aria-label="<?php esc_attr_e( 'Hero', 'matize' ); ?>">
-
-		<?php $hero_video = get_field( 'hero_video' ); ?>
-		<?php if ( $hero_video ) : ?>
-			<video
-				class="hero__video"
-				src="<?php echo esc_url( $hero_video['url'] ); ?>"
-				autoplay
-				muted
-				loop
-				playsinline
-				aria-hidden="true"
-			></video>
-		<?php endif; ?>
-
-		<div class="hero__logo" aria-hidden="true">
-			<?php get_template_part( 'templates/svg/logo' ); ?>
-		</div>
-
-	</section>
+	<?php echo plura_wp_component( get_template_directory() . '/components/hero/manifest.json' ); ?>
 
 	<?php /* ── Mood gallery ─────────────────────────────────────────────── */ ?>
 	<?php $mood_gallery = get_field( 'home_mood_gallery' ); ?>
