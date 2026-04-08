@@ -14,9 +14,9 @@ add_filter( 'plura_wp_post', function ( array $entry, WP_Post $post, ?string $co
 		}
 	}
 
-	$desc = get_field( 'mtz_service_description', $post->ID );
-	if ( $desc ) {
-		$a['description'] = '<div class="home-services__desc">' . wp_kses_post( $desc ) . '</div>';
+	$excerpt = get_field( 'mtz_service_excerpt', $post->ID );
+	if ( $excerpt ) {
+		$a['excerpt'] = '<div class="home-services__excerpt">' . esc_html( $excerpt ) . '</div>';
 	}
 
 	return $a;

@@ -3,6 +3,21 @@
 	"title": "Matize \u2014 Servi\u00e7o",
 	"fields": [
 		{
+			"key": "field_mtz_service_excerpt",
+			"label": "Resumo",
+			"name": "mtz_service_excerpt",
+			"type": "textarea",
+			"instructions": "Texto curto para usar em listagens e grelhas.",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": { "width": "", "class": "", "id": "" },
+			"default_value": "",
+			"placeholder": "",
+			"maxlength": "",
+			"rows": 3,
+			"new_lines": ""
+		},
+		{
 			"key": "field_mtz_service_description",
 			"label": "Descri\u00e7\u00e3o",
 			"name": "mtz_service_description",
