@@ -52,11 +52,7 @@
 	</section>
 
 	<?php /* ── CTA ──────────────────────────────────────────────────────── */ ?>
-	<section class="cta">
-		<div class="cta__inner">
-			<?php get_template_part( 'template-parts/cta' ); ?>
-		</div>
-	</section>
+	<?php get_template_part( 'template-parts/cta' ); ?>
 
 </main>
 
