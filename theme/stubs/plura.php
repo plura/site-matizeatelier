@@ -39,7 +39,7 @@ function plura_wp_enqueue_asset( string $type, string $file, array $options = []
  * @param string $path Absolute file path.
  * @return string
  */
-function plura_wp_file_url( string $path ): string {}
+function plura_wp_file_url( string $path ): string { return ''; }
 
 // ─── Component ───────────────────────────────────────────────────────────────
 
@@ -55,7 +55,7 @@ function plura_wp_file_url( string $path ): string {}
  * @param string|null $context   Optional context string passed to filters.
  * @return string
  */
-function plura_wp_component( string $manifest, string $id = '', bool $img2svg = true, ?string $context = null ): string {}
+function plura_wp_component( string $manifest, string $id = '', bool $img2svg = true, ?string $context = null ): string { return ''; }
 
 /**
  * Replace local SVG <img> tags with inline <svg> elements.
@@ -65,7 +65,7 @@ function plura_wp_component( string $manifest, string $id = '', bool $img2svg = 
  * @param bool   $wrap      Wrap inline SVG in a span.
  * @return string
  */
-function plura_img2svg( string $html, string $base_path = '', bool $wrap = false ): string {}
+function plura_img2svg( string $html, string $base_path = '', bool $wrap = false ): string { return ''; }
 
 // ─── Posts ───────────────────────────────────────────────────────────────────
 
@@ -107,7 +107,7 @@ function plura_wp_posts_query(
 	string $timeline_end_key = '',
 	array $params = [],
 	string $context = '',
-): \WP_Query {}
+): \WP_Query { return new \WP_Query(); }
 
 /**
  * Render a list of posts, each via plura_wp_post().
@@ -165,7 +165,7 @@ function plura_wp_posts(
 	string $output = 'html',
 	array $params = [],
 	string $context = '',
-): string|array {}
+): string|array { return ''; }
 
 /**
  * Render a single post card/block.
@@ -197,7 +197,24 @@ function plura_wp_post(
 	string $timeline_start_key = '',
 	string $timeline_end_key = '',
 	?string $context = null,
-): string {}
+): string { return ''; }
+
+/**
+ * Filter: plura_wp_post
+ *
+ * Allows modifying the rendered content array for a single post.
+ * Return a new array to replace the default entry; returning the same
+ * array leaves output unchanged.
+ *
+ * Hook signature:
+ *   add_filter( 'plura_wp_post', function(
+ *       array   $entry,    // associative array of rendered HTML parts (e.g. 'featured-image', 'title')
+ *       WP_Post $post,     // the post object
+ *       ?string $context,  // context string passed to plura_wp_posts() / plura_wp_post()
+ *       ?int    $index,    // 0-based loop index within plura_wp_posts(), null when called directly
+ *       array   $original, // unfiltered entry array (same keys as $entry before any filter ran)
+ *   ): array { ... }, 10, 5 );
+ */
 
 /**
  * Render a post's featured image.
@@ -208,7 +225,7 @@ function plura_wp_post(
  * @param string|null  $context Context for filters.
  * @return string
  */
-function plura_wp_post_featured_image( \WP_Post|int $post, string $size = 'full', array $atts = [], ?string $context = null ): string {}
+function plura_wp_post_featured_image( \WP_Post|int $post, string $size = 'large', array $atts = [], ?string $context = null ): string { return ''; }
 
 /**
  * Render a post title, optionally linked.
@@ -220,7 +237,7 @@ function plura_wp_post_featured_image( \WP_Post|int $post, string $size = 'full'
  * @param string|null  $context Context for filters.
  * @return string
  */
-function plura_wp_post_title( \WP_Post|int $post, int $link = 1, string $tag = 'h2', string $class = '', ?string $context = null ): string {}
+function plura_wp_post_title( \WP_Post|int $post, int $link = 1, string $tag = 'h2', string $class = '', ?string $context = null ): string { return ''; }
 
 // ─── Images ──────────────────────────────────────────────────────────────────
 
@@ -233,7 +250,7 @@ function plura_wp_post_title( \WP_Post|int $post, int $link = 1, string $tag = '
  * @param string|null $context    Context for filters.
  * @return string
  */
-function plura_wp_image( ?int $attachment = null, string $size = 'full', array $atts = [], ?string $context = null ): string {}
+function plura_wp_image( ?int $attachment = null, string $size = 'full', array $atts = [], ?string $context = null ): string { return ''; }
 
 /**
  * Wrap HTML in an anchor tag with external link detection.
@@ -244,7 +261,7 @@ function plura_wp_image( ?int $attachment = null, string $size = 'full', array $
  * @param string|null        $context Context for filters.
  * @return string
  */
-function plura_wp_link( string $html = '', string|array|\WP_Post|int $target = '', string $class = '', ?string $context = null ): string {}
+function plura_wp_link( string $html = '', string|array|\WP_Post|int $target = '', string $class = '', ?string $context = null ): string { return ''; }
 
 // ─── Navigation ──────────────────────────────────────────────────────────────
 
@@ -254,7 +271,7 @@ function plura_wp_link( string $html = '', string|array|\WP_Post|int $target = '
  * @param string|null $context Context for filters.
  * @return string
  */
-function plura_wp_breadcrumbs( ?string $context = null ): string {}
+function plura_wp_breadcrumbs( ?string $context = null ): string { return ''; }
 
 // ─── WPML ────────────────────────────────────────────────────────────────────
 
@@ -263,7 +280,7 @@ function plura_wp_breadcrumbs( ?string $context = null ): string {}
  *
  * @return bool
  */
-function plura_wpml(): bool {}
+function plura_wpml(): bool { return false; }
 
 /**
  * Translate a post or term ID to the current WPML language equivalent.
@@ -273,14 +290,14 @@ function plura_wpml(): bool {}
  * @param string $lang      Target language code (defaults to current).
  * @return int
  */
-function plura_wpml_id( int $id, string $type = 'post', string $lang = '' ): int {}
+function plura_wpml_id( int $id, string $type = 'post', string $lang = '' ): int { return $id; }
 
 /**
  * Return the current WPML language code.
  *
  * @return string e.g. 'pt', 'en'
  */
-function plura_wpml_lang(): string {}
+function plura_wpml_lang(): string { return ''; }
 
 /**
  * Get the featured image for a post with ACF fallback, WPML-aware.
@@ -290,7 +307,7 @@ function plura_wpml_lang(): string {}
  * @param array        $atts img attributes.
  * @return string
  */
-function plura_wpml_featured_image( \WP_Post|int $post, string $size = 'full', array $atts = [] ): string {}
+function plura_wpml_featured_image( \WP_Post|int $post, string $size = 'full', array $atts = [] ): string { return ''; }
 
 // ─── Utils ───────────────────────────────────────────────────────────────────
 
@@ -300,7 +317,7 @@ function plura_wpml_featured_image( \WP_Post|int $post, string $size = 'full', a
  * @param array $atts Key/value pairs. Boolean true outputs the key only.
  * @return string
  */
-function plura_attributes( array $atts ): string {}
+function plura_attributes( array $atts ): string { return ''; }
 
 /**
  * Evaluate the boolean state of a value.
@@ -308,7 +325,7 @@ function plura_attributes( array $atts ): string {}
  * @param mixed $value
  * @return bool
  */
-function plura_bool( mixed $value ): bool {}
+function plura_bool( mixed $value ): bool { return false; }
 
 /**
  * Explode a string with auto-trimming of resulting values.
@@ -317,4 +334,4 @@ function plura_bool( mixed $value ): bool {}
  * @param string $string
  * @return array
  */
-function plura_explode( string $separator, string $string ): array {}
+function plura_explode( string $separator, string $string ): array { return []; }
