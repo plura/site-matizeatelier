@@ -1,0 +1,85 @@
+/* ─── Header ─────────────────────────────────────────────────────────────────
+   Sticky on all pages. Fixed on the front page so the hero is truly fullscreen.
+   ─────────────────────────────────────────────────────────────────────────── */
+
+.site-header {
+	padding: var(--mtz-space-sm) var(--mtz-gutter);
+	position: sticky;
+	top: 0;
+	z-index: 100;
+}
+
+/* Front page: fixed so the hero is truly fullscreen beneath it */
+.home .site-header {
+	left: 0;
+	position: fixed;
+	right: 0;
+}
+
+.site-header__inner {
+	align-items: center;
+	display: flex;
+	justify-content: space-between;
+	margin-inline: auto;
+	max-width: var(--mtz-max-width);
+}
+
+.site-nav__list {
+	display: flex;
+	gap: var(--mtz-space-md);
+	list-style: none;
+}
+
+/* ─── Footer ─────────────────────────────────────────────────────────────────
+   Dark background, light text.
+   ─────────────────────────────────────────────────────────────────────────── */
+
+.site-footer {
+	background-color: var(--mtz-color-charcoal);
+	color: var(--mtz-color-linen);
+	padding-block: var(--mtz-space-2xl) var(--mtz-space-xl);
+}
+
+.site-footer__inner {
+	display: grid;
+	gap: var(--mtz-space-xl);
+	margin-inline: auto;
+	max-width: var(--mtz-max-width);
+	padding-inline: var(--mtz-gutter);
+}
+
+.site-footer a {
+	color: inherit;
+	opacity: 0.75;
+	transition: opacity var(--mtz-transition);
+}
+
+.site-footer a:hover {
+	opacity: 1;
+}
+
+.site-footer__brand {
+	font-family: var(--mtz-font-heading);
+	font-size: var(--mtz-text-xl);
+	font-weight: var(--mtz-weight-light);
+	letter-spacing: var(--mtz-tracking-wide);
+}
+
+.site-footer__contact {
+	display: flex;
+	flex-direction: column;
+	font-style: normal;
+	gap: var(--mtz-space-xs);
+}
+
+.site-footer__social {
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--mtz-space-md);
+}
+
+.site-footer__copy {
+	color: var(--mtz-color-greige);
+	font-size: var(--mtz-text-xs);
+	letter-spacing: var(--mtz-tracking-wide);
+}
