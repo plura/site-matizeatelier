@@ -7,4 +7,19 @@ $cta_label   = $cta_enquiry['label'] ?? '';
 	<?php echo esc_html( $cta_label ?: __( 'Get in Touch', 'matize' ) ); ?>
 </button>
 
-<?php get_template_part( 'template-parts/contact-modal' ); ?>
+<?php if ( ! defined( 'MTZ_CONTACT_MODAL_RENDERED' ) ) :
+	define( 'MTZ_CONTACT_MODAL_RENDERED', true ); ?>
+
+	<dialog id="contact-modal" class="contact-modal">
+		<div class="contact-modal__inner">
+			<button
+				class="contact-modal__close"
+				aria-label="<?php esc_attr_e( 'Close', 'matize' ); ?>"
+			>
+				<i data-lucide="x" aria-hidden="true"></i>
+			</button>
+			<?php get_template_part( 'template-parts/contact-form' ); ?>
+		</div>
+	</dialog>
+
+<?php endif; ?>
