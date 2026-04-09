@@ -163,30 +163,6 @@
 	letter-spacing: var(--mtz-tracking-wide);
 }
 
-.site-footer__contact {
-	display: flex;
-	flex-direction: column;
-	font-style: normal;
-	gap: var(--mtz-space-xs);
-}
-
-.site-footer__email,
-.site-footer__phone {
-	align-items: center;
-	display: flex;
-	gap: var(--mtz-space-xs);
-}
-
-.site-footer svg {
-	height: var(--mtz-icon-sm);
-	width: var(--mtz-icon-sm);
-}
-
-.site-footer__social {
-	display: flex;
-	flex-wrap: wrap;
-	gap: var(--mtz-space-md);
-}
 
 .site-footer__contact,
 .site-footer__social,

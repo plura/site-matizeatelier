@@ -1,4 +1,58 @@
 @charset "UTF-8";
+/* ─── Contact details ────────────────────────────────────────────────────────
+   Used in footer and contact page.
+   ─────────────────────────────────────────────────────────────────────────── */
+
+.contact-details {
+	display: flex;
+	flex-direction: column;
+	font-style: normal;
+	gap: var(--mtz-space-sm);
+}
+
+.contact-details__item {
+	align-items: flex-start;
+	color: inherit;
+	display: flex;
+	font-size: var(--mtz-text-xs);
+	font-weight: var(--mtz-weight-light);
+	gap: var(--mtz-space-xs);
+	text-decoration: none;
+	transition: opacity var(--mtz-transition);
+}
+
+.contact-details__item:hover {
+	opacity: 0.6;
+}
+
+.contact-details__item svg {
+	flex-shrink: 0;
+	height: var(--mtz-icon-sm);
+	margin-top: 2px;
+	width: var(--mtz-icon-sm);
+}
+
+/* ─── Social links ───────────────────────────────────────────────────────────
+   Used in footer and contact page.
+   ─────────────────────────────────────────────────────────────────────────── */
+
+.social-links {
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--mtz-space-md);
+	margin-top: var(--mtz-space-md);
+}
+
+.social-links__item {
+	color: inherit;
+	opacity: 0.6;
+	transition: opacity var(--mtz-transition);
+}
+
+.social-links__item:hover {
+	opacity: 1;
+}
+
 /* ─── CTA button ─────────────────────────────────────────────────────────────
    Rendered just before </body> — floats over all pages.
    ─────────────────────────────────────────────────────────────────────────── */
