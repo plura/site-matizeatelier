@@ -122,6 +122,17 @@ img, video {
 	max-width: 100%;
 }
 
+/* Lucide icons — default size; override with --mtz-icon-sm/lg where needed */
+[data-lucide] {
+	display: inline-flex;
+}
+
+[data-lucide] svg,
+svg.lucide {
+	height: var(--mtz-icon-md);
+	width: var(--mtz-icon-md);
+}
+
 a {
 	color: inherit;
 	text-decoration: none;

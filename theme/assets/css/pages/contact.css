@@ -53,7 +53,7 @@
 	flex-shrink: 0;
 	height: var(--mtz-icon-sm);
 	margin-top: 3px;
-	width: var(--mtz-icon-sm);
+	width: var(--mtz-icon-sm); /* override global --mtz-icon-md */
 }
 
 /* ── Social ── */
@@ -73,7 +73,4 @@
 	opacity: 1;
 }
 
-.contact__social-link svg {
-	height: var(--mtz-icon-md);
-	width: var(--mtz-icon-md);
-}
+/* .contact__social-link svg inherits global --mtz-icon-md from base.css */

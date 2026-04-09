@@ -17,7 +17,8 @@ $social = [
 ];
 $social_filtered = array_filter( $social, fn( $s ) => ! empty( $s['url'] ) );
 
-get_header(); ?>
+get_header();
+get_template_part( 'template-parts/page-header' ); ?>
 
 <main id="main" class="site-main page-contact">
 
@@ -26,8 +27,6 @@ get_header(); ?>
 
 			<!-- Info column -->
 			<div class="contact__info">
-
-				<h1 class="contact__heading"><?php the_title(); ?></h1>
 
 				<?php if ( $contact_email || $contact_phone || $contact_address ) : ?>
 					<address class="contact__details">

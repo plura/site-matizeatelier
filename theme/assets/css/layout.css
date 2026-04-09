@@ -1,4 +1,17 @@
 @charset "UTF-8";
+/* ─── Page header ────────────────────────────────────────────────────────────
+   Common title section for all inner pages (not front page).
+   ─────────────────────────────────────────────────────────────────────────── */
+
+.page-header {
+	padding-block: var(--mtz-space-2xl) var(--mtz-space-xl);
+}
+
+.page-header__title {
+	font-size: var(--mtz-text-2xl);
+	font-weight: var(--mtz-weight-light);
+}
+
 /* ─── Header ─────────────────────────────────────────────────────────────────
    Sticky on all pages. Fixed on the front page so the hero is truly fullscreen.
    ─────────────────────────────────────────────────────────────────────────── */

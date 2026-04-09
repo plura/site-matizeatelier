@@ -2,7 +2,8 @@
 /**
  * Template Name: Services
  */
-get_header(); ?>
+get_header();
+get_template_part( 'template-parts/page-header' ); ?>
 
 <main id="main" class="site-main page-services">
 
