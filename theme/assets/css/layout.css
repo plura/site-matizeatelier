@@ -31,6 +31,12 @@
 	list-style: none;
 }
 
+.site-nav__list a {
+	font-size: var(--mtz-text-sm);
+	letter-spacing: var(--mtz-tracking-wide);
+	text-transform: uppercase;
+}
+
 /* ── Mobile nav ── */
 
 .site-header__menu-toggle {
@@ -164,10 +170,25 @@
 	gap: var(--mtz-space-md);
 }
 
+.site-footer__contact,
+.site-footer__social,
+.site-footer__nav {
+	font-size: var(--mtz-text-sm);
+}
+
 .site-footer__copy {
+	align-items: center;
 	color: var(--mtz-color-greige);
+	display: flex;
+	flex-wrap: wrap;
 	font-size: var(--mtz-text-xs);
+	gap: var(--mtz-space-sm);
+	justify-content: space-between;
 	letter-spacing: var(--mtz-tracking-wide);
+}
+
+.site-footer__credit {
+	opacity: 0.5;
 }
 
 /* tablet: 2-column footer */

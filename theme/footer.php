@@ -78,7 +78,10 @@ $contact_address = $contact_group['mtz_contact_address'] ?? '';
 		</nav>
 
 		<p class="site-footer__copy">
-			&copy; <?php echo esc_html( gmdate( 'Y' ) ); ?> <?php bloginfo( 'name' ); ?>
+			<span>&copy; <?php echo esc_html( gmdate( 'Y' ) ); ?> <?php bloginfo( 'name' ); ?></span>
+			<a href="https://plura.pt" class="site-footer__credit" target="_blank" rel="noopener noreferrer">
+				<?php esc_html_e( 'Built by Plura', 'matize' ); ?>
+			</a>
 		</p>
 
 	</div>
