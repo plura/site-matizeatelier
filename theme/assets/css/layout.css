@@ -125,9 +125,6 @@
 .site-footer__inner {
 	display: grid;
 	gap: var(--mtz-space-xl);
-	margin-inline: auto;
-	max-width: var(--mtz-max-width);
-	padding-inline: var(--mtz-gutter);
 }
 
 .site-footer a {

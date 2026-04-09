@@ -16,7 +16,7 @@ $contact_address = $contact_group['mtz_contact_address'] ?? '';
 ?>
 
 <footer id="site-footer" class="site-footer">
-	<div class="site-footer__inner">
+	<div class="site-footer__inner container">
 
 		<div class="site-footer__brand">
 			<a href="<?php echo esc_url( home_url( '/' ) ); ?>" aria-label="<?php bloginfo( 'name' ); ?>">

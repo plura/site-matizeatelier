@@ -136,3 +136,34 @@ h1 { font-size: var(--mtz-text-3xl); }
 h2 { font-size: var(--mtz-text-2xl); }
 h3 { font-size: var(--mtz-text-xl);  }
 h4 { font-size: var(--mtz-text-lg);  }
+
+
+/* ─── Containers ─────────────────────────────────────────────────────────────
+   Use these as inner wrappers inside sections.
+   Sections themselves span full-width by default (full-bleed).
+
+   .container          max-width + gutter  →  standard sections, grids
+   .container--wide    max-width, no gutter →  image grids, near-edge layouts
+   .container--narrow  800px + gutter       →  text-heavy content, about, single posts
+   ─────────────────────────────────────────────────────────────────────────── */
+
+.container,
+.container--wide,
+.container--narrow {
+	margin-inline: auto;
+	width: 100%;
+}
+
+.container,
+.container--narrow {
+	padding-inline: var(--mtz-gutter);
+}
+
+.container,
+.container--wide {
+	max-width: var(--mtz-max-width);
+}
+
+.container--narrow {
+	max-width: 800px;
+}
