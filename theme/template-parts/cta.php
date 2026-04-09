@@ -14,7 +14,7 @@ $cta_label   = $cta_enquiry['label'] ?? '';
 			class="contact-modal__close"
 			popovertarget="contact-modal"
 			popovertargetaction="hide"
-			aria-label="<?php esc_attr_e( 'Fechar', 'matize' ); ?>"
+			aria-label="<?php esc_attr_e( 'Close', 'matize' ); ?>"
 		>&times;</button>
 		<?php echo do_shortcode( '[contact-form-7 id="contact" title="Contacto"]' ); ?>
 	</div>

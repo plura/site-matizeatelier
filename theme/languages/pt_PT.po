@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2026-04-08 23:26+0100\n"
-"PO-Revision-Date: 2026-04-08 23:26+0100\n"
+"POT-Creation-Date: 2026-04-09 00:17+0100\n"
+"PO-Revision-Date: 2026-04-09 00:17+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: pt_PT\n"
@@ -11,24 +11,32 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 3.9\n"
 "X-Poedit-Basepath: ..\n"
-"X-Poedit-KeywordsList: __;_e;_x;_ex;_n;_nx\n"
+"X-Poedit-KeywordsList: __;_e;_x;_ex;_n;_nx;esc_attr_e\n"
 "X-Poedit-SearchPath-0: .\n"
+
+#: footer.php:48
+msgid "Redes sociais"
+msgstr ""
+
+#: footer.php:61 includes/core/setup.php:21
+msgid "Footer Menu"
+msgstr "Menu de Rodapé"
+
+#: header.php:25 includes/core/setup.php:20
+msgid "Primary Menu"
+msgstr "Menu Principal"
 
 #: includes/core/acf.php:12 includes/core/acf.php:13
 msgid "Theme Settings"
 msgstr "Configurações do tema"
 
-#: includes/core/setup.php:20
-msgid "Primary Menu"
-msgstr "Menu Principal"
-
-#: includes/core/setup.php:21
-msgid "Footer Menu"
-msgstr "Menu de Rodapé"
-
 #: template-parts/cta.php:7
 msgid "Get in Touch"
 msgstr "Entrar em Contacto"
+
+#: template-parts/cta.php:17
+msgid "Close"
+msgstr "Fechar"
 
 #~ msgid "Contactar"
 #~ msgstr "Contato"
