@@ -8,10 +8,15 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-// ─── Localize nonce + ajaxUrl to JS ──────────────────────────────────────────
+// ─── Enqueue + localize ───────────────────────────────────────────────────────
 
 add_action( 'wp_enqueue_scripts', function () {
-	wp_localize_script( 'matize-main', 'mtzForms', [
+	$file = plugin_dir_path( dirname( __DIR__ ) ) . 'assets/js/form.js';
+	$url  = plugin_dir_url( dirname( __DIR__ ) ) . 'assets/js/form.js';
+
+	wp_enqueue_script( 'matize-form', $url, [], filemtime( $file ), true );
+
+	wp_localize_script( 'matize-form', 'mtzForms', [
 		'ajaxUrl' => admin_url( 'admin-ajax.php' ),
 		'nonce'   => wp_create_nonce( 'mtz_form' ),
 	] );
