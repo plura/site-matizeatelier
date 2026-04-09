@@ -174,11 +174,13 @@
 
 .site-footer__contact,
 .site-footer__social,
-.site-footer__nav {
+.site-footer__nav,
+.site-footer__copy {
 	font-family: var(--mtz-font-heading);
 	font-size: var(--mtz-text-xs);
 	font-weight: var(--mtz-weight-light);
-	letter-spacing: var(--mtz-tracking-wide);
+	letter-spacing: var(--mtz-tracking-wider);
+	text-transform: uppercase;
 }
 
 .site-footer__copy {
@@ -186,10 +188,8 @@
 	color: var(--mtz-color-greige);
 	display: flex;
 	flex-wrap: wrap;
-	font-size: var(--mtz-text-xs);
 	gap: var(--mtz-space-sm);
 	justify-content: space-between;
-	letter-spacing: var(--mtz-tracking-wide);
 }
 
 .site-footer__credit {
