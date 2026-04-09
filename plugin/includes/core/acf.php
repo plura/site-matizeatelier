@@ -19,7 +19,7 @@ add_filter( 'acf/settings/load_json', function ( array $paths ) use ( $acf_json_
 } );
 
 // Options page
-add_action( 'plugins_loaded', function () {
+add_action( 'init', function () {
 	if ( ! function_exists( 'acf_add_options_page' ) ) return;
 
 	acf_add_options_page( [
