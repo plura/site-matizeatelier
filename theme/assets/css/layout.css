@@ -167,8 +167,8 @@
 }
 
 .site-footer svg {
-	height: 14px;
-	width: 14px;
+	height: var(--mtz-icon-sm);
+	width: var(--mtz-icon-sm);
 }
 
 .site-footer__social {
@@ -183,6 +183,8 @@
 .site-footer__copy {
 	font-size: var(--mtz-text-xs);
 	font-weight: var(--mtz-weight-light);
+	letter-spacing: var(--mtz-tracking-wider);
+	text-transform: uppercase;
 }
 
 .site-footer__copy {

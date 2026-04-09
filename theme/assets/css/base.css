@@ -75,6 +75,11 @@
 	--mtz-gutter:       clamp(1.5rem, 5vw, 4rem);
 	--mtz-border-radius: 2px;
 
+	/* ── Icons ───────────────────────────────────────────────────────────── */
+	--mtz-icon-sm:  14px;
+	--mtz-icon-md:  20px;
+	--mtz-icon-lg:  24px;
+
 	/* ── Transitions ─────────────────────────────────────────────────────── */
 	--mtz-transition: 0.3s ease;
 }
