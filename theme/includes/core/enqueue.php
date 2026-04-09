@@ -31,7 +31,7 @@ add_action( 'wp_enqueue_scripts', function () {
 		}
 	}
 
-	plura_wp_enqueue( scripts: $scripts, cache: true, prefix: 'matize-', admin: false );
+	plura_wp_enqueue( scripts: $scripts, cache: false, prefix: 'matize-', admin: false );
 
 } );
 

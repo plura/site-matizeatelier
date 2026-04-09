@@ -63,25 +63,28 @@
 
 	.site-nav {
 		background-color: var(--mtz-color-linen);
-		bottom: 0;
+		height: calc(100dvh - var(--mtz-header-height, 0px));
+		left: 0;
 		overflow-y: auto;
 		padding: var(--mtz-space-xl) var(--mtz-gutter);
 		position: fixed;
 		right: 0;
-		top: var(--mtz-header-height, 0);
-		transform: translateX(100%);
+		top: var(--mtz-header-height, 0px);
+		transform: translateY(-100%);
 		transition: transform var(--mtz-transition);
-		width: min(320px, 85vw);
 		z-index: 99;
 	}
 
 	.site-nav.is-open {
-		transform: translateX(0);
+		transform: translateY(0);
 	}
 
 	.site-nav__list {
+		align-items: center;
 		flex-direction: column;
 		gap: var(--mtz-space-md);
+		justify-content: center;
+		min-height: 100%;
 	}
 }
 
