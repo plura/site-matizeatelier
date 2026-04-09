@@ -33,7 +33,6 @@
 
 .site-nav__list a {
 	font-size: var(--mtz-text-xs);
-	font-weight: var(--mtz-weight-light);
 	letter-spacing: var(--mtz-tracking-wider);
 	text-transform: uppercase;
 }
