@@ -12,6 +12,12 @@ remove_action( 'wp_head', 'wp_shortlink_wp_head' );
 remove_action( 'wp_head', 'adjacent_posts_rel_link_wp_head', 10 );
 remove_action( 'wp_head', 'rest_output_link_wp_head', 10 );
 remove_action( 'template_redirect', 'rest_output_link_header', 11 );
+remove_action( 'wp_head', 'wp_oembed_add_discovery_links' );
+
+// ── Remove Gutenberg global styles (unused — no block editor) ─────────────────
+remove_action( 'wp_enqueue_scripts', 'wp_enqueue_global_styles' );
+remove_action( 'wp_footer',          'wp_enqueue_global_styles', 1 );
+remove_action( 'wp_body_open',       'wp_global_styles_render_svg_filters' );
 
 // ── Remove emoji scripts/styles ───────────────────────────────────────────────
 remove_action( 'wp_head',             'print_emoji_detection_script', 7 );
