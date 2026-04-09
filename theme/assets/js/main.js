@@ -7,6 +7,15 @@ document.addEventListener( 'DOMContentLoaded', () => {
 		lucide.createIcons();
 	}
 
+	// ── Header height CSS variable ──────────────────────────────────────────
+	const header = document.querySelector( '.site-header' );
+	if ( header ) {
+		const setHeaderHeight = () =>
+			document.documentElement.style.setProperty( '--mtz-header-height', header.offsetHeight + 'px' );
+		setHeaderHeight();
+		window.addEventListener( 'resize', setHeaderHeight );
+	}
+
 	// ── Mobile nav toggle ───────────────────────────────────────────────────
 	const toggle = document.querySelector( '.site-header__menu-toggle' );
 	const nav    = document.querySelector( '#site-nav' );
