@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<style>
+		* { box-sizing: border-box; margin: 0; padding: 0; }
+
+		body {
+			background: #F5F0EA;
+			font-family: Georgia, serif;
+			color: #2A2420;
+		}
+
+		.wrapper {
+			padding: 40px 16px;
+		}
+
+		.email {
+			background: #ffffff;
+			margin: 0 auto;
+			max-width: 560px;
+			width: 100%;
+		}
+
+		/* ── Header ── */
+		.email__header {
+			background: #2A2420;
+			padding: 32px 40px;
+		}
+
+		.email__brand {
+			color: #F5F0EA;
+			display: inline-block;
+			font-size: 18px;
+			font-weight: 300;
+			letter-spacing: 0.2em;
+			text-decoration: none;
+			text-transform: uppercase;
+		}
+
+		/* ── Body ── */
+		.email__body {
+			padding: 32px 40px;
+		}
+
+		.email__form-name {
+			color: #9E948A;
+			font-size: 11px;
+			letter-spacing: 0.15em;
+			margin-bottom: 24px;
+			text-transform: uppercase;
+		}
+
+		/* ── Fields ── */
+		.field {
+			border-bottom: 1px solid #F5F0EA;
+			display: flex;
+			gap: 16px;
+			padding: 12px 0;
+		}
+
+		.field:last-of-type {
+			border-bottom: none;
+		}
+
+		.field__label {
+			color: #9E948A;
+			font-size: 11px;
+			letter-spacing: 0.1em;
+			min-width: 80px;
+			padding-top: 2px;
+			text-transform: uppercase;
+		}
+
+		.field__value {
+			color: #2A2420;
+			font-size: 14px;
+			line-height: 1.6;
+		}
+
+		/* ── Footer ── */
+		.email__footer {
+			border-top: 1px solid #F5F0EA;
+			color: #9E948A;
+			font-size: 11px;
+			letter-spacing: 0.08em;
+			padding: 24px 40px;
+		}
+
+		.email__footer a {
+			color: #9E948A;
+		}
+
+		/* ── Responsive ── */
+		@media (max-width: 480px) {
+			.email__header,
+			.email__body,
+			.email__footer { padding-inline: 24px; }
+
+			.field { flex-direction: column; gap: 4px; }
+		}
+	</style>
+</head>
+<body>
+	<div class="wrapper">
+		<div class="email">
+
+			<div class="email__header">
+				<a href="%SITE_URL%" class="email__brand">%SITE_NAME%</a>
+			</div>
+
+			<div class="email__body">
+				<p class="email__form-name">%FORM_NAME%</p>
+				%FIELDS%
+			</div>
+
+			<div class="email__footer">
+				%SITE_NAME% &mdash; <a href="%SITE_URL%">%SITE_URL%</a>
+			</div>
+
+		</div>
+	</div>
+</body>
+</html>

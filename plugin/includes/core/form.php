@@ -105,50 +105,30 @@ function mtz_handle_form(): void {
 // ─── Email body ───────────────────────────────────────────────────────────────
 
 function mtz_build_email_body( string $form_name, array $fields ): string {
-	$site_name = get_bloginfo( 'name' );
-	$site_url  = home_url( '/' );
-	$rows      = '';
+	$template = plugin_dir_path( dirname( __DIR__ ) ) . 'templates/email-enquiry.html';
 
-	foreach ( $fields as $field ) {
-		if ( ! $field['value'] ) continue;
-		$label = esc_html( $field['label'] );
-		$value = nl2br( esc_html( $field['value'] ) );
-		$rows .= "
-			<tr>
-				<td style='padding:8px 24px;color:#9E948A;font-size:11px;text-transform:uppercase;letter-spacing:0.1em;white-space:nowrap;vertical-align:top'>{$label}</td>
-				<td style='padding:8px 24px;color:#2A2420;font-size:14px;vertical-align:top'>{$value}</td>
-			</tr>";
+	if ( ! file_exists( $template ) ) {
+		return '';
 	}
 
-	return "<!DOCTYPE html>
-<html lang='en'>
-<head><meta charset='UTF-8'></head>
-<body style='margin:0;padding:0;background:#F5F0EA;font-family:Georgia,serif'>
-	<table width='100%' cellpadding='0' cellspacing='0' style='background:#F5F0EA;padding:40px 0'>
-		<tr><td align='center'>
-			<table width='560' cellpadding='0' cellspacing='0' style='background:#ffffff;max-width:560px;width:100%'>
+	$fields_html = '';
+	foreach ( $fields as $field ) {
+		if ( ! $field['value'] ) continue;
+		$label        = esc_html( $field['label'] );
+		$value        = nl2br( esc_html( $field['value'] ) );
+		$fields_html .= "
+			<div class=\"field\">
+				<span class=\"field__label\">{$label}</span>
+				<span class=\"field__value\">{$value}</span>
+			</div>";
+	}
 
-				<tr>
-					<td colspan='2' style='background:#2A2420;padding:32px 40px'>
-						<a href='{$site_url}' style='color:#F5F0EA;font-size:18px;font-weight:300;letter-spacing:0.2em;text-decoration:none;text-transform:uppercase'>{$site_name}</a>
-					</td>
-				</tr>
+	$html = file_get_contents( $template );
+	$html = str_replace(
+		[ '%SITE_NAME%', '%SITE_URL%', '%FORM_NAME%', '%FIELDS%' ],
+		[ esc_html( get_bloginfo( 'name' ) ), esc_url( home_url( '/' ) ), esc_html( $form_name ), $fields_html ],
+		$html
+	);
 
-				<tr>
-					<td colspan='2' style='padding:32px 24px 8px;color:#9E948A;font-size:11px;letter-spacing:0.15em;text-transform:uppercase'>{$form_name}</td>
-				</tr>
-
-				{$rows}
-
-				<tr>
-					<td colspan='2' style='padding:32px 24px;border-top:1px solid #F5F0EA;color:#9E948A;font-size:11px;letter-spacing:0.08em'>
-						{$site_name} &mdash; <a href='{$site_url}' style='color:#9E948A'>{$site_url}</a>
-					</td>
-				</tr>
-
-			</table>
-		</td></tr>
-	</table>
-</body>
-</html>";
+	return $html;
 }
