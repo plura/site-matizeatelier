@@ -22,3 +22,50 @@
 .cta__btn:hover {
 	background-color: var(--mtz-color-charcoal);
 }
+
+/* ─── Contact modal ──────────────────────────────────────────────────────────
+   Uses native <dialog> — ::backdrop handles the overlay.
+   ─────────────────────────────────────────────────────────────────────────── */
+
+.contact-modal {
+	background: transparent;
+	border: none;
+	max-height: 100dvh;
+	max-width: 100vw;
+	padding: 0;
+	width: min(560px, 90vw);
+}
+
+.contact-modal::backdrop {
+	background: rgba(42, 36, 32, 0.65);
+	backdrop-filter: blur(4px);
+}
+
+.contact-modal__inner {
+	background-color: var(--mtz-color-linen);
+	padding: var(--mtz-space-xl) var(--mtz-space-lg);
+	position: relative;
+}
+
+.contact-modal__close {
+	background: none;
+	border: none;
+	color: inherit;
+	cursor: pointer;
+	display: flex;
+	opacity: 0.5;
+	padding: var(--mtz-space-xs);
+	position: absolute;
+	right: var(--mtz-space-sm);
+	top: var(--mtz-space-sm);
+	transition: opacity var(--mtz-transition);
+}
+
+.contact-modal__close:hover {
+	opacity: 1;
+}
+
+.contact-modal__close svg {
+	height: var(--mtz-icon-md);
+	width: var(--mtz-icon-md);
+}

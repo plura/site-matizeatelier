@@ -9,7 +9,7 @@ get_header(); ?>
 	<section class="contact">
 		<div class="contact__inner container--narrow">
 			<h1 class="contact__heading"><?php the_title(); ?></h1>
-			<?php echo do_shortcode( '[contact-form-7 id="contact" title="Contacto"]' ); ?>
+			<?php get_template_part( 'template-parts/contact-form' ); ?>
 		</div>
 	</section>
 

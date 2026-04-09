@@ -16,6 +16,26 @@ document.addEventListener( 'DOMContentLoaded', () => {
 		window.addEventListener( 'resize', setHeaderHeight );
 	}
 
+	// ── Contact modal ───────────────────────────────────────────────────────
+	const modal     = document.querySelector( '#contact-modal' );
+	const ctaBtn    = document.querySelector( '.cta__btn' );
+	const closeBtn  = document.querySelector( '.contact-modal__close' );
+
+	if ( modal && ctaBtn ) {
+		ctaBtn.addEventListener( 'click', () => modal.showModal() );
+	}
+
+	if ( modal && closeBtn ) {
+		closeBtn.addEventListener( 'click', () => modal.close() );
+	}
+
+	if ( modal ) {
+		// Close on backdrop click
+		modal.addEventListener( 'click', ( e ) => {
+			if ( e.target === modal ) modal.close();
+		} );
+	}
+
 	// ── Mobile nav toggle ───────────────────────────────────────────────────
 	const toggle = document.querySelector( '.site-header__menu-toggle' );
 	const nav    = document.querySelector( '#site-nav' );
