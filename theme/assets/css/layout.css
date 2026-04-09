@@ -166,6 +166,11 @@
 	gap: var(--mtz-space-xs);
 }
 
+.site-footer svg {
+	height: 14px;
+	width: 14px;
+}
+
 .site-footer__social {
 	display: flex;
 	flex-wrap: wrap;
