@@ -1,4 +1,2 @@
 @charset "UTF-8";
-@import 'base.css';
-@import 'layout.css';
-@import 'components.css';
+/* Entry point — kept for reference only. Files are enqueued individually via enqueue.php */

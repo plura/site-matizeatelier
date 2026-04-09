@@ -12,8 +12,13 @@ add_action( 'wp_enqueue_scripts', function () {
 		// Lucide icons (CDN)
 		'https://unpkg.com/lucide@latest/dist/umd/lucide.min.js' => [ 'handle' => 'lucide' ],
 
-		// Theme assets — resolves to assets/css/main.css + assets/js/main.js
-		"$dir/assets/%s/main.%s",
+		// Theme CSS — each file enqueued individually so filemtime() cache-busts correctly
+		"$dir/assets/css/base.css",
+		"$dir/assets/css/layout.css",
+		"$dir/assets/css/components.css",
+
+		// Theme JS
+		"$dir/assets/js/main.js",
 	];
 
 	// Page-specific CSS
@@ -31,7 +36,7 @@ add_action( 'wp_enqueue_scripts', function () {
 		}
 	}
 
-	plura_wp_enqueue( scripts: $scripts, cache: false, prefix: 'matize-', admin: false );
+	plura_wp_enqueue( scripts: $scripts, cache: true, prefix: 'matize-', admin: false );
 
 } );
 
