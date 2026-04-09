@@ -1,5 +1,5 @@
 <?php
-if ( defined( 'MTZ_CONTACT_FORM_RENDERED' ) ) return;
+if ( is_page_template( 'page-contact.php' ) ) return;
 
 $cta_enquiry = get_field( 'mtz_cta_enquiry', 'option' ) ?: [];
 $cta_label   = $cta_enquiry['label'] ?? '';

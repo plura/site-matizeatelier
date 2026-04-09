@@ -3,14 +3,7 @@
  * Contact form component.
  * Used in: template-parts/cta.php (modal), page-contact.php
  * Submission handled via AJAX — see plugin/includes/core/form.php
- *
- * Defines MTZ_CONTACT_FORM_RENDERED so cta.php can suppress the floating
- * button and modal when the form is already inline on the page.
  */
-
-if ( ! defined( 'MTZ_CONTACT_FORM_RENDERED' ) ) {
-	define( 'MTZ_CONTACT_FORM_RENDERED', true );
-}
 ?>
 
 <form
