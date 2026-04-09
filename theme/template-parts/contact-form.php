@@ -10,6 +10,7 @@
 	class="contact-form"
 	data-mtz-form
 	data-form-name="<?php esc_attr_e( 'New Enquiry', 'matize' ); ?>"
+	novalidate
 >
 	<!-- Honeypot — hidden from real users, bots fill it -->
 	<input type="text" name="mtz_website" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none">
