@@ -5,12 +5,35 @@
 document.addEventListener( 'DOMContentLoaded', () => {
 
 	document.querySelectorAll( '[data-mtz-form]' ).forEach( form => {
+
+		// Clear is-invalid on input
+		form.addEventListener( 'input', ( e ) => {
+			if ( e.target.matches( 'input, textarea' ) ) {
+				e.target.classList.remove( 'is-invalid' );
+			}
+		} );
+
 		form.addEventListener( 'submit', async ( e ) => {
 			e.preventDefault();
 
 			const feedback = form.querySelector( '.contact-form__feedback' );
 			const submit   = form.querySelector( '[type="submit"]' );
 			const formName = form.dataset.formName ?? 'Form Submission';
+
+			// Client-side required check — mark invalid fields before sending
+			let hasErrors = false;
+			form.querySelectorAll( 'input[required], textarea[required]' ).forEach( el => {
+				if ( ! el.value.trim() ) {
+					el.classList.add( 'is-invalid' );
+					hasErrors = true;
+				}
+			} );
+
+			if ( hasErrors ) {
+				feedback.textContent = 'Please fill in all required fields.';
+				feedback.className   = 'contact-form__feedback contact-form__feedback--error';
+				return;
+			}
 
 			// Collect fields with type metadata
 			const fields = {};

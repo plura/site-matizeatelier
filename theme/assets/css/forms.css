@@ -59,9 +59,13 @@
 	border-bottom-color: var(--mtz-color-text);
 }
 
-.contact-form__field input:user-invalid,
-.contact-form__field textarea:user-invalid {
+.contact-form__field:has( :is(input, textarea).is-invalid ) input,
+.contact-form__field:has( :is(input, textarea).is-invalid ) textarea {
 	border-bottom-color: var(--mtz-color-accent);
+}
+
+.contact-form__field:has( :is(input, textarea).is-invalid ) > :first-child {
+	color: var(--mtz-color-accent);
 }
 
 .contact-form__field textarea {
