@@ -4,6 +4,15 @@ add_action( 'init', function () {
 	load_theme_textdomain( 'matize', get_template_directory() . '/languages' );
 } );
 
+// ── Remove unnecessary WordPress head output ──────────────────────────────────
+remove_action( 'wp_head', 'wp_generator' );
+remove_action( 'wp_head', 'wlwmanifest_link' );
+remove_action( 'wp_head', 'rsd_link' );
+remove_action( 'wp_head', 'wp_shortlink_wp_head' );
+remove_action( 'wp_head', 'adjacent_posts_rel_link_wp_head', 10 );
+remove_action( 'wp_head', 'rest_output_link_wp_head', 10 );
+remove_action( 'template_redirect', 'rest_output_link_header', 11 );
+
 // ── Remove emoji scripts/styles ───────────────────────────────────────────────
 remove_action( 'wp_head',             'print_emoji_detection_script', 7 );
 remove_action( 'wp_print_styles',     'print_emoji_styles' );
