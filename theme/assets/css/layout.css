@@ -33,7 +33,7 @@
 
 .site-nav__list a {
 	font-family: var(--mtz-font-heading);
-	font-size: var(--mtz-text-xs);
+	font-size: clamp(0.625rem, 0.8vw, 0.6875rem); /* ~10–11px */
 	font-weight: var(--mtz-weight-light);
 	letter-spacing: var(--mtz-tracking-wider);
 	text-transform: uppercase;
@@ -176,7 +176,7 @@
 .site-footer__social,
 .site-footer__nav {
 	font-family: var(--mtz-font-heading);
-	font-size: var(--mtz-text-sm);
+	font-size: clamp(0.6875rem, 0.9vw, 0.75rem); /* ~11–12px */
 	font-weight: var(--mtz-weight-light);
 	letter-spacing: var(--mtz-tracking-wide);
 }
