@@ -117,10 +117,10 @@ function mtz_build_email_body( string $form_name, array $fields ): string {
 		$label        = esc_html( $field['label'] );
 		$value        = nl2br( esc_html( $field['value'] ) );
 		$fields_html .= "
-			<div class=\"field\">
-				<span class=\"field__label\">{$label}</span>
-				<span class=\"field__value\">{$value}</span>
-			</div>";
+			<tr>
+				<td class=\"label-cell\">{$label}</td>
+				<td class=\"value-cell\">{$value}</td>
+			</tr>";
 	}
 
 	$html = file_get_contents( $template );

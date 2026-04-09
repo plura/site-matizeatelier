@@ -1,125 +1,181 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<style>
-		* { box-sizing: border-box; margin: 0; padding: 0; }
-
+	<title>%FORM_NAME%</title>
+	<style type="text/css">
 		body {
-			background: #F5F0EA;
+			margin: 0;
+			padding: 0;
+			background-color: #F5F0EA;
 			font-family: Georgia, serif;
 			color: #2A2420;
 		}
 
-		.wrapper {
-			padding: 40px 16px;
-		}
-
-		.email {
-			background: #ffffff;
-			margin: 0 auto;
-			max-width: 560px;
+		table {
+			border-spacing: 0;
 			width: 100%;
 		}
 
+		.email-container {
+			max-width: 560px;
+			margin: 0 auto;
+			padding: 40px 16px;
+		}
+
 		/* ── Header ── */
-		.email__header {
-			background: #2A2420;
+		.email-header {
+			background-color: #2A2420;
 			padding: 32px 40px;
 		}
 
-		.email__brand {
+		.email-brand {
 			color: #F5F0EA;
-			display: inline-block;
-			font-size: 18px;
-			font-weight: 300;
+			font-family: Georgia, serif;
+			font-size: 16px;
+			font-weight: normal;
 			letter-spacing: 0.2em;
 			text-decoration: none;
 			text-transform: uppercase;
 		}
 
 		/* ── Body ── */
-		.email__body {
-			padding: 32px 40px;
+		.email-body {
+			background-color: #ffffff;
+			padding: 32px 40px 8px;
 		}
 
-		.email__form-name {
+		.email-form-name {
 			color: #9E948A;
+			font-family: Arial, sans-serif;
 			font-size: 11px;
 			letter-spacing: 0.15em;
-			margin-bottom: 24px;
+			padding-bottom: 16px;
 			text-transform: uppercase;
 		}
 
 		/* ── Fields ── */
-		.field {
+		.form-data {
+			width: 100%;
+			border-collapse: collapse;
+		}
+
+		.form-data td {
+			background-color: #ffffff;
 			border-bottom: 1px solid #F5F0EA;
-			display: flex;
-			gap: 16px;
-			padding: 12px 0;
+			font-size: 14px;
+			padding: 12px 40px 12px 0;
+			text-align: left;
+			vertical-align: top;
 		}
 
-		.field:last-of-type {
-			border-bottom: none;
-		}
-
-		.field__label {
+		.form-data .label-cell {
 			color: #9E948A;
+			font-family: Arial, sans-serif;
 			font-size: 11px;
-			letter-spacing: 0.1em;
-			min-width: 80px;
-			padding-top: 2px;
+			letter-spacing: 0.08em;
+			padding-right: 24px;
 			text-transform: uppercase;
+			white-space: nowrap;
+			width: 30%;
 		}
 
-		.field__value {
+		.form-data .value-cell {
 			color: #2A2420;
+			font-family: Georgia, serif;
 			font-size: 14px;
 			line-height: 1.6;
 		}
 
 		/* ── Footer ── */
-		.email__footer {
+		.email-footer {
+			background-color: #ffffff;
 			border-top: 1px solid #F5F0EA;
 			color: #9E948A;
+			font-family: Arial, sans-serif;
 			font-size: 11px;
 			letter-spacing: 0.08em;
 			padding: 24px 40px;
 		}
 
-		.email__footer a {
+		.email-footer a {
 			color: #9E948A;
+			text-decoration: none;
+		}
+
+		/* ── Developer credit ── */
+		.email-developer {
+			color: #9E948A;
+			font-family: Arial, sans-serif;
+			font-size: 10px;
+			padding: 16px 40px;
+			text-align: center;
+		}
+
+		.email-developer a {
+			color: #9E948A;
+			text-decoration: none;
 		}
 
 		/* ── Responsive ── */
-		@media (max-width: 480px) {
-			.email__header,
-			.email__body,
-			.email__footer { padding-inline: 24px; }
+		@media screen and (max-width: 480px) {
+			.email-header,
+			.email-body,
+			.email-footer,
+			.email-developer { padding-left: 24px; padding-right: 24px; }
 
-			.field { flex-direction: column; gap: 4px; }
+			.form-data td { display: block; width: 100%; }
+			.form-data .label-cell { padding-bottom: 0; border-bottom: none; white-space: normal; }
 		}
 	</style>
 </head>
 <body>
-	<div class="wrapper">
-		<div class="email">
+<table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" bgcolor="#F5F0EA">
+	<tr>
+		<td align="center">
+			<div class="email-container">
 
-			<div class="email__header">
-				<a href="%SITE_URL%" class="email__brand">%SITE_NAME%</a>
+				<!-- Brand -->
+				<table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
+					<tr>
+						<td class="email-header">
+							<a href="%SITE_URL%" class="email-brand">%SITE_NAME%</a>
+						</td>
+					</tr>
+				</table>
+
+				<!-- Form name -->
+				<table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
+					<tr>
+						<td class="email-body">
+							<p class="email-form-name">%FORM_NAME%</p>
+						</td>
+					</tr>
+				</table>
+
+				<!-- Fields -->
+				<table class="form-data" role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
+					%FIELDS%
+				</table>
+
+				<!-- Footer -->
+				<table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
+					<tr>
+						<td class="email-footer">
+							%SITE_NAME% &mdash; <a href="%SITE_URL%">%SITE_URL%</a>
+						</td>
+					</tr>
+					<tr>
+						<td class="email-developer">
+							powered by <a href="https://plura.pt" target="_blank">Plura&trade;</a>
+						</td>
+					</tr>
+				</table>
+
 			</div>
-
-			<div class="email__body">
-				<p class="email__form-name">%FORM_NAME%</p>
-				%FIELDS%
-			</div>
-
-			<div class="email__footer">
-				%SITE_NAME% &mdash; <a href="%SITE_URL%">%SITE_URL%</a>
-			</div>
-
-		</div>
-	</div>
+		</td>
+	</tr>
+</table>
 </body>
 </html>
