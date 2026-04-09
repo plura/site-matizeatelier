@@ -17,7 +17,9 @@
 	font-size: var(--mtz-text-xs);
 	font-weight: var(--mtz-weight-light);
 	gap: var(--mtz-space-xs);
+	letter-spacing: var(--mtz-tracking-wider);
 	text-decoration: none;
+	text-transform: uppercase;
 	transition: opacity var(--mtz-transition);
 }
 
