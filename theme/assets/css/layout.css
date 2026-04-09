@@ -44,6 +44,11 @@
 }
 
 /* Icon swap — targets wrapper spans (Lucide replaces <i> with <svg>) */
+.site-header__menu-toggle .icon-open,
+.site-header__menu-toggle .icon-close {
+	display: flex;
+}
+
 .site-header__menu-toggle .icon-close {
 	display: none;
 }
