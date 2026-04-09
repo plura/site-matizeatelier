@@ -9,7 +9,7 @@ get_header(); ?>
 	<?php $gallery = get_field( 'mtz_gallery_items' ); ?>
 	<?php if ( $gallery ) : ?>
 		<section class="gallery">
-			<div class="gallery__grid">
+			<div class="gallery__grid container--wide">
 				<?php foreach ( $gallery as $image ) : ?>
 					<figure class="gallery__item">
 						<?php echo wp_get_attachment_image( $image['ID'], 'large', false, [

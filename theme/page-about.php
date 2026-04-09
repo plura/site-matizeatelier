@@ -10,7 +10,7 @@ get_header(); ?>
 	<?php $mission = get_field( 'mtz_about_mission' ); ?>
 	<?php if ( $mission ) : ?>
 		<section class="about-mission">
-			<div class="about-mission__inner">
+			<div class="about-mission__inner container--narrow">
 				<?php echo wp_kses_post( $mission ); ?>
 			</div>
 		</section>
@@ -20,7 +20,7 @@ get_header(); ?>
 	<?php $philosophy = get_field( 'mtz_about_philosophy' ); ?>
 	<?php if ( $philosophy ) : ?>
 		<section class="about-philosophy">
-			<div class="about-philosophy__inner">
+			<div class="about-philosophy__inner container--narrow">
 				<?php echo wp_kses_post( $philosophy ); ?>
 			</div>
 		</section>
@@ -30,7 +30,7 @@ get_header(); ?>
 	<?php $cv = get_field( 'mtz_about_cv' ); ?>
 	<?php if ( $cv ) : ?>
 		<section class="about-cv">
-			<div class="about-cv__inner">
+			<div class="about-cv__inner container--narrow">
 				<?php echo wp_kses_post( $cv ); ?>
 			</div>
 		</section>

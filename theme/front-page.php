@@ -9,7 +9,7 @@
 	<?php $mood_gallery = get_field( 'mtz_home_mood_gallery' ); ?>
 	<?php if ( $mood_gallery ) : ?>
 		<section class="mood-gallery">
-			<div class="mood-gallery__inner">
+			<div class="mood-gallery__inner container--wide">
 				<?php foreach ( $mood_gallery as $image ) : ?>
 					<figure class="mood-gallery__item">
 						<?php echo wp_get_attachment_image( $image['ID'], 'large', false, [ 'class' => 'mood-gallery__img', 'alt' => esc_attr( $image['alt'] ) ] ); ?>
@@ -23,7 +23,7 @@
 	<?php $about_page = get_page_by_path( 'about' ); ?>
 	<?php if ( $about_page ) : ?>
 		<section class="home-about">
-			<div class="home-about__inner">
+			<div class="home-about__inner container--narrow">
 				<h2 class="home-about__heading"><?php echo esc_html( get_the_title( $about_page ) ); ?></h2>
 				<?php $excerpt = get_the_excerpt( $about_page ); ?>
 				<?php if ( $excerpt ) : ?>
@@ -38,21 +38,20 @@
 
 	<?php /* ── Services (condensed) ─────────────────────────────────────── */ ?>
 	<section class="home-services">
-		<?php
-		echo plura_wp_posts(
-			type: 'mtz_service',
-			orderby: 'menu_order',
-			order: 'ASC',
-			class: 'home-services__grid',
-			wrap: true,
-			link: 0,
-			context: 'home-services',
-		);
-		?>
+		<div class="container">
+			<?php
+			echo plura_wp_posts(
+				type: 'mtz_service',
+				orderby: 'menu_order',
+				order: 'ASC',
+				class: 'home-services__grid',
+				wrap: true,
+				link: 0,
+				context: 'home-services',
+			);
+			?>
+		</div>
 	</section>
-
-	<?php /* ── CTA ──────────────────────────────────────────────────────── */ ?>
-	<?php get_template_part( 'template-parts/cta' ); ?>
 
 </main>
 
