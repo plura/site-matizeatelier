@@ -43,6 +43,10 @@
 	padding: var(--mtz-space-xs);
 }
 
+.site-header__menu-toggle:focus:not(:focus-visible) {
+	outline: none;
+}
+
 /* Icon swap — targets wrapper spans (Lucide replaces <i> with <svg>) */
 .site-header__menu-toggle .icon-open,
 .site-header__menu-toggle .icon-close {
@@ -101,9 +105,9 @@
 	}
 }
 
-/* Tablet+: hamburger hidden, nav always visible */
+/* Tablet+: actions hidden (hamburger not needed, preserves space-between) */
 @media (min-width: 768px) {
-	.site-header__menu-toggle {
+	.site-header__actions {
 		display: none;
 	}
 }
