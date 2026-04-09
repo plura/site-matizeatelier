@@ -1,4 +1,6 @@
 <?php
+if ( defined( 'MTZ_CONTACT_FORM_RENDERED' ) ) return;
+
 $cta_enquiry = get_field( 'mtz_cta_enquiry', 'option' ) ?: [];
 $cta_label   = $cta_enquiry['label'] ?? '';
 ?>
