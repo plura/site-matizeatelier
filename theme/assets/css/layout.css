@@ -32,7 +32,6 @@
 }
 
 .site-nav__list a {
-	font-family: var(--mtz-font-heading);
 	font-size: var(--mtz-text-xs);
 	font-weight: var(--mtz-weight-light);
 	letter-spacing: var(--mtz-tracking-wider);
