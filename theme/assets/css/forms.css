@@ -1,0 +1,113 @@
+@charset "UTF-8";
+/* ─── Forms ──────────────────────────────────────────────────────────────────
+   Global styles for all forms. BEM block: .mtz-form
+   Page/component-specific rules go in their own file.
+   ─────────────────────────────────────────────────────────────────────────── */
+
+/* ── Field wrapper (label + input) ── */
+
+.contact-form__field {
+	display: flex;
+	flex-direction: column;
+	gap: var(--mtz-space-xs);
+	margin-bottom: var(--mtz-space-md);
+}
+
+/* ── Label ── */
+
+.contact-form__field > :first-child {
+	color: var(--mtz-color-muted);
+	font-size: var(--mtz-text-xs);
+	font-weight: var(--mtz-weight-light);
+	letter-spacing: var(--mtz-tracking-wider);
+	text-transform: uppercase;
+}
+
+/* Required indicator */
+.contact-form__field:has(input[required])  > :first-child::after,
+.contact-form__field:has(textarea[required]) > :first-child::after {
+	content: ' *';
+	color: var(--mtz-color-accent);
+}
+
+/* ── Inputs & textarea ── */
+
+.contact-form__field input,
+.contact-form__field textarea {
+	background: transparent;
+	border: none;
+	border-bottom: 1px solid var(--mtz-color-muted);
+	border-radius: 0;
+	color: var(--mtz-color-text);
+	font-family: var(--mtz-font-body);
+	font-size: var(--mtz-text-base);
+	font-weight: var(--mtz-weight-light);
+	outline: none;
+	padding: var(--mtz-space-xs) 0;
+	transition: border-color var(--mtz-transition);
+	width: 100%;
+}
+
+.contact-form__field input::placeholder,
+.contact-form__field textarea::placeholder {
+	color: var(--mtz-color-muted);
+	opacity: 0.5;
+}
+
+.contact-form__field input:focus,
+.contact-form__field textarea:focus {
+	border-bottom-color: var(--mtz-color-text);
+}
+
+.contact-form__field textarea {
+	resize: vertical;
+}
+
+/* ── Footer row (feedback + submit) ── */
+
+.contact-form__footer {
+	align-items: center;
+	display: flex;
+	gap: var(--mtz-space-md);
+	justify-content: space-between;
+	margin-top: var(--mtz-space-lg);
+}
+
+/* ── Feedback message ── */
+
+.contact-form__feedback {
+	font-size: var(--mtz-text-xs);
+	letter-spacing: var(--mtz-tracking-wide);
+	min-height: 1em;
+}
+
+.contact-form__feedback--success { color: var(--mtz-color-accent-alt); }
+.contact-form__feedback--error   { color: var(--mtz-color-accent); }
+
+/* ── Submit button ── */
+
+.contact-form__submit {
+	background: none;
+	border: 1px solid var(--mtz-color-text);
+	color: var(--mtz-color-text);
+	cursor: pointer;
+	font-family: var(--mtz-font-body);
+	font-size: var(--mtz-text-xs);
+	letter-spacing: var(--mtz-tracking-wider);
+	padding: var(--mtz-space-xs) var(--mtz-space-md);
+	text-transform: uppercase;
+	transition:
+		background-color var(--mtz-transition),
+		color var(--mtz-transition);
+	white-space: nowrap;
+}
+
+.contact-form__submit:hover {
+	background-color: var(--mtz-color-text);
+	color: var(--mtz-color-bg);
+}
+
+.contact-form__submit:disabled {
+	opacity: 0.4;
+	cursor: not-allowed;
+}

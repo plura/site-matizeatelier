@@ -16,6 +16,7 @@ add_action( 'wp_enqueue_scripts', function () {
 		"$dir/assets/css/base.css",
 		"$dir/assets/css/layout.css",
 		"$dir/assets/css/components.css",
+		"$dir/assets/css/forms.css",
 
 		// Theme JS
 		"$dir/assets/js/main.js",
