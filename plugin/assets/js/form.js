@@ -2,7 +2,7 @@
 // Handles any form with [data-mtz-form]. Relies on mtzForms (ajaxUrl, nonce)
 // localized via wp_localize_script() in plugin/includes/core/form.php.
 
-document.addEventListener( 'DOMContentLoaded', () => {
+function mtzInitForms() {
 
 	document.querySelectorAll( '[data-mtz-form]' ).forEach( form => {
 
@@ -20,6 +20,12 @@ document.addEventListener( 'DOMContentLoaded', () => {
 			const submit   = form.querySelector( '[type="submit"]' );
 			const formName = form.dataset.formName ?? 'Form Submission';
 
+			const setFeedback = ( message, success ) => {
+				feedback.textContent = message;
+				feedback.classList.remove( 'contact-form__feedback--success', 'contact-form__feedback--error' );
+				feedback.classList.add( success ? 'contact-form__feedback--success' : 'contact-form__feedback--error' );
+			};
+
 			// Client-side required check — mark invalid fields before sending
 			let hasErrors = false;
 			form.querySelectorAll( 'input[required], textarea[required]' ).forEach( el => {
@@ -30,8 +36,7 @@ document.addEventListener( 'DOMContentLoaded', () => {
 			} );
 
 			if ( hasErrors ) {
-				feedback.textContent = 'Please fill in all required fields.';
-				feedback.className   = 'contact-form__feedback contact-form__feedback--error';
+				setFeedback( 'Please fill in all required fields.', false );
 				return;
 			}
 
@@ -67,18 +72,17 @@ document.addEventListener( 'DOMContentLoaded', () => {
 				const res  = await fetch( mtzForms.ajaxUrl, { method: 'POST', body } );
 				const data = await res.json();
 
-				feedback.textContent = data.data?.message ?? '';
-				feedback.className   = 'contact-form__feedback ' +
-					( data.success ? 'contact-form__feedback--success' : 'contact-form__feedback--error' );
+				setFeedback( data.data?.message ?? '', data.success );
 
 				if ( data.success ) form.reset();
 			} catch {
-				feedback.textContent = 'Something went wrong. Please try again.';
-				feedback.className   = 'contact-form__feedback contact-form__feedback--error';
+				setFeedback( 'Something went wrong. Please try again.', false );
 			} finally {
 				submit.disabled = false;
 			}
 		} );
 	} );
 
-} );
+}
+
+document.addEventListener( 'DOMContentLoaded', mtzInitForms );
