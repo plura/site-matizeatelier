@@ -2,6 +2,39 @@
 // Handles any form with [data-mtz-form]. Relies on mtzForms (ajaxUrl, nonce)
 // localized via wp_localize_script() in plugin/includes/core/form.php.
 
+function mtzBuildFormData( form ) {
+
+	const formName = form.dataset.formName ?? 'Form Submission';
+	const fields   = {};
+
+	form.querySelectorAll( '[name]' ).forEach( el => {
+		if ( el.name === 'mtz_website' ) return; // honeypot — sent separately
+		const type = el.tagName === 'TEXTAREA' ? 'textarea' : ( el.type || 'text' );
+		fields[ el.name ] = {
+			label:    el.closest( 'label' )?.firstChild?.textContent?.trim() ?? el.name,
+			type,
+			value:    el.value,
+			required: el.required,
+		};
+	} );
+
+	const body = new FormData();
+	body.append( 'action',      'mtz_form' );
+	body.append( 'nonce',       mtzForms.nonce );
+	body.append( 'form_name',   formName );
+	body.append( 'mtz_website', form.querySelector( '[name="mtz_website"]' )?.value ?? '' );
+
+	Object.entries( fields ).forEach( ( [ key, field ] ) => {
+		body.append( `fields[${ key }][label]`,    field.label );
+		body.append( `fields[${ key }][type]`,     field.type );
+		body.append( `fields[${ key }][value]`,    field.value );
+		body.append( `fields[${ key }][required]`, field.required ? '1' : '' );
+	} );
+
+	return body;
+
+}
+
 function mtzInitForms() {
 
 	document.querySelectorAll( '[data-mtz-form]' ).forEach( form => {
@@ -18,7 +51,6 @@ function mtzInitForms() {
 
 			const feedback = form.querySelector( '.contact-form__feedback' );
 			const submit   = form.querySelector( '[type="submit"]' );
-			const formName = form.dataset.formName ?? 'Form Submission';
 
 			const setFeedback = ( message, success ) => {
 				feedback.textContent = message;
@@ -40,31 +72,7 @@ function mtzInitForms() {
 				return;
 			}
 
-			// Collect fields with type metadata
-			const fields = {};
-			form.querySelectorAll( '[name]' ).forEach( el => {
-				if ( el.name === 'mtz_website' ) return; // honeypot — sent separately
-				const type = el.tagName === 'TEXTAREA' ? 'textarea' : ( el.type || 'text' );
-				fields[ el.name ] = {
-					label:    el.closest( 'label' )?.firstChild?.textContent?.trim() ?? el.name,
-					type,
-					value:    el.value,
-					required: el.required,
-				};
-			} );
-
-			const body = new FormData();
-			body.append( 'action',      'mtz_form' );
-			body.append( 'nonce',       mtzForms.nonce );
-			body.append( 'form_name',   formName );
-			body.append( 'mtz_website', form.querySelector( '[name="mtz_website"]' )?.value ?? '' );
-
-			Object.entries( fields ).forEach( ( [ key, field ] ) => {
-				body.append( `fields[${ key }][label]`,    field.label );
-				body.append( `fields[${ key }][type]`,     field.type );
-				body.append( `fields[${ key }][value]`,    field.value );
-				body.append( `fields[${ key }][required]`, field.required ? '1' : '' );
-			} );
+			const body = mtzBuildFormData( form );
 
 			submit.disabled = true;
 
