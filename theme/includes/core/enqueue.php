@@ -19,7 +19,7 @@ add_action( 'wp_enqueue_scripts', function () {
 		"$dir/assets/css/forms.css",
 
 		// Theme JS
-		"$dir/assets/js/main.js",
+		"$dir/assets/js/main.js" => [ 'module' => true ],
 	];
 
 	// Page-specific CSS
