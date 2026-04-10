@@ -8,6 +8,15 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
+// ─── Localize script data ─────────────────────────────────────────────────────
+
+add_action( 'wp_enqueue_scripts', function () {
+	wp_localize_script( 'matize-plugin-main', 'mtzForms', [
+		'ajaxUrl' => admin_url( 'admin-ajax.php' ),
+		'nonce'   => wp_create_nonce( 'mtz_form' ),
+	] );
+} );
+
 // ─── AJAX handlers ────────────────────────────────────────────────────────────
 
 add_action( 'wp_ajax_nopriv_mtz_form', 'mtz_handle_form' );

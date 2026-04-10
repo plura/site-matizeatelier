@@ -11,9 +11,4 @@ add_action( 'wp_enqueue_scripts', function () {
 		admin:   false,
 	);
 
-	wp_localize_script( 'matize-plugin-main', 'mtzForms', [
-		'ajaxUrl' => admin_url( 'admin-ajax.php' ),
-		'nonce'   => wp_create_nonce( 'mtz_form' ),
-	] );
-
 } );
