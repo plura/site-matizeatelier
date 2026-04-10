@@ -2,7 +2,7 @@
 // Handles any form with [data-mtz-form]. Relies on mtzForms (ajaxUrl, nonce)
 // localized via wp_localize_script() in plugin/includes/core/form.php.
 
-export function mtzBuildFormData( form ) {
+function mtzBuildFormData( form ) {
 
 	const formName = form.dataset.formName ?? 'Form Submission';
 	const fields   = {};
