@@ -11,12 +11,16 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 // ─── Enqueue + localize ───────────────────────────────────────────────────────
 
 add_action( 'wp_enqueue_scripts', function () {
-	$file = plugin_dir_path( dirname( __DIR__ ) ) . 'assets/js/form.js';
-	$url  = plugin_dir_url( dirname( __DIR__ ) ) . 'assets/js/form.js';
+	$dir = plugin_dir_path( dirname( __DIR__ ) );
 
-	wp_enqueue_script( 'matize-form', $url, [], filemtime( $file ), true );
+	plura_wp_enqueue(
+		scripts: [ "$dir/assets/js/main.js" => [ 'module' => true ] ],
+		cache:   true,
+		prefix:  'matize-plugin-',
+		admin:   false,
+	);
 
-	wp_localize_script( 'matize-form', 'mtzForms', [
+	wp_localize_script( 'matize-plugin-main', 'mtzForms', [
 		'ajaxUrl' => admin_url( 'admin-ajax.php' ),
 		'nonce'   => wp_create_nonce( 'mtz_form' ),
 	] );
