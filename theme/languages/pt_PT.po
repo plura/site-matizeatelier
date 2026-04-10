@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2026-04-09 00:17+0100\n"
-"PO-Revision-Date: 2026-04-09 00:17+0100\n"
+"POT-Creation-Date: 2026-04-10 22:44+0100\n"
+"PO-Revision-Date: 2026-04-10 22:44+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: pt_PT\n"
@@ -14,29 +14,52 @@ msgstr ""
 "X-Poedit-KeywordsList: __;_e;_x;_ex;_n;_nx;esc_attr_e\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: footer.php:48
-msgid "Redes sociais"
-msgstr ""
-
-#: footer.php:61 includes/core/setup.php:21
+#: footer.php:15 includes/core/setup.php:52
 msgid "Footer Menu"
 msgstr "Menu de Rodapé"
 
-#: header.php:25 includes/core/setup.php:20
+#: header.php:25 includes/core/setup.php:51
 msgid "Primary Menu"
 msgstr "Menu Principal"
 
-#: includes/core/acf.php:12 includes/core/acf.php:13
-msgid "Theme Settings"
-msgstr "Configurações do tema"
+#: header.php:44
+msgid "Open menu"
+msgstr "Abrir menu"
 
-#: template-parts/cta.php:7
+#: template-parts/contact-form.php:12
+msgid "New Enquiry"
+msgstr "Nova Consulta"
+
+#: template-parts/contact-form.php:20
+msgid "Your name"
+msgstr "O seu nome"
+
+#: template-parts/contact-form.php:25
+msgid "Your email"
+msgstr "O seu email"
+
+#: template-parts/contact-form.php:30
+msgid "Your phone number"
+msgstr "O seu número de telefone"
+
+#: template-parts/contact-form.php:35
+msgid "Your message"
+msgstr "A sua mensagem"
+
+#: template-parts/cta.php:9
 msgid "Get in Touch"
 msgstr "Entrar em Contacto"
 
-#: template-parts/cta.php:17
+#: template-parts/cta.php:19
 msgid "Close"
 msgstr "Fechar"
+
+#: template-parts/social-links.php:20
+msgid "Redes sociais"
+msgstr "Social media"
+
+#~ msgid "Theme Settings"
+#~ msgstr "Configurações do tema"
 
 #~ msgid "Contactar"
 #~ msgstr "Contato"

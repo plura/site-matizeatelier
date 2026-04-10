@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2026-04-09 00:17+0100\n"
-"PO-Revision-Date: 2026-04-09 00:17+0100\n"
+"POT-Creation-Date: 2026-04-10 22:45+0100\n"
+"PO-Revision-Date: 2026-04-10 22:49+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: pt_PT\n"
@@ -14,6 +14,78 @@ msgstr ""
 "X-Poedit-KeywordsList: __;_e;_x;_ex;_n;_nx;esc_attr_e\n"
 "X-Poedit-SearchPath-0: .\n"
 
+#: core/acf.php:26 core/acf.php:27
+msgid "Theme Settings"
+msgstr "Definições do Tema"
+
+#: core/form.php:34
+msgid "Security check failed."
+msgstr "Verificação de segurança falhou."
+
+#: core/form.php:67
+msgid "Please fill in all required fields."
+msgstr "Por favor preencha todos os campos obrigatórios."
+
+#: core/form.php:70
+msgid "Please enter a valid email address."
+msgstr "Por favor introduza um endereço de email válido."
+
+#: core/form.php:75
+msgid "Form Submission"
+msgstr "Envio de Formulário"
+
+#: core/form.php:99
+msgid "Thank you. We will be in touch shortly."
+msgstr "Obrigado. Entraremos em contacto brevemente."
+
+#: core/form.php:101
+msgid "Something went wrong. Please try again."
+msgstr "Algo correu mal. Por favor tente novamente."
+
+#: post-types/brand.php:6 post-types/brand.php:8
+msgid "Brands"
+msgstr "Marcas"
+
+#: post-types/brand.php:9
+msgid "Brand"
+msgstr "Marca"
+
+#: post-types/brand.php:10 post-types/service.php:10
+msgid "Add New"
+msgstr "Adicionar Novo"
+
+#: post-types/brand.php:11
+msgid "Add New Brand"
+msgstr "Adicionar Nova Marca"
+
+#: post-types/brand.php:12
+msgid "Edit Brand"
+msgstr "Editar Marca"
+
+#: post-types/brand.php:13
+msgid "New Brand"
+msgstr "Nova Marca"
+
+#: post-types/brand.php:14
+msgid "Search Brands"
+msgstr "Procurar Marcas"
+
+#: post-types/brand.php:15
+msgid "No brands found"
+msgstr "Nenhuma marca encontrada"
+
+#: post-types/brand.php:16
+msgid "No brands found in trash"
+msgstr "Nenhuma marca encontrada no lixo"
+
+#: post-types/brand.php:37
+msgid "Logo"
+msgstr "Logo"
+
+#: post-types/brand.php:38
+msgid "URL"
+msgstr "URL"
+
 #: post-types/service.php:6 post-types/service.php:8
 msgid "Services"
 msgstr "Serviços"
@@ -21,10 +93,6 @@ msgstr "Serviços"
 #: post-types/service.php:9
 msgid "Service"
 msgstr "Serviço"
-
-#: post-types/service.php:10
-msgid "Add New"
-msgstr "Adicionar Novo"
 
 #: post-types/service.php:11
 msgid "Add New Service"
