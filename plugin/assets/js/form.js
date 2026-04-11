@@ -35,9 +35,7 @@ function mtzBuildFormData( form ) {
 
 }
 
-export function mtzInitForms() {
-
-	document.querySelectorAll( '[data-mtz-form]' ).forEach( form => {
+export function mtzInitForm( form ) {
 
 		// Clear is-invalid on input
 		form.addEventListener( 'input', ( e ) => {
@@ -89,6 +87,5 @@ export function mtzInitForms() {
 				submit.disabled = false;
 			}
 		} );
-	} );
 
 }

@@ -1,5 +1,5 @@
 // Matize plugin — JS entry point
 
-import { mtzInitForms } from './form.js';
+import { mtzInitForm } from './form.js';
 
-mtzInitForms();
+document.querySelectorAll( '[data-mtz-form]' ).forEach( mtzInitForm );
