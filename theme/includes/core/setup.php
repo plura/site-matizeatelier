@@ -33,6 +33,9 @@ add_filter( 'wp_resource_hints', function ( array $hints, string $relation_type 
 	return array_filter( $hints, fn( $hint ) => ! str_contains( $hint['href'] ?? $hint, 'emoji' ) );
 }, 10, 2 );
 
+// ── Strip body classes ────────────────────────────────────────────────────────
+add_filter( 'body_class', fn() => [] );
+
 add_action( 'after_setup_theme', function () {
 
 	add_theme_support( 'title-tag' );
