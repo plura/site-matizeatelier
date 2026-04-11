@@ -47,13 +47,13 @@ export function mtzInitForm( form ) {
 		form.addEventListener( 'submit', async ( e ) => {
 			e.preventDefault();
 
-			const feedback = form.querySelector( '.contact-form__feedback' );
+			const feedback = form.querySelector( '.mtz-form__feedback' );
 			const submit   = form.querySelector( '[type="submit"]' );
 
 			const setFeedback = ( message, success ) => {
 				feedback.textContent = message;
-				feedback.classList.remove( 'contact-form__feedback--success', 'contact-form__feedback--error' );
-				feedback.classList.add( success ? 'contact-form__feedback--success' : 'contact-form__feedback--error' );
+				feedback.classList.remove( 'mtz-form__feedback--success', 'mtz-form__feedback--error' );
+				feedback.classList.add( success ? 'mtz-form__feedback--success' : 'mtz-form__feedback--error' );
 			};
 
 			// Client-side required check — mark invalid fields before sending
