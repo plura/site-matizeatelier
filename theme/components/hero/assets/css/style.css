@@ -34,10 +34,10 @@
 	width: clamp(200px, 30vw, 480px);
 }
 
-/* Logo paths start invisible — GSAP animates stroke-dashoffset in */
+/* Stroke draw-on animation — requires stroke-based logo paths + JS to set --path-length per path
 .hero__logo svg path {
 	fill: none;
 	stroke: currentColor;
 	stroke-dasharray: var(--path-length, 1000);
 	stroke-dashoffset: var(--path-length, 1000);
-}
+} */
