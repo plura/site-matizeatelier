@@ -8,6 +8,14 @@
 	width: 100%;
 }
 
+.hero::after {
+	background: rgba(0, 0, 0, 0.35);
+	content: '';
+	inset: 0;
+	position: absolute;
+	z-index: 0;
+}
+
 .hero__video {
 	height: 100%;
 	inset: 0;
@@ -26,7 +34,7 @@
 
 .hero__logo {
 	position: relative;
-	z-index: 1;
+	z-index: 2;
 }
 
 .hero__logo-svg,
