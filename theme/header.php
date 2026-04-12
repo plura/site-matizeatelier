@@ -15,7 +15,8 @@
 			<?php
 			$logo_id = get_theme_mod( 'custom_logo' );
 			if ( $logo_id ) {
-				echo wp_get_attachment_image( $logo_id, 'full', false, [ 'class' => 'site-header__logo-img' ] );
+				$logo_html = plura_wp_image( $logo_id, 'full', [ 'class' => 'site-header__logo-img' ] );
+				echo plura_img2svg( $logo_html, dirname( get_attached_file( $logo_id ) ) );
 			} else {
 				bloginfo( 'name' );
 			}
