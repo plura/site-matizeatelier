@@ -17,10 +17,19 @@
    ─────────────────────────────────────────────────────────────────────────── */
 
 .site-header {
+	background-color: transparent;
+	color: var(--mtz-color-text);
 	padding: var(--mtz-space-sm) var(--mtz-gutter);
 	position: sticky;
 	top: 0;
+	transition:
+		background-color var(--mtz-transition),
+		color var(--mtz-transition);
 	z-index: 100;
+}
+
+.site-header.is-scrolled {
+	background-color: var(--mtz-color-bg);
 }
 
 /* Front page: fixed so the hero is truly fullscreen beneath it */
@@ -92,7 +101,7 @@
 /* Mobile: nav hidden off-screen */
 @media (max-width: 767px) {
 	.site-header {
-		background-color: var(--mtz-color-linen);
+		background-color: var(--mtz-color-bg);
 	}
 
 	/* Logo and actions must paint above the nav within the header's stacking context */
@@ -103,7 +112,7 @@
 	}
 
 	.site-nav {
-		background-color: var(--mtz-color-linen);
+		background-color: var(--mtz-color-bg);
 		height: calc(100dvh - var(--mtz-header-height, 0px));
 		left: 0;
 		overflow-y: auto;

@@ -23,6 +23,17 @@ mtzInitModal(
 	document.querySelector( '.contact-modal__close' ),
 );
 
+// ── Hero scroll — toggle is-scrolled on header at hero midpoint ───────────────
+const hero = document.querySelector( '.hero' );
+
+if ( hero && header ) {
+	const observer = new IntersectionObserver(
+		( [ entry ] ) => header.classList.toggle( 'is-scrolled', ! entry.isIntersecting ),
+		{ threshold: 0.5 }
+	);
+	observer.observe( hero );
+}
+
 // ── Mobile nav toggle ─────────────────────────────────────────────────────────
 const toggle = document.querySelector( '.site-header__menu-toggle' );
 const nav    = document.querySelector( '#site-nav' );
