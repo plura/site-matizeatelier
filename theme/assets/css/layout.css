@@ -38,6 +38,11 @@
 	max-width: var(--mtz-max-width);
 }
 
+.site-header__logo svg {
+	height: var(--mtz-space-xl);
+	width: auto;
+}
+
 .site-nav__list {
 	display: flex;
 	gap: var(--mtz-space-md);
