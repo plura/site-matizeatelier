@@ -80,6 +80,10 @@
 	--mtz-icon-md:  20px;
 	--mtz-icon-lg:  24px;
 
+	/* ── Overlays ────────────────────────────────────────────────────────── */
+	--mtz-overlay-light: 35%;  /* subtle — video/image still visible beneath */
+	--mtz-overlay-heavy: 65%;  /* opaque — modal backdrops, focus states */
+
 	/* ── Transitions ─────────────────────────────────────────────────────── */
 	--mtz-transition: 0.3s ease;
 }

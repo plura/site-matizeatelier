@@ -9,7 +9,7 @@
 }
 
 .hero::after {
-	background: color-mix(in srgb, var(--mtz-color-charcoal) 35%, transparent);
+	background: color-mix(in srgb, var(--mtz-color-charcoal) var(--mtz-overlay-light), transparent);
 	content: '';
 	inset: 0;
 	position: absolute;
