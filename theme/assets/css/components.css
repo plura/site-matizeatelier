@@ -113,7 +113,7 @@
 }
 
 .contact-modal::backdrop {
-	background: rgba(42, 36, 32, 0);
+	background: color-mix(in srgb, var(--mtz-color-charcoal) 0%, transparent);
 	backdrop-filter: blur(0px);
 	transition:
 		background 0.35s ease,
@@ -123,13 +123,13 @@
 }
 
 .contact-modal[open]::backdrop {
-	background: rgba(42, 36, 32, 0.65);
+	background: color-mix(in srgb, var(--mtz-color-charcoal) 65%, transparent);
 	backdrop-filter: blur(4px);
 }
 
 @starting-style {
 	.contact-modal[open]::backdrop {
-		background: rgba(42, 36, 32, 0);
+		background: color-mix(in srgb, var(--mtz-color-charcoal) 0%, transparent);
 		backdrop-filter: blur(0px);
 	}
 }
