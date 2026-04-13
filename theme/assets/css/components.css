@@ -55,28 +55,53 @@
 	opacity: 1;
 }
 
+/* ─── Buttons ────────────────────────────────────────────────────────────────
+   .btn            base — typography, layout, cursor
+   .btn--primary   solid accent fill
+   .btn--ghost     outline (see forms.css for .mtz-form__submit reference)
+   ─────────────────────────────────────────────────────────────────────────── */
+
+.btn {
+	align-items: center;
+	border: none;
+	cursor: pointer;
+	display: inline-flex;
+	font-family: var(--mtz-font-body);
+	font-size: var(--mtz-text-xs);
+	font-weight: var(--mtz-weight-light);
+	gap: var(--mtz-space-xs);
+	letter-spacing: var(--mtz-tracking-wide);
+	padding: var(--mtz-space-sm) var(--mtz-space-md);
+	text-transform: uppercase;
+	transition: background-color var(--mtz-transition);
+}
+
+.btn--primary {
+	background-color: var(--mtz-color-accent);
+	color: var(--mtz-color-linen);
+}
+
+.btn--primary:hover {
+	background-color: var(--mtz-color-charcoal);
+}
+
+.btn--primary svg {
+	transition: transform var(--mtz-transition);
+}
+
+.btn--primary:hover svg {
+	transform: translateX(4px);
+}
+
 /* ─── CTA button ─────────────────────────────────────────────────────────────
-   Rendered just before </body> — floats over all pages.
+   Floating over all pages — positioning only; visual via .btn--primary.
    ─────────────────────────────────────────────────────────────────────────── */
 
 .cta__btn {
-	background-color: var(--mtz-color-accent);
-	border: none;
-	bottom: var(--mtz-space-lg);
-	color: var(--mtz-color-linen);
-	cursor: pointer;
-	font-family: var(--mtz-font-body);
-	font-size: var(--mtz-text-sm);
-	letter-spacing: var(--mtz-tracking-wide);
-	padding: var(--mtz-space-sm) var(--mtz-space-md);
+	bottom: var(--mtz-gutter);
 	position: fixed;
 	right: var(--mtz-gutter);
-	transition: background-color var(--mtz-transition);
 	z-index: 200;
-}
-
-.cta__btn:hover {
-	background-color: var(--mtz-color-charcoal);
 }
 
 /* ─── Contact modal ──────────────────────────────────────────────────────────
