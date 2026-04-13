@@ -1,11 +1,11 @@
 // Matize — generic dialog modal initialiser
 
-export function mtzInitModal( modal, ctaBtn, closeBtn ) {
+export function mtzInitModal( { modal, trigger, closeBtn } ) {
 
 	if ( ! modal ) return;
 
-	if ( ctaBtn ) {
-		ctaBtn.addEventListener( 'click', () => modal.showModal() );
+	if ( trigger ) {
+		trigger.addEventListener( 'click', () => modal.showModal() );
 	}
 
 	if ( closeBtn ) {

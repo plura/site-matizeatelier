@@ -17,11 +17,11 @@ if ( header ) {
 }
 
 // ── Contact modal ─────────────────────────────────────────────────────────────
-mtzInitModal(
-	document.querySelector( '#contact-modal' ),
-	document.querySelector( '.cta__btn' ),
-	document.querySelector( '.contact-modal__close' ),
-);
+mtzInitModal( {
+	modal:    document.querySelector( '#contact-modal' ),
+	trigger:  document.querySelector( '.cta__btn' ),
+	closeBtn: document.querySelector( '.contact-modal__close' ),
+} );
 
 // ── Header scroll state — toggle .is-scrolled on any page ────────────────────
 if ( header ) {
