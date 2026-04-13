@@ -28,7 +28,7 @@ const hero = document.querySelector( '.hero' );
 
 if ( hero && header ) {
 	const observer = new IntersectionObserver(
-		( [ entry ] ) => header.classList.toggle( 'is-scrolled', ! entry.isIntersecting ),
+		( [ entry ] ) => header.classList.toggle( 'is-past-hero', ! entry.isIntersecting ),
 		{ threshold: 0.5 }
 	);
 	observer.observe( hero );

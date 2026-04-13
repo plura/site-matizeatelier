@@ -28,7 +28,15 @@
 	z-index: 100;
 }
 
-.site-header.is-scrolled {
+/* Dark tokens when floating over hero — no JS needed */
+:has(.hero) .site-header:not(.is-past-hero) {
+	--mtz-color-bg:    var(--mtz-color-charcoal);
+	--mtz-color-text:  var(--mtz-color-linen);
+	--mtz-color-muted: var(--mtz-color-greige);
+}
+
+/* Scrolled past hero — restore light bg */
+.site-header.is-past-hero {
 	background-color: var(--mtz-color-bg);
 }
 
