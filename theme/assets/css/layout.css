@@ -28,23 +28,19 @@
 	z-index: 100;
 }
 
-/* Dark tokens when floating over hero — no JS needed */
-:has(.hero) .site-header:not(.is-past-hero) {
+/* Floating over hero — dark tokens + fixed so hero is truly fullscreen; no JS needed */
+:has(.hero) .site-header:not(.is-scrolled) {
 	--mtz-color-bg:    var(--mtz-color-charcoal);
 	--mtz-color-text:  var(--mtz-color-linen);
 	--mtz-color-muted: var(--mtz-color-greige);
-}
-
-/* Scrolled past hero — restore light bg */
-.site-header.is-past-hero {
-	background-color: var(--mtz-color-bg);
-}
-
-/* Front page: fixed so the hero is truly fullscreen beneath it */
-.home .site-header {
 	left: 0;
 	position: fixed;
 	right: 0;
+}
+
+/* Scrolled — base sticky takes over, restore light bg */
+.site-header.is-scrolled {
+	background-color: var(--mtz-color-bg);
 }
 
 .site-header__inner {
