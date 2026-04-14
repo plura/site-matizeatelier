@@ -7,7 +7,7 @@ $html = plura_wp_posts(
 	wrap:      true,
 	link:      1,
 	read_more: false,
-	context:   'brands',
+	context:   'brands-grid',
 );
 
 if ( ! $html ) return;
