@@ -2,3 +2,34 @@
 /* ─── Gallery ────────────────────────────────────────────────────────────────
    Gallery page.
    ─────────────────────────────────────────────────────────────────────────── */
+
+.gallery {
+	padding-block: var(--mtz-space-xl);
+}
+
+.gallery__grid {
+	columns: 2;
+	column-gap: var(--mtz-space-sm);
+}
+
+.gallery__item {
+	break-inside: avoid;
+	margin-bottom: var(--mtz-space-sm);
+}
+
+.gallery__img {
+	display: block;
+	width: 100%;
+}
+
+@media (min-width: 768px) {
+	.gallery__grid {
+		columns: 3;
+	}
+}
+
+@media (min-width: 1024px) {
+	.gallery__grid {
+		columns: 4;
+	}
+}

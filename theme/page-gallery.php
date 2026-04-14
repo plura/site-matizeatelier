@@ -13,10 +13,7 @@ get_template_part( 'template-parts/page-header' ); ?>
 			<div class="gallery__grid container--wide">
 				<?php foreach ( $gallery as $image ) : ?>
 					<figure class="gallery__item">
-						<?php echo wp_get_attachment_image( $image['ID'], 'large', false, [
-							'class' => 'gallery__img',
-							'alt'   => esc_attr( $image['alt'] ),
-						] ); ?>
+						<?php echo plura_wp_image( $image['ID'], 'large', [ 'class' => 'gallery__img' ] ); ?>
 					</figure>
 				<?php endforeach; ?>
 			</div>
