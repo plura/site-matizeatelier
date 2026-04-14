@@ -187,3 +187,49 @@
 	height: var(--mtz-icon-md);
 	width: var(--mtz-icon-md);
 }
+
+/* ─── Brands grid ────────────────────────────────────────────────────────────
+   Used on the services page. Logo + name, links out to brand URL if set.
+   ─────────────────────────────────────────────────────────────────────────── */
+
+.brands {
+	padding-block: var(--mtz-space-2xl);
+}
+
+.brands__grid {
+	display: grid;
+	gap: var(--mtz-space-lg);
+	grid-template-columns: repeat( auto-fit, minmax( 120px, 1fr ) );
+}
+
+.brands__grid .plura-wp-post {
+	align-items: center;
+	display: flex;
+	flex-direction: column;
+	gap: var(--mtz-space-xs);
+	text-decoration: none;
+}
+
+.brands__grid .plura-wp-post-featured-image {
+	filter: grayscale(1);
+	height: 48px;
+	object-fit: contain;
+	opacity: 0.5;
+	transition:
+		filter var(--mtz-transition),
+		opacity var(--mtz-transition);
+	width: auto;
+}
+
+.brands__grid .plura-wp-post:hover .plura-wp-post-featured-image {
+	filter: grayscale(0);
+	opacity: 1;
+}
+
+.brands__grid .plura-wp-post-title {
+	font-size: var(--mtz-text-xs);
+	font-weight: var(--mtz-weight-light);
+	letter-spacing: var(--mtz-tracking-wider);
+	text-align: center;
+	text-transform: uppercase;
+}

@@ -21,6 +21,8 @@ get_template_part( 'template-parts/page-header' ); ?>
 		?>
 	</div>
 
+	<?php get_template_part( 'template-parts/brands' ); ?>
+
 </main>
 
 <?php get_footer(); ?>
