@@ -38,7 +38,7 @@
 
 	<?php /* ── Services (condensed) ─────────────────────────────────────── */ ?>
 	<section class="home-services">
-		<div class="container">
+		<div class="container--wide">
 			<?php
 			echo plura_wp_posts(
 				type: 'mtz_service',
@@ -46,7 +46,7 @@
 				order: 'ASC',
 				class: 'home-services__grid',
 				wrap: true,
-				link: 0,
+				link: 1,
 				context: 'home-services',
 			);
 			?>

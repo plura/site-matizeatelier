@@ -17,7 +17,7 @@
 	grid-template-columns: 1fr;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 640px) {
 	.home-services__grid {
 		grid-template-columns: repeat(2, 1fr);
 	}
@@ -25,13 +25,22 @@
 
 @media (min-width: 1024px) {
 	.home-services__grid {
-		grid-template-columns: repeat(3, 1fr);
+		grid-template-columns: repeat(4, 1fr);
 	}
 }
 
 .home-services__grid .plura-wp-post {
 	display: flex;
 	flex-direction: column;
+	text-decoration: none;
+}
+
+.home-services__grid .plura-wp-post-featured-image {
+	transition: opacity var(--mtz-transition);
+}
+
+.home-services__grid .plura-wp-post:hover .plura-wp-post-featured-image {
+	opacity: 0.85;
 }
 
 .home-services__grid .plura-wp-post-featured-image {
