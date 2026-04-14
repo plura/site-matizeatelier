@@ -13,7 +13,7 @@ get_template_part( 'template-parts/page-header' ); ?>
 			type: 'mtz_service',
 			orderby: 'menu_order',
 			order: 'ASC',
-			class: 'services__grid',
+			class: 'services__sections',
 			wrap: true,
 			link: -1,
 			context: 'page-services',

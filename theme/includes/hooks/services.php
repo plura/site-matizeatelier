@@ -1,6 +1,6 @@
 <?php
 
-// ── Services page section: image + title + tagline + description + gallery ────
+// ── Services page sections: image + title + tagline + description + gallery ───
 add_filter( 'plura_wp_post', function ( array $content, WP_Post $post, ?string $context ): array {
 	if ( $context !== 'page-services' || $post->post_type !== 'mtz_service' ) {
 		return $content;
