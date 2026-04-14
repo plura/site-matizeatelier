@@ -16,7 +16,7 @@ add_filter( 'plura_wp_post', function ( array $content, WP_Post $post, ?string $
 		'featured-image' => $content['featured-image'] ?? '',
 		'title'          => $content['title'] ?? '',
 		'tagline'        => $tagline ? '<p class="plura-wp-post-tagline">' . esc_html( $tagline ) . '</p>' : '',
-		'content'        => $description ? '<div class="plura-wp-post-content">' . wp_kses_post( $description ) . '</div>' : '',
+		'description'    => $description ? '<div class="plura-wp-post-content">' . wp_kses_post( $description ) . '</div>' : '',
 		'gallery'        => $cluster_html,
 	] );
 }, 10, 3 );
