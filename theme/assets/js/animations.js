@@ -1,5 +1,7 @@
 // Matize — animations
 
+gsap.registerPlugin( ScrollTrigger, SplitText );
+
 // ── Gallery items reveal ──────────────────────────────────────────────────────
 export function mtzAnimGalleryItems( items ) {
 	if ( ! items || ( items instanceof NodeList && ! items.length ) ) return;
