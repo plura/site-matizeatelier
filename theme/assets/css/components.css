@@ -189,6 +189,36 @@
 	width: var(--mtz-icon-md);
 }
 
+/* ─── Gallery cluster ────────────────────────────────────────────────────────
+   Small image group — used in service sections and about sections.
+   1 image: full width. 2–3 images: 2-col grid, last image spans if odd.
+   ─────────────────────────────────────────────────────────────────────────── */
+
+.gallery-cluster {
+	display: grid;
+	gap: var(--mtz-space-xs);
+	grid-template-columns: repeat(2, 1fr);
+}
+
+.gallery-cluster__img {
+	aspect-ratio: 1;
+	height: auto;
+	object-fit: cover;
+	width: 100%;
+}
+
+/* Single image: span both columns */
+.gallery-cluster__img:only-child {
+	grid-column: 1 / -1;
+	aspect-ratio: 4 / 3;
+}
+
+/* Three images: last one spans full width */
+.gallery-cluster__img:first-child:nth-last-child(3) ~ .gallery-cluster__img:last-child {
+	grid-column: 1 / -1;
+	aspect-ratio: 16 / 9;
+}
+
 /* ─── Brands grid ────────────────────────────────────────────────────────────
    Used on the services page. Logo + name, links out to brand URL if set.
    ─────────────────────────────────────────────────────────────────────────── */
