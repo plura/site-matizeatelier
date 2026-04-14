@@ -32,16 +32,15 @@
 	order: 1;
 }
 
+.about-section__title {
+	font-size: var(--mtz-text-2xl);
+	margin-bottom: var(--mtz-space-md);
+}
+
 .about-section__text {
 	color: var(--mtz-color-muted);
 	font-size: var(--mtz-text-sm);
 	line-height: var(--mtz-leading-loose);
-}
-
-.about-section__text h2,
-.about-section__text h3 {
-	color: var(--mtz-color-text);
-	margin-bottom: var(--mtz-space-md);
 }
 
 .about-section__cluster {

@@ -9,9 +9,9 @@ get_template_part( 'template-parts/page-header' ); ?>
 
 	<?php
 	$sections = [
-		'mission'    => [ 'label' => 'mission',    'field' => 'mtz_about_mission'    ],
-		'philosophy' => [ 'label' => 'philosophy',  'field' => 'mtz_about_philosophy' ],
-		'cv'         => [ 'label' => 'cv',          'field' => 'mtz_about_cv'         ],
+		'mission'    => [ 'title' => __( 'Missão',   'matize' ), 'field' => 'mtz_about_mission'    ],
+		'philosophy' => [ 'title' => __( 'Filosofia', 'matize' ), 'field' => 'mtz_about_philosophy' ],
+		'cv'         => [ 'title' => __( 'CV',        'matize' ), 'field' => 'mtz_about_cv'         ],
 	];
 
 	foreach ( $sections as $key => $section ) :
@@ -26,6 +26,7 @@ get_template_part( 'template-parts/page-header' ); ?>
 			<div class="about-section__inner">
 
 				<div class="about-section__text">
+					<h2 class="about-section__title"><?php echo esc_html( $section['title'] ); ?></h2>
 					<?php echo wp_kses_post( $text ); ?>
 				</div>
 
