@@ -99,7 +99,7 @@
 
 .cta__btn {
 	bottom: var(--mtz-gutter);
-	box-shadow: 0 4px 16px color-mix(in srgb, var(--mtz-color-charcoal) 20%, transparent);
+	box-shadow: 0 4px 16px color-mix(in srgb, var(--mtz-color-charcoal) var(--mtz-shadow-soft), transparent);
 	position: fixed;
 	right: var(--mtz-gutter);
 	z-index: 200;
