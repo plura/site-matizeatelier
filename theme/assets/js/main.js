@@ -18,7 +18,7 @@ if ( header ) {
 }
 
 // ── Page title animation ──────────────────────────────────────────────────────
-mtzAnimPageTitle();
+mtzAnimPageTitle( document.querySelector( '.page-header__title' ) );
 
 // ── Contact modal ─────────────────────────────────────────────────────────────
 mtzInitModal( {
