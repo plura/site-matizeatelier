@@ -6,17 +6,15 @@ gsap.registerPlugin( ScrollTrigger, SplitText );
 export function mtzAnimGalleryItems( items ) {
 	if ( ! items || ( items instanceof NodeList && ! items.length ) ) return;
 
-	items.forEach( item => {
-		gsap.from( item, {
+	ScrollTrigger.batch( items, {
+		start: 'top 90%',
+		onEnter: batch => gsap.from( batch, {
 			autoAlpha: 0,
 			y:         30,
+			stagger:   0.1,
 			ease:      'power2.out',
 			duration:  0.6,
-			scrollTrigger: {
-				trigger: item,
-				start:   'top 90%',
-			},
-		} );
+		} ),
 	} );
 }
 
