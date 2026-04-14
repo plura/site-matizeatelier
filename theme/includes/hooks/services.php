@@ -10,14 +10,7 @@ add_filter( 'plura_wp_post', function ( array $content, WP_Post $post, ?string $
 	$description = get_field( 'mtz_service_description', $post->ID );
 	$images      = get_field( 'mtz_service_gallery', $post->ID ) ?: [];
 
-	$cluster_html = '';
-	if ( $images ) {
-		$imgs = '';
-		foreach ( array_slice( $images, 0, 3 ) as $img ) {
-			$imgs .= plura_wp_image( $img['ID'], 'medium', [ 'class' => 'gallery-cluster__img' ] );
-		}
-		$cluster_html = '<div class="gallery-cluster">' . $imgs . '</div>';
-	}
+	$cluster_html = mtz_gallery_cluster( $images );
 
 	return array_filter( [
 		'featured-image' => $content['featured-image'] ?? '',

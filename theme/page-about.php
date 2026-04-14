@@ -29,13 +29,12 @@ get_template_part( 'template-parts/page-header' ); ?>
 					<?php echo wp_kses_post( $text ); ?>
 				</div>
 
-				<?php if ( $images ) : ?>
-				<div class="about-section__cluster gallery-cluster">
-					<?php foreach ( array_slice( $images, 0, 3 ) as $img ) : ?>
-						<?php echo plura_wp_image( $img['ID'], 'medium', [ 'class' => 'gallery-cluster__img' ] ); ?>
-					<?php endforeach; ?>
+				<?php $cluster = mtz_gallery_cluster( $images ); ?>
+			<?php if ( $cluster ) : ?>
+				<div class="about-section__cluster">
+					<?php echo $cluster; ?>
 				</div>
-				<?php endif; ?>
+			<?php endif; ?>
 
 			</div>
 		</div>
