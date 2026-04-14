@@ -2,3 +2,62 @@
 /* ─── Home ───────────────────────────────────────────────────────────────────
    Front page — hero, services grid, etc.
    ─────────────────────────────────────────────────────────────────────────── */
+
+/* ─── Home services grid ─────────────────────────────────────────────────────
+   Cards: image + title + tagline + excerpt.
+   ─────────────────────────────────────────────────────────────────────────── */
+
+.home-services {
+	padding-block: var(--mtz-space-2xl);
+}
+
+.home-services__grid {
+	display: grid;
+	gap: var(--mtz-space-md);
+	grid-template-columns: 1fr;
+}
+
+@media (min-width: 768px) {
+	.home-services__grid {
+		grid-template-columns: repeat(2, 1fr);
+	}
+}
+
+@media (min-width: 1024px) {
+	.home-services__grid {
+		grid-template-columns: repeat(3, 1fr);
+	}
+}
+
+.home-services__grid .plura-wp-post {
+	display: flex;
+	flex-direction: column;
+}
+
+.home-services__grid .plura-wp-post-featured-image {
+	aspect-ratio: 4 / 3;
+	height: auto;
+	object-fit: cover;
+	width: 100%;
+}
+
+.home-services__grid .plura-wp-post-title {
+	font-size: var(--mtz-text-xl);
+	margin-top: var(--mtz-space-md);
+}
+
+.home-services__grid .plura-wp-post-tagline {
+	color: var(--mtz-color-accent);
+	font-size: var(--mtz-text-xs);
+	font-weight: var(--mtz-weight-light);
+	letter-spacing: var(--mtz-tracking-wider);
+	margin-top: var(--mtz-space-xs);
+	text-transform: uppercase;
+}
+
+.home-services__grid .plura-wp-post-excerpt {
+	color: var(--mtz-color-muted);
+	font-size: var(--mtz-text-sm);
+	line-height: var(--mtz-leading-normal);
+	margin-top: var(--mtz-space-sm);
+}
