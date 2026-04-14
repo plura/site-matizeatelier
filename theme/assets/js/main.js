@@ -1,6 +1,7 @@
 // Matize — main JS entry point
 
-import { mtzInitModal } from './modal.js';
+import { mtzInitModal }    from './modal.js';
+import { mtzAnimPageTitle } from './animations.js';
 
 // ── Lucide icons ─────────────────────────────────────────────────────────────
 if ( typeof lucide !== 'undefined' ) {
@@ -15,6 +16,9 @@ if ( header ) {
 	setHeaderHeight();
 	window.addEventListener( 'resize', setHeaderHeight );
 }
+
+// ── Page title animation ──────────────────────────────────────────────────────
+mtzAnimPageTitle();
 
 // ── Contact modal ─────────────────────────────────────────────────────────────
 mtzInitModal( {
