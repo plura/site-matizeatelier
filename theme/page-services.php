@@ -15,7 +15,7 @@ get_template_part( 'template-parts/page-header' ); ?>
 			order: 'ASC',
 			class: 'services__grid',
 			wrap: true,
-			link: 0,
+			link: -1,
 			context: 'page-services',
 		);
 		?>
