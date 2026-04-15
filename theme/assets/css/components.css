@@ -189,6 +189,37 @@
 	width: var(--mtz-icon-md);
 }
 
+/* ─── Content section ───────────────────────────────────────────────────────
+   Shared base for two-column page sections (services, about).
+   Sets separators, padding, and grid scaffold.
+   Column ratios and child order live in page-specific CSS.
+   ─────────────────────────────────────────────────────────────────────────── */
+
+.content-section {
+	border-top: 1px solid color-mix(in srgb, var(--mtz-color-text) 12%, transparent);
+	padding-block: var(--mtz-space-2xl);
+}
+
+.content-section:last-of-type {
+	border-bottom: 1px solid color-mix(in srgb, var(--mtz-color-text) 12%, transparent);
+}
+
+.content-section__inner {
+	align-items: start;
+	column-gap: var(--mtz-space-2xl);
+	display: grid;
+}
+
+@media (max-width: 767px) {
+	.content-section__inner {
+		grid-template-columns: 1fr;
+	}
+
+	.content-section__inner > * {
+		order: unset !important;
+	}
+}
+
 /* ─── Gallery cluster ────────────────────────────────────────────────────────
    Small image group — used in service sections and about sections.
    1 image: full width. 2–3 images: 2-col grid, last image spans if odd.

@@ -27,8 +27,8 @@ $services = new WP_Query( [
 		$thumb_id    = get_post_thumbnail_id();
 		?>
 
-		<section class="service-section">
-			<div class="service-section__inner">
+		<section class="content-section service-section">
+			<div class="content-section__inner">
 
 				<?php if ( $thumb_id ) : ?>
 				<div class="service-section__image">

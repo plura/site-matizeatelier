@@ -1,26 +1,14 @@
 @charset "UTF-8";
 /* ─── About ──────────────────────────────────────────────────────────────────
    About page sections: text + image cluster, alternating sides.
+   Extends .content-section from components.css.
    ─────────────────────────────────────────────────────────────────────────── */
 
-.about-section {
-	padding-block: var(--mtz-space-2xl);
-	border-top: 1px solid color-mix(in srgb, var(--mtz-color-text) 12%, transparent);
-}
-
-.about-section:last-of-type {
-	border-bottom: 1px solid color-mix(in srgb, var(--mtz-color-text) 12%, transparent);
-}
-
-.about-section__inner {
-	align-items: start;
-	column-gap: var(--mtz-space-2xl);
-	display: grid;
+.about-section .content-section__inner {
 	grid-template-columns: 7fr 5fr;
 }
 
-/* Alternate: odd sections text left / even sections cluster left */
-.about-section:nth-child(even) .about-section__inner {
+.about-section:nth-child(even) .content-section__inner {
 	grid-template-columns: 5fr 7fr;
 }
 
@@ -48,18 +36,7 @@
 	top: calc(var(--mtz-space-xl) * 2);
 }
 
-/* ─── Mobile: stack ──────────────────────────────────────────────────────── */
-
 @media (max-width: 767px) {
-	.about-section__inner {
-		grid-template-columns: 1fr;
-	}
-
-	.about-section:nth-child(even) .about-section__text,
-	.about-section:nth-child(even) .about-section__cluster {
-		order: unset;
-	}
-
 	.about-section__cluster {
 		position: static;
 	}

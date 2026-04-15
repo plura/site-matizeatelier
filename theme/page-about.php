@@ -21,9 +21,9 @@ get_template_part( 'template-parts/page-header' ); ?>
 		$images = $data['images'] ?? [];
 	?>
 
-	<section class="about-section about-section--<?php echo esc_attr( $key ); ?>">
+	<section class="content-section about-section about-section--<?php echo esc_attr( $key ); ?>">
 		<div class="container">
-			<div class="about-section__inner">
+			<div class="content-section__inner">
 
 				<div class="about-section__text">
 					<h2 class="about-section__title"><?php echo esc_html( $section['title'] ); ?></h2>
@@ -37,7 +37,7 @@ get_template_part( 'template-parts/page-header' ); ?>
 				</div>
 			<?php endif; ?>
 
-			</div>
+			</div><!-- .content-section__inner -->
 		</div>
 	</section>
 
