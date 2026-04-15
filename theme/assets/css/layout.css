@@ -218,6 +218,7 @@
 }
 
 /* desktop: © | nav (centered) | credit */
+/* desktop: contact-info items in one evenly-spaced row */
 @media (min-width: 1024px) {
 	.site-footer__bottom {
 		align-items: center;
@@ -233,5 +234,16 @@
 	.site-footer__credit {
 		justify-self: end;
 		text-align: right;
+	}
+
+	.site-footer .contact-info {
+		align-items: center;
+		display: flex;
+		justify-content: space-evenly;
+	}
+
+	.site-footer .contact-details,
+	.site-footer .social-links {
+		display: contents;
 	}
 }

@@ -15,24 +15,6 @@
 	width: auto;
 }
 
-/* ─── Contact info ───────────────────────────────────────────────────────────
-   Wrapper for contact-details + social-links.
-   Desktop: display:contents on both children so all items share one flex row.
-   ─────────────────────────────────────────────────────────────────────────── */
-
-@media (min-width: 1024px) {
-	.contact-info {
-		align-items: center;
-		display: flex;
-		justify-content: space-evenly;
-	}
-
-	.contact-details,
-	.social-links {
-		display: contents;
-	}
-}
-
 /* ─── Contact details ────────────────────────────────────────────────────────
    Used in footer and contact page.
    ─────────────────────────────────────────────────────────────────────────── */
