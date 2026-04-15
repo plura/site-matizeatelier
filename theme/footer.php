@@ -5,7 +5,7 @@
 	<div class="site-footer__inner container">
 
 		<div class="site-footer__brand">
-			<?php echo mtz_logo( 'site-footer__logo', 'site-footer__logo-img' ); ?>
+			<?php echo mtz_logo( 'site-footer__logo' ); ?>
 		</div>
 
 		<?php get_template_part( 'template-parts/contact-info' ); ?>

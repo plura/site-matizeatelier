@@ -51,6 +51,7 @@
 	max-width: var(--mtz-max-width);
 }
 
+.site-header__logo .site-logo__img,
 .site-header__logo svg {
 	height: var(--mtz-space-xl);
 	width: auto;
@@ -182,13 +183,8 @@
 	text-align: center;
 }
 
-.site-footer__logo {
-	display: inline-flex;
-	opacity: 1;
-}
-
-.site-footer__logo svg,
-.site-footer__logo-img {
+.site-footer__logo .site-logo__img,
+.site-footer__logo svg {
 	height: 48px;
 	width: auto;
 }

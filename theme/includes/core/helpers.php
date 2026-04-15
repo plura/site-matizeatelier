@@ -2,17 +2,18 @@
 
 /**
  * Renders the site logo as an inline SVG link.
+ * Always outputs .site-logo and .site-logo__img for component styling.
  * Falls back to the site name if no custom logo is set.
  *
- * @param string $link_class  Class on the <a> tag.
- * @param string $img_class   Class on the <img> passed to plura_img2svg.
+ * @param string $extra_class  Optional extra class on the <a> tag (e.g. 'site-header__logo').
  * @return string
  */
-function mtz_logo( string $link_class, string $img_class ): string {
+function mtz_logo( string $extra_class = '' ): string {
 	$logo_id = get_theme_mod( 'custom_logo' );
+	$a_class = trim( 'site-logo ' . $extra_class );
 
 	if ( $logo_id ) {
-		$inner = plura_img2svg( plura_wp_image( $logo_id, 'full', [ 'class' => $img_class ] ) );
+		$inner = plura_img2svg( plura_wp_image( $logo_id, 'full', [ 'class' => 'site-logo__img' ] ) );
 	} else {
 		$inner = esc_html( get_bloginfo( 'name' ) );
 	}
@@ -20,7 +21,7 @@ function mtz_logo( string $link_class, string $img_class ): string {
 	return sprintf(
 		'<a href="%s" class="%s" aria-label="%s">%s</a>',
 		esc_url( home_url( '/' ) ),
-		esc_attr( $link_class ),
+		esc_attr( $a_class ),
 		esc_attr( get_bloginfo( 'name' ) ),
 		$inner
 	);

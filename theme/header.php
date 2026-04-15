@@ -11,7 +11,7 @@
 <header id="site-header" class="site-header">
 	<div class="site-header__inner">
 
-		<?php echo mtz_logo( 'site-header__logo', 'site-header__logo-img' ); ?>
+		<?php echo mtz_logo( 'site-header__logo' ); ?>
 
 		<nav id="site-nav" class="site-nav" aria-label="<?php esc_attr_e( 'Primary Menu', 'matize' ); ?>">
 			<?php

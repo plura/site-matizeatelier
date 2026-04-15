@@ -1,4 +1,20 @@
 @charset "UTF-8";
+/* ─── Site logo ──────────────────────────────────────────────────────────────
+   Base component — size and position overrides live in layout.css.
+   ─────────────────────────────────────────────────────────────────────────── */
+
+.site-logo {
+	display: inline-flex;
+	opacity: 1;
+}
+
+.site-logo__img,
+.site-logo svg {
+	display: block;
+	height: auto;
+	width: auto;
+}
+
 /* ─── Contact details ────────────────────────────────────────────────────────
    Used in footer and contact page.
    ─────────────────────────────────────────────────────────────────────────── */
