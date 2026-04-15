@@ -9,9 +9,9 @@ get_template_part( 'template-parts/page-header' ); ?>
 
 	<?php
 	$sections = [
-		'mission'    => [ 'title' => __( 'Missão',   'matize' ), 'field' => 'mtz_about_mission'    ],
-		'philosophy' => [ 'title' => __( 'Filosofia', 'matize' ), 'field' => 'mtz_about_philosophy' ],
-		'cv'         => [ 'title' => __( 'CV',        'matize' ), 'field' => 'mtz_about_cv'         ],
+		'mission'    => [ 'title' => __( 'Mission',    'matize' ), 'field' => 'mtz_about_mission'    ],
+		'philosophy' => [ 'title' => __( 'Philosophy', 'matize' ), 'field' => 'mtz_about_philosophy' ],
+		'cv'         => [ 'title' => __( 'Curriculum', 'matize' ), 'field' => 'mtz_about_cv'         ],
 	];
 
 	foreach ( $sections as $key => $section ) :

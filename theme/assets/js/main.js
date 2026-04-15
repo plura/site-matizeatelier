@@ -1,7 +1,8 @@
 // Matize — main JS entry point
 
-import { mtzInitModal }                    from './modal.js';
+import { mtzInitModal }                         from './modal.js';
 import { mtzAnimPageTitle, mtzAnimGalleryItems } from './animations.js';
+import { mtzInitGallery }                        from './gallery.js';
 
 // ── Lucide icons ─────────────────────────────────────────────────────────────
 if ( typeof lucide !== 'undefined' ) {
@@ -22,6 +23,7 @@ mtzAnimPageTitle( document.querySelector( '.page-header__title' ) );
 
 // ── Gallery ───────────────────────────────────────────────────────────────────
 mtzAnimGalleryItems( document.querySelectorAll( '.gallery__item' ) );
+if ( document.querySelector( '.gallery' ) ) mtzInitGallery();
 
 // ── Contact modal ─────────────────────────────────────────────────────────────
 mtzInitModal( {

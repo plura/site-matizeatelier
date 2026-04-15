@@ -217,6 +217,21 @@
 	opacity: 0.5;
 }
 
+/* smartphone: center contact block */
+@media (max-width: 639px) {
+	.site-footer .contact-info {
+		align-items: center;
+	}
+
+	.site-footer .contact-details {
+		align-items: center;
+	}
+
+	.site-footer .social-links {
+		justify-content: center;
+	}
+}
+
 /* desktop: © | nav (centered) | credit */
 /* desktop: contact-info items in one evenly-spaced row */
 @media (min-width: 1024px) {

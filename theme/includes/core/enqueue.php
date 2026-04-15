@@ -38,6 +38,12 @@ add_action( 'wp_enqueue_scripts', function () {
 		}
 	}
 
+	// Gallery: Fancybox lightbox (CDN, only on gallery page)
+	if ( is_page_template( 'page-gallery.php' ) ) {
+		$scripts['https://cdn.jsdelivr.net/npm/@fancyapps/ui@6.1/dist/fancybox/fancybox.css'] = [ 'handle' => 'fancybox' ];
+		$scripts['https://cdn.jsdelivr.net/npm/@fancyapps/ui@6.1/dist/fancybox/fancybox.umd.js'] = [ 'handle' => 'fancybox-js' ];
+	}
+
 	plura_wp_enqueue( scripts: $scripts, cache: true, prefix: 'matize-', admin: false );
 
 } );

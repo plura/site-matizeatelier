@@ -4,20 +4,22 @@
    Extends .content-section from components.css.
    ─────────────────────────────────────────────────────────────────────────── */
 
-.about-section .content-section__inner {
-	grid-template-columns: 7fr 5fr;
-}
+@media (min-width: 768px) {
+	.about-section .content-section__inner {
+		grid-template-columns: 7fr 5fr;
+	}
 
-.about-section:nth-child(even) .content-section__inner {
-	grid-template-columns: 5fr 7fr;
-}
+	.about-section:nth-child(even) .content-section__inner {
+		grid-template-columns: 5fr 7fr;
+	}
 
-.about-section:nth-child(even) .about-section__text {
-	order: 2;
-}
+	.about-section:nth-child(even) .about-section__text {
+		order: 2;
+	}
 
-.about-section:nth-child(even) .about-section__cluster {
-	order: 1;
+	.about-section:nth-child(even) .about-section__cluster {
+		order: 1;
+	}
 }
 
 .about-section__title {
@@ -32,12 +34,12 @@
 }
 
 .about-section__cluster {
-	position: sticky;
-	top: calc(var(--mtz-space-xl) * 2);
+	position: static;
 }
 
-@media (max-width: 767px) {
+@media (min-width: 768px) {
 	.about-section__cluster {
-		position: static;
+		position: sticky;
+		top: calc(var(--mtz-space-xl) * 2);
 	}
 }

@@ -33,6 +33,17 @@
 	opacity: 1;
 }
 
+/* ─── Contact info ───────────────────────────────────────────────────────────
+   Wrapper around contact-details + social-links.
+   Used in footer and contact page.
+   ─────────────────────────────────────────────────────────────────────────── */
+
+.contact-info {
+	display: flex;
+	flex-direction: column;
+	gap: var(--mtz-space-sm);
+}
+
 /* ─── Contact details ────────────────────────────────────────────────────────
    Used in footer and contact page.
    ─────────────────────────────────────────────────────────────────────────── */
@@ -71,7 +82,6 @@
 	display: flex;
 	flex-wrap: wrap;
 	gap: var(--mtz-space-md);
-	margin-top: var(--mtz-space-md);
 }
 
 .social-links__item {
@@ -239,16 +249,7 @@
 	align-items: start;
 	column-gap: var(--mtz-space-2xl);
 	display: grid;
-}
-
-@media (max-width: 767px) {
-	.content-section__inner {
-		grid-template-columns: 1fr;
-	}
-
-	.content-section__inner > * {
-		order: unset !important;
-	}
+	grid-template-columns: 1fr;
 }
 
 /* ─── Gallery cluster ────────────────────────────────────────────────────────

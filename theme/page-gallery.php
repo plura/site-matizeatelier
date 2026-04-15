@@ -13,7 +13,9 @@ get_template_part( 'template-parts/page-header' ); ?>
 			<div class="gallery__grid container--wide">
 				<?php foreach ( $gallery as $image ) : ?>
 					<figure class="gallery__item">
-						<?php echo plura_wp_image( $image['ID'], 'large', [ 'class' => 'gallery__img' ] ); ?>
+						<a href="<?php echo esc_url( $image['url'] ); ?>" data-fancybox="gallery" data-caption="<?php echo esc_attr( $image['caption'] ?? '' ); ?>">
+							<?php echo plura_wp_image( $image['ID'], 'large', [ 'class' => 'gallery__img' ] ); ?>
+						</a>
 					</figure>
 				<?php endforeach; ?>
 			</div>
