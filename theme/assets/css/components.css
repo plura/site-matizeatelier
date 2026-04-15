@@ -24,8 +24,7 @@
 	.contact-info {
 		align-items: center;
 		display: flex;
-		flex-wrap: wrap;
-		gap: var(--mtz-space-lg);
+		justify-content: space-evenly;
 	}
 
 	.contact-details,
