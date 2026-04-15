@@ -63,8 +63,14 @@
 
 .social-links__item {
 	color: inherit;
+	display: inline-flex;
 	opacity: 0.6;
 	transition: opacity var(--mtz-transition);
+}
+
+.social-links__item svg {
+	height: var(--mtz-icon-md);
+	width: var(--mtz-icon-md);
 }
 
 .social-links__item:hover {
