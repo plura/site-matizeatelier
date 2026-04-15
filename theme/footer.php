@@ -5,17 +5,7 @@
 	<div class="site-footer__inner container">
 
 		<div class="site-footer__brand">
-			<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="site-footer__logo" aria-label="<?php bloginfo( 'name' ); ?>">
-				<?php
-				$logo_id = get_theme_mod( 'custom_logo' );
-				if ( $logo_id ) {
-					$logo_html = plura_wp_image( $logo_id, 'full', [ 'class' => 'site-footer__logo-img' ] );
-					echo plura_img2svg( $logo_html );
-				} else {
-					bloginfo( 'name' );
-				}
-				?>
-			</a>
+			<?php echo mtz_logo( 'site-footer__logo', 'site-footer__logo-img' ); ?>
 		</div>
 
 		<?php get_template_part( 'template-parts/contact-info' ); ?>

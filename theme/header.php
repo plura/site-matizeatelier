@@ -11,17 +11,7 @@
 <header id="site-header" class="site-header">
 	<div class="site-header__inner">
 
-		<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="site-header__logo" aria-label="<?php bloginfo( 'name' ); ?>">
-			<?php
-			$logo_id = get_theme_mod( 'custom_logo' );
-			if ( $logo_id ) {
-				$logo_html = plura_wp_image( $logo_id, 'full', [ 'class' => 'site-header__logo-img' ] );
-				echo plura_img2svg( $logo_html );
-			} else {
-				bloginfo( 'name' );
-			}
-			?>
-		</a>
+		<?php echo mtz_logo( 'site-header__logo', 'site-header__logo-img' ); ?>
 
 		<nav id="site-nav" class="site-nav" aria-label="<?php esc_attr_e( 'Primary Menu', 'matize' ); ?>">
 			<?php
