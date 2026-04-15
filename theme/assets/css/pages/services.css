@@ -1,102 +1,85 @@
 @charset "UTF-8";
 /* ─── Services ───────────────────────────────────────────────────────────────
-   Services page and archive.
-   ─────────────────────────────────────────────────────────────────────────── */
-
-/* ─── Services page sections ─────────────────────────────────────────────────
-   Each service: large portrait image beside title + tagline + description + gallery cluster.
-   Alternates image side on even items.
+   Services page — direct template loop, one section per service.
    ─────────────────────────────────────────────────────────────────────────── */
 
 .page-services .container {
 	padding-block: var(--mtz-space-2xl);
 }
 
-.services__sections {
-	display: block;
-}
-
-.services__sections .plura-wp-post {
-	align-items: start;
+.service-section {
 	border-top: 1px solid color-mix(in srgb, var(--mtz-color-text) 12%, transparent);
-	column-gap: var(--mtz-space-2xl);
-	display: grid;
-	grid-template-areas:
-		"image title"
-		"image tagline"
-		"image content"
-		"image cluster";
-	grid-template-columns: 5fr 7fr;
-	grid-template-rows: auto auto 1fr auto;
 	padding-block: var(--mtz-space-2xl);
-	row-gap: var(--mtz-space-sm);
 }
 
-.services__sections .plura-wp-post:last-child {
+.service-section:last-of-type {
 	border-bottom: 1px solid color-mix(in srgb, var(--mtz-color-text) 12%, transparent);
 }
 
-/* Alternate: even items flip image to right */
-.services__sections .plura-wp-post:nth-child(even) {
-	grid-template-areas:
-		"title   image"
-		"tagline image"
-		"content image"
-		"cluster image";
+.service-section__inner {
+	align-items: start;
+	column-gap: var(--mtz-space-2xl);
+	display: grid;
+	grid-template-columns: 5fr 7fr;
+}
+
+/* Alternate: even sections flip image to right */
+.service-section:nth-child(even) .service-section__inner {
 	grid-template-columns: 7fr 5fr;
 }
 
-.services__sections .plura-wp-post-featured-image {
+.service-section:nth-child(even) .service-section__image {
+	order: 2;
+}
+
+.service-section:nth-child(even) .service-section__content {
+	order: 1;
+}
+
+.service-section__img {
 	aspect-ratio: 3 / 4;
-	grid-area: image;
 	height: 100%;
 	object-fit: cover;
 	width: 100%;
 }
 
-.services__sections .plura-wp-post-title {
-	align-self: end;
+.service-section__title {
 	font-size: var(--mtz-text-2xl);
-	grid-area: title;
 }
 
-.services__sections .plura-wp-post-tagline {
+.service-section__tagline {
 	color: var(--mtz-color-accent);
 	font-size: var(--mtz-text-xs);
 	font-weight: var(--mtz-weight-light);
-	grid-area: tagline;
 	letter-spacing: var(--mtz-tracking-wider);
+	margin-top: var(--mtz-space-xs);
 	text-transform: uppercase;
 }
 
-.services__sections .plura-wp-post-content {
+.service-section__description {
 	color: var(--mtz-color-muted);
 	font-size: var(--mtz-text-sm);
-	grid-area: content;
 	line-height: var(--mtz-leading-loose);
+	margin-top: var(--mtz-space-md);
 }
 
-.services__sections .gallery-cluster {
-	grid-area: cluster;
+.service-section__cluster {
 	margin-top: var(--mtz-space-lg);
 }
 
-/* ─── Mobile: stack vertically ───────────────────────────────────────────── */
+/* ─── Mobile: stack ──────────────────────────────────────────────────────── */
 
 @media (max-width: 767px) {
-	.services__sections .plura-wp-post,
-	.services__sections .plura-wp-post:nth-child(even) {
-		grid-template-areas:
-			"image"
-			"title"
-			"tagline"
-			"content"
-			"cluster";
+	.service-section__inner {
 		grid-template-columns: 1fr;
-		grid-template-rows: auto;
 	}
 
-	.services__sections .plura-wp-post-featured-image {
+	.service-section:nth-child(even) .service-section__image,
+	.service-section:nth-child(even) .service-section__content {
+		order: unset;
+	}
+
+	.service-section__img {
 		aspect-ratio: 4 / 3;
 		height: auto;
 	}
