@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2026-04-10 22:44+0100\n"
-"PO-Revision-Date: 2026-04-10 22:44+0100\n"
+"POT-Creation-Date: 2026-04-15 02:08+0100\n"
+"PO-Revision-Date: 2026-04-15 02:08+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: pt_PT\n"
@@ -14,17 +14,29 @@ msgstr ""
 "X-Poedit-KeywordsList: __;_e;_x;_ex;_n;_nx;esc_attr_e\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: footer.php:15 includes/core/setup.php:52
+#: footer.php:19 includes/core/setup.php:56
 msgid "Footer Menu"
 msgstr "Menu de Rodapé"
 
-#: header.php:25 includes/core/setup.php:51
+#: header.php:16 includes/core/setup.php:55
 msgid "Primary Menu"
 msgstr "Menu Principal"
 
-#: header.php:44
+#: header.php:35
 msgid "Open menu"
 msgstr "Abrir menu"
+
+#: page-about.php:12
+msgid "Missão"
+msgstr ""
+
+#: page-about.php:13
+msgid "Filosofia"
+msgstr ""
+
+#: page-about.php:14
+msgid "CV"
+msgstr ""
 
 #: template-parts/contact-form.php:12
 msgid "New Enquiry"
@@ -50,7 +62,7 @@ msgstr "A sua mensagem"
 msgid "Get in Touch"
 msgstr "Entrar em Contacto"
 
-#: template-parts/cta.php:19
+#: template-parts/cta.php:20
 msgid "Close"
 msgstr "Fechar"
 

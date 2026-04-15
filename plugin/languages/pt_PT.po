@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2026-04-10 22:45+0100\n"
-"PO-Revision-Date: 2026-04-10 22:49+0100\n"
+"POT-Creation-Date: 2026-04-15 02:08+0100\n"
+"PO-Revision-Date: 2026-04-15 02:08+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: pt_PT\n"
@@ -18,27 +18,27 @@ msgstr ""
 msgid "Theme Settings"
 msgstr "Definições do Tema"
 
-#: core/form.php:34
+#: core/form.php:29
 msgid "Security check failed."
 msgstr "Verificação de segurança falhou."
 
-#: core/form.php:67
+#: core/form.php:62
 msgid "Please fill in all required fields."
 msgstr "Por favor preencha todos os campos obrigatórios."
 
-#: core/form.php:70
+#: core/form.php:65
 msgid "Please enter a valid email address."
 msgstr "Por favor introduza um endereço de email válido."
 
-#: core/form.php:75
+#: core/form.php:70
 msgid "Form Submission"
 msgstr "Envio de Formulário"
 
-#: core/form.php:99
+#: core/form.php:94
 msgid "Thank you. We will be in touch shortly."
 msgstr "Obrigado. Entraremos em contacto brevemente."
 
-#: core/form.php:101
+#: core/form.php:96
 msgid "Something went wrong. Please try again."
 msgstr "Algo correu mal. Por favor tente novamente."
 

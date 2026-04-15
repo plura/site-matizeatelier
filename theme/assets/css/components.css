@@ -15,6 +15,24 @@
 	width: auto;
 }
 
+/* ─── Dim → reveal hover ─────────────────────────────────────────────────────
+   Interactive elements that start dim and reveal on hover.
+   One place — add selectors here rather than per component.
+   ─────────────────────────────────────────────────────────────────────────── */
+
+.contact-details__item,
+.social-links__item,
+.contact-modal__close {
+	opacity: 0.6;
+	transition: opacity var(--mtz-transition);
+}
+
+.contact-details__item:hover,
+.social-links__item:hover,
+.contact-modal__close:hover {
+	opacity: 1;
+}
+
 /* ─── Contact details ────────────────────────────────────────────────────────
    Used in footer and contact page.
    ─────────────────────────────────────────────────────────────────────────── */
@@ -36,11 +54,6 @@
 	letter-spacing: var(--mtz-tracking-wider);
 	text-decoration: none;
 	text-transform: uppercase;
-	transition: opacity var(--mtz-transition);
-}
-
-.contact-details__item:hover {
-	opacity: 0.6;
 }
 
 .contact-details__item svg {
@@ -69,20 +82,15 @@
 	font-weight: var(--mtz-weight-light);
 	gap: var(--mtz-space-xs);
 	letter-spacing: var(--mtz-tracking-wider);
-	opacity: 0.6;
 	text-transform: uppercase;
-	transition: opacity var(--mtz-transition);
 }
 
 .social-links__item svg {
 	flex-shrink: 0;
-	height: var(--mtz-icon-md);
-	width: var(--mtz-icon-md);
+	height: var(--mtz-icon-sm);
+	width: var(--mtz-icon-sm);
 }
 
-.social-links__item:hover {
-	opacity: 1;
-}
 
 /* ─── Buttons ────────────────────────────────────────────────────────────────
    .btn            base — typography, layout, cursor
@@ -201,16 +209,10 @@
 	color: inherit;
 	cursor: pointer;
 	display: flex;
-	opacity: 0.5;
 	padding: var(--mtz-space-xs);
 	position: absolute;
 	right: var(--mtz-space-sm);
 	top: var(--mtz-space-sm);
-	transition: opacity var(--mtz-transition);
-}
-
-.contact-modal__close:hover {
-	opacity: 1;
 }
 
 .contact-modal__close svg {
