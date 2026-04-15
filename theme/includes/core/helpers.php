@@ -28,6 +28,22 @@ function mtz_logo( string $extra_class = '' ): string {
 }
 
 /**
+ * Extracts a social media username from a profile URL.
+ * Returns the last non-empty path segment prefixed with @.
+ * e.g. https://www.instagram.com/matize.atelier/ → @matize.atelier
+ *      https://www.linkedin.com/in/username/     → @username
+ *
+ * @param string $url  Full profile URL.
+ * @return string
+ */
+function mtz_social_username( string $url ): string {
+	if ( ! $url ) return '';
+	$path     = parse_url( $url, PHP_URL_PATH ) ?? '';
+	$username = basename( rtrim( $path, '/' ) );
+	return $username ? '@' . $username : '';
+}
+
+/**
  * Renders a gallery cluster — 2-col grid of small images.
  * Returns empty string if no images are provided.
  *

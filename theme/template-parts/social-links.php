@@ -41,6 +41,7 @@ if ( ! $social ) return;
 			aria-label="<?php echo esc_attr( $label ); ?>"
 		>
 			<?php echo $s['icon']; ?>
+			<span class="social-links__username"><?php echo esc_html( mtz_social_username( $s['url'] ) ); ?></span>
 		</a>
 	<?php endforeach; ?>
 </nav>

@@ -15,6 +15,25 @@
 	width: auto;
 }
 
+/* ─── Contact info ───────────────────────────────────────────────────────────
+   Wrapper for contact-details + social-links.
+   Desktop: display:contents on both children so all items share one flex row.
+   ─────────────────────────────────────────────────────────────────────────── */
+
+@media (min-width: 1024px) {
+	.contact-info {
+		align-items: center;
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--mtz-space-lg);
+	}
+
+	.contact-details,
+	.social-links {
+		display: contents;
+	}
+}
+
 /* ─── Contact details ────────────────────────────────────────────────────────
    Used in footer and contact page.
    ─────────────────────────────────────────────────────────────────────────── */
@@ -62,13 +81,20 @@
 }
 
 .social-links__item {
+	align-items: center;
 	color: inherit;
 	display: inline-flex;
+	font-size: var(--mtz-text-xs);
+	font-weight: var(--mtz-weight-light);
+	gap: var(--mtz-space-xs);
+	letter-spacing: var(--mtz-tracking-wider);
 	opacity: 0.6;
+	text-transform: uppercase;
 	transition: opacity var(--mtz-transition);
 }
 
 .social-links__item svg {
+	flex-shrink: 0;
 	height: var(--mtz-icon-md);
 	width: var(--mtz-icon-md);
 }
