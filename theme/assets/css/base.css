@@ -180,7 +180,7 @@ h4 { font-size: var(--mtz-text-lg);  }
    Sections themselves span full-width by default (full-bleed).
 
    .container          1320px + gutter  →  standard sections, grids
-   .container--wide    90vw + gutter    →  image grids, expansive layouts
+   .container--wide    full width + gutter  →  image grids, gallery, header
    .container--narrow  800px + gutter   →  text-heavy content, about, single posts
    ─────────────────────────────────────────────────────────────────────────── */
 
@@ -197,7 +197,7 @@ h4 { font-size: var(--mtz-text-lg);  }
 }
 
 .container--wide {
-	max-width: 90vw;
+	max-width: 100%;
 }
 
 .container--narrow {

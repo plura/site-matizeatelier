@@ -47,8 +47,6 @@
 	align-items: center;
 	display: flex;
 	justify-content: space-between;
-	margin-inline: auto;
-	max-width: var(--mtz-max-width);
 	padding-inline: var(--mtz-gutter);
 }
 
