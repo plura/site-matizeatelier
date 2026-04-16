@@ -15,8 +15,7 @@ export function mtzInitStatements() {
 	// 100vh stage + 100vh per item + 100vh exit room
 	section.style.height = `${ ( items.length + 2 ) * 100 }vh`;
 
-	// Simple fade sequence — no scrub, plays in real time when section enters view
-	const tl = gsap.timeline( { paused: true } );
+	const tl = gsap.timeline();
 	for ( let i = 1; i < items.length; i++ ) {
 		tl.to( items[ i - 1 ], { opacity: 0, duration: 1 }, '+=1' )
 		  .to( items[ i ],     { opacity: 1, duration: 1 }, '<' );
