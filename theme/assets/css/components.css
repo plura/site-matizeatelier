@@ -41,7 +41,40 @@
 .contact-info {
 	display: flex;
 	flex-direction: column;
+	font-size: var(--mtz-text-xs);
+	font-style: normal;
+	font-weight: var(--mtz-weight-light);
+	letter-spacing: var(--mtz-tracking-wider);
+	text-transform: uppercase;
+}
+
+/* shared gap for containers */
+.contact-info,
+.contact-details {
 	gap: var(--mtz-space-sm);
+}
+
+/* shared display/gap for all items */
+.contact-details__item,
+.contact-address,
+.social-links__item {
+	display: flex;
+	gap: var(--mtz-space-xs);
+}
+
+/* shared svg sizing for icon + text items */
+.contact-details__item svg,
+.contact-address svg,
+.social-links__item svg {
+	flex-shrink: 0;
+	height: var(--mtz-icon-sm);
+	width: var(--mtz-icon-sm);
+}
+
+/* margin-top only for items with top-aligned icon next to multi-line text */
+.contact-details__item svg,
+.contact-address svg {
+	margin-top: 2px;
 }
 
 /* ─── Contact address ────────────────────────────────────────────────────────
@@ -50,20 +83,6 @@
 
 .contact-address {
 	align-items: flex-start;
-	display: flex;
-	font-size: var(--mtz-text-xs);
-	font-style: normal;
-	font-weight: var(--mtz-weight-light);
-	gap: var(--mtz-space-xs);
-	letter-spacing: var(--mtz-tracking-wider);
-	text-transform: uppercase;
-}
-
-.contact-address svg {
-	flex-shrink: 0;
-	height: var(--mtz-icon-sm);
-	margin-top: 2px;
-	width: var(--mtz-icon-sm);
 }
 
 /* ─── Contact details ────────────────────────────────────────────────────────
@@ -73,27 +92,12 @@
 .contact-details {
 	display: flex;
 	flex-direction: column;
-	font-style: normal;
-	gap: var(--mtz-space-sm);
 }
 
 .contact-details__item {
 	align-items: flex-start;
 	color: inherit;
-	display: flex;
-	font-size: var(--mtz-text-xs);
-	font-weight: var(--mtz-weight-light);
-	gap: var(--mtz-space-xs);
-	letter-spacing: var(--mtz-tracking-wider);
 	text-decoration: none;
-	text-transform: uppercase;
-}
-
-.contact-details__item svg {
-	flex-shrink: 0;
-	height: var(--mtz-icon-sm);
-	margin-top: 2px;
-	width: var(--mtz-icon-sm);
 }
 
 /* ─── Social links ───────────────────────────────────────────────────────────
@@ -109,18 +113,6 @@
 .social-links__item {
 	align-items: center;
 	color: inherit;
-	display: inline-flex;
-	font-size: var(--mtz-text-xs);
-	font-weight: var(--mtz-weight-light);
-	gap: var(--mtz-space-xs);
-	letter-spacing: var(--mtz-tracking-wider);
-	text-transform: uppercase;
-}
-
-.social-links__item svg {
-	flex-shrink: 0;
-	height: var(--mtz-icon-sm);
-	width: var(--mtz-icon-sm);
 }
 
 
