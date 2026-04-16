@@ -69,7 +69,7 @@
 
 .mood-gallery__layout {
 	display: grid;
-	grid-template-columns: 1fr 1fr;
+	grid-template-columns: 2fr 3fr;
 	height: 100svh;
 	position: sticky;
 	top: 0;
@@ -85,7 +85,7 @@
 
 .mood-gallery__text {
 	font-family: var(--mtz-font-heading);
-	font-size: var(--mtz-text-xl);
+	font-size: var(--mtz-text-2xl);
 	font-style: italic;
 	font-weight: var(--mtz-weight-light);
 	line-height: var(--mtz-leading-snug);

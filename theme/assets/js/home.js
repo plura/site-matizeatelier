@@ -36,10 +36,13 @@ export function mtzInitHome() {
 	if ( moodSection && moodDeck && moodItems.length > 1 ) {
 		moodSection.style.height = `${ ( moodItems.length + 1 ) * 100 }vh`;
 
+		// Waiting images start offset to the right; they slide in and the active one exits left.
+		moodItems.slice( 1 ).forEach( item => gsap.set( item, { x: 40 } ) );
+
 		const moodTl = gsap.timeline( { paused: true } );
 		for ( let i = 1; i < moodItems.length; i++ ) {
-			moodTl.to( moodItems[ i - 1 ], { opacity: 0, duration: 1, ease: 'power2.inOut' },        i - 1 )
-			      .to( moodItems[ i ],     { opacity: 1, duration: 1, ease: 'power2.inOut' }, i - 0.5 );
+			moodTl.to( moodItems[ i - 1 ], { opacity: 0, x: -40, duration: 1, ease: 'power2.inOut' },       i - 1 )
+			      .to( moodItems[ i ],     { opacity: 1, x:   0, duration: 1, ease: 'power2.inOut' }, i - 0.5 );
 		}
 
 		ScrollTrigger.create( {
