@@ -1,16 +1,13 @@
 export function mtzInitHome() {
-	const { gsap, ScrollTrigger } = window;
+	const { gsap, ScrollTrigger, SplitText } = window;
 
-	// Each item holds for HOLD units, then cross-fades over TRANS units.
-	// The last item also exits (same TRANS duration) so the stage is clear when
-	// it scrolls off — otherwise the last item lingers while the stage exits.
-	// 1 timeline unit = VH viewport-heights of scroll.
-	const HOLD  = 2;  // units visible before transition
-	const TRANS = 1;  // units for cross-fade
-	const VH    = 80; // vh of scroll per timeline unit
+	// Hold: units each item stays visible before transitioning.
+	// Trans: units for the cross-fade / slide.
+	// VH: scroll distance (viewport-heights) per timeline unit.
+	const HOLD  = 2;
+	const TRANS = 1;
+	const VH    = 80;
 
-	// Total scroll distance: N items × (HOLD + TRANS) units × VH
-	// (last item's HOLD + exit TRANS = same slot as all others)
 	function scrollVhFor( n ) {
 		return n * ( HOLD + TRANS ) * VH;
 	}
@@ -25,24 +22,53 @@ export function mtzInitHome() {
 
 		section.style.height = `${ 100 + scrollVh }vh`;
 
-		const tl = gsap.timeline( { paused: true } );
+		// Pull the next section up so it sits directly behind this one —
+		// the stage (z-index:2) covers it until the stage itself exits.
+		section.style.setProperty( '--mtz-anim-pull', `-${ scrollVh }vh` );
 
-		for ( let i = 1; i < items.length; i++ ) {
-			const t = ( i - 1 ) * ( HOLD + TRANS ) + HOLD;
-			tl.to( items[ i - 1 ], { opacity: 0, duration: TRANS, ease: 'power2.inOut' }, t )
-			  .to( items[ i ],     { opacity: 1, duration: TRANS, ease: 'power2.inOut' }, t );
-		}
+		// SplitText requires fonts to be loaded before splitting.
+		document.fonts.ready.then( () => {
+			// Split each headline into words for the staggered reveal.
+			const wordSets = items.map( item => {
+				const h = item.querySelector( '.home-statement__headline' );
+				return h ? SplitText.create( h, { type: 'words' } ).words : [];
+			} );
 
-		// Exit the last item so the stage is blank as it scrolls off
-		const exitT = ( items.length - 1 ) * ( HOLD + TRANS ) + HOLD;
-		tl.to( items[ items.length - 1 ], { opacity: 0, duration: TRANS, ease: 'power2.inOut' }, exitT );
+			// Non-first items: words start offset below the baseline
+			// (the container is already opacity:0, so they're invisible —
+			// this just sets their entrance position).
+			for ( let i = 1; i < items.length; i++ ) {
+				if ( wordSets[ i ]?.length ) gsap.set( wordSets[ i ], { y: 16 } );
+			}
 
-		ScrollTrigger.create( {
-			trigger:   section,
-			start:     'top top',
-			end:       `+=${ scrollVh }vh`,
-			animation: tl,
-			scrub:     0.5,
+			const tl = gsap.timeline( { paused: true } );
+
+			for ( let i = 1; i < items.length; i++ ) {
+				const t     = ( i - 1 ) * ( HOLD + TRANS ) + HOLD;
+				const words = wordSets[ i ];
+
+				// Exit: container slides up and fades (words move with it)
+				tl.to( items[ i - 1 ], { opacity: 0, y: -16, duration: TRANS, ease: 'power2.inOut' }, t );
+
+				// Enter: container fades in while words stagger up from below
+				tl.to( items[ i ], { opacity: 1, duration: TRANS, ease: 'power2.out' }, t );
+				if ( words?.length ) {
+					tl.to( words, {
+						y:        0,
+						stagger:  ( TRANS * 0.6 ) / words.length,
+						duration: TRANS * 0.4,
+						ease:     'power2.out',
+					}, t );
+				}
+			}
+
+			ScrollTrigger.create( {
+				trigger:   section,
+				start:     'top top',
+				end:       `+=${ scrollVh }vh`,
+				animation: tl,
+				scrub:     0.5,
+			} );
 		} );
 	}
 
@@ -93,13 +119,14 @@ export function mtzInitHome() {
 			}
 		}
 
-		// Exit the last item
+		// Exit last card so the stage is clear as it scrolls off
 		const exitT = ( moodItems.length - 1 ) * ( HOLD + TRANS ) + HOLD;
 		moodTl.to( moodItems[ moodItems.length - 1 ], {
 			x: -80, opacity: 0, duration: TRANS, ease: 'power2.inOut',
 		}, exitT );
 
 		moodSection.style.height = `${ 100 + scrollVh }vh`;
+		moodSection.style.setProperty( '--mtz-anim-pull', `-${ scrollVh }vh` );
 
 		ScrollTrigger.create( {
 			trigger:   moodSection,
