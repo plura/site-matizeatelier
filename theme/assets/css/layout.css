@@ -19,7 +19,7 @@
 .site-header {
 	background-color: transparent;
 	color: var(--mtz-color-text);
-	padding: var(--mtz-space-sm) var(--mtz-gutter);
+	padding-block: var(--mtz-space-sm);
 	position: sticky;
 	top: 0;
 	transition:
@@ -49,6 +49,7 @@
 	justify-content: space-between;
 	margin-inline: auto;
 	max-width: var(--mtz-max-width);
+	padding-inline: var(--mtz-gutter);
 }
 
 .site-header__logo .site-logo__img,
