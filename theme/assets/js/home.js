@@ -1,14 +1,18 @@
 export function mtzInitHome() {
 	const { gsap, ScrollTrigger } = window;
 
-	// Shared pacing: each item holds for HOLD units before a TRANS-unit cross-fade.
-	// 1 timeline unit ≈ 60 vh of scroll, so hold = 120 vh, transition = 60 vh.
-	const HOLD  = 2;
-	const TRANS = 1;
+	// Each item holds for HOLD units, then cross-fades over TRANS units.
+	// The last item also exits (same TRANS duration) so the stage is clear when
+	// it scrolls off — otherwise the last item lingers while the stage exits.
+	// 1 timeline unit = VH viewport-heights of scroll.
+	const HOLD  = 2;  // units visible before transition
+	const TRANS = 1;  // units for cross-fade
+	const VH    = 80; // vh of scroll per timeline unit
 
-	function sectionScrollVh( itemCount ) {
-		const tlDuration = ( itemCount - 1 ) * ( HOLD + TRANS ) + TRANS;
-		return tlDuration * 60;
+	// Total scroll distance: N items × (HOLD + TRANS) units × VH
+	// (last item's HOLD + exit TRANS = same slot as all others)
+	function scrollVhFor( n ) {
+		return n * ( HOLD + TRANS ) * VH;
 	}
 
 	// ── Statement ─────────────────────────────────────────────────────────────
@@ -17,16 +21,21 @@ export function mtzInitHome() {
 
 	if ( stage && items.length > 1 ) {
 		const section  = stage.closest( '.home-statement' );
-		const scrollVh = sectionScrollVh( items.length );
+		const scrollVh = scrollVhFor( items.length );
 
 		section.style.height = `${ 100 + scrollVh }vh`;
 
 		const tl = gsap.timeline( { paused: true } );
+
 		for ( let i = 1; i < items.length; i++ ) {
 			const t = ( i - 1 ) * ( HOLD + TRANS ) + HOLD;
 			tl.to( items[ i - 1 ], { opacity: 0, duration: TRANS, ease: 'power2.inOut' }, t )
 			  .to( items[ i ],     { opacity: 1, duration: TRANS, ease: 'power2.inOut' }, t );
 		}
+
+		// Exit the last item so the stage is blank as it scrolls off
+		const exitT = ( items.length - 1 ) * ( HOLD + TRANS ) + HOLD;
+		tl.to( items[ items.length - 1 ], { opacity: 0, duration: TRANS, ease: 'power2.inOut' }, exitT );
 
 		ScrollTrigger.create( {
 			trigger:   section,
@@ -43,15 +52,13 @@ export function mtzInitHome() {
 	const moodItems   = moodDeck ? [ ...moodDeck.querySelectorAll( '.mood-gallery__item' ) ] : [];
 
 	if ( moodSection && moodDeck && moodItems.length > 1 ) {
-		const scrollVh = sectionScrollVh( moodItems.length );
+		const scrollVh = scrollVhFor( moodItems.length );
 
-		// Physical deck: back cards offset bottom-right at decreasing opacity.
-		// z-index keeps front card on top regardless of DOM order.
-		const STACK_X = 10; // px per layer
-		const STACK_Y =  7; // px per layer
+		const STACK_X = 10;
+		const STACK_Y =  7;
 
-		function deckOpacity( layerIndex ) {
-			return layerIndex === 0 ? 1 : Math.max( 0.3, 1 - layerIndex * 0.28 );
+		function deckOpacity( i ) {
+			return i === 0 ? 1 : Math.max( 0.3, 1 - i * 0.28 );
 		}
 
 		moodItems.forEach( ( item, i ) => {
@@ -64,6 +71,7 @@ export function mtzInitHome() {
 		} );
 
 		const moodTl = gsap.timeline( { paused: true } );
+
 		for ( let i = 1; i < moodItems.length; i++ ) {
 			const t = ( i - 1 ) * ( HOLD + TRANS ) + HOLD;
 
@@ -84,6 +92,12 @@ export function mtzInitHome() {
 				}, t );
 			}
 		}
+
+		// Exit the last item
+		const exitT = ( moodItems.length - 1 ) * ( HOLD + TRANS ) + HOLD;
+		moodTl.to( moodItems[ moodItems.length - 1 ], {
+			x: -80, opacity: 0, duration: TRANS, ease: 'power2.inOut',
+		}, exitT );
 
 		moodSection.style.height = `${ 100 + scrollVh }vh`;
 
