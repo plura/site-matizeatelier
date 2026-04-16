@@ -28,10 +28,7 @@ if ( document.querySelector( '.gallery' ) ) {
 
 // ── Home ──────────────────────────────────────────────────────────────────────
 if ( document.querySelector( '.page-home' ) ) {
-	import( './home.js' ).then( ( { mtzInitStatements, mtzInitMood } ) => {
-		mtzInitStatements();
-		mtzInitMood();
-	} );
+	import( './home.js' ).then( ( { mtzInitHome } ) => mtzInitHome() );
 }
 
 // ── Contact modal ─────────────────────────────────────────────────────────────

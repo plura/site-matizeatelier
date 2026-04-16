@@ -1,6 +1,11 @@
 // vh of scroll dedicated to each item (hold + fade combined). Only knob to tune.
 const PER_ITEM = 200;
 
+export function mtzInitHome() {
+	mtzInitStatements();
+	mtzInitMood();
+}
+
 // ── Statements ────────────────────────────────────────────────────────────────
 export function mtzInitStatements() {
 	const { gsap, ScrollTrigger } = window;
