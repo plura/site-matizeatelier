@@ -12,10 +12,15 @@ $address = $contact['mtz_contact_address'] ?? '';
 	<?php get_template_part( 'template-parts/contact-details' ); ?>
 
 	<?php if ( $address ) : ?>
-		<p class="contact-address">
-			<i data-lucide="map-pin" aria-hidden="true"></i>
-			<span><?php echo wp_kses( $address, [ 'br' => [] ] ); ?></span>
-		</p>
+		<?php
+		$maps_url = 'https://www.google.com/maps/search/?api=1&query=' . rawurlencode( wp_strip_all_tags( $address ) );
+		echo plura_wp_link(
+			'<i data-lucide="map-pin" aria-hidden="true"></i><span>' . wp_kses( $address, [ 'br' => [] ] ) . '</span>',
+			$maps_url,
+			[ 'class' => 'contact-address', 'target' => '_blank' ],
+			true
+		);
+		?>
 	<?php endif; ?>
 
 	<?php get_template_part( 'template-parts/social-links' ); ?>
