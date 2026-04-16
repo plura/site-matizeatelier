@@ -104,10 +104,6 @@
 
 /* Mobile: nav hidden off-screen */
 @media (max-width: 767px) {
-	.site-header {
-		background-color: var(--mtz-color-bg);
-	}
-
 	/* Logo and actions must paint above the nav within the header's stacking context */
 	.site-header__logo,
 	.site-header__actions {
