@@ -42,12 +42,24 @@ export function mtzInitMood() {
 	// Same logic as statements: 100vh stage + 100vh per item + 100vh exit room
 	section.style.height = `${ ( items.length + 2 ) * 100 }vh`;
 
+	// Stack items behind the front one — each slightly offset to show the deck
+	const STEP = { x: 7, y: 5 };
+	items.forEach( ( item, i ) => {
+		gsap.set( item, {
+			opacity: 1,
+			x:       i * STEP.x,
+			y:       i * STEP.y,
+			zIndex:  items.length - i,
+		} );
+	} );
+
+	// Front card slides off left; next card animates to front position
 	const tl = gsap.timeline();
 	for ( let i = 1; i < items.length; i++ ) {
-		tl.to( items[ i - 1 ], { opacity: 0, duration: 1 }, '+=1' )
-		  .to( items[ i ],     { opacity: 1, duration: 1 }, '<' );
+		tl.to( items[ i - 1 ], { x: '-40%', opacity: 0, duration: 1 }, '+=1' )
+		  .to( items[ i ],     { x: 0, y: 0, zIndex: items.length + 1, duration: 1 }, '<' );
 	}
-	tl.to( items[ items.length - 1 ], { opacity: 0, duration: 1 }, '+=1' );
+	tl.to( items[ items.length - 1 ], { x: '-40%', opacity: 0, duration: 1 }, '+=1' );
 
 	ScrollTrigger.create( {
 		trigger:    section,
