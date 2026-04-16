@@ -28,11 +28,5 @@ if ( ! $email && ! $phone && ! $address ) return;
 		</a>
 	<?php endif; ?>
 
-	<?php if ( $address ) : ?>
-		<p class="contact-details__item contact-details__address">
-			<i data-lucide="map-pin" aria-hidden="true"></i>
-			<span><?php echo wp_kses( $address, [ 'br' => [] ] ); ?></span>
-		</p>
-	<?php endif; ?>
 
 </address>

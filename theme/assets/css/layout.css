@@ -251,14 +251,23 @@
 		text-align: right;
 	}
 
+	/* 3-column grid: phone+email | address | social */
 	.site-footer .contact-info {
-		align-items: center;
-		display: flex;
-		justify-content: space-evenly;
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: var(--mtz-space-2xl);
 	}
 
-	.site-footer .contact-details,
+	.site-footer .contact-address {
+		justify-self: center;
+		text-align: center;
+	}
+
+	.site-footer .contact-address span {
+		text-align: left;
+	}
+
 	.site-footer .social-links {
-		display: contents;
+		justify-self: end;
 	}
 }

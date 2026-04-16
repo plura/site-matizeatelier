@@ -34,7 +34,7 @@
 }
 
 /* ─── Contact info ───────────────────────────────────────────────────────────
-   Wrapper around contact-details + social-links.
+   Wrapper around contact-details, address, and social-links.
    Used in footer and contact page.
    ─────────────────────────────────────────────────────────────────────────── */
 
@@ -42,6 +42,28 @@
 	display: flex;
 	flex-direction: column;
 	gap: var(--mtz-space-sm);
+}
+
+/* ─── Contact address ────────────────────────────────────────────────────────
+   Standalone address block — sits between contact-details and social-links.
+   ─────────────────────────────────────────────────────────────────────────── */
+
+.contact-address {
+	align-items: flex-start;
+	display: flex;
+	font-size: var(--mtz-text-xs);
+	font-style: normal;
+	font-weight: var(--mtz-weight-light);
+	gap: var(--mtz-space-xs);
+	letter-spacing: var(--mtz-tracking-wider);
+	text-transform: uppercase;
+}
+
+.contact-address svg {
+	flex-shrink: 0;
+	height: var(--mtz-icon-sm);
+	margin-top: 2px;
+	width: var(--mtz-icon-sm);
 }
 
 /* ─── Contact details ────────────────────────────────────────────────────────
