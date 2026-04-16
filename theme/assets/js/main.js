@@ -2,7 +2,6 @@
 
 import { mtzInitModal }                         from './modal.js';
 import { mtzAnimPageTitle, mtzAnimGalleryItems } from './animations.js';
-import { mtzInitGallery }                        from './gallery.js';
 
 // ── Lucide icons ─────────────────────────────────────────────────────────────
 if ( typeof lucide !== 'undefined' ) {
@@ -23,7 +22,14 @@ mtzAnimPageTitle( document.querySelector( '.page-header__title' ) );
 
 // ── Gallery ───────────────────────────────────────────────────────────────────
 mtzAnimGalleryItems( document.querySelectorAll( '.gallery__item' ) );
-if ( document.querySelector( '.gallery' ) ) mtzInitGallery();
+if ( document.querySelector( '.gallery' ) ) {
+	import( './gallery.js' ).then( ( { mtzInitGallery } ) => mtzInitGallery() );
+}
+
+// ── Home ──────────────────────────────────────────────────────────────────────
+if ( document.querySelector( '.page-home' ) ) {
+	import( './home.js' ).then( ( { mtzInitHome } ) => mtzInitHome() );
+}
 
 // ── Contact modal ─────────────────────────────────────────────────────────────
 mtzInitModal( {

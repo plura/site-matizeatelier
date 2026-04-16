@@ -3,6 +3,100 @@
    Front page — hero, services grid, etc.
    ─────────────────────────────────────────────────────────────────────────── */
 
+/* ─── Statement ─────────────────────────────────────────────────────────────
+   Pinned section — JS controls which item is visible via opacity.
+   Stage fills the viewport; items stack on top of each other.
+   ─────────────────────────────────────────────────────────────────────────── */
+
+.home-statement {
+	background-color: var(--mtz-color-bg);
+}
+
+.home-statement__stage {
+	background-color: var(--mtz-color-bg);
+	height: 100svh;
+	position: sticky;
+	top: 0;
+	z-index: 1;
+}
+
+.home-statement__item {
+	display: flex;
+	flex-direction: column;
+	inset: 0;
+	justify-content: center;
+	opacity: 0;
+	padding: var(--mtz-space-2xl) var(--mtz-gutter);
+	pointer-events: none;
+	position: absolute;
+}
+
+.home-statement__item:first-child {
+	opacity: 1;
+	pointer-events: auto;
+}
+
+.home-statement__headline {
+	font-size: var(--mtz-text-3xl);
+	font-weight: var(--mtz-weight-light);
+	line-height: var(--mtz-leading-tight);
+}
+
+.home-statement__tagline {
+	color: var(--mtz-color-muted);
+	font-size: var(--mtz-text-sm);
+	font-weight: var(--mtz-weight-light);
+	letter-spacing: var(--mtz-tracking-wider);
+	margin-top: var(--mtz-space-md);
+	max-width: 40ch;
+}
+
+@media (min-width: 768px) {
+	.home-statement__tagline {
+		margin-left: 33.333%;
+	}
+}
+
+/* ─── Mood gallery ───────────────────────────────────────────────────────────
+   Section pins while .mood-gallery__inner translates left (JS-driven).
+   overflow:hidden clips the extending strip to the viewport.
+   ─────────────────────────────────────────────────────────────────────────── */
+
+.mood-gallery {
+	background-color: var(--mtz-color-bg);
+	overflow: hidden;
+	padding-top: var(--mtz-space-2xl);
+}
+
+.mood-gallery__text {
+	color: var(--mtz-color-muted);
+	font-size: var(--mtz-text-sm);
+	font-weight: var(--mtz-weight-light);
+	letter-spacing: var(--mtz-tracking-wider);
+	margin-bottom: var(--mtz-space-lg);
+}
+
+.mood-gallery__inner {
+	display: flex;
+	gap: var(--mtz-space-md);
+	padding-inline: var(--mtz-gutter);
+	will-change: transform;
+}
+
+.mood-gallery__item {
+	aspect-ratio: 3 / 4;
+	flex-shrink: 0;
+	height: 60svh;
+	overflow: hidden;
+}
+
+.mood-gallery__img {
+	display: block;
+	height: 100%;
+	object-fit: cover;
+	width: 100%;
+}
+
 /* ─── Home services grid ─────────────────────────────────────────────────────
    Cards: image + title + tagline + excerpt.
    ─────────────────────────────────────────────────────────────────────────── */
