@@ -58,36 +58,62 @@
 }
 
 /* ─── Mood gallery ───────────────────────────────────────────────────────────
-   Section pins while .mood-gallery__inner translates left (JS-driven).
-   overflow:hidden clips the extending strip to the viewport.
+   Two-column: text left, image deck right.
+   .mood-gallery__layout is sticky (100svh); section height set by JS
+   to provide scroll space for deck transitions.
    ─────────────────────────────────────────────────────────────────────────── */
 
 .mood-gallery {
 	background-color: var(--mtz-color-bg);
-	overflow: hidden;
-	padding-top: var(--mtz-space-2xl);
+}
+
+.mood-gallery__layout {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	height: 100svh;
+	position: sticky;
+	top: 0;
+}
+
+.mood-gallery__col--text {
+	align-items: flex-start;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	padding: var(--mtz-space-2xl) var(--mtz-space-lg) var(--mtz-space-2xl) var(--mtz-gutter);
 }
 
 .mood-gallery__text {
-	color: var(--mtz-color-muted);
-	font-size: var(--mtz-text-sm);
+	font-family: var(--mtz-font-heading);
+	font-size: var(--mtz-text-xl);
+	font-style: italic;
 	font-weight: var(--mtz-weight-light);
-	letter-spacing: var(--mtz-tracking-wider);
-	margin-bottom: var(--mtz-space-lg);
+	line-height: var(--mtz-leading-snug);
 }
 
-.mood-gallery__inner {
+.mood-gallery__col--images {
+	align-items: center;
 	display: flex;
-	gap: var(--mtz-space-md);
-	padding-inline: var(--mtz-gutter);
-	will-change: transform;
+	justify-content: center;
+	padding: var(--mtz-space-2xl) var(--mtz-gutter) var(--mtz-space-2xl) 0;
+}
+
+.mood-gallery__deck {
+	aspect-ratio: 3 / 4;
+	height: calc(100svh - var(--mtz-space-2xl) * 2);
+	position: relative;
+	width: auto;
 }
 
 .mood-gallery__item {
-	aspect-ratio: 3 / 4;
-	flex-shrink: 0;
-	height: 60svh;
+	inset: 0;
+	opacity: 0;
 	overflow: hidden;
+	position: absolute;
+}
+
+.mood-gallery__item:first-child {
+	opacity: 1;
 }
 
 .mood-gallery__img {

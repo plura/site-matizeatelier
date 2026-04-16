@@ -30,20 +30,24 @@ export function mtzInitHome() {
 
 	// ── Mood gallery ──────────────────────────────────────────────────────────
 	const moodSection = document.querySelector( '.mood-gallery' );
-	const moodInner   = moodSection?.querySelector( '.mood-gallery__inner' );
+	const moodDeck    = moodSection?.querySelector( '.mood-gallery__deck' );
+	const moodItems   = moodDeck ? [ ...moodDeck.querySelectorAll( '.mood-gallery__item' ) ] : [];
 
-	if ( moodSection && moodInner ) {
-		gsap.to( moodInner, {
-			x:    () => -( moodInner.scrollWidth - window.innerWidth ),
-			ease: 'none',
-			scrollTrigger: {
-				trigger:             moodSection,
-				pin:                 true,
-				start:               'top top',
-				end:                 () => `+=${ moodInner.scrollWidth - window.innerWidth }`,
-				scrub:               1,
-				invalidateOnRefresh: true,
-			},
+	if ( moodSection && moodDeck && moodItems.length > 1 ) {
+		moodSection.style.height = `${ ( moodItems.length + 1 ) * 100 }vh`;
+
+		const moodTl = gsap.timeline( { paused: true } );
+		for ( let i = 1; i < moodItems.length; i++ ) {
+			moodTl.to( moodItems[ i - 1 ], { opacity: 0, duration: 1, ease: 'power2.inOut' },        i - 1 )
+			      .to( moodItems[ i ],     { opacity: 1, duration: 1, ease: 'power2.inOut' }, i - 0.5 );
+		}
+
+		ScrollTrigger.create( {
+			trigger:   moodSection,
+			start:     'top top',
+			end:       `+=${ moodItems.length * 100 }vh`,
+			animation: moodTl,
+			scrub:     0.5,
 		} );
 	}
 }

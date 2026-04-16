@@ -45,15 +45,21 @@
 	<?php $mood = get_field( 'mtz_home_mood' ); ?>
 	<?php if ( ! empty( $mood['gallery'] ) ) : ?>
 		<section class="mood-gallery">
-			<?php if ( $mood['text'] ) : ?>
-				<p class="mood-gallery__text container"><?php echo esc_html( $mood['text'] ); ?></p>
-			<?php endif; ?>
-			<div class="mood-gallery__inner">
-				<?php foreach ( $mood['gallery'] as $image ) : ?>
-					<figure class="mood-gallery__item">
-						<?php echo plura_wp_image( $image['ID'], 'large', [ 'class' => 'mood-gallery__img', 'alt' => esc_attr( $image['alt'] ) ] ); ?>
-					</figure>
-				<?php endforeach; ?>
+			<div class="mood-gallery__layout">
+				<div class="mood-gallery__col--text">
+					<?php if ( $mood['text'] ) : ?>
+						<p class="mood-gallery__text"><?php echo esc_html( $mood['text'] ); ?></p>
+					<?php endif; ?>
+				</div>
+				<div class="mood-gallery__col--images">
+					<div class="mood-gallery__deck">
+						<?php foreach ( $mood['gallery'] as $image ) : ?>
+							<figure class="mood-gallery__item">
+								<?php echo plura_wp_image( $image['ID'], 'large', [ 'class' => 'mood-gallery__img', 'alt' => esc_attr( $image['alt'] ) ] ); ?>
+							</figure>
+						<?php endforeach; ?>
+					</div>
+				</div>
 			</div>
 		</section>
 	<?php endif; ?>
