@@ -20,6 +20,7 @@
 	height: 100%;
 	inset: 0;
 	object-fit: cover;
+	opacity: 0;
 	pointer-events: none;
 	position: absolute;
 	width: 100%;
@@ -42,10 +43,9 @@
 	width: clamp(200px, 30vw, 480px);
 }
 
-/* Stroke draw-on animation — requires stroke-based logo paths + JS to set --path-length per path
 .hero__logo svg path {
 	fill: none;
 	stroke: currentColor;
 	stroke-dasharray: var(--path-length, 1000);
 	stroke-dashoffset: var(--path-length, 1000);
-} */
+}
