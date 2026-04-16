@@ -24,10 +24,11 @@ export function mtzInitStatements() {
 	tl.to( items[ items.length - 1 ], { opacity: 0, duration: 1 }, '+=1' );
 
 	ScrollTrigger.create( {
-		trigger:     section,
-		start:       'top top',
-		onEnter:     () => tl.play(),
-		onLeaveBack: () => tl.progress( 0 ).pause(),
+		trigger:    section,
+		start:      'top top',
+		end:        'bottom bottom',
+		scrub:      1,
+		animation:  tl,
 	} );
 }
 
@@ -42,7 +43,7 @@ export function mtzInitMood() {
 	// Same logic as statements: 100vh stage + 100vh per item + 100vh exit room
 	section.style.height = `${ ( items.length + 2 ) * 100 }vh`;
 
-	const tl = gsap.timeline( { paused: true } );
+	const tl = gsap.timeline();
 	for ( let i = 1; i < items.length; i++ ) {
 		tl.to( items[ i - 1 ], { opacity: 0, duration: 1 }, '+=1' )
 		  .to( items[ i ],     { opacity: 1, duration: 1 }, '<' );
@@ -50,9 +51,10 @@ export function mtzInitMood() {
 	tl.to( items[ items.length - 1 ], { opacity: 0, duration: 1 }, '+=1' );
 
 	ScrollTrigger.create( {
-		trigger:     section,
-		start:       'top top',
-		onEnter:     () => tl.play(),
-		onLeaveBack: () => tl.progress( 0 ).pause(),
+		trigger:    section,
+		start:      'top top',
+		end:        'bottom bottom',
+		scrub:      1,
+		animation:  tl,
 	} );
 }
