@@ -38,8 +38,9 @@
 	right: 0;
 }
 
-/* Scrolled — base sticky takes over, restore light bg */
-.site-header.is-scrolled {
+/* Scrolled or mobile nav open — restore light bg */
+.site-header.is-scrolled,
+.site-header:has( #site-nav.is-open ) {
 	background-color: var(--mtz-color-bg);
 }
 
