@@ -1,5 +1,4 @@
-// vh of scroll dedicated to each item (hold + fade combined). Only knob to tune.
-const PER_ITEM = 200;
+const PER_ITEM = 200; // vh of scroll per item — only knob to tune
 
 export function mtzInitHome() {
 	mtzInitStatements();
@@ -16,8 +15,7 @@ export function mtzInitStatements() {
 
 	const scrollVh = ( items.length - 1 ) * PER_ITEM;
 
-	section.style.height       = `${ 100 + scrollVh }vh`;
-	section.style.marginBottom = `-${ scrollVh }vh`;
+	section.style.height = `${ 100 + scrollVh }vh`;
 
 	const tl = gsap.timeline( { paused: true } );
 	for ( let i = 1; i < items.length; i++ ) {
@@ -63,8 +61,7 @@ export function mtzInitMood() {
 		}
 	}
 
-	section.style.height       = `${ 100 + scrollVh }vh`;
-	section.style.marginBottom = `-${ scrollVh }vh`;
+	section.style.height = `${ 100 + scrollVh }vh`;
 
 	ScrollTrigger.create( {
 		trigger:   section,

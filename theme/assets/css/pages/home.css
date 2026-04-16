@@ -17,7 +17,7 @@
 	height: 100svh;
 	position: sticky;
 	top: 0;
-	z-index: 2; /* above mood-gallery__layout (z-index:1) during overlap */
+	z-index: 1;
 }
 
 .home-statement__item {
