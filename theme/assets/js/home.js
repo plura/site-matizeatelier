@@ -4,7 +4,7 @@ export function mtzInitHome() {
 }
 
 // ── Shared setup ──────────────────────────────────────────────────────────────
-function initScrollSection( stage, itemSelector, buildTimeline ) {
+function initScrollSection( stage, itemSelector, buildTimeline, hold = true ) {
 	const { gsap, ScrollTrigger } = window;
 
 	const items = [ ...( stage?.querySelectorAll( itemSelector ) ?? [] ) ];
@@ -12,12 +12,17 @@ function initScrollSection( stage, itemSelector, buildTimeline ) {
 
 	stage.style.height = `${ items.length * 100 }vh`;
 
+	const tl = gsap.timeline();
+	if ( hold ) tl.set( {}, {}, '+=1' );
+	buildTimeline( gsap, items, tl );
+	if ( hold ) tl.set( {}, {}, '+=1' );
+
 	ScrollTrigger.create( {
 		trigger:   stage,
 		start:     'top top',
 		end:       'bottom bottom',
 		scrub:     1,
-		animation: buildTimeline( gsap, items ),
+		animation: tl,
 	} );
 }
 
@@ -26,15 +31,11 @@ export function mtzInitStatements() {
 	initScrollSection(
 		document.querySelector( '.home-statement' ),
 		'.home-statement__item',
-		( gsap, items ) => {
-			const tl = gsap.timeline();
-			tl.set( {}, {}, '+=1' );
+		( gsap, items, tl ) => {
 			for ( let i = 1; i < items.length; i++ ) {
 				tl.to( items[ i - 1 ], { opacity: 0, duration: 1 }, '+=1' )
 				  .to( items[ i ],     { opacity: 1, duration: 1 }, '<' );
 			}
-			tl.set( {}, {}, '+=1' );
-			return tl;
 		}
 	);
 }
@@ -47,13 +48,9 @@ export function mtzInitMood() {
 	initScrollSection(
 		document.querySelector( '.mood-gallery' ),
 		'.mood-gallery__item',
-		( gsap, items ) => {
-			// All cards start off-screen right and invisible — z-index pre-assigned so each
-			// arriving card is already above the existing stack when it slides in
+		( gsap, items, tl ) => {
 			items.forEach( ( item, i ) => gsap.set( item, { x: '110%', y: 0, opacity: 0, zIndex: items.length + i } ) );
 
-			const tl = gsap.timeline();
-			tl.set( {}, {}, '+=1' );
 			for ( let i = 0; i < items.length; i++ ) {
 				tl.to( items[ i ], { x: 0, y: 0, opacity: 1, rotation: 0, duration: 1 }, '+=1' );
 				for ( let j = 0; j < i; j++ ) {
@@ -66,8 +63,6 @@ export function mtzInitMood() {
 					}, '<' );
 				}
 			}
-			tl.set( {}, {}, '+=1' );
-			return tl;
 		}
 	);
 }
