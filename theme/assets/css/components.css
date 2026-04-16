@@ -21,6 +21,7 @@
    ─────────────────────────────────────────────────────────────────────────── */
 
 .contact-details__item,
+.contact-address,
 .social-links__item,
 .contact-modal__close {
 	opacity: 0.6;
@@ -28,6 +29,7 @@
 }
 
 .contact-details__item:hover,
+.contact-address:hover,
 .social-links__item:hover,
 .contact-modal__close:hover {
 	opacity: 1;
