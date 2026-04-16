@@ -44,16 +44,15 @@ export function mtzInitMood() {
 
 	// Depth offsets — front card is always straight; background cards tilt slightly
 	const STEP     = { x: 7, y: 5 };
-	const DEPTH_ROT = [ 0, -0.8, 0.6, -0.5, 0.4 ]; // rotation per depth level
+	const DEPTH_ROT = [ 0, 0.4, 0.7, 0.5, 0.6 ]; // front always straight; background cards lean slightly
 
-	// item[0] starts at front; all others wait off-screen right
-	gsap.set( items[ 0 ], { x: 0, y: 0, rotation: 0, zIndex: items.length } );
-	items.slice( 1 ).forEach( item => gsap.set( item, { x: '110%', y: 0, zIndex: 0 } ) );
+	// All cards start off-screen right — deck begins empty, builds as you scroll
+	items.forEach( item => gsap.set( item, { x: '110%', y: 0, zIndex: 0 } ) );
 
-	// Each new card arrives from the right to the front;
+	// Each card arrives from the right to the front;
 	// existing cards shift back one depth level and pick up a slight rotation
 	const tl = gsap.timeline();
-	for ( let i = 1; i < items.length; i++ ) {
+	for ( let i = 0; i < items.length; i++ ) {
 		tl.to( items[ i ], { x: 0, y: 0, rotation: 0, zIndex: items.length + i, duration: 1 }, '+=1' );
 		for ( let j = 0; j < i; j++ ) {
 			const depth = i - j;

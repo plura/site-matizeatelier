@@ -107,9 +107,11 @@
 }
 
 .mood-gallery__item {
-	box-shadow: 0 0 0 1px color-mix(in srgb, var(--mtz-color-text) 12%, transparent);
+	background-color: var(--mtz-color-bg);
+	box-shadow: 0 0 0 1px color-mix(in srgb, var(--mtz-color-text) 15%, transparent);
 	inset: 0;
 	overflow: hidden;
+	padding: 8px;
 	position: absolute;
 }
 
