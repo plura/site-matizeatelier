@@ -17,8 +17,7 @@ $address = $contact['mtz_contact_address'] ?? '';
 		echo plura_wp_link(
 			'<i data-lucide="map-pin" aria-hidden="true"></i><span>' . wp_kses( $address, [ 'br' => [] ] ) . '</span>',
 			$maps_url,
-			[ 'class' => 'contact-address', 'target' => '_blank' ],
-			true
+			[ 'class' => 'contact-address' ]
 		);
 		?>
 	<?php endif; ?>
