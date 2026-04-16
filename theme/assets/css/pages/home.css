@@ -10,6 +10,7 @@
 
 .home-statement {
 	background-color: var(--mtz-color-bg);
+	margin-bottom: -100svh;
 }
 
 .home-statement__stage {
@@ -73,6 +74,7 @@
 	height: 100svh;
 	position: sticky;
 	top: 0;
+	z-index: 1;
 }
 
 .mood-gallery__col--text {
