@@ -46,14 +46,15 @@ export function mtzInitMood() {
 	const STEP     = { x: 7, y: 5 };
 	const DEPTH_ROT = [ 0, 0.4, 0.7, 0.5, 0.6 ]; // front always straight; background cards lean slightly
 
-	// All cards start off-screen right and invisible — deck begins empty, builds as you scroll
-	items.forEach( item => gsap.set( item, { x: '110%', y: 0, opacity: 0, zIndex: 0 } ) );
+	// All cards start off-screen right and invisible — z-index pre-assigned so each
+	// arriving card is already above the existing stack when it slides in
+	items.forEach( ( item, i ) => gsap.set( item, { x: '110%', y: 0, opacity: 0, zIndex: items.length + i } ) );
 
 	// Each card arrives from the right to the front;
 	// existing cards shift back one depth level and pick up a slight rotation
 	const tl = gsap.timeline();
 	for ( let i = 0; i < items.length; i++ ) {
-		tl.to( items[ i ], { x: 0, y: 0, opacity: 1, rotation: 0, zIndex: items.length + i, duration: 1 }, '+=1' );
+		tl.to( items[ i ], { x: 0, y: 0, opacity: 1, rotation: 0, duration: 1 }, '+=1' );
 		for ( let j = 0; j < i; j++ ) {
 			const depth = i - j;
 			tl.to( items[ j ], {
@@ -64,8 +65,6 @@ export function mtzInitMood() {
 			}, '<' );
 		}
 	}
-	tl.to( items[ items.length - 1 ], { opacity: 0, duration: 1 }, '+=1' );
-
 	ScrollTrigger.create( {
 		trigger:   section,
 		start:     'top top',
