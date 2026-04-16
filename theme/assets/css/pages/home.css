@@ -102,7 +102,6 @@
 .mood-gallery__deck {
 	aspect-ratio: 3 / 4;
 	height: calc(100svh - var(--mtz-space-2xl) * 2);
-	overflow-x: clip;
 	position: relative;
 	width: auto;
 }
