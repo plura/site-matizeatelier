@@ -10,9 +10,6 @@
 
 .home-statement {
 	background-color: var(--mtz-color-bg);
-	/* JS sets --mtz-anim-pull to -scrollVh so the next section sits directly
-	   behind this one — no dead scroll gap after the stage exits. */
-	margin-bottom: var(--mtz-anim-pull, 0);
 }
 
 .home-statement__stage {
@@ -68,7 +65,6 @@
 
 .mood-gallery {
 	background-color: var(--mtz-color-bg);
-	margin-bottom: var(--mtz-anim-pull, 0);
 }
 
 .mood-gallery__layout {
