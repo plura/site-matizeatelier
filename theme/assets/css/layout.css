@@ -232,8 +232,7 @@
 	}
 }
 
-/* desktop: © | nav (centered) | credit */
-/* desktop: contact-info items in one evenly-spaced row */
+/* desktop: © | nav (centered) | credit — contact-info space-between */
 @media (min-width: 1024px) {
 	.site-footer__bottom {
 		align-items: center;
@@ -251,23 +250,8 @@
 		text-align: right;
 	}
 
-	/* 3-column grid: phone+email | address | social */
 	.site-footer .contact-info {
-		display: grid;
-		grid-template-columns: repeat(3, 1fr);
-		gap: var(--mtz-space-2xl);
-	}
-
-	.site-footer .contact-address {
-		justify-self: center;
-		text-align: center;
-	}
-
-	.site-footer .contact-address span {
-		text-align: left;
-	}
-
-	.site-footer .social-links {
-		justify-self: end;
+		display: flex;
+		justify-content: space-between;
 	}
 }
