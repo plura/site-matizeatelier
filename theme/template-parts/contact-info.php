@@ -14,7 +14,7 @@ $address = $contact['mtz_contact_address'] ?? '';
 	<?php if ( $address ) : ?>
 		<p class="contact-address">
 			<i data-lucide="map-pin" aria-hidden="true"></i>
-			<span><?php echo wp_kses( nl2br( esc_html( $address ) ), [ 'br' => [] ] ); ?></span>
+			<span><?php echo wp_kses( $address, [ 'br' => [] ] ); ?></span>
 		</p>
 	<?php endif; ?>
 
