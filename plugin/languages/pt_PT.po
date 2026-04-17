@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2026-04-15 02:08+0100\n"
-"PO-Revision-Date: 2026-04-15 02:08+0100\n"
+"POT-Creation-Date: 2026-04-17 20:52+0100\n"
+"PO-Revision-Date: 2026-04-17 20:53+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: pt_PT\n"
@@ -18,29 +18,48 @@ msgstr ""
 msgid "Theme Settings"
 msgstr "Definições do Tema"
 
-#: core/form.php:29
+#: core/form.php:33
 msgid "Security check failed."
 msgstr "Verificação de segurança falhou."
 
-#: core/form.php:62
+#: core/form.php:66 core/i18n.php:14
 msgid "Please fill in all required fields."
 msgstr "Por favor preencha todos os campos obrigatórios."
 
-#: core/form.php:65
+#: core/form.php:69
 msgid "Please enter a valid email address."
 msgstr "Por favor introduza um endereço de email válido."
 
-#: core/form.php:70
+#: core/form.php:74
 msgid "Form Submission"
 msgstr "Envio de Formulário"
 
-#: core/form.php:94
+#: core/form.php:103 core/i18n.php:15
+msgid "Something went wrong. Please try again."
+msgstr "Algo correu mal. Por favor tente novamente."
+
+#: core/form.php:109
+msgid "We received your enquiry"
+msgstr "Recebemos o seu pedido"
+
+#: core/form.php:115
+#, php-format
+msgid ""
+"Dear %s, thank you for getting in touch. We have received your message and "
+"will be in touch with you shortly. Below you will find a copy of your "
+"message for your records."
+msgstr ""
+"Caro/a %s, obrigado/a por entrar em contacto. Recebemos a sua mensagem e "
+"entraremos em contacto consigo em breve. Em baixo encontra uma cópia da "
+"sua mensagem para que possa consultar mais tarde."
+
+#: core/form.php:122
 msgid "Thank you. We will be in touch shortly."
 msgstr "Obrigado. Entraremos em contacto brevemente."
 
-#: core/form.php:96
-msgid "Something went wrong. Please try again."
-msgstr "Algo correu mal. Por favor tente novamente."
+#: core/form.php:124
+msgid "A copy of your message has been sent to your email address."
+msgstr "Foi enviada uma cópia da sua mensagem para o seu endereço de email."
 
 #: post-types/brand.php:6 post-types/brand.php:8
 msgid "Brands"

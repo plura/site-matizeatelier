@@ -9,7 +9,7 @@ Website for [matizeatelier.pt](https://matizeatelier.pt) — Atelier de Design d
 /theme          Custom WordPress theme → wp-content/themes/matize/
   /assets
     /css          Global + page-specific stylesheets (each enqueued individually)
-    /js           ES modules — main.js entry point, modal.js utility
+    /js           ES modules — main.js entry point, modal.js utility, test.js (dev only)
   /components     Plura component system (manifest + HTML + PHP + assets)
   /includes
     /core         setup.php, enqueue.php, options.php (mtz_option helper)
@@ -21,7 +21,7 @@ Website for [matizeatelier.pt](https://matizeatelier.pt) — Atelier de Design d
   /assets
     /js           ES modules — main.js entry point, form.js AJAX handler
   /includes
-    /core         acf.php (options page + JSON paths), enqueue.php, form.php (AJAX handler)
+    /core         acf.php (options page + JSON paths), enqueue.php, form.php (AJAX handler), i18n.php (JS translations)
     /hooks        Page-specific plura_wp_post filters (home.php, services.php)
     /post-types   CPT registration (service.php, brand.php)
   /languages      Translation files (.pot, .po, .mo)
@@ -71,6 +71,16 @@ To generate/update translations:
 ## Contact Form
 
 Custom AJAX handler — no CF7. Any form with `[data-mtz-form]` is handled automatically by the plugin. Fields pass their own type metadata; PHP sanitizes and validates by type, then sends an HTML email via `wp_mail()`.
+
+The destination address is configured in **Theme Settings → Formulário de Pedido → Email de Destino**. Falls back to the WordPress admin email if left empty.
+
+SMTP is handled by the **WP Mail SMTP** plugin (installed, configured separately — credentials not in codebase).
+
+JS-facing error strings are centralised in `plugin/includes/core/i18n.php` and exposed as `mtzLang` via `wp_localize_script`.
+
+## Testing
+
+Append `?test&type=form` to any page URL to open the contact modal pre-filled with random test data. The `test.js` module is dynamically imported only when `?test` is present — zero cost on normal page loads.
 
 ## Notes
 

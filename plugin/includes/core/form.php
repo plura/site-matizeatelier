@@ -8,6 +8,10 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
+// Auto-reply: sends a copy of the submission to the submitter.
+// Will be replaced by a Theme Settings toggle (ACF) in a future update.
+define( 'MTZ_FORM_AUTO_REPLY', true );
+
 // ─── Localize script data ─────────────────────────────────────────────────────
 
 add_action( 'wp_enqueue_scripts', function () {
@@ -68,7 +72,12 @@ function mtz_handle_form(): void {
 
 	// ── Build and send email ──────────────────────────────────────────────────
 	$form_name  = sanitize_text_field( wp_unslash( $_POST['form_name'] ?? __( 'Form Submission', 'matize' ) ) );
-	$to         = get_option( 'admin_email' );
+	$cta        = function_exists( 'get_field' ) ? ( get_field( 'mtz_cta_enquiry', 'option' ) ?: [] ) : [];
+	$to_email   = $cta['mtz_cta_enquiry_email'] ?? '';
+	$to_name    = $cta['mtz_cta_enquiry_name']  ?? '';
+	$to         = $to_email
+		? ( $to_name ? "{$to_name} <{$to_email}>" : $to_email )
+		: get_option( 'admin_email' );
 	$subject    = sprintf( '[%s] %s', get_bloginfo( 'name' ), $form_name );
 
 	// Reply-To: first email field, first name-like field
@@ -90,16 +99,36 @@ function mtz_handle_form(): void {
 
 	$sent = wp_mail( $to, $subject, mtz_build_email_body( $form_name, $fields ), $headers );
 
-	if ( $sent ) {
-		wp_send_json_success( [ 'message' => __( 'Thank you. We will be in touch shortly.', 'matize' ) ] );
-	} else {
+	if ( ! $sent ) {
 		wp_send_json_error( [ 'message' => __( 'Something went wrong. Please try again.', 'matize' ) ], 500 );
 	}
+
+	// ── Confirmation email to submitter ───────────────────────────────────────
+	$reply_sent = false;
+	if ( MTZ_FORM_AUTO_REPLY && $reply_to ) {
+		$confirm_subject = sprintf( '%s — %s', get_bloginfo( 'name' ), __( 'We received your enquiry', 'matize' ) );
+		$confirm_headers = [
+			'Content-Type: text/html; charset=UTF-8',
+			'Reply-To: ' . $to,
+		];
+		$confirm_intro = '<p class="email-intro">' . sprintf(
+			__( 'Dear %s, thank you for getting in touch. We have received your message and will be in touch with you shortly. Below you will find a copy of your message for your records.', 'matize' ),
+			esc_html( $reply_name )
+		) . '</p>';
+		$reply_sent = wp_mail( $reply_to, $confirm_subject, mtz_build_email_body( $form_name, $fields, $confirm_intro ), $confirm_headers );
+	}
+
+	// ── Success response ──────────────────────────────────────────────────────
+	$messages = [ __( 'Thank you. We will be in touch shortly.', 'matize' ) ];
+	if ( $reply_sent ) {
+		$messages[] = __( 'A copy of your message has been sent to your email address.', 'matize' );
+	}
+	wp_send_json_success( [ 'message' => implode( ' ', $messages ) ] );
 }
 
 // ─── Email body ───────────────────────────────────────────────────────────────
 
-function mtz_build_email_body( string $form_name, array $fields ): string {
+function mtz_build_email_body( string $form_name, array $fields, string $intro = '' ): string {
 	$template = plugin_dir_path( dirname( __DIR__ ) ) . 'templates/email-enquiry.html';
 
 	if ( ! file_exists( $template ) ) {
@@ -119,9 +148,47 @@ function mtz_build_email_body( string $form_name, array $fields ): string {
 	}
 
 	$html = file_get_contents( $template );
+	$logo_url = plugin_dir_url( dirname( __DIR__ ) ) . 'templates/mtz-logo-600x190.png';
+
+	// ── Contact block ─────────────────────────────────────────────────────────
+	$contact       = function_exists( 'get_field' ) ? ( get_field( 'mtz_contact', 'option' ) ?: [] ) : [];
+	$contact_parts = [];
+	if ( ! empty( $contact['mtz_contact_address'] ) ) {
+		$contact_parts[] = wp_kses( $contact['mtz_contact_address'], [ 'br' => [] ] );
+	}
+	if ( ! empty( $contact['mtz_contact_email'] ) ) {
+		$email           = esc_attr( $contact['mtz_contact_email'] );
+		$contact_parts[] = '<a href="mailto:' . $email . '">' . esc_html( $contact['mtz_contact_email'] ) . '</a>';
+	}
+	if ( ! empty( $contact['mtz_contact_phone'] ) ) {
+		$phone           = esc_attr( preg_replace( '/\s+/', '', $contact['mtz_contact_phone'] ) );
+		$contact_parts[] = '<a href="tel:' . $phone . '">' . esc_html( $contact['mtz_contact_phone'] ) . '</a>';
+	}
+	$contact_block = $contact_parts
+		? '<p>' . implode( '<br>', $contact_parts ) . '</p>'
+		: '';
+
+	// ── Social block ───────────────────────────────────────────────────────────
+	$social       = function_exists( 'get_field' ) ? ( get_field( 'mtz_social', 'option' ) ?: [] ) : [];
+	$social_links = [
+		'Instagram' => $social['mtz_social_instagram'] ?? '',
+		'Facebook'  => $social['mtz_social_facebook']  ?? '',
+		'Pinterest' => $social['mtz_social_pinterest'] ?? '',
+		'LinkedIn'  => $social['mtz_social_linkedin']  ?? '',
+	];
+	$social_parts = [];
+	foreach ( $social_links as $label => $url ) {
+		if ( $url ) {
+			$social_parts[] = '<a href="' . esc_url( $url ) . '" target="_blank">' . esc_html( $label ) . '</a>';
+		}
+	}
+	$social_block = $social_parts
+		? '<p class="footer-social">' . implode( ' &nbsp;&middot;&nbsp; ', $social_parts ) . '</p>'
+		: '';
+
 	$html = str_replace(
-		[ '%SITE_NAME%', '%SITE_URL%', '%FORM_NAME%', '%FIELDS%' ],
-		[ esc_html( get_bloginfo( 'name' ) ), esc_url( home_url( '/' ) ), esc_html( $form_name ), $fields_html ],
+		[ '%SITE_NAME%', '%SITE_URL%', '%LOGO_URL%', '%FORM_NAME%', '%FIELDS%', '%INTRO%', '%CONTACT_BLOCK%', '%SOCIAL_BLOCK%', '%YEAR%' ],
+		[ esc_html( get_bloginfo( 'name' ) ), esc_url( home_url( '/' ) ), esc_url( $logo_url ), esc_html( $form_name ), $fields_html, $intro, $contact_block, $social_block, gmdate( 'Y' ) ],
 		$html
 	);
 

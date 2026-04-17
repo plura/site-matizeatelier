@@ -2,7 +2,7 @@
 if ( is_page_template( 'page-contact.php' ) ) return;
 
 $cta_enquiry = get_field( 'mtz_cta_enquiry', 'option' ) ?: [];
-$cta_label   = $cta_enquiry['label'] ?? '';
+$cta_label   = $cta_enquiry['mtz_cta_enquiry_label'] ?? '';
 ?>
 
 <button class="btn btn--primary cta__btn" aria-haspopup="dialog" aria-controls="contact-modal">

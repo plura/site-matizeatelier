@@ -3,9 +3,9 @@
 	"title": "Matize \u2014 Defini\u00e7\u00f5es do Tema",
 	"fields": [
 		{
-			"key": "field_mtz_cta_enquiry",
-			"label": "CTA — Pedido",
-			"name": "mtz_cta_enquiry",
+			"key": "field_mtz_contact",
+			"label": "📍 Contacto",
+			"name": "mtz_contact",
 			"type": "group",
 			"instructions": "",
 			"required": 0,
@@ -14,25 +14,49 @@
 			"layout": "block",
 			"sub_fields": [
 				{
-					"key": "field_mtz_cta_enquiry_label",
-					"label": "Texto do Bot\u00e3o",
-					"name": "label",
+					"key": "field_mtz_contact_email",
+					"label": "Email",
+					"name": "mtz_contact_email",
+					"type": "email",
+					"instructions": "",
+					"required": 0,
+					"conditional_logic": 0,
+					"wrapper": { "width": "50", "class": "", "id": "" },
+					"default_value": "",
+					"placeholder": "geral@matizeatelier.pt"
+				},
+				{
+					"key": "field_mtz_contact_phone",
+					"label": "Telefone",
+					"name": "mtz_contact_phone",
 					"type": "text",
-					"instructions": "Texto apresentado no bot\u00e3o de pedido. Se deixado vazio, utiliza \u201cContactar\u201d.",
+					"instructions": "",
+					"required": 0,
+					"conditional_logic": 0,
+					"wrapper": { "width": "50", "class": "", "id": "" },
+					"default_value": "",
+					"placeholder": "+351 000 000 000"
+				},
+				{
+					"key": "field_mtz_contact_address",
+					"label": "Morada",
+					"name": "mtz_contact_address",
+					"type": "textarea",
+					"instructions": "",
 					"required": 0,
 					"conditional_logic": 0,
 					"wrapper": { "width": "", "class": "", "id": "" },
-					"default_value": "Contactar",
+					"default_value": "",
 					"placeholder": "",
-					"prepend": "",
-					"append": "",
-					"maxlength": ""
+					"maxlength": "",
+					"rows": 3,
+					"new_lines": "br"
 				}
 			]
 		},
 		{
 			"key": "field_mtz_social",
-			"label": "Redes Sociais",
+			"label": "🔗 Redes Sociais",
 			"name": "mtz_social",
 			"type": "group",
 			"instructions": "",
@@ -92,9 +116,9 @@
 			]
 		},
 		{
-			"key": "field_mtz_contact",
-			"label": "Contacto",
-			"name": "mtz_contact",
+			"key": "field_mtz_cta_enquiry",
+			"label": "✉️ Formul\u00e1rio de Pedido",
+			"name": "mtz_cta_enquiry",
 			"type": "group",
 			"instructions": "",
 			"required": 0,
@@ -103,43 +127,43 @@
 			"layout": "block",
 			"sub_fields": [
 				{
-					"key": "field_mtz_contact_email",
-					"label": "Email",
-					"name": "mtz_contact_email",
-					"type": "email",
-					"instructions": "",
-					"required": 0,
-					"conditional_logic": 0,
-					"wrapper": { "width": "50", "class": "", "id": "" },
-					"default_value": "",
-					"placeholder": "geral@matizeatelier.pt"
-				},
-				{
-					"key": "field_mtz_contact_phone",
-					"label": "Telefone",
-					"name": "mtz_contact_phone",
+					"key": "field_mtz_cta_enquiry_name",
+					"label": "Nome do Destinat\u00e1rio",
+					"name": "mtz_cta_enquiry_name",
 					"type": "text",
-					"instructions": "",
+					"instructions": "Nome no cabe\u00e7alho do email recebido.",
 					"required": 0,
 					"conditional_logic": 0,
-					"wrapper": { "width": "50", "class": "", "id": "" },
+					"wrapper": { "width": "33", "class": "", "id": "" },
 					"default_value": "",
-					"placeholder": "+351 000 000 000"
+					"placeholder": "Matize Atelier"
 				},
 				{
-					"key": "field_mtz_contact_address",
-					"label": "Morada",
-					"name": "mtz_contact_address",
-					"type": "textarea",
-					"instructions": "",
+					"key": "field_mtz_cta_enquiry_email",
+					"label": "Email de Destino",
+					"name": "mtz_cta_enquiry_email",
+					"type": "email",
+					"instructions": "Se vazio, usa o email de administrador do WordPress.",
 					"required": 0,
 					"conditional_logic": 0,
-					"wrapper": { "width": "", "class": "", "id": "" },
+					"wrapper": { "width": "33", "class": "", "id": "" },
 					"default_value": "",
+					"placeholder": "info@matizeatelier.pt"
+				},
+				{
+					"key": "field_mtz_cta_enquiry_label",
+					"label": "Texto do Bot\u00e3o",
+					"name": "mtz_cta_enquiry_label",
+					"type": "text",
+					"instructions": "Deixar vazio para usar \u201cContactar\u201d.",
+					"required": 0,
+					"conditional_logic": 0,
+					"wrapper": { "width": "33", "class": "", "id": "" },
+					"default_value": "Contactar",
 					"placeholder": "",
-					"maxlength": "",
-					"rows": 3,
-					"new_lines": "br"
+					"prepend": "",
+					"append": "",
+					"maxlength": ""
 				}
 			]
 		}

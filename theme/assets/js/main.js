@@ -1,5 +1,9 @@
 // Matize — main JS entry point
 
+if ( new URLSearchParams( location.search ).has( 'test' ) ) {
+	import( './test.js' );
+}
+
 import { mtzInitModal }                         from './modal.js';
 import { mtzAnimPageTitle, mtzAnimGalleryItems } from './animations.js';
 
