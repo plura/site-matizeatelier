@@ -66,7 +66,7 @@ export function mtzInitForm( form ) {
 			} );
 
 			if ( hasErrors ) {
-				setFeedback( 'Please fill in all required fields.', false );
+				setFeedback( mtzLang.form.required, false );
 				return;
 			}
 
@@ -82,7 +82,7 @@ export function mtzInitForm( form ) {
 
 				if ( data.success ) form.reset();
 			} catch {
-				setFeedback( 'Something went wrong. Please try again.', false );
+				setFeedback( mtzLang.form.error, false );
 			} finally {
 				submit.disabled = false;
 			}

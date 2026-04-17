@@ -7,7 +7,7 @@ $cta_label   = $cta_enquiry['label'] ?? '';
 
 <button class="btn btn--primary cta__btn" aria-haspopup="dialog" aria-controls="contact-modal">
 	<?php echo esc_html( $cta_label ?: __( 'Get in Touch', 'matize' ) ); ?>
-	<i data-lucide="arrow-right" aria-hidden="true"></i>
+	<i data-lucide="send" aria-hidden="true"></i>
 </button>
 
 <?php if ( ! defined( 'MTZ_CONTACT_MODAL_RENDERED' ) ) :

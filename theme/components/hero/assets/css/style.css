@@ -35,17 +35,64 @@
 
 .hero__logo {
 	position: relative;
+	transition: color 1.6s ease;
 	z-index: 2;
+}
+
+/* Logo turns light once intro animation completes */
+.hero.is-intro-done .hero__logo {
+	color: var(--mtz-color-linen);
 }
 
 .hero__logo-svg,
 .hero__logo svg {
-	width: clamp(200px, 30vw, 480px);
+	width: 80vw;
 }
 
-.hero__logo svg path {
-	fill: none;
+@media (min-width: 768px) {
+	.hero__logo-svg,
+	.hero__logo svg {
+		width: 33vw;
+	}
+}
+
+/* Matize letters: stroke draw-on → fill cross-fade handled by JS */
+.hero #mtz-logo-matize-letters {
+	fill: currentColor;
+	fill-opacity: 0;
 	stroke: currentColor;
-	stroke-dasharray: var(--path-length, 1000);
-	stroke-dashoffset: var(--path-length, 1000);
+	stroke-width: 3;
+}
+
+/* Dot and atelier hidden until animated in */
+.hero #mtz-logo-matize-dot,
+.hero #mtz-logo-atelier path {
+	opacity: 0;
+}
+
+/* ─── Hero intro state ───────────────────────────────────────────────────────
+   Locks the page and hides header chrome until the animation completes.
+   ─────────────────────────────────────────────────────────────────────────── */
+
+body:has( .hero:not(.is-intro-done) ) {
+	overflow: hidden;
+}
+
+:has( .hero ) .site-header__logo {
+	transition: opacity var(--mtz-transition), visibility var(--mtz-transition);
+}
+
+:has( .hero ) .site-header:not(.is-scrolled):not(:has( #site-nav.is-open )) .site-header__logo {
+	opacity: 0;
+	visibility: hidden;
+}
+
+body:has( .hero:not(.is-intro-done) ) #site-nav,
+body:has( .hero:not(.is-intro-done) ) .site-header__actions {
+	opacity: 0;
+	visibility: hidden;
+}
+
+body:has( .hero:not(.is-intro-done) ) .cta__btn {
+	animation-play-state: paused;
 }

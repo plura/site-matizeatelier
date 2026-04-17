@@ -32,7 +32,7 @@ get_template_part( 'template-parts/page-header' ); ?>
 
 				<?php $cluster = mtz_gallery_cluster( $images ); ?>
 			<?php if ( $cluster ) : ?>
-				<div class="about-section__cluster">
+				<div class="content-section__media about-section__cluster">
 					<?php echo $cluster; ?>
 				</div>
 			<?php endif; ?>

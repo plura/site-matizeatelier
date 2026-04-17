@@ -31,7 +31,7 @@ $services = new WP_Query( [
 			<div class="content-section__inner">
 
 				<?php if ( $thumb_id ) : ?>
-				<div class="service-section__image">
+				<div class="content-section__media service-section__image">
 					<?php echo plura_wp_image( $thumb_id, 'large', [ 'class' => 'service-section__img' ] ); ?>
 				</div>
 				<?php endif; ?>

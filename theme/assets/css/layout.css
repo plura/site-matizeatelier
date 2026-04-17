@@ -44,6 +44,7 @@
 	background-color: var(--mtz-color-bg);
 }
 
+
 .site-header__inner {
 	align-items: center;
 	display: flex;
@@ -53,8 +54,15 @@
 
 .site-header__logo .site-logo__img,
 .site-header__logo svg {
-	height: var(--mtz-space-xl);
+	height: var(--mtz-space-lg);
 	width: auto;
+}
+
+@media (min-width: 768px) {
+	.site-header__logo .site-logo__img,
+	.site-header__logo svg {
+		height: var(--mtz-space-xl);
+	}
 }
 
 .site-nav__list {
