@@ -105,7 +105,7 @@ function mtz_handle_form(): void {
 
 	// ── Confirmation email to submitter ───────────────────────────────────────
 	$reply_sent = false;
-	if ( MTZ_FORM_AUTO_REPLY && $reply_to ) {
+	if ( MTZ_FORM_AUTO_REPLY ) {
 		$confirm_subject = sprintf( '%s — %s', get_bloginfo( 'name' ), __( 'We received your enquiry', 'matize' ) );
 		$confirm_headers = [
 			'Content-Type: text/html; charset=UTF-8',
