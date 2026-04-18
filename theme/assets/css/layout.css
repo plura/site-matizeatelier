@@ -192,6 +192,8 @@
 		align-items: center;
 		background-color: var(--mtz-color-bg);
 		display: flex;
+		flex-direction: column;
+		gap: var(--mtz-space-lg) 0;
 		height: calc(100dvh - var(--mtz-header-height, 0px));
 		justify-content: center;
 		left: 0;
@@ -251,7 +253,6 @@
 		display: flex;
 		gap: var(--mtz-space-md);
 		justify-content: center;
-		padding-top: var(--mtz-space-lg);
 	}
 
 	.site-nav .social-links__username {
