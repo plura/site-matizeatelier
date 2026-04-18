@@ -26,7 +26,7 @@ add_action( 'wp_enqueue_scripts', function () {
 	// Page-specific CSS
 	$page_css = [
 		"$dir/assets/css/pages/home.css"     => is_front_page(),
-		"$dir/assets/css/pages/services.css" => is_page_template( 'page-services.php' ) || is_post_type_archive( 'mtz_service' ),
+		"$dir/assets/css/pages/services.css" => is_page_template( 'page-services.php' ),
 		"$dir/assets/css/pages/about.css"    => is_page_template( 'page-about.php' ),
 		"$dir/assets/css/pages/gallery.css"  => is_page_template( 'page-gallery.php' ),
 		"$dir/assets/css/pages/contact.css"  => is_page_template( 'page-contact.php' ),

@@ -22,7 +22,7 @@ add_action( 'init', function () {
 		'show_in_rest'        => false,
 		'menu_icon'           => 'dashicons-clipboard',
 		'supports'            => [ 'title', 'thumbnail', 'page-attributes' ],
-		'has_archive'         => 'services',
+		'has_archive'         => false,
 		'rewrite'             => [
 			'slug'       => 'service',
 			'with_front' => false,
