@@ -31,24 +31,34 @@ function createIndicator( list, items, active ) {
 		x: el.offsetLeft, width: el.offsetWidth, duration, ease: 'power2.out',
 	} );
 
-	if ( active ) {
-		gsap.set( indicator, { x: active.offsetLeft, width: active.offsetWidth, opacity: 1 } );
+	let current = active ?? null;
+
+	if ( current ) {
+		gsap.set( indicator, { x: current.offsetLeft, width: current.offsetWidth, opacity: 1 } );
 	} else {
 		gsap.set( indicator, { opacity: 0 } );
 	}
 
-	items.forEach( el => el.addEventListener( 'mouseenter', () => {
-		gsap.set( indicator, { opacity: 1 } );
-		moveTo( el );
-	} ) );
+	items.forEach( el => {
+		el.addEventListener( 'mouseenter', () => {
+			gsap.set( indicator, { opacity: 1 } );
+			moveTo( el );
+		} );
+
+		el.addEventListener( 'click', () => {
+			items.forEach( i => i.classList.remove( 'mtz-active' ) );
+			el.classList.add( 'mtz-active' );
+			current = el;
+		} );
+	} );
 
 	list.addEventListener( 'mouseleave', () => {
-		if ( active ) moveTo( active );
+		if ( current ) moveTo( current );
 		else gsap.to( indicator, { opacity: 0, duration: 0.2 } );
 	} );
 
 	window.addEventListener( 'resize', () => {
-		if ( active ) gsap.set( indicator, { x: active.offsetLeft, width: active.offsetWidth } );
+		if ( current ) gsap.set( indicator, { x: current.offsetLeft, width: current.offsetWidth } );
 	} );
 }
 

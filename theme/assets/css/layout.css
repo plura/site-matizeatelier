@@ -75,6 +75,24 @@
 	color: var(--mtz-color-accent);
 }
 
+/* When a click has set mtz-active, transfer accent to it and reset the WP active item */
+.site-nav__list:has(a.mtz-active) .current-menu-item:not(.wpml-ls-item) > a:not(.mtz-active) {
+	color: inherit;
+}
+
+.site-nav__list a.mtz-active {
+	color: var(--mtz-color-accent);
+}
+
+/* Hero context — use text colour instead of accent */
+:has(.hero) .site-header:not(.is-scrolled) .site-nav__list:has(a.mtz-active) .current-menu-item:not(.wpml-ls-item) > a:not(.mtz-active) {
+	color: var(--mtz-color-text);
+}
+
+:has(.hero) .site-header:not(.is-scrolled) .site-nav__list a.mtz-active {
+	color: var(--mtz-color-text);
+}
+
 
 .site-nav__indicator {
 	background-color: var(--mtz-color-accent);
