@@ -8,6 +8,12 @@ document.addEventListener( 'DOMContentLoaded', () => {
 
 	if ( !hero || !lettersPath ) return;
 
+	if ( new URLSearchParams( location.search ).has( 'test' ) ) {
+		if ( video ) video.style.opacity = '1';
+		hero.classList.add( 'is-intro-done' );
+		return;
+	}
+
 	const length = lettersPath.getTotalLength() || 3000;
 
 	// GSAP owns all initial states — no raw element.style manipulation

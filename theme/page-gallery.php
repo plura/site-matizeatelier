@@ -12,6 +12,13 @@ get_template_part( 'template-parts/page-header' ); ?>
 		<section class="gallery">
 			<div class="gallery__grid container--wide">
 				<?php foreach ( $gallery as $image ) : ?>
+					<?php
+					if ( ! is_array( $image ) ) {
+						$image = get_post( (int) $image );
+						if ( ! $image ) continue;
+						$image = [ 'ID' => $image->ID, 'url' => wp_get_attachment_url( $image->ID ), 'caption' => '' ];
+					}
+					?>
 					<figure class="gallery__item">
 						<a href="<?php echo esc_url( $image['url'] ); ?>" data-fancybox="gallery" data-caption="<?php echo esc_attr( $image['caption'] ?? '' ); ?>">
 							<?php echo plura_wp_image( $image['ID'], 'large', [ 'class' => 'gallery__img' ] ); ?>
