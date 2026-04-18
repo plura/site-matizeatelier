@@ -9,7 +9,7 @@ Website for [matizeatelier.pt](https://matizeatelier.pt) — Atelier de Design d
 /theme          Custom WordPress theme → wp-content/themes/matize/
   /assets
     /css          Global + page-specific stylesheets (each enqueued individually)
-    /js           ES modules — main.js entry point, modal.js utility, test.js (dev only)
+    /js           ES modules — main.js (entry), nav.js (toggle + sliding indicator), animations.js, modal.js, gallery.js, home.js, test.js (dev only)
   /components     Plura component system (manifest + HTML + PHP + assets)
   /includes
     /core         setup.php, enqueue.php, options.php (mtz_option helper)
@@ -81,6 +81,8 @@ JS-facing error strings are centralised in `plugin/includes/core/i18n.php` and e
 ## Testing
 
 Append `?test&type=form` to any page URL to open the contact modal pre-filled with random test data. The `test.js` module is dynamically imported only when `?test` is present — zero cost on normal page loads.
+
+Append `?test` on the home page to skip the hero intro animation and jump straight to the final state.
 
 ## Notes
 
