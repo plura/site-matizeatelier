@@ -21,15 +21,10 @@
 				'menu_class'     => 'site-nav__list',
 			] );
 			?>
+			<?php get_template_part( 'template-parts/social-links' ); ?>
 		</nav>
 
 		<div class="site-header__actions">
-			<?php if ( function_exists( 'plura_wpml' ) && plura_wpml() ) : ?>
-				<div class="site-header__lang">
-					<?php do_action( 'wpml_add_language_selector' ); ?>
-				</div>
-			<?php endif; ?>
-
 			<button
 				class="site-header__menu-toggle"
 				aria-label="<?php esc_attr_e( 'Open menu', 'matize' ); ?>"

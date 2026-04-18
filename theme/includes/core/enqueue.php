@@ -53,3 +53,16 @@ add_action( 'wp_enqueue_scripts', function () {
 add_action( 'wp_enqueue_scripts', function () {
 	wp_deregister_script( 'jquery' );
 }, 100 );
+
+// Dequeue unused WPML assets.
+add_action( 'wp_enqueue_scripts', function () {
+	// Styles a hidden legacy horizontal switcher — never rendered.
+	wp_dequeue_style( 'wpml-legacy-horizontal-list-0' );
+	wp_deregister_style( 'wpml-legacy-horizontal-list-0' );
+
+	// Sets a language cookie — redundant with directory-based URLs (/en/).
+	// Uncomment only after confirming browser-language redirect and
+	// "remember visitor's language" are both disabled in WPML → Languages.
+	// wp_dequeue_script( 'wpml-cookie' );
+	// wp_deregister_script( 'wpml-cookie' );
+}, 100 );

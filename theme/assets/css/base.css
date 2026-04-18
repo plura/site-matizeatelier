@@ -203,3 +203,16 @@ h4 { font-size: var(--mtz-text-lg);  }
 .container--narrow {
 	max-width: 800px;
 }
+
+/* ─── Scrollbar ──────────────────────────────────────────────────────────────
+   Webkit: transparent track, greige thumb
+   Firefox: thin + greige (transparent track not supported)
+   ─────────────────────────────────────────────────────────────────────────── */
+:root {
+	scrollbar-width: thin;
+	scrollbar-color: var(--mtz-color-greige) transparent;
+}
+
+::-webkit-scrollbar       { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background-color: var(--mtz-color-greige); border-radius: 3px; }

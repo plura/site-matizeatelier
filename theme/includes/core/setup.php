@@ -57,3 +57,9 @@ add_action( 'after_setup_theme', function () {
 	] );
 
 } );
+
+// ── WPML language switcher — normalise lang attribute to primary subtag ───────
+// Converts lang="pt-pt" → lang="pt" so CSS attr(lang) renders "PT" not "PT-PT".
+add_filter( 'wp_nav_menu_items', fn( $items ) =>
+	preg_replace( '/\blang="([a-z]{2})-[a-z]{2}"/i', 'lang="$1"', $items )
+);
