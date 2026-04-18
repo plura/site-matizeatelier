@@ -75,7 +75,8 @@ export function mtzInitForm( form ) {
 			submit.disabled = true;
 
 			try {
-				const res  = await fetch( mtzForms.ajaxUrl, { method: 'POST', body } );
+				const res = await fetch( mtzForms.ajaxUrl, { method: 'POST', body } );
+				if ( ! res.ok ) throw new Error( `HTTP ${ res.status }` );
 				const data = await res.json();
 
 				setFeedback( data.data?.message ?? '', data.success );

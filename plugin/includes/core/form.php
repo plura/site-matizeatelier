@@ -94,7 +94,9 @@ function mtz_handle_form(): void {
 
 	$headers = [ 'Content-Type: text/html; charset=UTF-8' ];
 	if ( $reply_to ) {
-		$headers[] = "Reply-To: {$reply_name} <{$reply_to}>";
+		$safe_name  = str_replace( [ "\r", "\n" ], '', sanitize_text_field( $reply_name ) );
+		$safe_email = sanitize_email( $reply_to );
+		$headers[]  = "Reply-To: {$safe_name} <{$safe_email}>";
 	}
 
 	$sent = wp_mail( $to, $subject, mtz_build_email_body( $form_name, $fields ), $headers );
