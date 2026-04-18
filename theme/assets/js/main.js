@@ -4,6 +4,7 @@ if ( new URLSearchParams( location.search ).has( 'test' ) ) {
 	import( './test.js' );
 }
 
+import { mtzInitNav }                            from './nav.js';
 import { mtzInitModal }                         from './modal.js';
 import { mtzAnimPageTitle, mtzAnimGalleryItems } from './animations.js';
 
@@ -49,21 +50,5 @@ if ( header ) {
 	onScroll(); // sync on load in case page is already scrolled
 }
 
-// ── Mobile nav toggle ─────────────────────────────────────────────────────────
-const toggle = document.querySelector( '.site-header__menu-toggle' );
-const nav    = document.querySelector( '#site-nav' );
-
-if ( toggle && nav ) {
-	toggle.addEventListener( 'click', () => {
-		const isOpen = nav.classList.toggle( 'is-open' );
-		toggle.setAttribute( 'aria-expanded', isOpen );
-	} );
-
-	// Close on outside click
-	document.addEventListener( 'click', ( e ) => {
-		if ( nav.classList.contains( 'is-open' ) && ! nav.contains( e.target ) && ! toggle.contains( e.target ) ) {
-			nav.classList.remove( 'is-open' );
-			toggle.setAttribute( 'aria-expanded', 'false' );
-		}
-	} );
-}
+// ── Nav (mobile toggle + sliding underline) ───────────────────────────────────
+mtzInitNav();

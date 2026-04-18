@@ -71,6 +71,35 @@
 	list-style: none;
 }
 
+.site-nav__list .current-menu-item:not(.wpml-ls-item) > a {
+	color: var(--mtz-color-accent);
+}
+
+
+.site-nav__indicator {
+	background-color: var(--mtz-color-accent);
+	bottom: -4px;
+	height: 1px;
+	left: 0;
+	pointer-events: none;
+	position: absolute;
+}
+
+/* On hero (dark header), indicator and active link use text colour instead of accent */
+:has(.hero) .site-header:not(.is-scrolled) .site-nav__list .current-menu-item:not(.wpml-ls-item) > a {
+	color: var(--mtz-color-text);
+}
+
+:has(.hero) .site-header:not(.is-scrolled) .site-nav__indicator {
+	background-color: var(--mtz-color-text);
+}
+
+@media (max-width: 767px) {
+	.site-nav__indicator {
+		display: none;
+	}
+}
+
 .site-nav__list a {
 	font-size: var(--mtz-text-xs);
 	letter-spacing: var(--mtz-tracking-wider);
