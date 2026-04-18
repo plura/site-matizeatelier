@@ -33,6 +33,9 @@ add_filter( 'wp_resource_hints', function ( array $hints, string $relation_type 
 	return array_filter( $hints, fn( $hint ) => ! str_contains( $hint['href'] ?? $hint, 'emoji' ) );
 }, 10, 2 );
 
+// ── Disable auto-sizes inline CSS (images already have width/height attributes) ─
+add_filter( 'wp_img_tag_add_auto_sizes', '__return_false' );
+
 // ── Strip body classes ────────────────────────────────────────────────────────
 add_filter( 'body_class', fn() => [] );
 
