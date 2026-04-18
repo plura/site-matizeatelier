@@ -150,8 +150,11 @@
 }
 
 .btn--primary svg {
+	height: var(--mtz-icon-md);
 	transition: transform var(--mtz-transition);
+	width: var(--mtz-icon-md);
 }
+
 
 .btn--primary:hover svg {
 	transform: translateX(4px);
