@@ -16,6 +16,12 @@ $services = new WP_Query( [
 
 <main id="main" class="site-main page-services">
 
+	<?php if ( have_posts() ) : the_post(); ?>
+	<div class="services-intro container">
+		<?php the_content(); ?>
+	</div>
+	<?php endif; ?>
+
 	<?php if ( $services->have_posts() ) : ?>
 	<div class="container">
 		<?php while ( $services->have_posts() ) : $services->the_post(); ?>
@@ -57,6 +63,14 @@ $services = new WP_Query( [
 		</section>
 
 		<?php endwhile; wp_reset_postdata(); ?>
+	</div>
+	<?php endif; ?>
+
+	<?php
+	$brands_intro = get_field( 'mtz_brands_intro' );
+	if ( $brands_intro ) : ?>
+	<div class="brands-intro container">
+		<?php echo wp_kses_post( wpautop( $brands_intro ) ); ?>
 	</div>
 	<?php endif; ?>
 

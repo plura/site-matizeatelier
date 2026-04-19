@@ -1,0 +1,29 @@
+{
+	"key": "group_mtz_page_services",
+	"title": "Matize — Página de Serviços",
+	"fields": [
+		{
+			"key": "field_mtz_brands_intro",
+			"label": "Brands — Intro Text",
+			"name": "mtz_brands_intro",
+			"type": "textarea",
+			"rows": 3,
+			"new_lines": "wpautop"
+		}
+	],
+	"location": [
+		[
+			{
+				"param": "page_template",
+				"operator": "==",
+				"value": "page-services.php"
+			}
+		]
+	],
+	"menu_order": 0,
+	"position": "normal",
+	"style": "default",
+	"label_placement": "top",
+	"instruction_placement": "label",
+	"active": true
+}
