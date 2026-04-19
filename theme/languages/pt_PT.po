@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2026-04-15 17:24+0100\n"
-"PO-Revision-Date: 2026-04-15 17:24+0100\n"
+"POT-Creation-Date: 2026-04-19 19:05+0100\n"
+"PO-Revision-Date: 2026-04-19 19:06+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: pt_PT\n"
@@ -11,18 +11,34 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 3.9\n"
 "X-Poedit-Basepath: ..\n"
-"X-Poedit-KeywordsList: __;_e;_x;_ex;_n;_nx;esc_attr_e\n"
+"X-Poedit-KeywordsList: __;_e;_x;_ex;_n;_nx;esc_attr_e;esc_html_e\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: footer.php:19 includes/core/setup.php:56
+#: 404.php:7
+msgid "Page not found"
+msgstr "Página não encontrada"
+
+#: 404.php:8
+msgid "The page you are looking for does not exist or has been removed."
+msgstr "A página que procura não existe ou foi removida."
+
+#: 404.php:10
+msgid "Back to home"
+msgstr "Voltar à página inicial"
+
+#: footer.php:19 includes/core/setup.php:62
 msgid "Footer Menu"
 msgstr "Menu de Rodapé"
 
-#: header.php:16 includes/core/setup.php:55
+#: footer.php:30
+msgid "Built by Plura"
+msgstr "Built by Plura"
+
+#: header.php:16 includes/core/setup.php:61
 msgid "Primary Menu"
 msgstr "Menu Principal"
 
-#: header.php:35
+#: header.php:30
 msgid "Open menu"
 msgstr "Abrir menu"
 
@@ -42,27 +58,51 @@ msgstr "Curriculum"
 msgid "New Enquiry"
 msgstr "Nova Consulta"
 
+#: template-parts/contact-form.php:19
+msgid "Name"
+msgstr "Nome"
+
 #: template-parts/contact-form.php:20
 msgid "Your name"
 msgstr "O seu nome"
+
+#: template-parts/contact-form.php:24
+msgid "Email"
+msgstr "Email"
 
 #: template-parts/contact-form.php:25
 msgid "Your email"
 msgstr "O seu email"
 
+#: template-parts/contact-form.php:29
+msgid "Phone"
+msgstr "Telefone"
+
 #: template-parts/contact-form.php:30
 msgid "Your phone number"
 msgstr "O seu número de telefone"
+
+#: template-parts/contact-form.php:34
+msgid "Message"
+msgstr "Mensagem"
 
 #: template-parts/contact-form.php:35
 msgid "Your message"
 msgstr "A sua mensagem"
 
+#: template-parts/contact-form.php:41
+msgid "Send"
+msgstr "Enviar"
+
 #: template-parts/cta.php:9
 msgid "Get in Touch"
 msgstr "Entrar em Contacto"
 
-#: template-parts/cta.php:20
+#: template-parts/cta.php:18
+msgid "Contact"
+msgstr "Contacto"
+
+#: template-parts/cta.php:21
 msgid "Close"
 msgstr "Fechar"
 
@@ -72,6 +112,3 @@ msgstr "Social media"
 
 #~ msgid "Theme Settings"
 #~ msgstr "Configurações do tema"
-
-#~ msgid "Contactar"
-#~ msgstr "Contato"

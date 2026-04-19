@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2026-04-17 20:52+0100\n"
-"PO-Revision-Date: 2026-04-17 20:53+0100\n"
+"POT-Creation-Date: 2026-04-19 19:06+0100\n"
+"PO-Revision-Date: 2026-04-19 19:06+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: pt_PT\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 3.9\n"
 "X-Poedit-Basepath: ../includes\n"
-"X-Poedit-KeywordsList: __;_e;_x;_ex;_n;_nx;esc_attr_e\n"
+"X-Poedit-KeywordsList: ;__;_e;_x;_ex;_n;_nx;esc_attr_e;esc_html_e\n"
 "X-Poedit-SearchPath-0: .\n"
 
 #: core/acf.php:26 core/acf.php:27
@@ -34,15 +34,15 @@ msgstr "Por favor introduza um endereço de email válido."
 msgid "Form Submission"
 msgstr "Envio de Formulário"
 
-#: core/form.php:103 core/i18n.php:15
+#: core/form.php:105 core/i18n.php:15
 msgid "Something went wrong. Please try again."
 msgstr "Algo correu mal. Por favor tente novamente."
 
-#: core/form.php:109
+#: core/form.php:111
 msgid "We received your enquiry"
 msgstr "Recebemos o seu pedido"
 
-#: core/form.php:115
+#: core/form.php:117
 #, php-format
 msgid ""
 "Dear %s, thank you for getting in touch. We have received your message and "
@@ -50,14 +50,14 @@ msgid ""
 "message for your records."
 msgstr ""
 "Caro/a %s, obrigado/a por entrar em contacto. Recebemos a sua mensagem e "
-"entraremos em contacto consigo em breve. Em baixo encontra uma cópia da "
-"sua mensagem para que possa consultar mais tarde."
+"entraremos em contacto consigo em breve. Em baixo encontra uma cópia da sua "
+"mensagem para que possa consultar mais tarde."
 
-#: core/form.php:122
+#: core/form.php:124
 msgid "Thank you. We will be in touch shortly."
 msgstr "Obrigado. Entraremos em contacto brevemente."
 
-#: core/form.php:124
+#: core/form.php:126
 msgid "A copy of your message has been sent to your email address."
 msgstr "Foi enviada uma cópia da sua mensagem para o seu endereço de email."
 
