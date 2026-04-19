@@ -17,9 +17,11 @@ $services = new WP_Query( [
 <main id="main" class="site-main page-services">
 
 	<?php if ( have_posts() ) : the_post(); ?>
-	<div class="services-intro container">
+	<?php if ( get_the_content() ) : ?>
+	<div class="page-intro container">
 		<?php the_content(); ?>
 	</div>
+	<?php endif; ?>
 	<?php endif; ?>
 
 	<?php if ( $services->have_posts() ) : ?>
@@ -66,13 +68,13 @@ $services = new WP_Query( [
 	</div>
 	<?php endif; ?>
 
-	<?php
-	$brands_intro = get_field( 'mtz_services_brands_intro' );
-	if ( $brands_intro ) : ?>
-	<div class="brands-intro container">
-		<?php echo wp_kses_post( wpautop( $brands_intro ) ); ?>
+	<?php $brands_intro = get_field( 'mtz_services_brands_intro' ); ?>
+	<div class="section-header container">
+		<h2 class="section-header__title"><?php esc_html_e( 'Brands', 'matize' ); ?></h2>
+		<?php if ( $brands_intro ) : ?>
+		<p class="page-intro"><?php echo esc_html( $brands_intro ); ?></p>
+		<?php endif; ?>
 	</div>
-	<?php endif; ?>
 
 	<?php get_template_part( 'template-parts/brands' ); ?>
 
