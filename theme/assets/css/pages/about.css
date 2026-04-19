@@ -22,8 +22,9 @@
 	}
 }
 
+
 .about-section__title {
-	margin-bottom: var(--mtz-space-md);
+	color: var(--mtz-color-text);
 }
 
 .about-section__text {

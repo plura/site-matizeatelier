@@ -32,8 +32,7 @@
 }
 
 .section-header__title {
-	font-weight: var(--mtz-weight-light);
-	margin-block-end: var(--mtz-space-sm);
+	margin-block-end: var(--mtz-space-md);
 }
 
 .section-header .page-intro {

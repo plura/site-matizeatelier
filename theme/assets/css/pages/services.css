@@ -41,7 +41,7 @@
 }
 
 .service-section__title {
-	font-weight: var(--mtz-weight-light);
+	/* reserved for future customisation */
 }
 
 .service-section__tagline {

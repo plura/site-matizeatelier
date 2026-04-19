@@ -38,7 +38,7 @@ $services = new WP_Query( [
 					<?php endif; ?>
 
 					<div class="service-section__content">
-						<h2 class="service-section__title"><?php the_title(); ?></h2>
+						<h2 class="service-section__title section-header__title"><?php the_title(); ?></h2>
 
 						<?php if ( $tagline ) : ?>
 						<p class="service-section__tagline"><?php echo esc_html( $tagline ); ?></p>
