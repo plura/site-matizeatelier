@@ -45,7 +45,7 @@ $services = new WP_Query( [
 						<?php endif; ?>
 
 						<?php if ( $description ) : ?>
-						<div class="service-section__description"><?php echo wp_kses_post( $description ); ?></div>
+						<div class="service-section__description section-body"><?php echo wp_kses_post( $description ); ?></div>
 						<?php endif; ?>
 
 						<?php $cluster = mtz_gallery_cluster( $images ); ?>

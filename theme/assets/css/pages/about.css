@@ -23,14 +23,8 @@
 }
 
 
-.about-section__title {
-	color: var(--mtz-color-text);
-}
-
 .about-section__text {
-	color: var(--mtz-color-muted);
-	font-size: var(--mtz-text-sm);
-	line-height: var(--mtz-leading-loose);
+	/* layout/ordering only — typography via .section-header__title and .section-body */
 }
 
 .about-section__cluster {

@@ -54,10 +54,8 @@
 }
 
 .service-section__description {
-	color: var(--mtz-color-muted);
-	font-size: var(--mtz-text-sm);
-	line-height: var(--mtz-leading-loose);
 	margin-top: var(--mtz-space-md);
+	/* typography via .section-body */
 }
 
 .service-section__cluster {
