@@ -39,6 +39,9 @@ add_filter( 'wp_img_tag_add_auto_sizes', '__return_false' );
 // ── Strip body classes ────────────────────────────────────────────────────────
 add_filter( 'body_class', fn() => [] );
 
+// ── RankMath: og:type — pages should be 'website', not 'article' ──────────────
+add_filter( 'rank_math/opengraph/type', fn( $type ) => is_page() ? 'website' : $type );
+
 add_action( 'after_setup_theme', function () {
 
 	add_theme_support( 'title-tag' );
