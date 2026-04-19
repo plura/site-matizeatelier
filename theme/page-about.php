@@ -26,7 +26,7 @@ get_template_part( 'template-parts/page-header' ); ?>
 			<div class="content-section__inner">
 
 				<div class="about-section__text">
-					<h2 class="about-section__title"><?php echo esc_html( $section['title'] ); ?></h2>
+					<h2 class="about-section__title section-header__title"><?php echo esc_html( $section['title'] ); ?></h2>
 					<?php echo wp_kses_post( $text ); ?>
 				</div>
 
