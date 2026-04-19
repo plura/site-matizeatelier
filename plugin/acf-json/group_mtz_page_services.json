@@ -8,7 +8,7 @@
 			"name": "mtz_services_brands_intro",
 			"type": "textarea",
 			"rows": 3,
-			"new_lines": "wpautop"
+			"new_lines": ""
 		}
 	],
 	"location": [

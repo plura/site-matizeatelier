@@ -4,8 +4,13 @@
    Extends .content-section from components.css.
    ─────────────────────────────────────────────────────────────────────────── */
 
-.page-services .container {
+.page-services > .container {
 	padding-block: var(--mtz-space-2xl);
+}
+
+.page-services > .page-intro-wrap,
+.page-services > .section-header-wrap {
+	padding-block: 0;
 }
 
 @media (min-width: 768px) {
