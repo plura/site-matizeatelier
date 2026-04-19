@@ -33,7 +33,7 @@
 }
 
 .section-header__title {
-	font-size: var(--mtz-text-lg);
+	font-size: var(--mtz-text-xl);
 	font-weight: var(--mtz-weight-light);
 	margin-block-end: var(--mtz-space-sm);
 }

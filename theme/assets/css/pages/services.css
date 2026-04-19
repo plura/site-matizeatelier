@@ -4,7 +4,7 @@
    Extends .content-section from components.css.
    ─────────────────────────────────────────────────────────────────────────── */
 
-.page-services > .container {
+.services-section > .container {
 	padding-block: var(--mtz-space-2xl);
 }
 
