@@ -134,7 +134,14 @@ function mtz_build_email_body( string $form_name, array $fields, string $intro =
 	$template = plugin_dir_path( dirname( __DIR__ ) ) . 'templates/email-enquiry.html';
 
 	if ( ! file_exists( $template ) ) {
-		return '';
+		error_log( 'Matize: email template not found at ' . $template );
+		$lines = [ "<h2>{$form_name}</h2>" ];
+		if ( $intro ) $lines[] = wp_strip_all_tags( $intro );
+		foreach ( $fields as $field ) {
+			if ( ! $field['value'] ) continue;
+			$lines[] = esc_html( $field['label'] ) . ': ' . esc_html( $field['value'] );
+		}
+		return implode( "\n", $lines );
 	}
 
 	$fields_html = '';
