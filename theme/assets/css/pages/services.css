@@ -8,11 +8,6 @@
 	padding-block: var(--mtz-space-2xl);
 }
 
-.page-services > .page-intro-wrap,
-.page-services > .section-header-wrap {
-	padding-block: 0;
-}
-
 @media (min-width: 768px) {
 	.service-section .content-section__inner {
 		grid-template-columns: 5fr 7fr;
@@ -46,7 +41,7 @@
 }
 
 .service-section__title {
-	font-size: var(--mtz-text-2xl);
+	font-size: var(--mtz-text-xl);
 }
 
 .service-section__tagline {

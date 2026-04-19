@@ -16,14 +16,6 @@ $services = new WP_Query( [
 
 <main id="main" class="site-main page-services">
 
-	<?php if ( have_posts() ) : the_post(); ?>
-	<?php if ( get_the_content() ) : ?>
-	<div class="page-intro-wrap container">
-		<div class="page-intro"><?php the_content(); ?></div>
-	</div>
-	<?php endif; ?>
-	<?php endif; ?>
-
 	<?php if ( $services->have_posts() ) : ?>
 	<div class="container">
 		<?php while ( $services->have_posts() ) : $services->the_post(); ?>
@@ -67,16 +59,6 @@ $services = new WP_Query( [
 		<?php endwhile; wp_reset_postdata(); ?>
 	</div>
 	<?php endif; ?>
-
-	<?php $brands_intro = get_field( 'mtz_services_brands_intro' ); ?>
-	<div class="section-header-wrap container">
-		<div class="section-header">
-			<h2 class="section-header__title"><?php esc_html_e( 'Brands', 'matize' ); ?></h2>
-			<?php if ( $brands_intro ) : ?>
-			<p class="page-intro"><?php echo esc_html( wp_strip_all_tags( $brands_intro ) ); ?></p>
-			<?php endif; ?>
-		</div>
-	</div>
 
 	<?php get_template_part( 'template-parts/brands' ); ?>
 

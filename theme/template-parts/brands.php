@@ -11,10 +11,18 @@ $html = plura_wp_posts(
 );
 
 if ( ! $html ) return;
+
+$intro = get_field( 'mtz_services_brands_intro' );
 ?>
 
 <section class="brands">
 	<div class="container">
+		<header class="section-header">
+			<h2 class="section-header__title"><?php esc_html_e( 'Brands', 'matize' ); ?></h2>
+			<?php if ( $intro ) : ?>
+			<p class="page-intro"><?php echo esc_html( wp_strip_all_tags( $intro ) ); ?></p>
+			<?php endif; ?>
+		</header>
 		<?php echo $html; ?>
 	</div>
 </section>
