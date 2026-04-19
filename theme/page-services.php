@@ -67,7 +67,7 @@ $services = new WP_Query( [
 	<?php endif; ?>
 
 	<?php
-	$brands_intro = get_field( 'mtz_brands_intro' );
+	$brands_intro = get_field( 'mtz_services_brands_intro' );
 	if ( $brands_intro ) : ?>
 	<div class="brands-intro container">
 		<?php echo wp_kses_post( wpautop( $brands_intro ) ); ?>

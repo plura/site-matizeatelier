@@ -3,9 +3,9 @@
 	"title": "Matize — Página de Serviços",
 	"fields": [
 		{
-			"key": "field_mtz_brands_intro",
+			"key": "field_mtz_services_brands_intro",
 			"label": "Brands — Intro Text",
-			"name": "mtz_brands_intro",
+			"name": "mtz_services_brands_intro",
 			"type": "textarea",
 			"rows": 3,
 			"new_lines": "wpautop"
