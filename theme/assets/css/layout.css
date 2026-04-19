@@ -39,6 +39,16 @@
 	margin-block-end: 0;
 }
 
+/* ─── First section spacing ──────────────────────────────────────────────────
+   page-header already provides bottom spacing — zero the top padding of
+   whatever comes first in main so the gap is consistent across all pages.
+   ─────────────────────────────────────────────────────────────────────────── */
+
+.site-main > *:first-child,
+.site-main > *:first-child > .container:first-child {
+	padding-block-start: 0;
+}
+
 /* ─── Section body ───────────────────────────────────────────────────────────
    Muted body text inside any section — reusable across all pages.
    ─────────────────────────────────────────────────────────────────────────── */
