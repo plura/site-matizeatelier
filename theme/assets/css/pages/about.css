@@ -18,20 +18,9 @@
 	}
 
 	.about-section:nth-child(even) .about-section__cluster {
-		order: 1;
+		position: static;
 	}
-}
 
-
-.about-section__text {
-	/* layout/ordering only — typography via .section-header__title and .section-body */
-}
-
-.about-section__cluster {
-	position: static;
-}
-
-@media (min-width: 768px) {
 	.about-section__cluster {
 		position: sticky;
 		top: calc(var(--mtz-space-xl) * 2);

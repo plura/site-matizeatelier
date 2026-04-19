@@ -40,10 +40,6 @@
 	}
 }
 
-.service-section__title {
-	/* reserved for future customisation */
-}
-
 .service-section__tagline {
 	color: var(--mtz-color-accent);
 	font-size: var(--mtz-text-xs);
@@ -55,7 +51,6 @@
 
 .service-section__description {
 	margin-top: var(--mtz-space-md);
-	/* typography via .section-body */
 }
 
 .service-section__cluster {
