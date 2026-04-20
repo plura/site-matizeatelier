@@ -95,8 +95,9 @@
 	--mtz-icon-lg:  24px;
 
 	/* ── Overlays ────────────────────────────────────────────────────────── */
-	--mtz-overlay-light: 35%;  /* subtle — video/image still visible beneath */
-	--mtz-overlay-heavy: 65%;  /* opaque — modal backdrops, focus states */
+	--mtz-overlay-light:  35%;  /* subtle — video/image still visible beneath */
+	--mtz-overlay-medium: 50%;  /* balanced — hero overlays */
+	--mtz-overlay-heavy:  65%;  /* opaque — modal backdrops, focus states */
 
 	/* ── Shadows ─────────────────────────────────────────────────────────── */
 	--mtz-shadow-soft: 20%;

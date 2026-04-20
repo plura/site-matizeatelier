@@ -5,22 +5,28 @@
 	justify-content: center;
 	overflow: hidden;
 	position: relative;
+	transition: color 1.2s 0.4s ease;
 	width: 100%;
 }
 
 .hero::after {
-	background: color-mix(in srgb, var(--mtz-color-charcoal) var(--mtz-overlay-light), transparent);
+	background: color-mix(in srgb, var(--mtz-color-charcoal) var(--mtz-overlay-medium), transparent);
 	content: '';
 	inset: 0;
+	opacity: 0;
 	position: absolute;
+	transition: opacity 0.6s ease-in-out;
 	z-index: 0;
+}
+
+.hero.is-intro-done::after {
+	opacity: 1;
 }
 
 .hero__video {
 	height: 100%;
 	inset: 0;
 	object-fit: cover;
-	opacity: 0;
 	pointer-events: none;
 	position: absolute;
 	width: 100%;
@@ -33,15 +39,44 @@
 	}
 }
 
-.hero__logo {
+.hero__content {
+	align-items: center;
+	display: flex;
+	flex-direction: column;
 	position: relative;
-	transition: color 1.6s ease;
 	z-index: 2;
 }
 
-/* Logo turns light once intro animation completes */
-.hero.is-intro-done .hero__logo {
+.hero__scroll {
+	align-items: center;
 	color: var(--mtz-color-linen);
+	display: flex;
+	justify-content: center;
+	margin-top: var(--mtz-space-lg);
+	opacity: 0;
+	padding: var(--mtz-space-sm);
+	transition: opacity 0.6s ease;
+}
+
+.hero__scroll svg {
+	height: 20px;
+	width: 20px;
+}
+
+.hero.is-intro-done .hero__scroll {
+	animation: hero-scroll-bounce 2s 0.8s ease-in-out infinite;
+	opacity: 1;
+}
+
+body:has( .site-header.is-scrolled ) .hero__scroll {
+	animation: none;
+	opacity: 0;
+	pointer-events: none;
+}
+
+@keyframes hero-scroll-bounce {
+	0%, 100% { transform: translateY(0); }
+	50%       { transform: translateY(6px); }
 }
 
 .hero__logo-svg,
@@ -56,17 +91,34 @@
 	}
 }
 
-/* Matize letters: stroke draw-on → fill cross-fade handled by JS */
-.hero #mtz-logo-matize-letters {
+/* All paths inherit currentColor so they follow the .is-intro-done colour transition */
+.hero #mtz-logo {
 	fill: currentColor;
-	fill-opacity: 0;
-	stroke: currentColor;
-	stroke-width: 3;
 }
 
-/* Dot and atelier hidden until animated in */
+/* Matize letters: stroke draw-on → fill cross-fade handled by GSAP */
+.hero #mtz-logo-matize-letters {
+	stroke: currentColor;
+	stroke-width: 2;
+}
+
+/* ─── Animation initial states ───────────────────────────────────────────────
+   Hidden before their cue — prevents FOUC if JS is slow.
+   All SVG paths use currentColor so they follow the .is-intro-done transition.
+   ─────────────────────────────────────────────────────────────────────────── */
+
+.hero__video {
+	opacity: 0;
+	transition: opacity 1.5s 1s ease-in-out;
+}
+
+.hero #mtz-logo-matize-letters {
+	fill-opacity: 0;
+	stroke-opacity: 0;
+}
+
 .hero #mtz-logo-matize-dot,
-.hero #mtz-logo-atelier path {
+.hero #mtz-logo-atelier :is(path, rect, polygon) {
 	opacity: 0;
 }
 
@@ -95,4 +147,13 @@ body:has( .hero:not(.is-intro-done) ) .site-header__actions {
 
 body:has( .hero:not(.is-intro-done) ) .cta__btn {
 	animation-play-state: paused;
+}
+
+/* Everything turns light once intro animation completes */
+.hero.is-intro-done {
+	color: var(--mtz-color-linen);
+}
+
+.hero.is-intro-done .hero__video {
+	opacity: 1;
 }

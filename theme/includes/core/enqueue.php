@@ -6,9 +6,9 @@ add_action( 'wp_enqueue_scripts', function () {
 
 	$scripts = [
 		// GSAP (CDN)
-		'https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js'          => [ 'handle' => 'gsap' ],
-		'https://cdn.jsdelivr.net/npm/gsap@3/dist/SplitText.min.js'    => [ 'handle' => 'gsap-splittext',    'deps' => [ 'matize-gsap' ] ],
-		'https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js' => [ 'handle' => 'gsap-scrolltrigger', 'deps' => [ 'matize-gsap' ] ],
+		'https://cdn.jsdelivr.net/npm/gsap@3.15/dist/gsap.min.js'          => [ 'handle' => 'gsap' ],
+		'https://cdn.jsdelivr.net/npm/gsap@3.15/dist/ScrollTrigger.min.js' => [ 'handle' => 'gsap-scrolltrigger', 'deps' => [ 'matize-gsap' ] ],
+		'https://cdn.jsdelivr.net/npm/gsap@3.15/dist/SplitText.min.js'     => [ 'handle' => 'gsap-splittext',     'deps' => [ 'matize-gsap' ] ],
 
 		// Lucide icons (CDN)
 		'https://unpkg.com/lucide@latest/dist/umd/lucide.min.js' => [ 'handle' => 'lucide' ],

@@ -1,10 +1,12 @@
 {
 	"html": "index.html",
+	"_note": "GSAP core is loaded by the theme as 'matize-gsap' — do not re-register it here or it will load twice under a different handle. Component-only plugins (ScrollToPlugin) must declare 'matize-gsap' as their dep, not 'gsap'.",
 	"scripts": {
-		"https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js": {
-			"handle": "gsap"
+		"https://cdn.jsdelivr.net/npm/gsap@3.15/dist/ScrollToPlugin.min.js": {
+			"handle": "gsap-scrollto",
+			"deps": ["matize-gsap"]
 		},
-"assets/css/style.css": {
+		"assets/css/style.css": {
 			"handle": "matize-hero-style"
 		},
 		"assets/js/init.js": {
