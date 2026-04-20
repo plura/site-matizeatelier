@@ -121,7 +121,7 @@ function mtz_handle_form(): void {
 	}
 
 	// ── Success response ──────────────────────────────────────────────────────
-	$messages = [ __( 'Thank you. We will be in touch shortly.', 'matize' ) ];
+	$messages = [ __( 'Thank you for reaching out. We\'ll be in touch soon.', 'matize' ) ];
 	if ( $reply_sent ) {
 		$messages[] = __( 'A copy of your message has been sent to your email address.', 'matize' );
 	}

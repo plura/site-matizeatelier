@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2026-04-19 19:06+0100\n"
-"PO-Revision-Date: 2026-04-19 19:06+0100\n"
+"POT-Creation-Date: 2026-04-21 00:48+0100\n"
+"PO-Revision-Date: 2026-04-21 00:50+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: pt_PT\n"
@@ -54,8 +54,8 @@ msgstr ""
 "mensagem para que possa consultar mais tarde."
 
 #: core/form.php:124
-msgid "Thank you. We will be in touch shortly."
-msgstr "Obrigado. Entraremos em contacto brevemente."
+msgid "Thank you for reaching out. We'll be in touch soon."
+msgstr "Obrigado pela sua mensagem. Entraremos em breve em contacto consigo."
 
 #: core/form.php:126
 msgid "A copy of your message has been sent to your email address."
