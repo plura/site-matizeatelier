@@ -59,8 +59,8 @@
 }
 
 .hero__scroll svg {
-	height: 20px;
-	width: 20px;
+	height: var(--mtz-icon-md);
+	width: var(--mtz-icon-md);
 }
 
 .hero.is-intro-done .hero__scroll {

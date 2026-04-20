@@ -18,18 +18,30 @@ export function mtzAnimGalleryItems( items ) {
 	} );
 }
 
-// ── Page title reveal ─────────────────────────────────────────────────────────
-export function mtzAnimPageTitle( target ) {
+// ── Page header reveal (title + optional intro) ───────────────────────────────
+export function mtzAnimPageTitle() {
+	const target = document.querySelector( '.page-header__title' );
 	if ( ! target ) return;
 
 	document.fonts.ready.then( () => {
 		const split = SplitText.create( target, { type: 'words' } );
 		gsap.from( split.words, {
-			y:        24,
+			y:         24,
 			autoAlpha: 0,
 			stagger:   0.1,
-			ease:     'power2.out',
+			ease:      'power2.out',
 			duration:  0.7,
 		} );
+
+		const intro = target.closest( '.page-header' )?.querySelector( '.page-intro' );
+		if ( intro ) {
+			gsap.from( intro, {
+				autoAlpha: 0,
+				y:         16,
+				duration:  0.6,
+				delay:     0.4,
+				ease:      'power2.out',
+			} );
+		}
 	} );
 }

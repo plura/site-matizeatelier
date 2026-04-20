@@ -392,6 +392,11 @@
 	width: auto;
 }
 
+.site-footer__logo svg,
+.site-footer__logo svg * {
+	fill: currentColor;
+}
+
 /* ── Bottom bar ───────────────────────────────────────────────────────────── */
 
 .site-footer__bottom {

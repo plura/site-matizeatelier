@@ -23,12 +23,17 @@ if ( header ) {
 }
 
 // ── Page title animation ──────────────────────────────────────────────────────
-mtzAnimPageTitle( document.querySelector( '.page-header__title' ) );
+mtzAnimPageTitle();
 
 // ── Gallery ───────────────────────────────────────────────────────────────────
 mtzAnimGalleryItems( document.querySelectorAll( '.gallery__item' ) );
 if ( document.querySelector( '.gallery' ) ) {
 	import( './gallery.js' ).then( ( { mtzInitGallery } ) => mtzInitGallery() );
+}
+
+// ── Scroll animations (about, services) ──────────────────────────────────────
+if ( document.querySelector( '.content-section--split' ) ) {
+	import( './animations-scroll.js' ).then( ( { mtzAnimContentSections } ) => mtzAnimContentSections() );
 }
 
 // ── Home ──────────────────────────────────────────────────────────────────────

@@ -50,13 +50,13 @@ document.addEventListener( 'DOMContentLoaded', () => {
 		ease:          'power1.inOut',
 	} );
 
-	// 2. Dot slide-pop — starts near end of letter draw
+	// 2. Dot slide-pop — only after letters are fully filled in, with a short pause
 	tl.to( dot, {
 		opacity:  1,
 		scale:    1,
 		duration: 0.5,
 		ease:     'back.out(2)',
-	}, '-=0.4' );
+	}, '+=0.5' );
 
 	// 3. Atelier letters — alternate slide up/down into place
 	tl.to( atelierPaths, {
