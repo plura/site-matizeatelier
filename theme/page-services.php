@@ -28,16 +28,10 @@ $services = new WP_Query( [
 			$thumb_id    = get_post_thumbnail_id();
 			?>
 
-			<article class="content-section service-section">
+			<article class="content-section content-section--split service-section">
 				<div class="content-section__inner">
 
-					<?php if ( $thumb_id ) : ?>
-					<div class="content-section__media service-section__image">
-						<?php echo plura_wp_image( $thumb_id, 'large', [ 'class' => 'service-section__img' ] ); ?>
-					</div>
-					<?php endif; ?>
-
-					<div class="service-section__content">
+					<div class="content-section__body">
 						<h2 class="service-section__title section-header__title"><?php the_title(); ?></h2>
 
 						<?php if ( $tagline ) : ?>
@@ -53,6 +47,12 @@ $services = new WP_Query( [
 						<div class="service-section__cluster"><?php echo $cluster; ?></div>
 						<?php endif; ?>
 					</div>
+
+					<?php if ( $thumb_id ) : ?>
+					<div class="content-section__media service-section__image">
+						<?php echo plura_wp_image( $thumb_id, 'large', [ 'class' => 'service-section__img' ] ); ?>
+					</div>
+					<?php endif; ?>
 
 				</div>
 			</article>

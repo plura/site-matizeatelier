@@ -21,11 +21,11 @@ get_template_part( 'template-parts/page-header' ); ?>
 		$images = $data['images'] ?? [];
 	?>
 
-	<section class="content-section about-section about-section--<?php echo esc_attr( $key ); ?>">
+	<section class="content-section content-section--split about-section about-section--<?php echo esc_attr( $key ); ?>">
 		<div class="container">
 			<div class="content-section__inner">
 
-				<div class="about-section__text">
+				<div class="content-section__body">
 					<h2 class="about-section__title section-header__title"><?php echo esc_html( $section['title'] ); ?></h2>
 					<div class="section-body"><?php echo wp_kses_post( $text ); ?></div>
 				</div>

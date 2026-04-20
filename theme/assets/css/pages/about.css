@@ -1,28 +1,16 @@
 @charset "UTF-8";
 /* ─── About ──────────────────────────────────────────────────────────────────
    About page sections: text + image cluster, alternating sides.
-   Extends .content-section from components.css.
+   Alternating grid logic lives in components.css (.content-section).
    ─────────────────────────────────────────────────────────────────────────── */
 
 @media (min-width: 768px) {
-	.about-section .content-section__inner {
-		grid-template-columns: 7fr 5fr;
-	}
-
-	.about-section:nth-child(even) .content-section__inner {
-		grid-template-columns: 5fr 7fr;
-	}
-
-	.about-section:nth-child(even) .about-section__text {
-		order: 2;
+	.about-section__cluster {
+		position: sticky;
+		top: calc(var(--mtz-space-xl) * 2);
 	}
 
 	.about-section:nth-child(even) .about-section__cluster {
 		position: static;
-	}
-
-	.about-section__cluster {
-		position: sticky;
-		top: calc(var(--mtz-space-xl) * 2);
 	}
 }

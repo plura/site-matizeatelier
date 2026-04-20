@@ -4,11 +4,32 @@
    ─────────────────────────────────────────────────────────────────────────── */
 
 .page-header {
-	padding-block: var(--mtz-space-2xl) var(--mtz-space-xl);
+	padding-block: var(--mtz-space-2xl) var(--mtz-space-md);
+}
+
+@media (min-width: 768px) {
+	.page-header {
+		padding-block-end: var(--mtz-space-lg);
+	}
+}
+
+.page-header__inner {
+	min-height: 160px;
+}
+
+@media (min-width: 768px) {
+	.page-header__inner {
+		min-height: 200px;
+	}
 }
 
 .page-header__title {
 	font-weight: var(--mtz-weight-light);
+}
+
+.page-header .page-intro {
+	margin-block-end: 0;
+	margin-block-start: var(--mtz-space-sm);
 }
 
 /* ─── Page intro ─────────────────────────────────────────────────────────────
@@ -44,8 +65,28 @@
    whatever comes first in main so the gap is consistent across all pages.
    ─────────────────────────────────────────────────────────────────────────── */
 
-.site-main > *:first-child,
-.site-main > *:first-child > .container:first-child {
+/* ─── Alternating content sections ───────────────────────────────────────────
+   Default: body left (7fr) | media right (5fr).
+   Even: flip columns, push body to position 2.
+   Page-specific CSS can override per section type.
+   ─────────────────────────────────────────────────────────────────────────── */
+
+@media (min-width: 768px) {
+	.content-section--split .content-section__inner {
+		grid-template-columns: 7fr 5fr;
+	}
+
+	.content-section--split:nth-child(even) .content-section__inner {
+		grid-template-columns: 5fr 7fr;
+	}
+
+	.content-section--split:nth-child(even) .content-section__body {
+		order: 2;
+	}
+}
+
+.site-main > *:first-child:not(.content-section),
+.site-main > *:first-child:not(.content-section) > .container:first-child {
 	padding-block-start: 0;
 }
 

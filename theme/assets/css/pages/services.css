@@ -1,28 +1,29 @@
 @charset "UTF-8";
 /* ─── Services ───────────────────────────────────────────────────────────────
    Services page — direct template loop, one section per service.
-   Extends .content-section from components.css.
+   Alternating grid logic lives in components.css (.content-section).
    ─────────────────────────────────────────────────────────────────────────── */
 
 .services-section > .container {
 	padding-block: var(--mtz-space-2xl);
 }
 
+/* Services: image-left by default — inverse of the global body-first direction */
 @media (min-width: 768px) {
-	.service-section .content-section__inner {
+	.service-section.content-section--split .content-section__inner {
 		grid-template-columns: 5fr 7fr;
 	}
 
-	.service-section:nth-child(even) .content-section__inner {
-		grid-template-columns: 7fr 5fr;
-	}
-
-	.service-section:nth-child(even) .service-section__image {
+	.service-section.content-section--split .content-section__body {
 		order: 2;
 	}
 
-	.service-section:nth-child(even) .service-section__content {
-		order: 1;
+	.service-section.content-section--split:nth-child(even) .content-section__inner {
+		grid-template-columns: 7fr 5fr;
+	}
+
+	.service-section.content-section--split:nth-child(even) .content-section__body {
+		order: 0;
 	}
 }
 
