@@ -355,35 +355,3 @@
 	text-align: center;
 	text-transform: uppercase;
 }
-
-/* ─── Page content ───────────────────────────────────────────────────────────
-   Generic prose output for default page.php (e.g. Privacy Policy).
-   ─────────────────────────────────────────────────────────────────────────── */
-
-.page-content {
-	max-width: 720px;
-}
-
-.page-content h2,
-.page-content h3 {
-	font-weight: var(--mtz-weight-light);
-	margin-block: var(--mtz-space-xl) var(--mtz-space-sm);
-}
-
-.page-content p,
-.page-content li {
-	color: var(--mtz-color-muted);
-	font-size: var(--mtz-text-sm);
-	font-weight: var(--mtz-weight-light);
-	line-height: var(--mtz-leading-loose);
-}
-
-.page-content ul,
-.page-content ol {
-	margin-block: var(--mtz-space-sm);
-	padding-inline-start: var(--mtz-space-lg);
-}
-
-.page-content p + p {
-	margin-block-start: var(--mtz-space-sm);
-}
