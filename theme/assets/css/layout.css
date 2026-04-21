@@ -24,6 +24,7 @@
 }
 
 .page-header__title {
+	font-size: clamp( 3.5rem, 2rem + 4.27vw, 6rem );
 	font-weight: var(--mtz-weight-light);
 }
 

@@ -24,13 +24,13 @@ export function mtzAnimPageTitle() {
 	if ( ! target ) return;
 
 	document.fonts.ready.then( () => {
-		const split = SplitText.create( target, { type: 'words' } );
-		gsap.from( split.words, {
-			y:         24,
+		const split = SplitText.create( target, { type: 'chars' } );
+		gsap.from( split.chars, {
+			y:         12,
 			autoAlpha: 0,
-			stagger:   0.1,
+			stagger:   0.025,
 			ease:      'power2.out',
-			duration:  0.7,
+			duration:  0.5,
 		} );
 
 		const intro = target.closest( '.page-header' )?.querySelector( '.page-intro' );
