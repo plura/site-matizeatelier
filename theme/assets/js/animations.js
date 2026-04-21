@@ -24,18 +24,14 @@ export function mtzAnimPageTitle() {
 	if ( ! target ) return;
 
 	document.fonts.ready.then( () => {
-		const split = SplitText.create( target, { type: 'chars' } );
-		gsap.set( split.chars, {
-			yPercent: () => Math.random() > 0.5 ? 110 : -110,
-			opacity:  0,
-		} );
+		const split = SplitText.create( target, { type: 'words' } );
 		gsap.set( target, { visibility: 'visible' } );
-		gsap.to( split.chars, {
-			yPercent: 0,
-			opacity:  1,
-			duration: 0.7,
-			ease:     'power3.out',
-			stagger:  { each: 0.03, from: 'random' },
+		gsap.from( split.words, {
+			y:        20,
+			opacity:  0,
+			duration: 0.6,
+			ease:     'power2.out',
+			stagger:  0.08,
 		} );
 
 		const intro = target.closest( '.page-header' )?.querySelector( '.page-intro' );
