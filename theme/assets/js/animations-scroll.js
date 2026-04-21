@@ -3,7 +3,7 @@
 gsap.registerPlugin( ScrollTrigger );
 
 // ── Section header reveals ────────────────────────────────────────────────────
-// All .section-header__title and .title-intro elements on the page, regardless
+// All .section-header__title and .section-header__title-intro elements on the page, regardless
 // of whether they live inside a split section or a standalone block (e.g. Brands).
 export function mtzAnimSectionHeaders() {
 	ScrollTrigger.batch( '.section-header__title', {
@@ -17,7 +17,7 @@ export function mtzAnimSectionHeaders() {
 		} ),
 	} );
 
-	ScrollTrigger.batch( '.title-intro', {
+	ScrollTrigger.batch( '.section-header__title-intro', {
 		start: 'top 85%',
 		onEnter: batch => gsap.from( batch, {
 			autoAlpha: 0,
