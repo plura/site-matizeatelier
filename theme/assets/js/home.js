@@ -27,7 +27,7 @@ function initScrollSection( stage, itemSelector, buildTimeline, hold = true ) {
 }
 
 // ── Statements ────────────────────────────────────────────────────────────────
-export function mtzInitStatements() {
+function mtzInitStatements() {
 	initScrollSection(
 		document.querySelector( '.home-statement' ),
 		'.home-statement__item',
@@ -41,7 +41,7 @@ export function mtzInitStatements() {
 }
 
 // ── Mood gallery ──────────────────────────────────────────────────────────────
-export function mtzInitMood() {
+function mtzInitMood() {
 	const STEP      = { x: 7, y: 5 };
 	const DEPTH_ROT = [ 0, 0.4, 0.7, 0.5, 0.6 ];
 
