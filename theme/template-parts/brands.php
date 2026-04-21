@@ -3,7 +3,7 @@ $html = plura_wp_posts(
 	type:      'mtz_brand',
 	orderby:   'menu_order',
 	order:     'ASC',
-	class:     'brands__grid',
+	class:     'brands__grid grid',
 	wrap:      true,
 	link:      1,
 	read_more: false,

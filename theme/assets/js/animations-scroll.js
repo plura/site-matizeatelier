@@ -28,6 +28,21 @@ export function mtzAnimSectionHeaders() {
 	} );
 }
 
+// ── Grid items reveal ─────────────────────────────────────────────────────────
+// Any element with .grid — children stagger in on scroll.
+export function mtzAnimGridItems() {
+	ScrollTrigger.batch( '.grid > *', {
+		start: 'top 90%',
+		onEnter: batch => gsap.from( batch, {
+			autoAlpha: 0,
+			y:         20,
+			stagger:   0.08,
+			duration:  0.5,
+			ease:      'power2.out',
+		} ),
+	} );
+}
+
 export function mtzAnimContentSections() {
 	const sections = document.querySelectorAll( '.content-section--split' );
 	if ( ! sections.length ) return;
