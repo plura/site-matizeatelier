@@ -27,7 +27,7 @@ get_template_part( 'template-parts/page-header' ); ?>
 
 				<div class="content-section__body">
 					<h2 class="about-section__title section-header__title"><?php echo esc_html( $section['title'] ); ?></h2>
-					<div class="section-body"><?php echo wp_kses_post( $text ); ?></div>
+					<div class="section-body prose"><?php echo wp_kses_post( $text ); ?></div>
 				</div>
 
 				<?php $cluster = mtz_gallery_cluster( $images ); ?>
