@@ -25,13 +25,17 @@ export function mtzAnimPageTitle() {
 
 	document.fonts.ready.then( () => {
 		const split = SplitText.create( target, { type: 'chars' } );
+		gsap.set( split.chars, {
+			yPercent: () => Math.random() > 0.5 ? 110 : -110,
+			opacity:  0,
+		} );
 		gsap.set( target, { visibility: 'visible' } );
-		gsap.from( split.chars, {
-			y:         () => Math.random() > 0.5 ? 16 : -16,
-			autoAlpha: 0,
-			stagger:   0.025,
-			ease:      'power2.out',
-			duration:  0.5,
+		gsap.to( split.chars, {
+			yPercent: 0,
+			opacity:  1,
+			duration: 0.7,
+			ease:     'power3.out',
+			stagger:  { each: 0.03, from: 'random' },
 		} );
 
 		const intro = target.closest( '.page-header' )?.querySelector( '.page-intro' );
