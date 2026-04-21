@@ -6,7 +6,7 @@ get_template_part( 'template-parts/page-header' ); ?>
 	<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
 	<section class="content-section">
 		<div class="container">
-			<div class="section-body">
+			<div class="section-body prose">
 				<?php the_content(); ?>
 			</div>
 		</div>

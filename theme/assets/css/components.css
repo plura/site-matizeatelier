@@ -355,3 +355,24 @@
 	text-align: center;
 	text-transform: uppercase;
 }
+
+/* ─── Prose ──────────────────────────────────────────────────────────────────
+   Rich-text wrapper for the_content() output. Restores spacing stripped by
+   the universal reset.
+   ─────────────────────────────────────────────────────────────────────────── */
+
+.prose p + p {
+	margin-block-start: var(--mtz-space-sm);
+}
+
+.prose ul,
+.prose ol {
+	margin-block: var(--mtz-space-sm);
+	padding-inline-start: var(--mtz-space-lg);
+}
+
+.prose h2,
+.prose h3 {
+	font-weight: var(--mtz-weight-light);
+	margin-block: var(--mtz-space-xl) var(--mtz-space-sm);
+}
