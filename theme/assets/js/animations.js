@@ -25,6 +25,7 @@ export function mtzAnimPageTitle() {
 
 	document.fonts.ready.then( () => {
 		const split = SplitText.create( target, { type: 'chars' } );
+		gsap.set( target, { visibility: 'visible' } );
 		gsap.from( split.chars, {
 			y:         () => Math.random() > 0.5 ? 16 : -16,
 			autoAlpha: 0,
