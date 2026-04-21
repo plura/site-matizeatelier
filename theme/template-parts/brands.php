@@ -20,7 +20,7 @@ $intro = get_field( 'mtz_services_brands_intro' );
 		<header class="section-header">
 			<h2 class="section-header__title"><?php esc_html_e( 'Brands', 'matize' ); ?></h2>
 			<?php if ( $intro ) : ?>
-			<p class="page-intro"><?php echo esc_html( wp_strip_all_tags( $intro ) ); ?></p>
+			<p class="page-intro title-intro"><?php echo esc_html( wp_strip_all_tags( $intro ) ); ?></p>
 			<?php endif; ?>
 		</header>
 		<?php echo $html; ?>

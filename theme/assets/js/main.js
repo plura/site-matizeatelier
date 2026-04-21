@@ -31,8 +31,8 @@ if ( document.querySelector( '.gallery' ) ) {
 	import( './gallery.js' ).then( ( { mtzInitGallery } ) => mtzInitGallery() );
 }
 
-// ── Scroll animations (about, services) ──────────────────────────────────────
-if ( document.querySelector( '.content-section--split' ) ) {
+// ── Scroll animations ─────────────────────────────────────────────────────────
+if ( document.querySelector( '.section-header__title, .content-section--split' ) ) {
 	import( './animations-scroll.js' ).then( ( { mtzAnimContentSections } ) => mtzAnimContentSections() );
 }
 

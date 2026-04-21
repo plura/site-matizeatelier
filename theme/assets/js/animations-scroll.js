@@ -4,6 +4,31 @@ gsap.registerPlugin( ScrollTrigger );
 
 export function mtzAnimContentSections() {
 	const sections = document.querySelectorAll( '.content-section--split' );
+
+	// ── Global section-header reveals ─────────────────────────────────────────
+	// Covers all section titles + their .title-intro companions, including
+	// standalone sections (e.g. Brands) not inside .content-section--split.
+	ScrollTrigger.batch( '.section-header__title', {
+		start: 'top 85%',
+		onEnter: batch => gsap.from( batch, {
+			autoAlpha: 0,
+			y:         24,
+			stagger:   0.08,
+			duration:  0.7,
+			ease:      'power2.out',
+		} ),
+	} );
+
+	ScrollTrigger.batch( '.title-intro', {
+		start: 'top 85%',
+		onEnter: batch => gsap.from( batch, {
+			autoAlpha: 0,
+			y:         16,
+			duration:  0.6,
+			ease:      'power2.out',
+		} ),
+	} );
+
 	if ( ! sections.length ) return;
 
 	// Horizontal slide only makes sense in a two-column layout
@@ -16,31 +41,19 @@ export function mtzAnimContentSections() {
 		const clusterImgs = media?.querySelectorAll( '.gallery-cluster__img' );
 		const hasCluster  = !! clusterImgs?.length;
 
-		// Shared trigger — all animations in a section share the same start point
+		// Shared trigger — media animations use the same start point
 		const trigger = {
 			trigger:       section,
 			start:         'top 78%',
 			toggleActions: 'play none none none',
 		};
 
-		// Title slides up and fades in first
-		if ( title ) {
-			gsap.from( title, {
-				autoAlpha: 0,
-				y:         30,
-				duration:  0.7,
-				ease:      'power2.out',
-				scrollTrigger: trigger,
-			} );
-		}
-
-		// Body follows with a short delay so it sequences after the title
+		// Body fades in (title is handled by the global section-header batch above)
 		if ( body ) {
 			gsap.from( body, {
 				autoAlpha: 0,
 				y:         20,
 				duration:  0.7,
-				delay:     0.15,
 				ease:      'power2.out',
 				scrollTrigger: trigger,
 			} );
