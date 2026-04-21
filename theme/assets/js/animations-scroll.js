@@ -2,12 +2,10 @@
 
 gsap.registerPlugin( ScrollTrigger );
 
-export function mtzAnimContentSections() {
-	const sections = document.querySelectorAll( '.content-section--split' );
-
-	// ── Global section-header reveals ─────────────────────────────────────────
-	// Covers all section titles + their .title-intro companions, including
-	// standalone sections (e.g. Brands) not inside .content-section--split.
+// ── Section header reveals ────────────────────────────────────────────────────
+// All .section-header__title and .title-intro elements on the page, regardless
+// of whether they live inside a split section or a standalone block (e.g. Brands).
+export function mtzAnimSectionHeaders() {
 	ScrollTrigger.batch( '.section-header__title', {
 		start: 'top 85%',
 		onEnter: batch => gsap.from( batch, {
@@ -28,14 +26,16 @@ export function mtzAnimContentSections() {
 			ease:      'power2.out',
 		} ),
 	} );
+}
 
+export function mtzAnimContentSections() {
+	const sections = document.querySelectorAll( '.content-section--split' );
 	if ( ! sections.length ) return;
 
 	// Horizontal slide only makes sense in a two-column layout
 	const isDesktop = window.innerWidth >= 768;
 
 	sections.forEach( section => {
-		const title       = section.querySelector( '.section-header__title' );
 		const body        = section.querySelector( '.section-body' );
 		const media       = section.querySelector( '.content-section__media' );
 		const clusterImgs = media?.querySelectorAll( '.gallery-cluster__img' );

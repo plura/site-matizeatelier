@@ -33,7 +33,10 @@ if ( document.querySelector( '.gallery' ) ) {
 
 // ── Scroll animations ─────────────────────────────────────────────────────────
 if ( document.querySelector( '.section-header__title, .content-section--split' ) ) {
-	import( './animations-scroll.js' ).then( ( { mtzAnimContentSections } ) => mtzAnimContentSections() );
+	import( './animations-scroll.js' ).then( ( { mtzAnimSectionHeaders, mtzAnimContentSections } ) => {
+		mtzAnimSectionHeaders();
+		mtzAnimContentSections();
+	} );
 }
 
 // ── Home ──────────────────────────────────────────────────────────────────────
