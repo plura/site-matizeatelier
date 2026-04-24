@@ -1,0 +1,65 @@
+[
+    {
+        "name": "Matize — Placeholder",
+        "context": "placeholder",
+        "host": "",
+        "protocol": "ftp",
+        "port": 21,
+        "username": "",
+        "password": "",
+        "remotePath": "/public_html/",
+        "uploadOnSave": false,
+        "useTempFile": false,
+        "openSsh": false,
+        "secure": true,
+        "secureOptions": {
+            "rejectUnauthorized": false
+        },
+        "syncOption": {
+            "delete": false
+        },
+        "ignore": [".gitkeep", ".git", ".gitignore", ".claude"]
+    },
+    {
+        "name": "Matize — Theme",
+        "context": "theme",
+        "host": "",
+        "protocol": "ftp",
+        "port": 21,
+        "username": "",
+        "password": "",
+        "remotePath": "/public_html/wp/wp-content/themes/matize/",
+        "uploadOnSave": false,
+        "useTempFile": false,
+        "openSsh": false,
+        "secure": true,
+        "secureOptions": {
+            "rejectUnauthorized": false
+        },
+        "syncOption": {
+            "delete": true
+        },
+        "ignore": [".gitkeep", ".git", ".gitignore", ".claude", "stubs"]
+    },
+    {
+        "name": "Matize — Plugin",
+        "context": "plugin",
+        "host": "",
+        "protocol": "ftp",
+        "port": 21,
+        "username": "",
+        "password": "",
+        "remotePath": "/public_html/wp/wp-content/plugins/matize/",
+        "uploadOnSave": false,
+        "useTempFile": false,
+        "openSsh": false,
+        "secure": true,
+        "secureOptions": {
+            "rejectUnauthorized": false
+        },
+        "syncOption": {
+            "delete": true
+        },
+        "ignore": [".gitkeep", ".git", ".gitignore", ".claude"]
+    }
+]
