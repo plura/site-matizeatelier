@@ -1,3 +1,4 @@
+.claude/
 .vscode/*
 !.vscode/settings.json
 !.vscode/sftp.json.example
