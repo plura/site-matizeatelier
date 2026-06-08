@@ -373,6 +373,6 @@
 
 .prose h2,
 .prose h3 {
-	font-weight: var(--mtz-weight-light);
+	/* weight inherits base hierarchy: h2 Bold (H01), h3 Regular (Section) */
 	margin-block: var(--mtz-space-xl) var(--mtz-space-sm);
 }

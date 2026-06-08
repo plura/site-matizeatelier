@@ -68,11 +68,12 @@
 	--mtz-leading-normal: 1.6;
 	--mtz-leading-loose:  1.8;
 
-	/* Letter spacing — caps get wide tracking per brand manual (display .18, caps labels/sections .28) */
+	/* Letter spacing — three caps tracking steps per brand manual */
 	--mtz-tracking-tight:  -0.01em;
 	--mtz-tracking-normal:  0;
 	--mtz-tracking-body:    0.01em; /* body / lead text */
-	--mtz-tracking-wide:    0.18em; /* display, h1/h2 */
+	--mtz-tracking-wide:    0.18em; /* display (h1) */
+	--mtz-tracking-h01:     0.22em; /* heading 01 (h2) */
 	--mtz-tracking-wider:   0.28em; /* sections, caps labels, captions */
 
 	/* ── Colour palette ──────────────────────────────────────────────────────
@@ -210,7 +211,7 @@ ul, ol {
 }
 
 /* Headings — Vinila Extended, caps-only per the brand manual.
-   Display/H01 (h1/h2): Bold, tracking .18 · Sections (h3/h4): Regular, tracking .28 */
+   Display (h1) Bold .18 · Heading 01 (h2) Bold .22 · Sections (h3+) Regular .28 */
 h1, h2, h3, h4, h5, h6 {
 	font-family: var(--mtz-font-heading);
 	font-weight: var(--mtz-weight-bold);
@@ -220,7 +221,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 { font-size: var(--mtz-text-3xl); }
-h2 { font-size: var(--mtz-text-2xl); }
+h2 { font-size: var(--mtz-text-2xl); letter-spacing: var(--mtz-tracking-h01); }
 
 h3, h4, h5, h6 {
 	font-weight: var(--mtz-weight-regular);
@@ -229,6 +230,14 @@ h3, h4, h5, h6 {
 
 h3 { font-size: var(--mtz-text-xl);  }
 h4 { font-size: var(--mtz-text-lg);  }
+
+/* Lead paragraph — Vinila Bold, lowercase, brand manual 15-16pt level */
+.lead {
+	font-size: var(--mtz-text-lg);
+	font-weight: var(--mtz-weight-bold);
+	letter-spacing: var(--mtz-tracking-body);
+	line-height: var(--mtz-leading-snug);
+}
 
 
 /* ─── Containers ─────────────────────────────────────────────────────────────
