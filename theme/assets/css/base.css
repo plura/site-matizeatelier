@@ -1,9 +1,40 @@
 @charset "UTF-8";
-/* ─── Google Fonts ───────────────────────────────────────────────────────────
-   Cormorant Garamond: 300, 300i, 400, 400i, 500
-   Lora: 400, 400i, 500
+/* ─── Fonts ───────────────────────────────────────────────────────────────────
+   Vinila (Plau) — self-hosted woff2. Brand manual uses two cuts:
+     Vinila Extended → titles, tagline, display (caps)   · Regular 400, Bold 700
+     Vinila          → body, captions, UI                · Regular 400, Bold 700
+   The manual specs a "Semibold" lead weight that doesn't exist in the family;
+   Bold (700) stands in for it.
+   ⚠ Placeholder files — replace with the licensed web package before go-live.
    ─────────────────────────────────────────────────────────────────────────── */
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap');
+@font-face {
+	font-family: 'Vinila';
+	src: url('../fonts/vinila/vinila-regular.woff2') format('woff2');
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
+}
+@font-face {
+	font-family: 'Vinila';
+	src: url('../fonts/vinila/vinila-bold.woff2') format('woff2');
+	font-weight: 700;
+	font-style: normal;
+	font-display: swap;
+}
+@font-face {
+	font-family: 'Vinila Extended';
+	src: url('../fonts/vinila/vinila-extended-regular.woff2') format('woff2');
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
+}
+@font-face {
+	font-family: 'Vinila Extended';
+	src: url('../fonts/vinila/vinila-extended-bold.woff2') format('woff2');
+	font-weight: 700;
+	font-style: normal;
+	font-display: swap;
+}
 
 
 /* ─── Tokens ─────────────────────────────────────────────────────────────────
@@ -12,8 +43,8 @@
 :root {
 
 	/* Fonts */
-	--mtz-font-heading: 'Cormorant Garamond', Georgia, serif;
-	--mtz-font-body:    'Jost', system-ui, sans-serif;
+	--mtz-font-heading: 'Vinila Extended', 'Arial Narrow', system-ui, sans-serif;
+	--mtz-font-body:    'Vinila', system-ui, sans-serif;
 
 	/* Type scale — clamp(min, preferred, max) across 375px → 1440px */
 	--mtz-text-xs:   clamp(0.6875rem, 0.65rem + 0.2vw,  0.8125rem); /* ~11→13px */
@@ -24,10 +55,12 @@
 	--mtz-text-2xl:  clamp(2rem,     1.5rem  + 2.14vw, 3.5rem);     /* ~32→56px */
 	--mtz-text-3xl:  clamp(3rem,     2rem    + 4.27vw, 6rem);       /* ~48→96px */
 
-	/* Font weights */
-	--mtz-weight-light:   300;
+	/* Font weights — Vinila ships only Regular (400) and Bold (700) in our set.
+	   Legacy token names kept to avoid churn; values remapped to real weights. */
+	--mtz-weight-light:   400; /* no light cut — falls to Regular */
 	--mtz-weight-regular: 400;
-	--mtz-weight-medium:  500;
+	--mtz-weight-medium:  700; /* no medium cut — maps to Bold */
+	--mtz-weight-bold:    700;
 
 	/* Line heights */
 	--mtz-leading-tight:  1.1;
