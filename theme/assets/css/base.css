@@ -68,26 +68,37 @@
 	--mtz-leading-normal: 1.6;
 	--mtz-leading-loose:  1.8;
 
-	/* Letter spacing */
-	--mtz-tracking-tight:  -0.02em;
+	/* Letter spacing — caps get wide tracking per brand manual (display .18, caps labels/sections .28) */
+	--mtz-tracking-tight:  -0.01em;
 	--mtz-tracking-normal:  0;
-	--mtz-tracking-wide:    0.08em;
-	--mtz-tracking-wider:   0.15em;
+	--mtz-tracking-body:    0.01em; /* body / lead text */
+	--mtz-tracking-wide:    0.18em; /* display, h1/h2 */
+	--mtz-tracking-wider:   0.28em; /* sections, caps labels, captions */
 
-	/* ── Colour palette ──────────────────────────────────────────────────── */
+	/* ── Colour palette ──────────────────────────────────────────────────────
+	   Matize brand manual v1.0. Logo is strictly black/white; the four accents
+	   are context/support only — never the logo colour.
+	   Legacy token names (linen/charcoal/teal) kept to avoid ref churn.
+	   ─────────────────────────────────────────────────────────────────────── */
 
-	/* Raw palette */
-	--mtz-color-linen:      #F5F0EA;
-	--mtz-color-charcoal:   #2A2420;
-	--mtz-color-greige:     #9E948A;
-	--mtz-color-terracotta: #B85C38;
-	--mtz-color-teal:       #4A7080;
+	/* Base */
+	--mtz-color-charcoal:   #0A0907;  /* brand "preto" — text, positive logo   */
+	--mtz-color-linen:      #F5F2EA;  /* brand paper — page bg, negative logo   */
+	--mtz-color-offwhite:   #E1D7BE;  /* brand off-white base — panel/surface   */
+	--mtz-color-greige:     #8A8275;  /* derived warm neutral — muted, borders  */
+
+	/* Accents — support only, never the logo */
+	--mtz-color-coral:      #EC6F63;  /* accent 01 */
+	--mtz-color-sage:       #6E9969;  /* accent 02 */
+	--mtz-color-gold:       #DA8300;  /* accent 03 */
+	--mtz-color-teal:       #7FB8A4;  /* accent 04 */
 
 	/* Semantic roles */
 	--mtz-color-bg:         var(--mtz-color-linen);
+	--mtz-color-surface:    var(--mtz-color-offwhite);
 	--mtz-color-text:       var(--mtz-color-charcoal);
 	--mtz-color-muted:      var(--mtz-color-greige);
-	--mtz-color-accent:     var(--mtz-color-terracotta);
+	--mtz-color-accent:     var(--mtz-color-coral);
 	--mtz-color-accent-alt: var(--mtz-color-teal);
 }
 
@@ -169,6 +180,7 @@ body {
 	font-family: var(--mtz-font-body);
 	font-size: var(--mtz-text-base);
 	font-weight: var(--mtz-weight-regular);
+	letter-spacing: var(--mtz-tracking-body);
 	line-height: var(--mtz-leading-normal);
 }
 
@@ -197,14 +209,24 @@ ul, ol {
 	list-style: none;
 }
 
+/* Headings — Vinila Extended, caps-only per the brand manual.
+   Display/H01 (h1/h2): Bold, tracking .18 · Sections (h3/h4): Regular, tracking .28 */
 h1, h2, h3, h4, h5, h6 {
 	font-family: var(--mtz-font-heading);
-	font-weight: var(--mtz-weight-light);
+	font-weight: var(--mtz-weight-bold);
+	letter-spacing: var(--mtz-tracking-wide);
 	line-height: var(--mtz-leading-tight);
+	text-transform: uppercase;
 }
 
 h1 { font-size: var(--mtz-text-3xl); }
 h2 { font-size: var(--mtz-text-2xl); }
+
+h3, h4, h5, h6 {
+	font-weight: var(--mtz-weight-regular);
+	letter-spacing: var(--mtz-tracking-wider);
+}
+
 h3 { font-size: var(--mtz-text-xl);  }
 h4 { font-size: var(--mtz-text-lg);  }
 
