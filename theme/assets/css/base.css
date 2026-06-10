@@ -125,6 +125,26 @@
 	--mtz-color-border: var(--mtz-color-offwhite-30);
 }
 
+/* ─── Page background overrides ──────────────────────────────────────────────
+   Set via ACF field 'mtz_page_bg' → data-mtz-bg attribute on <body>.
+   Accent colours: only bg changes (charcoal text reads on all mid-tones).
+   Charcoal: full dark context flip, same pattern as footer / header-over-hero.
+   ─────────────────────────────────────────────────────────────────────────── */
+
+body[data-mtz-bg="coral"]    { --mtz-color-bg: var(--mtz-color-coral);    background-color: var(--mtz-color-bg); }
+body[data-mtz-bg="sage"]     { --mtz-color-bg: var(--mtz-color-sage);     background-color: var(--mtz-color-bg); }
+body[data-mtz-bg="gold"]     { --mtz-color-bg: var(--mtz-color-gold);     background-color: var(--mtz-color-bg); }
+body[data-mtz-bg="teal"]     { --mtz-color-bg: var(--mtz-color-teal);     background-color: var(--mtz-color-bg); }
+
+body[data-mtz-bg="charcoal"] {
+	--mtz-color-bg:     var(--mtz-color-charcoal);
+	--mtz-color-text:   var(--mtz-color-offwhite);
+	--mtz-color-muted:  var(--mtz-color-offwhite-60);
+	--mtz-color-border: var(--mtz-color-offwhite-30);
+	background-color: var(--mtz-color-bg);
+	color: var(--mtz-color-text);
+}
+
 :root {
 
 	/* ── Spacing scale ───────────────────────────────────────────────────── */

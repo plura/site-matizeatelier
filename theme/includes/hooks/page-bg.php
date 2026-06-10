@@ -3,24 +3,12 @@
 // ── Per-page background colour ────────────────────────────────────────────────
 //
 // ACF select field 'mtz_page_bg' — field group defined in theme/acf-json/.
-// Outputs an inline <style> on wp_head that overrides --mtz-color-bg on <body>.
-// Charcoal also flips text/muted/border tokens (same as footer dark context).
+// Outputs a data-mtz-bg attribute on <body> (called from header.php).
+// CSS in base.css handles all visual consequences via body[data-mtz-bg="…"].
 
-add_action( 'wp_head', function (): void {
-
+function mtz_body_bg_attr(): void {
 	if ( ! is_singular() ) return;
-
 	$color = get_field( 'mtz_page_bg' );
-
 	if ( ! $color || $color === 'offwhite' ) return;
-
-	if ( $color === 'charcoal' ) {
-		// Dark background — flip all semantic tokens like the footer/header-over-hero.
-		echo '<style>body{--mtz-color-bg:var(--mtz-color-charcoal);--mtz-color-text:var(--mtz-color-offwhite);--mtz-color-muted:var(--mtz-color-offwhite-60);--mtz-color-border:var(--mtz-color-offwhite-30);background-color:var(--mtz-color-bg);color:var(--mtz-color-text)}</style>';
-		return;
-	}
-
-	// Accent colours (coral/sage/gold/teal) — charcoal text reads fine on all of them.
-	echo '<style>body{--mtz-color-bg:var(--mtz-color-' . esc_attr( $color ) . ');background-color:var(--mtz-color-bg)}</style>';
-
-} );
+	echo ' data-mtz-bg="' . esc_attr( $color ) . '"';
+}
