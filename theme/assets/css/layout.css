@@ -122,8 +122,10 @@
 
 /* Floating over hero — dark tokens + fixed so hero is truly fullscreen; no JS needed */
 :has(.hero) .site-header:not(.is-scrolled) {
-	--mtz-color-bg:   var(--mtz-color-charcoal);
-	--mtz-color-text: var(--mtz-color-offwhite);
+	--mtz-color-bg:     var(--mtz-color-charcoal);
+	--mtz-color-text:   var(--mtz-color-offwhite);
+	--mtz-color-muted:  var(--mtz-color-offwhite-60);
+	--mtz-color-border: var(--mtz-color-offwhite-30);
 	left: 0;
 	position: fixed;
 	right: 0;
@@ -362,8 +364,10 @@
    ─────────────────────────────────────────────────────────────────────────── */
 
 .site-footer {
-	--mtz-color-bg:   var(--mtz-color-charcoal, #0A0907);
-	--mtz-color-text: var(--mtz-color-offwhite, #E1D7BE);
+	--mtz-color-bg:     var(--mtz-color-charcoal, #0A0907);
+	--mtz-color-text:   var(--mtz-color-offwhite, #E1D7BE);
+	--mtz-color-muted:  var(--mtz-color-offwhite-60);
+	--mtz-color-border: var(--mtz-color-offwhite-30);
 	background-color: var(--mtz-color-bg);
 	color: var(--mtz-color-text);
 	padding-block: var(--mtz-space-2xl) var(--mtz-space-xl);

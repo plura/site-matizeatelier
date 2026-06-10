@@ -107,12 +107,14 @@
 	--mtz-color-teal-60:     color-mix(in srgb, var(--mtz-color-teal) 60%, transparent);
 	--mtz-color-teal-30:     color-mix(in srgb, var(--mtz-color-teal) 30%, transparent);
 
-	/* Semantic roles. muted = text @ 60%, border = text @ 30% — only the allowed
-	   tint levels, and context-adaptive (Preto tints on light, Off-white on dark). */
+	/* Semantic roles. muted/border point at the FIXED Preto tint tokens (60/30).
+	   They must be re-pointed at the Off-white tints in dark contexts — a token
+	   referencing var(--mtz-color-text) would NOT re-resolve there (custom props
+	   resolve at their declaring scope, i.e. :root). */
 	--mtz-color-bg:         var(--mtz-color-offwhite);
 	--mtz-color-text:       var(--mtz-color-charcoal);
-	--mtz-color-muted:      color-mix(in srgb, var(--mtz-color-text) 60%, transparent);
-	--mtz-color-border:     color-mix(in srgb, var(--mtz-color-text) 30%, transparent);
+	--mtz-color-muted:      var(--mtz-color-charcoal-60);
+	--mtz-color-border:     var(--mtz-color-charcoal-30);
 	--mtz-color-accent:     var(--mtz-color-coral);
 	--mtz-color-accent-alt: var(--mtz-color-teal);
 }
@@ -123,9 +125,10 @@
    ─────────────────────────────────────────────────────────────────────────── */
 [data-theme="dark"],
 .dark-mode {
-	--mtz-color-bg:   var(--mtz-color-charcoal);
-	--mtz-color-text: var(--mtz-color-offwhite);
-	/* muted/border re-derive automatically from the flipped text/bg */
+	--mtz-color-bg:     var(--mtz-color-charcoal);
+	--mtz-color-text:   var(--mtz-color-offwhite);
+	--mtz-color-muted:  var(--mtz-color-offwhite-60);
+	--mtz-color-border: var(--mtz-color-offwhite-30);
 }
 
 :root {
