@@ -107,13 +107,12 @@
 	--mtz-color-teal-60:     color-mix(in srgb, var(--mtz-color-teal) 60%, transparent);
 	--mtz-color-teal-30:     color-mix(in srgb, var(--mtz-color-teal) 30%, transparent);
 
-	/* Semantic roles. muted/border derive from text+bg so they auto-adapt to
-	   light or dark context as Preto/Off-white tints — no grey, no per-context overrides. */
+	/* Semantic roles. muted = text @ 60%, border = text @ 30% — only the allowed
+	   tint levels, and context-adaptive (Preto tints on light, Off-white on dark). */
 	--mtz-color-bg:         var(--mtz-color-offwhite);
-	--mtz-color-surface:    color-mix(in srgb, var(--mtz-color-charcoal) 6%, var(--mtz-color-offwhite));
 	--mtz-color-text:       var(--mtz-color-charcoal);
-	--mtz-color-muted:      color-mix(in srgb, var(--mtz-color-text) 48%, var(--mtz-color-bg));
-	--mtz-color-border:     color-mix(in srgb, var(--mtz-color-text) 20%, transparent);
+	--mtz-color-muted:      color-mix(in srgb, var(--mtz-color-text) 60%, transparent);
+	--mtz-color-border:     color-mix(in srgb, var(--mtz-color-text) 30%, transparent);
 	--mtz-color-accent:     var(--mtz-color-coral);
 	--mtz-color-accent-alt: var(--mtz-color-teal);
 }
