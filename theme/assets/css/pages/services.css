@@ -37,7 +37,9 @@
 @media (min-width: 768px) {
 	.service-section__img {
 		aspect-ratio: 3 / 4;
-		height: 100%;
+		/* size from column width (5fr) + aspect — identical in both alternations.
+		   No height:100% here: the grid is align-items:start, so a percentage
+		   height has no basis and would collapse the image (and its width). */
 	}
 }
 
