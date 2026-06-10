@@ -25,7 +25,7 @@
 	<?php /* ── Statement ────────────────────────────────────────────────── */ ?>
 	<?php $statements = get_field( 'mtz_home_statements' ); ?>
 	<?php if ( $statements ) : ?>
-		<section class="home-statement">
+		<section class="home-statement" data-mtz-bg="gold">
 			<div class="home-statement__stage">
 				<?php foreach ( $statements as $i => $item ) : ?>
 					<div class="home-statement__item" <?php if ( $i === 0 ) echo 'aria-hidden="false"'; else echo 'aria-hidden="true"'; ?>>
@@ -44,7 +44,7 @@
 	<?php /* ── Mood gallery ─────────────────────────────────────────────── */ ?>
 	<?php $mood = get_field( 'mtz_home_mood' ); ?>
 	<?php if ( ! empty( $mood['gallery'] ) ) : ?>
-		<section class="mood-gallery">
+		<section class="mood-gallery" data-mtz-bg="sage">
 			<div class="mood-gallery__layout">
 				<div class="mood-gallery__col--text">
 					<?php if ( $mood['text'] ) : ?>
