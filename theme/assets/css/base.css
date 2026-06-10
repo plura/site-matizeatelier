@@ -149,6 +149,7 @@ body[data-mtz-bg="charcoal"] {
    coloured pages — mirrors the hero dark context. Since --mtz-color-text is
    already context-aware (offwhite on charcoal, charcoal otherwise), one rule
    covers all six backgrounds. */
+body[data-mtz-bg] .site-nav__list .current-menu-item:not(.wpml-ls-item) > a,
 body[data-mtz-bg] .site-nav__list a.mtz-active  { color: var(--mtz-color-text); }
 body[data-mtz-bg] .site-nav__indicator           { background-color: var(--mtz-color-text); }
 
