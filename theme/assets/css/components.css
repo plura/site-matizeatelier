@@ -43,10 +43,10 @@
 .contact-info {
 	display: flex;
 	flex-direction: column;
-	font-size: var(--mtz-text-xs);
+	font-size: var(--mtz-text-caption);
 	font-style: normal;
-	font-weight: var(--mtz-weight-light);
-	letter-spacing: var(--mtz-tracking-wider);
+	font-weight: var(--mtz-weight-regular);
+	letter-spacing: var(--mtz-tracking-caps);
 	text-transform: uppercase;
 }
 
@@ -131,10 +131,10 @@
 	cursor: pointer;
 	display: inline-flex;
 	font-family: var(--mtz-font-body);
-	font-size: var(--mtz-text-xs);
-	font-weight: var(--mtz-weight-light);
+	font-size: var(--mtz-text-caption);
+	font-weight: var(--mtz-weight-regular);
 	gap: var(--mtz-space-xs);
-	letter-spacing: var(--mtz-tracking-wider);
+	letter-spacing: var(--mtz-tracking-caps);
 	padding: var(--mtz-space-sm) var(--mtz-space-md);
 	text-transform: uppercase;
 	transition: background-color var(--mtz-transition);
@@ -348,9 +348,9 @@
 }
 
 .brands__grid .plura-wp-post-title {
-	font-size: var(--mtz-text-xs);
-	font-weight: var(--mtz-weight-light);
-	letter-spacing: var(--mtz-tracking-wider);
+	font-size: var(--mtz-text-caption);
+	font-weight: var(--mtz-weight-regular);
+	letter-spacing: var(--mtz-tracking-caps);
 	text-align: center;
 	text-transform: uppercase;
 }

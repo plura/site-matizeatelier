@@ -54,9 +54,9 @@
 
 .service-section__tagline {
 	color: var(--mtz-color-accent);
-	font-size: var(--mtz-text-xs);
-	font-weight: var(--mtz-weight-light);
-	letter-spacing: var(--mtz-tracking-wider);
+	font-size: var(--mtz-text-caption);
+	font-weight: var(--mtz-weight-regular);
+	letter-spacing: var(--mtz-tracking-caps);
 	margin-top: var(--mtz-space-xs);
 	text-transform: uppercase;
 }

@@ -17,9 +17,9 @@
 
 .mtz-form__field > :first-child {
 	color: var(--mtz-color-muted);
-	font-size: var(--mtz-text-xs);
-	font-weight: var(--mtz-weight-light);
-	letter-spacing: var(--mtz-tracking-wider);
+	font-size: var(--mtz-text-caption);
+	font-weight: var(--mtz-weight-regular);
+	letter-spacing: var(--mtz-tracking-caps);
 	text-transform: uppercase;
 }
 
@@ -40,8 +40,8 @@
 	border-radius: 0;
 	color: var(--mtz-color-text);
 	font-family: var(--mtz-font-body);
-	font-size: var(--mtz-text-base);
-	font-weight: var(--mtz-weight-light);
+	font-size: var(--mtz-text-body);
+	font-weight: var(--mtz-weight-regular);
 	outline: none;
 	padding: var(--mtz-space-xs) 0;
 	transition: border-color var(--mtz-transition);
@@ -84,7 +84,7 @@
 /* ── Feedback message ── */
 
 .mtz-form__feedback {
-	font-size: var(--mtz-text-xs);
+	font-size: var(--mtz-text-caption);
 	letter-spacing: var(--mtz-tracking-body);
 	min-height: 1em;
 }
@@ -100,8 +100,8 @@
 	color: var(--mtz-color-text);
 	cursor: pointer;
 	font-family: var(--mtz-font-body);
-	font-size: var(--mtz-text-xs);
-	letter-spacing: var(--mtz-tracking-wider);
+	font-size: var(--mtz-text-caption);
+	letter-spacing: var(--mtz-tracking-caps);
 	padding: var(--mtz-space-xs) var(--mtz-space-md);
 	text-transform: uppercase;
 	transition:

@@ -46,20 +46,16 @@
 	--mtz-font-heading: 'Vinila Extended', 'Arial Narrow', system-ui, sans-serif;
 	--mtz-font-body:    'Vinila', system-ui, sans-serif;
 
-	/* Type scale — clamp(min, preferred, max) across 375px → 1440px */
-	--mtz-text-xs:   clamp(0.6875rem, 0.65rem + 0.2vw,  0.8125rem); /* ~11→13px */
-	--mtz-text-sm:   clamp(0.875rem, 0.82rem + 0.24vw, 1rem);       /* ~14→16px */
-	--mtz-text-base: clamp(1rem,     0.94rem + 0.27vw, 1.125rem);   /* ~16→18px */
-	--mtz-text-lg:   clamp(1.125rem, 1rem    + 0.54vw, 1.375rem);   /* ~18→22px */
-	--mtz-text-xl:   clamp(1.375rem, 1.1rem  + 1.17vw, 2rem);       /* ~22→32px */
-	--mtz-text-2xl:  clamp(2rem,     1.5rem  + 2.14vw, 3.5rem);     /* ~32→56px */
-	--mtz-text-3xl:  clamp(3rem,     2rem    + 4.27vw, 6rem);       /* ~48→96px */
+	/* Type scale — brand hierarchy levels. clamp(min, preferred, max) 375→1440px */
+	--mtz-text-display: clamp(3rem,     2rem    + 4.27vw, 6rem);      /* Display    ~48→96px */
+	--mtz-text-heading: clamp(2rem,     1.5rem  + 2.14vw, 3.5rem);    /* Heading 01 ~32→56px */
+	--mtz-text-section: clamp(1.375rem, 1.1rem  + 1.17vw, 2rem);      /* Section    ~22→32px */
+	--mtz-text-lead:    clamp(1.125rem, 1rem    + 0.54vw, 1.375rem);  /* Lead       ~18→22px */
+	--mtz-text-body:    clamp(1rem,     0.94rem + 0.27vw, 1.125rem);  /* Body       ~16→18px */
+	--mtz-text-caption: clamp(0.6875rem,0.65rem + 0.2vw,  0.8125rem); /* Caption    ~11→13px */
 
-	/* Font weights — Vinila ships only Regular (400) and Bold (700) in our set.
-	   Legacy token names kept to avoid churn; values remapped to real weights. */
-	--mtz-weight-light:   400; /* no light cut — falls to Regular */
+	/* Font weights — Vinila ships Regular and Bold in our set (no light/medium) */
 	--mtz-weight-regular: 400;
-	--mtz-weight-medium:  700; /* no medium cut — maps to Bold */
 	--mtz-weight-bold:    700;
 
 	/* Line heights */
@@ -68,13 +64,11 @@
 	--mtz-leading-normal: 1.6;
 	--mtz-leading-loose:  1.8;
 
-	/* Letter spacing — three caps tracking steps per brand manual */
-	--mtz-tracking-tight:  -0.01em;
-	--mtz-tracking-normal:  0;
-	--mtz-tracking-body:    0.01em; /* body / lead text */
-	--mtz-tracking-wide:    0.18em; /* display (h1) */
-	--mtz-tracking-h01:     0.22em; /* heading 01 (h2) */
-	--mtz-tracking-wider:   0.28em; /* sections, caps labels, captions */
+	/* Letter spacing — caps tracking by hierarchy level; body for min-case */
+	--mtz-tracking-body:    0.01em; /* body / lead (min-case) */
+	--mtz-tracking-display: 0.18em; /* Display (h1) */
+	--mtz-tracking-heading: 0.22em; /* Heading 01 (h2) */
+	--mtz-tracking-caps:    0.28em; /* Section (h3+), captions, labels */
 
 	/* ── Colour palette ──────────────────────────────────────────────────────
 	   Matize brand manual v1.0. Logo is strictly black/white; the four accents
@@ -193,7 +187,7 @@ body {
 	background-color: var(--mtz-color-bg);
 	color: var(--mtz-color-text);
 	font-family: var(--mtz-font-body);
-	font-size: var(--mtz-text-base);
+	font-size: var(--mtz-text-body);
 	font-weight: var(--mtz-weight-regular);
 	letter-spacing: var(--mtz-tracking-body);
 	line-height: var(--mtz-leading-normal);
@@ -229,25 +223,25 @@ ul, ol {
 h1, h2, h3, h4, h5, h6 {
 	font-family: var(--mtz-font-heading);
 	font-weight: var(--mtz-weight-bold);
-	letter-spacing: var(--mtz-tracking-wide);
+	letter-spacing: var(--mtz-tracking-display);
 	line-height: var(--mtz-leading-tight);
 	text-transform: uppercase;
 }
 
-h1 { font-size: var(--mtz-text-3xl); }
-h2 { font-size: var(--mtz-text-2xl); letter-spacing: var(--mtz-tracking-h01); }
+h1 { font-size: var(--mtz-text-display); }
+h2 { font-size: var(--mtz-text-heading); letter-spacing: var(--mtz-tracking-heading); }
 
 h3, h4, h5, h6 {
 	font-weight: var(--mtz-weight-regular);
-	letter-spacing: var(--mtz-tracking-wider);
+	letter-spacing: var(--mtz-tracking-caps);
 }
 
-h3 { font-size: var(--mtz-text-xl);  }
-h4 { font-size: var(--mtz-text-lg);  }
+h3 { font-size: var(--mtz-text-section);  }
+h4 { font-size: var(--mtz-text-lead);  }
 
 /* Lead paragraph — Vinila Bold, lowercase, brand manual 15-16pt level */
 .lead {
-	font-size: var(--mtz-text-lg);
+	font-size: var(--mtz-text-lead);
 	font-weight: var(--mtz-weight-bold);
 	letter-spacing: var(--mtz-tracking-body);
 	line-height: var(--mtz-leading-snug);
