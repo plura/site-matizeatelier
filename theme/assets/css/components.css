@@ -134,7 +134,7 @@
 	font-size: var(--mtz-text-xs);
 	font-weight: var(--mtz-weight-light);
 	gap: var(--mtz-space-xs);
-	letter-spacing: var(--mtz-tracking-wide);
+	letter-spacing: var(--mtz-tracking-wider);
 	padding: var(--mtz-space-sm) var(--mtz-space-md);
 	text-transform: uppercase;
 	transition: background-color var(--mtz-transition);

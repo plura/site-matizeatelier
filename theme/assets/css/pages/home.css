@@ -49,6 +49,7 @@
 	letter-spacing: var(--mtz-tracking-wider);
 	margin-top: var(--mtz-space-md);
 	max-width: 40ch;
+	text-transform: uppercase;
 }
 
 @media (min-width: 768px) {

@@ -85,7 +85,7 @@
 
 .mtz-form__feedback {
 	font-size: var(--mtz-text-xs);
-	letter-spacing: var(--mtz-tracking-wide);
+	letter-spacing: var(--mtz-tracking-body);
 	min-height: 1em;
 }
 
