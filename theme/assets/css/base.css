@@ -93,6 +93,20 @@
 	--mtz-color-gold:       #DA8300;  /* accent 03 */
 	--mtz-color-teal:       #7FB8A4;  /* accent 04 */
 
+	/* Tint levels — each palette colour at 60% / 30% opacity (per brand manual swatches) */
+	--mtz-color-charcoal-60: color-mix(in srgb, var(--mtz-color-charcoal) 60%, transparent);
+	--mtz-color-charcoal-30: color-mix(in srgb, var(--mtz-color-charcoal) 30%, transparent);
+	--mtz-color-offwhite-60: color-mix(in srgb, var(--mtz-color-offwhite) 60%, transparent);
+	--mtz-color-offwhite-30: color-mix(in srgb, var(--mtz-color-offwhite) 30%, transparent);
+	--mtz-color-coral-60:    color-mix(in srgb, var(--mtz-color-coral) 60%, transparent);
+	--mtz-color-coral-30:    color-mix(in srgb, var(--mtz-color-coral) 30%, transparent);
+	--mtz-color-sage-60:     color-mix(in srgb, var(--mtz-color-sage) 60%, transparent);
+	--mtz-color-sage-30:     color-mix(in srgb, var(--mtz-color-sage) 30%, transparent);
+	--mtz-color-gold-60:     color-mix(in srgb, var(--mtz-color-gold) 60%, transparent);
+	--mtz-color-gold-30:     color-mix(in srgb, var(--mtz-color-gold) 30%, transparent);
+	--mtz-color-teal-60:     color-mix(in srgb, var(--mtz-color-teal) 60%, transparent);
+	--mtz-color-teal-30:     color-mix(in srgb, var(--mtz-color-teal) 30%, transparent);
+
 	/* Semantic roles. muted/border derive from text+bg so they auto-adapt to
 	   light or dark context as Preto/Off-white tints — no grey, no per-context overrides. */
 	--mtz-color-bg:         var(--mtz-color-offwhite);
