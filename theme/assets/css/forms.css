@@ -51,7 +51,6 @@
 .mtz-form__field input::placeholder,
 .mtz-form__field textarea::placeholder {
 	color: var(--mtz-color-muted);
-	opacity: 0.5;
 }
 
 .mtz-form__field input:focus,
@@ -117,6 +116,6 @@
 }
 
 .mtz-form__submit:disabled {
-	opacity: 0.4;
+	opacity: 0.3;
 	cursor: not-allowed;
 }

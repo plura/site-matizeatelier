@@ -153,13 +153,10 @@
 	--mtz-icon-md:  20px;
 	--mtz-icon-lg:  24px;
 
-	/* ── Overlays ────────────────────────────────────────────────────────── */
-	--mtz-overlay-light:  35%;  /* subtle — video/image still visible beneath */
-	--mtz-overlay-medium: 50%;  /* balanced — hero overlays */
-	--mtz-overlay-heavy:  65%;  /* opaque — modal backdrops, focus states */
-
-	/* ── Shadows ─────────────────────────────────────────────────────────── */
-	--mtz-shadow-soft: 20%;
+	/* ── Overlays — Charcoal scrims, only allowed tint levels ─────────────── */
+	--mtz-overlay-light:  30%;  /* subtle — video/image still visible beneath */
+	--mtz-overlay-medium: 60%;  /* balanced — hero overlays */
+	--mtz-overlay-heavy:  60%;  /* opaque — modal backdrops, focus states */
 
 	/* ── Transitions ─────────────────────────────────────────────────────── */
 	--mtz-transition: 0.3s ease;

@@ -376,13 +376,12 @@
 }
 
 .site-footer a {
-	color: inherit;
-	opacity: 0.75;
-	transition: opacity var(--mtz-transition);
+	color: var(--mtz-color-muted);
+	transition: color var(--mtz-transition);
 }
 
 .site-footer a:hover {
-	opacity: 1;
+	color: var(--mtz-color-text);
 }
 
 /* ── Brand / logo ─────────────────────────────────────────────────────────── */
@@ -427,7 +426,7 @@
 }
 
 .site-footer__credit {
-	opacity: 0.5;
+	color: var(--mtz-color-muted);
 }
 
 /* smartphone: center social links */

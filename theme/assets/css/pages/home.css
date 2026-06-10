@@ -133,7 +133,7 @@
 
 .mood-gallery__item {
 	background-color: var(--mtz-color-bg);
-	box-shadow: 0 0 0 1px color-mix(in srgb, var(--mtz-color-text) 15%, transparent);
+	box-shadow: 0 0 0 1px var(--mtz-color-border);
 	inset: 0;
 	overflow: hidden;
 	padding: 8px;

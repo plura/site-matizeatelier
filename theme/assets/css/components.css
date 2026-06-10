@@ -173,7 +173,6 @@
 	animation: cta-enter 0.6s ease both;
 	animation-delay: 1s;
 	bottom: var(--mtz-gutter);
-	box-shadow: 0 4px 16px color-mix(in srgb, var(--mtz-color-charcoal) var(--mtz-shadow-soft), transparent);
 	position: fixed;
 	right: var(--mtz-gutter);
 	z-index: 99;
@@ -265,12 +264,12 @@
    ─────────────────────────────────────────────────────────────────────────── */
 
 .content-section {
-	border-top: 1px solid color-mix(in srgb, var(--mtz-color-text) 12%, transparent);
+	border-top: 1px solid var(--mtz-color-border);
 	padding-block: var(--mtz-space-2xl);
 }
 
 .content-section:last-of-type {
-	border-bottom: 1px solid color-mix(in srgb, var(--mtz-color-text) 12%, transparent);
+	border-bottom: 1px solid var(--mtz-color-border);
 }
 
 .content-section__inner {
