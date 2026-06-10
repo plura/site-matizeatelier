@@ -1,0 +1,47 @@
+{
+	"key": "group_mtz_page_settings",
+	"title": "Matize — Page Settings",
+	"fields": [
+		{
+			"key": "field_mtz_page_bg",
+			"label": "Background Colour",
+			"name": "mtz_page_bg",
+			"type": "select",
+			"instructions": "Override the page background with a brand palette colour. Off-white is the default.",
+			"default_value": "offwhite",
+			"allow_null": 0,
+			"choices": {
+				"offwhite": "Off-white",
+				"coral": "Coral",
+				"sage": "Sage",
+				"gold": "Gold",
+				"teal": "Teal",
+				"charcoal": "Preto"
+			},
+			"ui": 1,
+			"return_format": "value"
+		}
+	],
+	"location": [
+		[
+			{
+				"param": "post_type",
+				"operator": "==",
+				"value": "page"
+			}
+		],
+		[
+			{
+				"param": "post_type",
+				"operator": "==",
+				"value": "mtz_service"
+			}
+		]
+	],
+	"menu_order": 100,
+	"position": "side",
+	"style": "seamless",
+	"label_placement": "top",
+	"instruction_placement": "label",
+	"active": true
+}

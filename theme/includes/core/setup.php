@@ -64,6 +64,12 @@ add_action( 'after_setup_theme', function () {
 
 } );
 
+// ── ACF JSON — load theme field groups from theme/acf-json/ ──────────────────
+add_filter( 'acf/settings/load_json', function ( array $paths ): array {
+	$paths[] = get_template_directory() . '/acf-json';
+	return $paths;
+} );
+
 // ── WPML language switcher — normalise lang attribute to primary subtag ───────
 // Converts lang="pt-pt" → lang="pt" so CSS attr(lang) renders "PT" not "PT-PT".
 add_filter( 'wp_nav_menu_items', fn( $items ) =>
