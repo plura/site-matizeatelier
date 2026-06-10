@@ -361,6 +361,10 @@
    the universal reset.
    ─────────────────────────────────────────────────────────────────────────── */
 
+.prose {
+	color: var(--mtz-color-text);
+}
+
 .prose p + p {
 	margin-block-start: var(--mtz-space-sm);
 }
