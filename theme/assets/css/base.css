@@ -82,11 +82,10 @@
 	   Legacy token names (linen/charcoal/teal) kept to avoid ref churn.
 	   ─────────────────────────────────────────────────────────────────────── */
 
-	/* Base */
-	--mtz-color-charcoal:   #0A0907;  /* brand "preto" — text, positive logo   */
-	--mtz-color-linen:      #F5F2EA;  /* brand paper — page bg, negative logo   */
-	--mtz-color-offwhite:   #E1D7BE;  /* brand off-white base — panel/surface   */
-	--mtz-color-greige:     #8A8275;  /* derived warm neutral — muted, borders  */
+	/* Base — only two: Preto + Off-white (palette has no grey) */
+	--mtz-color-charcoal:   #0A0907;  /* Preto — base                          */
+	--mtz-color-offwhite:   #E1D7BE;  /* Off-white — base (single light tone)  */
+	--mtz-color-linen:      var(--mtz-color-offwhite); /* legacy alias, many refs */
 
 	/* Accents — support only, never the logo */
 	--mtz-color-coral:      #EC6F63;  /* accent 01 */
@@ -94,11 +93,13 @@
 	--mtz-color-gold:       #DA8300;  /* accent 03 */
 	--mtz-color-teal:       #7FB8A4;  /* accent 04 */
 
-	/* Semantic roles */
-	--mtz-color-bg:         var(--mtz-color-linen);
-	--mtz-color-surface:    var(--mtz-color-offwhite);
+	/* Semantic roles. muted/border derive from text+bg so they auto-adapt to
+	   light or dark context as Preto/Off-white tints — no grey, no per-context overrides. */
+	--mtz-color-bg:         var(--mtz-color-offwhite);
+	--mtz-color-surface:    color-mix(in srgb, var(--mtz-color-charcoal) 6%, var(--mtz-color-offwhite));
 	--mtz-color-text:       var(--mtz-color-charcoal);
-	--mtz-color-muted:      var(--mtz-color-greige);
+	--mtz-color-muted:      color-mix(in srgb, var(--mtz-color-text) 48%, var(--mtz-color-bg));
+	--mtz-color-border:     color-mix(in srgb, var(--mtz-color-text) 20%, transparent);
 	--mtz-color-accent:     var(--mtz-color-coral);
 	--mtz-color-accent-alt: var(--mtz-color-teal);
 }
@@ -109,9 +110,9 @@
    ─────────────────────────────────────────────────────────────────────────── */
 [data-theme="dark"],
 .dark-mode {
-	--mtz-color-bg:    var(--mtz-color-charcoal);
-	--mtz-color-text:  var(--mtz-color-linen);
-	--mtz-color-muted: var(--mtz-color-greige);
+	--mtz-color-bg:   var(--mtz-color-charcoal);
+	--mtz-color-text: var(--mtz-color-offwhite);
+	/* muted/border re-derive automatically from the flipped text/bg */
 }
 
 :root {
@@ -270,17 +271,17 @@ h4 { font-size: var(--mtz-text-lg);  }
 }
 
 /* ─── Scrollbar ──────────────────────────────────────────────────────────────
-   Webkit: transparent track, greige thumb
-   Firefox: thin + greige (transparent track not supported)
+   Webkit: transparent track, muted thumb
+   Firefox: thin + muted (transparent track not supported)
    ─────────────────────────────────────────────────────────────────────────── */
 :root {
 	scrollbar-width: thin;
-	scrollbar-color: var(--mtz-color-greige) transparent;
+	scrollbar-color: var(--mtz-color-muted) transparent;
 }
 
 ::-webkit-scrollbar       { width: 6px; }
 ::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background-color: var(--mtz-color-greige); border-radius: 3px; }
+::-webkit-scrollbar-thumb { background-color: var(--mtz-color-muted); border-radius: 3px; }
 
 /* ─── Utilities ──────────────────────────────────────────────────────────── */
 

@@ -122,9 +122,8 @@
 
 /* Floating over hero — dark tokens + fixed so hero is truly fullscreen; no JS needed */
 :has(.hero) .site-header:not(.is-scrolled) {
-	--mtz-color-bg:    var(--mtz-color-charcoal);
-	--mtz-color-text:  var(--mtz-color-linen);
-	--mtz-color-muted: var(--mtz-color-greige);
+	--mtz-color-bg:   var(--mtz-color-charcoal);
+	--mtz-color-text: var(--mtz-color-offwhite);
 	left: 0;
 	position: fixed;
 	right: 0;
@@ -233,7 +232,7 @@
 
 /* Desktop: vertical divider separating nav from language switcher */
 .site-nav__list .wpml-ls-first-item {
-	border-left: 1px solid var(--mtz-color-greige);
+	border-left: 1px solid var(--mtz-color-border);
 	padding-left: var(--mtz-space-md);
 }
 
@@ -323,7 +322,7 @@
 	}
 
 	.site-nav__list .wpml-ls-last-item {
-		border-left: 1px solid var(--mtz-color-greige);
+		border-left: 1px solid var(--mtz-color-border);
 		padding-left: var(--mtz-space-xs);
 	}
 }
@@ -363,8 +362,10 @@
    ─────────────────────────────────────────────────────────────────────────── */
 
 .site-footer {
-	background-color: var(--mtz-color-charcoal);
-	color: var(--mtz-color-linen);
+	--mtz-color-bg:   var(--mtz-color-charcoal);
+	--mtz-color-text: var(--mtz-color-offwhite);
+	background-color: var(--mtz-color-bg);
+	color: var(--mtz-color-text);
 	padding-block: var(--mtz-space-2xl) var(--mtz-space-xl);
 }
 
@@ -404,8 +405,8 @@
 /* ── Bottom bar ───────────────────────────────────────────────────────────── */
 
 .site-footer__bottom {
-	border-top: 1px solid color-mix(in srgb, var(--mtz-color-linen) 15%, transparent);
-	color: var(--mtz-color-greige);
+	border-top: 1px solid var(--mtz-color-border);
+	color: var(--mtz-color-muted);
 	display: flex;
 	flex-direction: column;
 	font-size: var(--mtz-text-xs);
