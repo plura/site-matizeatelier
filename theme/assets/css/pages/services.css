@@ -46,7 +46,7 @@
 }
 
 .service-section__title {
-	font-size: var(--mtz-text-heading);
+	font-size: var(--mtz-text-section);
 }
 
 .service-section__tagline {

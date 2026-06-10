@@ -275,7 +275,7 @@
 .content-section__inner {
 	align-items: start;
 	display: grid;
-	gap: var(--mtz-space-lg) var(--mtz-space-xl);
+	gap: var(--mtz-space-lg) var(--mtz-space-2xl);
 	grid-template-columns: 1fr;
 }
 
