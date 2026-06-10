@@ -145,6 +145,21 @@ body[data-mtz-bg="charcoal"] {
 	color: var(--mtz-color-text);
 }
 
+/* Nav: active link + indicator switch from accent to --mtz-color-text on
+   coloured pages — mirrors the hero dark context. Since --mtz-color-text is
+   already context-aware (offwhite on charcoal, charcoal otherwise), one rule
+   covers all six backgrounds. */
+body[data-mtz-bg] .site-nav__list a.mtz-active  { color: var(--mtz-color-text); }
+body[data-mtz-bg] .site-nav__indicator           { background-color: var(--mtz-color-text); }
+
+/* CTA button: coral bg disappears on coloured pages. Switch to charcoal bg +
+   offwhite text (readable on all accent backgrounds). On charcoal page,
+   invert to offwhite bg + charcoal text. */
+body[data-mtz-bg] .btn--primary                  { background-color: var(--mtz-color-charcoal); color: var(--mtz-color-offwhite); }
+body[data-mtz-bg] .btn--primary:hover            { background-color: var(--mtz-color-offwhite); color: var(--mtz-color-charcoal); }
+body[data-mtz-bg="charcoal"] .btn--primary       { background-color: var(--mtz-color-offwhite); color: var(--mtz-color-charcoal); }
+body[data-mtz-bg="charcoal"] .btn--primary:hover { background-color: var(--mtz-color-charcoal); color: var(--mtz-color-offwhite); }
+
 :root {
 
 	/* ── Spacing scale ───────────────────────────────────────────────────── */
