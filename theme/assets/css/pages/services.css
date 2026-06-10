@@ -11,7 +11,9 @@
 /* Services: image-left by default — inverse of the global body-first direction */
 @media (min-width: 768px) {
 	.service-section.content-section--split .content-section__inner {
-		grid-template-columns: 5fr 7fr;
+		/* minmax(0,…) so a long unbreakable title word (e.g. ACONSELHAMENTO)
+		   can't push the text track past its share and shrink the image. */
+		grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
 	}
 
 	.service-section.content-section--split .content-section__body {
@@ -19,7 +21,7 @@
 	}
 
 	.service-section.content-section--split:nth-child(even) .content-section__inner {
-		grid-template-columns: 7fr 5fr;
+		grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
 	}
 
 	.service-section.content-section--split:nth-child(even) .content-section__body {
@@ -41,6 +43,13 @@
 		   No height:100% here: the grid is align-items:start, so a percentage
 		   height has no basis and would collapse the image (and its width). */
 	}
+}
+
+/* Sized to fit long PT titles (e.g. ACONSELHAMENTO) inside the locked column;
+   break-word is a final safety so a word can never force horizontal overflow. */
+.service-section__title {
+	font-size: clamp(1.75rem, 1.1rem + 2vw, 2.75rem);
+	overflow-wrap: break-word;
 }
 
 .service-section__tagline {
