@@ -219,10 +219,12 @@ ul, ol {
 }
 
 /* Headings — Vinila Extended, caps-only per the brand manual.
-   Display (h1) Bold .18 · Heading 01 (h2) Bold .22 · Sections (h3+) Regular .28 */
+   3 levels only: Display (h1) Bold .18 · Heading 01 (h2) Bold .22 · Section (h3+) Regular .28
+   hyphens: auto relies on lang="pt" / lang="en" set by WordPress on <html>. */
 h1, h2, h3, h4, h5, h6 {
 	font-family: var(--mtz-font-heading);
 	font-weight: var(--mtz-weight-bold);
+	hyphens: auto;
 	letter-spacing: var(--mtz-tracking-display);
 	line-height: var(--mtz-leading-tight);
 	text-transform: uppercase;
@@ -231,13 +233,12 @@ h1, h2, h3, h4, h5, h6 {
 h1 { font-size: var(--mtz-text-display); }
 h2 { font-size: var(--mtz-text-heading); letter-spacing: var(--mtz-tracking-heading); }
 
+/* h3–h6 all map to Section level — the brand manual defines only 3 heading levels */
 h3, h4, h5, h6 {
+	font-size: var(--mtz-text-section);
 	font-weight: var(--mtz-weight-regular);
 	letter-spacing: var(--mtz-tracking-caps);
 }
-
-h3 { font-size: var(--mtz-text-section);  }
-h4 { font-size: var(--mtz-text-lead);  }
 
 /* Lead paragraph — Vinila Bold, lowercase, brand manual 15-16pt level */
 .lead {
