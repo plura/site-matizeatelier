@@ -24,15 +24,15 @@
 .contact-address,
 .social-links__item,
 .contact-modal__close {
-	opacity: 0.6;
-	transition: opacity var(--mtz-transition);
+	color: var(--mtz-color-muted);
+	transition: color var(--mtz-transition);
 }
 
 .contact-details__item:hover,
 .contact-address:hover,
 .social-links__item:hover,
 .contact-modal__close:hover {
-	opacity: 1;
+	color: var(--mtz-color-text);
 }
 
 /* ─── Contact info ───────────────────────────────────────────────────────────
