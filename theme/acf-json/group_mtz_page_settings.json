@@ -3,11 +3,11 @@
 	"title": "Matize — Page Settings",
 	"fields": [
 		{
-			"key": "field_mtz_page_bg",
-			"label": "Background Colour",
-			"name": "mtz_page_bg",
+			"key": "field_mtz_page_theme",
+			"label": "Colour Theme",
+			"name": "mtz_page_theme",
 			"type": "select",
-			"instructions": "Override the page background with a brand palette colour. Off-white is the default.",
+			"instructions": "Apply a brand palette colour theme to this page. Off-white is the default.",
 			"default_value": "offwhite",
 			"allow_null": 0,
 			"choices": {
