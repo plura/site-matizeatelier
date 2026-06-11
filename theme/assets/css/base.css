@@ -275,10 +275,7 @@ h3, h4, h5, h6 {
 	letter-spacing: var(--mtz-tracking-caps);
 }
 
-/* Lead paragraph — Vinila Bold, lowercase, brand manual 15-16pt level.
-   Auto-applied to the first <p> inside .section-body (services, about, page).
-   .lead utility class available for one-off use elsewhere. */
-.section-body > p:first-child,
+/* Lead paragraph — Vinila Bold, lowercase, brand manual 15-16pt level. */
 .lead {
 	font-size: var(--mtz-text-lead);
 	font-weight: var(--mtz-weight-bold);

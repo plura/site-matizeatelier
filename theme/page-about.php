@@ -14,6 +14,13 @@ get_template_part( 'template-parts/page-header' ); ?>
 		'cv'         => [ 'title' => __( 'Curriculum', 'matize' ), 'field' => 'mtz_about_cv'         ],
 	];
 
+	/* TODO: replace with ACF colour field on each about section */
+	$accent_map = [
+		'mission'    => 'content-section--teal',
+		'philosophy' => 'content-section--gold',
+		'cv'         => 'content-section--sage',
+	];
+
 	foreach ( $sections as $key => $section ) :
 		$data = get_field( $section['field'] );
 		if ( ! $data ) continue;
@@ -21,7 +28,7 @@ get_template_part( 'template-parts/page-header' ); ?>
 		$images = $data['images'] ?? [];
 	?>
 
-	<section class="content-section content-section--split about-section about-section--<?php echo esc_attr( $key ); ?>">
+	<section class="content-section content-section--split about-section about-section--<?php echo esc_attr( $key ); ?> <?php echo $accent_map[ $key ] ?? ''; ?>">
 		<div class="container">
 			<div class="content-section__inner">
 
