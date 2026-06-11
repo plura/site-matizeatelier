@@ -126,16 +126,16 @@
 }
 
 /* ─── Background colour contexts ─────────────────────────────────────────────
-   Applied via data-mtz-bg on any element: <body> (ACF page field) or a
+   Applied via data-mtz-theme on any element: <body> (ACF page field) or a
    section (hardcoded in template). Nav/button overrides below stay body-scoped.
    ─────────────────────────────────────────────────────────────────────────── */
 
-[data-mtz-bg="coral"]    { --mtz-color-bg: var(--mtz-color-coral);    background-color: var(--mtz-color-bg); }
-[data-mtz-bg="sage"]     { --mtz-color-bg: var(--mtz-color-sage);     background-color: var(--mtz-color-bg); }
-[data-mtz-bg="gold"]     { --mtz-color-bg: var(--mtz-color-gold);     background-color: var(--mtz-color-bg); }
-[data-mtz-bg="teal"]     { --mtz-color-bg: var(--mtz-color-teal);     background-color: var(--mtz-color-bg); }
+[data-mtz-theme="coral"]    { --mtz-color-bg: var(--mtz-color-coral);    background-color: var(--mtz-color-bg); }
+[data-mtz-theme="sage"]     { --mtz-color-bg: var(--mtz-color-sage);     background-color: var(--mtz-color-bg); }
+[data-mtz-theme="gold"]     { --mtz-color-bg: var(--mtz-color-gold);     background-color: var(--mtz-color-bg); }
+[data-mtz-theme="teal"]     { --mtz-color-bg: var(--mtz-color-teal);     background-color: var(--mtz-color-bg); }
 
-[data-mtz-bg="charcoal"] {
+[data-mtz-theme="charcoal"] {
 	--mtz-color-bg:     var(--mtz-color-charcoal);
 	--mtz-color-text:   var(--mtz-color-offwhite);
 	--mtz-color-muted:  var(--mtz-color-offwhite-60);
@@ -147,18 +147,18 @@
 /* Nav on accent-coloured pages (not charcoal): dim regular links to muted so
    the active item (full text colour) and indicator are visibly distinct.
    Charcoal page is excluded — layout.css coral accent reads fine on dark. */
-body[data-mtz-bg]:not([data-mtz-bg="charcoal"]) .site-nav__list a { color: var(--mtz-color-muted); }
-body[data-mtz-bg]:not([data-mtz-bg="charcoal"]) .site-nav__list .current-menu-item:not(.wpml-ls-item) > a,
-body[data-mtz-bg]:not([data-mtz-bg="charcoal"]) .site-nav__list a.mtz-active { color: var(--mtz-color-text); }
-body[data-mtz-bg]:not([data-mtz-bg="charcoal"]) .site-nav__indicator { background-color: var(--mtz-color-text); }
+body[data-mtz-theme]:not([data-mtz-theme="charcoal"]) .site-nav__list a { color: var(--mtz-color-muted); }
+body[data-mtz-theme]:not([data-mtz-theme="charcoal"]) .site-nav__list .current-menu-item:not(.wpml-ls-item) > a,
+body[data-mtz-theme]:not([data-mtz-theme="charcoal"]) .site-nav__list a.mtz-active { color: var(--mtz-color-text); }
+body[data-mtz-theme]:not([data-mtz-theme="charcoal"]) .site-nav__indicator { background-color: var(--mtz-color-text); }
 
 /* CTA button: coral bg disappears on coloured pages. Switch to charcoal bg +
    offwhite text (readable on all accent backgrounds). On charcoal page,
    invert to offwhite bg + charcoal text. */
-body[data-mtz-bg] .btn--primary                  { background-color: var(--mtz-color-charcoal); color: var(--mtz-color-offwhite); }
-body[data-mtz-bg] .btn--primary:hover            { background-color: var(--mtz-color-offwhite); color: var(--mtz-color-charcoal); }
-body[data-mtz-bg="charcoal"] .btn--primary       { background-color: var(--mtz-color-offwhite); color: var(--mtz-color-charcoal); }
-body[data-mtz-bg="charcoal"] .btn--primary:hover { background-color: var(--mtz-color-charcoal); color: var(--mtz-color-offwhite); }
+body[data-mtz-theme] .btn--primary                  { background-color: var(--mtz-color-charcoal); color: var(--mtz-color-offwhite); }
+body[data-mtz-theme] .btn--primary:hover            { background-color: var(--mtz-color-offwhite); color: var(--mtz-color-charcoal); }
+body[data-mtz-theme="charcoal"] .btn--primary       { background-color: var(--mtz-color-offwhite); color: var(--mtz-color-charcoal); }
+body[data-mtz-theme="charcoal"] .btn--primary:hover { background-color: var(--mtz-color-charcoal); color: var(--mtz-color-offwhite); }
 
 :root {
 
@@ -275,7 +275,10 @@ h3, h4, h5, h6 {
 	letter-spacing: var(--mtz-tracking-caps);
 }
 
-/* Lead paragraph — Vinila Bold, lowercase, brand manual 15-16pt level */
+/* Lead paragraph — Vinila Bold, lowercase, brand manual 15-16pt level.
+   Auto-applied to the first <p> inside .section-body (services, about, page).
+   .lead utility class available for one-off use elsewhere. */
+.section-body > p:first-child,
 .lead {
 	font-size: var(--mtz-text-lead);
 	font-weight: var(--mtz-weight-bold);
