@@ -88,7 +88,7 @@
 }
 
 .mood-gallery__text {
-	font-family: var(--mtz-font-body);
+	font-family: var(--mtz-font-heading);
 	font-size: var(--mtz-text-heading);
 	font-weight: var(--mtz-weight-bold);
 	letter-spacing: var(--mtz-tracking-heading);
