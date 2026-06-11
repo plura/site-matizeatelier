@@ -9,7 +9,7 @@ Website for [matizeatelier.pt](https://matizeatelier.pt) — Atelier de Design d
 /theme          Custom WordPress theme → wp-content/themes/matize/
   /assets
     /css          Global + page-specific stylesheets (each enqueued individually)
-    /js           ES modules — main.js (entry), nav.js (toggle + sliding indicator), animations.js, modal.js, gallery.js, home.js, test.js (dev only)
+    /js           ES modules — main.js (entry), nav.js (toggle + sliding indicator), animations.js, modal.js, gallery.js, home.js, dev.js + dev-seed.js (dev only)
   /components     Plura component system (manifest + HTML + PHP + assets)
   /includes
     /core         setup.php, enqueue.php, options.php (mtz_option helper)
@@ -78,11 +78,14 @@ SMTP is handled by the **WP Mail SMTP** plugin (installed, configured separately
 
 JS-facing error strings are centralised in `plugin/includes/core/i18n.php` and exposed as `mtzLang` via `wp_localize_script`.
 
-## Testing
+## Dev tools
 
-Append `?test&type=form` to any page URL to open the contact modal pre-filled with random test data. The `test.js` module is dynamically imported only when `?test` is present — zero cost on normal page loads.
+Append `?dev=<action>` to any page URL to activate dev helpers. Multiple actions can be combined with commas (e.g. `?dev=no-intro,seed-form`). `dev.js` is a static import in `main.js` and is always parsed — the sub-modules it loads are dynamic and cost nothing on normal page loads.
 
-Append `?test` on the home page to skip the hero intro animation and jump straight to the final state.
+| Action | Effect |
+|---|---|
+| `?dev=no-intro` | Skip the home page scroll sections (statement rotator + mood gallery) |
+| `?dev=seed-form` | Fill the contact form with random fixture data and open the modal |
 
 ## Notes
 
