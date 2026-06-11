@@ -235,7 +235,11 @@
 }
 
 .contact-modal__inner {
+	--mtz-color-text:   var(--mtz-color-charcoal);
+	--mtz-color-muted:  var(--mtz-color-charcoal-60);
+	--mtz-color-border: var(--mtz-color-charcoal-30);
 	background-color: var(--mtz-color-linen);
+	color: var(--mtz-color-text);
 	padding: var(--mtz-space-xl) var(--mtz-space-lg);
 	position: relative;
 }

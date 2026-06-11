@@ -38,7 +38,7 @@
 
 .home-statement__headline {
 	font-size: var(--mtz-text-display);
-	font-weight: var(--mtz-weight-regular);
+	letter-spacing: var(--mtz-tracking-display);
 	line-height: var(--mtz-leading-tight);
 }
 
@@ -90,8 +90,10 @@
 .mood-gallery__text {
 	font-family: var(--mtz-font-body);
 	font-size: var(--mtz-text-heading);
-	font-weight: var(--mtz-weight-regular);
+	font-weight: var(--mtz-weight-bold);
+	letter-spacing: var(--mtz-tracking-heading);
 	line-height: var(--mtz-leading-snug);
+	text-transform: uppercase;
 }
 
 .mood-gallery__col--images {
