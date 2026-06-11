@@ -1,20 +1,6 @@
 // Matize — main JS entry point
 
-// ── Dev / test flags — must run before any module setup ──────────────────────
-const _params = new URLSearchParams( location.search );
-
-if ( _params.has( 'test' ) ) {
-	import( './test.js' );
-}
-
-{
-	const _dev = _params.get( 'dev' );
-	if ( _dev ) {
-		const _actions = _dev.toLowerCase().replace( /-/g, '' ).split( ',' );
-		window.mtzDev = { noIntro: _actions.includes( 'nointro' ) };
-		import( './dev.js' );
-	}
-}
+import './dev.js'; // reads URL params, sets window.mtzDev — must run first
 
 import { mtzInitNav }                            from './nav.js';
 import { mtzInitModal }                         from './modal.js';
