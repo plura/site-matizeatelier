@@ -1,4 +1,5 @@
 export function mtzInitHome() {
+	if ( window.mtzDev?.noIntro ) return;
 	mtzInitStatements();
 	mtzInitMood();
 }
