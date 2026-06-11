@@ -263,17 +263,35 @@
 
 /* ─── Content section ───────────────────────────────────────────────────────
    Shared base for two-column page sections (services, about).
-   Sets separators, padding, and grid scaffold.
-   Column ratios and child order live in page-specific CSS.
+   position: relative + isolation: isolate contain .section-numeral's
+   z-index: -1 within the section rather than the page stacking context.
+   Column ratios and child order live in layout.css (.content-section--split).
    ─────────────────────────────────────────────────────────────────────────── */
 
 .content-section {
-	border-top: 1px solid var(--mtz-color-border);
+	isolation: isolate;
 	padding-block: var(--mtz-space-2xl);
+	position: relative;
 }
 
-.content-section:last-of-type {
-	border-bottom: 1px solid var(--mtz-color-border);
+/* Accent colour context — --mtz-section-accent drives the card background,
+   ghost card tints, separator hairline, and watermark stroke. */
+.content-section--coral { --mtz-section-accent: var(--mtz-color-coral); }
+.content-section--sage  { --mtz-section-accent: var(--mtz-color-sage);  }
+.content-section--gold  { --mtz-section-accent: var(--mtz-color-gold);  }
+.content-section--teal  { --mtz-section-accent: var(--mtz-color-teal);  }
+
+/* Gutter-inset hairline separator between consecutive sections.
+   Uses the incoming section's --mtz-section-accent so the colour signals
+   what's ahead. Falls back to invisible on sections with no accent class. */
+.content-section + .content-section {
+	background-image: linear-gradient(
+		color-mix(in srgb, var(--mtz-section-accent) 40%, rgba(10, 9, 7, 0.1)),
+		color-mix(in srgb, var(--mtz-section-accent) 40%, rgba(10, 9, 7, 0.1))
+	);
+	background-position: var(--mtz-gutter) 0;
+	background-repeat: no-repeat;
+	background-size: calc(100% - var(--mtz-gutter) * 2) 1px;
 }
 
 .content-section__inner {
@@ -383,3 +401,77 @@
 	/* weight inherits base hierarchy: h2 Bold (H01), h3 Regular (Section) */
 	margin-block: var(--mtz-space-xl) var(--mtz-space-sm);
 }
+
+/* ─── Section watermark numeral ──────────────────────────────────────────────
+   Large outline numeral — position: absolute within .content-section.
+   z-index: -1 sits behind content within the section's isolation context.
+   PHP adds <span class="section-numeral" aria-hidden="true">N</span>
+   as a direct child of .content-section (PHP pass to follow).
+   ─────────────────────────────────────────────────────────────────────────── */
+
+.section-numeral {
+	-webkit-text-stroke: 1px rgba(10, 9, 7, 0.06);
+	bottom: -20px;
+	color: transparent;
+	font-family: var(--mtz-font-heading);
+	font-size: 200px;
+	font-weight: var(--mtz-weight-bold);
+	letter-spacing: -0.02em;
+	line-height: 1;
+	pointer-events: none;
+	position: absolute;
+	right: var(--mtz-gutter);
+	user-select: none;
+	z-index: -1;
+}
+
+.content-section--split:nth-child(even) .section-numeral {
+	left: var(--mtz-gutter);
+	right: auto;
+}
+
+/* ─── Image stack ────────────────────────────────────────────────────────────
+   Fanned deck of image cards — CSS defines the spread final state.
+   GSAP will animate from collapsed (all centred, rotation 0) to this state.
+   Structure: .img-stack > (.img-ghost × 2) + (.img-card × 3)
+   Applies to services page now; about page image layout is a later pass.
+   ─────────────────────────────────────────────────────────────────────────── */
+
+.img-stack {
+	height: 420px;
+	position: relative;
+}
+
+.img-card,
+.img-ghost {
+	border-radius: 6px;
+	height: 55%;
+	position: absolute;
+	transform-origin: center center;
+	width: 62%;
+	will-change: transform;
+}
+
+.img-card {
+	outline: 4px solid var(--mtz-color-offwhite);
+	overflow: hidden;
+}
+
+.img-card img {
+	display: block;
+	height: 100%;
+	object-fit: cover;
+	width: 100%;
+}
+
+.img-card--back  { left: 5%;   top: 5%;    transform: rotate(-6deg); z-index: 1; }
+.img-card--mid   { left: 19%;  top: 22%;   transform: rotate(0deg);  z-index: 2; }
+.img-card--front { bottom: 5%; right: 3%;  transform: rotate(7deg);  z-index: 3; }
+
+.img-ghost {
+	background: color-mix(in srgb, var(--mtz-section-accent) 30%, var(--mtz-color-offwhite));
+	z-index: 0;
+}
+
+.img-ghost--1 { left: 0;   top: 0;    transform: rotate(-22deg) translateY(-10px); }
+.img-ghost--2 { bottom: 0; right: 0;  transform: rotate(20deg)  translateY(10px);  }

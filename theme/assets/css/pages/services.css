@@ -1,56 +1,43 @@
 @charset "UTF-8";
 /* ─── Services ───────────────────────────────────────────────────────────────
-   Services page — direct template loop, one section per service.
-   Alternating grid logic lives in components.css (.content-section).
+   Services page — one section per service, accent card + image column.
+   Column ratios inherit from layout.css (.content-section--split):
+     odd sections  → card left (7fr) | image right (5fr)
+     even sections → image left (5fr) | card right (7fr, body at order: 2)
+   minmax(0) prevents long service titles (e.g. ACOMPANHAMENTO) from
+   pushing the card column past its fr share.
    ─────────────────────────────────────────────────────────────────────────── */
 
 .services-section > .container {
 	padding-block: var(--mtz-space-2xl);
 }
 
-/* Services: image-left by default — inverse of the global body-first direction */
 @media (min-width: 768px) {
 	.service-section.content-section--split .content-section__inner {
-		/* minmax(0,…) so a long unbreakable title word (e.g. ACONSELHAMENTO)
-		   can't push the text track past its share and shrink the image. */
-		grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
-	}
-
-	.service-section.content-section--split .content-section__body {
-		order: 2;
-	}
-
-	.service-section.content-section--split:nth-child(even) .content-section__inner {
 		grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
 	}
 
-	.service-section.content-section--split:nth-child(even) .content-section__body {
-		order: 0;
+	.service-section.content-section--split:nth-child(even) .content-section__inner {
+		grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
 	}
 }
 
-.service-section__img {
-	aspect-ratio: 4 / 3;
-	height: auto;
-	object-fit: cover;
-	width: 100%;
-}
+/* ── Text card ────────────────────────────────────────────────────────────── */
 
-@media (min-width: 768px) {
-	.service-section__img {
-		aspect-ratio: 3 / 4;
-		/* size from column width (5fr) + aspect — identical in both alternations.
-		   No height:100% here: the grid is align-items:start, so a percentage
-		   height has no basis and would collapse the image (and its width). */
-	}
+.service-section .content-section__body {
+	background-color: var(--mtz-section-accent);
+	border-radius: var(--mtz-border-radius);
+	padding: var(--mtz-space-xl) var(--mtz-space-lg);
 }
 
 .service-section__title {
 	font-size: var(--mtz-text-section);
+	letter-spacing: var(--mtz-tracking-display);
 }
 
 .service-section__tagline {
-	color: var(--mtz-color-accent);
+	color: rgba(10, 9, 7, 0.55);
+	font-family: var(--mtz-font-body);
 	font-size: var(--mtz-text-caption);
 	font-weight: var(--mtz-weight-regular);
 	letter-spacing: var(--mtz-tracking-caps);
@@ -58,10 +45,30 @@
 	text-transform: uppercase;
 }
 
+/* Hairline divider between tagline (or title if no tagline) and body text */
+.service-section__description::before {
+	background: rgba(10, 9, 7, 0.2);
+	content: '';
+	display: block;
+	height: 1px;
+	margin-bottom: var(--mtz-space-md);
+	width: 32px;
+}
+
 .service-section__description {
+	color: var(--mtz-color-muted);
 	margin-top: var(--mtz-space-md);
 }
 
 .service-section__cluster {
 	margin-top: var(--mtz-space-lg);
+}
+
+/* ── Image column ─────────────────────────────────────────────────────────── */
+
+.service-section__img {
+	aspect-ratio: 3 / 4;
+	height: auto;
+	object-fit: cover;
+	width: 100%;
 }
