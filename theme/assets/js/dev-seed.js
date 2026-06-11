@@ -1,7 +1,7 @@
-// Test utility — loaded only when ?test is present in the URL.
-// Fills the contact form with random dummy data and opens the modal.
+// Dev seed — fills the contact form with fixture data.
+// Imported dynamically by dev.js when ?dev=seed-form is present.
 
-const rand = arr => arr[ Math.floor( Math.random() * arr.length ) ];
+const rand = ( arr ) => arr[ Math.floor( Math.random() * arr.length ) ];
 
 const names = [
 	'Ana Silva',
@@ -31,28 +31,22 @@ const messages = [
 	`Olá,\n\nSomos uma empresa de construção e estamos à procura de parceiros para projetos de interiores.\nTeríamos interesse em conversar sobre uma possível colaboração.\n\nAguardamos o vosso contacto.`,
 ];
 
-function testForm() {
+export function mtzSeedContactForm() {
 	const form = document.querySelector( '.contact-form[data-mtz-form]' );
 	if ( ! form ) return;
 
-	const fill = {
+	const fixture = {
 		mtz_name:    rand( names ),
 		mtz_email:   rand( emails ),
 		mtz_phone:   rand( phones ),
 		mtz_message: rand( messages ),
 	};
 
-	Object.entries( fill ).forEach( ( [ name, value ] ) => {
+	Object.entries( fixture ).forEach( ( [ name, value ] ) => {
 		const el = form.querySelector( `[name="${ name }"]` );
 		if ( el ) el.value = value;
 	} );
 
 	// On the contact page the modal doesn't exist — form is already visible
 	document.querySelector( '#contact-modal' )?.showModal();
-}
-
-const type = new URLSearchParams( location.search ).get( 'type' );
-
-if ( type === 'form' ) {
-	testForm();
 }
