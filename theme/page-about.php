@@ -37,10 +37,17 @@ get_template_part( 'template-parts/page-header' ); ?>
 					<div class="section-body prose"><?php echo wp_kses_post( $text ); ?></div>
 				</div>
 
-				<?php $cluster = mtz_gallery_cluster( $images ); ?>
-			<?php if ( $cluster ) : ?>
-				<div class="content-section__media about-section__cluster">
-					<?php echo $cluster; ?>
+			<?php if ( $images ) : ?>
+				<div class="content-section__media img-stack">
+					<div class="img-ghost img-ghost--1"></div>
+					<div class="img-ghost img-ghost--2"></div>
+					<?php
+					$positions = [ 'back', 'mid', 'front' ];
+					foreach ( array_slice( $images, 0, 3 ) as $i => $image ) : ?>
+					<div class="img-card img-card--<?php echo esc_attr( $positions[ $i ] ); ?>">
+						<?php echo wp_get_attachment_image( $image['ID'], 'large' ); ?>
+					</div>
+					<?php endforeach; ?>
 				</div>
 			<?php endif; ?>
 
