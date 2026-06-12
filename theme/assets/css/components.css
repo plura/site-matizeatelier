@@ -470,8 +470,8 @@
 
 .img-card,
 .img-ghost {
+	aspect-ratio: 2 / 3;
 	border-radius: 6px;
-	height: 55%;
 	position: absolute;
 	transform-origin: center center;
 	width: 62%;
