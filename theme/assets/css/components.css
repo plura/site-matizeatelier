@@ -301,6 +301,12 @@
 	grid-template-columns: 1fr;
 }
 
+.content-section__body {
+	background-color: var(--mtz-section-accent);
+	border-radius: var(--mtz-border-radius);
+	padding: var(--mtz-space-xl) var(--mtz-space-lg);
+}
+
 /* ─── Gallery cluster ────────────────────────────────────────────────────────
    Small image group — used in service sections and about sections.
    1 image: full width. 2–3 images: 2-col grid, last image spans if odd.

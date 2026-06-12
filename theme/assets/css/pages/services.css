@@ -24,12 +24,6 @@
 
 /* ── Text card ────────────────────────────────────────────────────────────── */
 
-.service-section .content-section__body {
-	background-color: var(--mtz-section-accent);
-	border-radius: var(--mtz-border-radius);
-	padding: var(--mtz-space-xl) var(--mtz-space-lg);
-}
-
 .service-section__title {
 	font-size: var(--mtz-text-section);
 	letter-spacing: var(--mtz-tracking-display);
