@@ -1,6 +1,8 @@
 @charset "UTF-8";
 /* ─── Services ───────────────────────────────────────────────────────────────
    Services page — one section per service, accent card + image column.
+   Card typography, hairline divider, and body text styles are in components.css
+   (.content-section__body) and apply to all content sections including about.
    Column ratios inherit from layout.css (.content-section--split):
      odd sections  → card left (7fr) | image right (5fr)
      even sections → image left (5fr) | card right (7fr, body at order: 2)
@@ -22,12 +24,7 @@
 	}
 }
 
-/* ── Text card ────────────────────────────────────────────────────────────── */
-
-.service-section__title {
-	font-size: var(--mtz-text-section);
-	letter-spacing: var(--mtz-tracking-display);
-}
+/* ── Tagline — service-specific, about has none ───────────────────────────── */
 
 .service-section__tagline {
 	color: rgba(10, 9, 7, 0.55);
@@ -37,21 +34,6 @@
 	letter-spacing: var(--mtz-tracking-caps);
 	margin-top: var(--mtz-space-xs);
 	text-transform: uppercase;
-}
-
-/* Hairline divider between tagline (or title if no tagline) and body text */
-.service-section__description::before {
-	background: rgba(10, 9, 7, 0.2);
-	content: '';
-	display: block;
-	height: 1px;
-	margin-bottom: var(--mtz-space-md);
-	width: 32px;
-}
-
-.service-section__description {
-	color: var(--mtz-color-muted);
-	margin-top: var(--mtz-space-md);
 }
 
 .service-section__cluster {

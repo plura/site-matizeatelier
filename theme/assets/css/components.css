@@ -307,6 +307,26 @@
 	padding: var(--mtz-space-xl) var(--mtz-space-lg);
 }
 
+.content-section__body .section-header__title {
+	font-size: var(--mtz-text-section);
+	letter-spacing: var(--mtz-tracking-display);
+}
+
+/* Hairline divider between title/tagline and body text */
+.content-section__body .section-body::before {
+	background: rgba(10, 9, 7, 0.2);
+	content: '';
+	display: block;
+	height: 1px;
+	margin-bottom: var(--mtz-space-md);
+	width: 32px;
+}
+
+.content-section__body .section-body {
+	color: var(--mtz-color-muted);
+	margin-top: var(--mtz-space-md);
+}
+
 /* ─── Gallery cluster ────────────────────────────────────────────────────────
    Small image group — used in service sections and about sections.
    1 image: full width. 2–3 images: 2-col grid, last image spans if odd.
