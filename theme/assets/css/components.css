@@ -459,13 +459,24 @@
 /* ─── Image stack ────────────────────────────────────────────────────────────
    Fanned deck of image cards — CSS defines the spread final state.
    GSAP will animate from collapsed (all centred, rotation 0) to this state.
-   Structure: .img-stack > (.img-ghost × 2) + (.img-card × 3)
-   Applies to services page now; about page image layout is a later pass.
+   Structure: .content-section__media > .img-stack > (.img-ghost × 2) + (.img-card × 3)
+
+   .content-section__media stretches to match the grid row (so the section
+   reads as balanced against the text card), then centres .img-stack —
+   which keeps its own constant size — inside it. This keeps the fan's
+   percentage-based card positions relative to a fixed box regardless of
+   how tall the text column gets.
    ─────────────────────────────────────────────────────────────────────────── */
 
-.img-stack {
+.content-section__media {
+	align-items: center;
+	display: flex;
 	height: 100%;
-	min-height: 420px;
+	justify-content: center;
+}
+
+.img-stack {
+	height: 420px;
 	position: relative;
 	width: 100%;
 }
