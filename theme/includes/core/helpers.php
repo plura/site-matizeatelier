@@ -61,3 +61,49 @@ function mtz_gallery_cluster( array $images, int $max = 3 ): string {
 
 	return '<div class="gallery-cluster">' . $imgs . '</div>';
 }
+
+/**
+ * Renders a fanned image stack — 2 decorative ghost cards + up to 3 real
+ * image cards. Falls back to $fallback_id (e.g. a featured image) when
+ * $images is empty. Returns empty string if no image source is available.
+ *
+ * Card position depends on count, so a lone image lands on the flat,
+ * unrotated centre card rather than a rotated corner:
+ *   1 image  → mid
+ *   2 images → back, front
+ *   3 images → back, mid, front
+ *
+ * @param array    $images       ACF gallery array (each item has at least 'ID').
+ * @param int|null $fallback_id  Attachment ID used when $images is empty.
+ * @return string
+ */
+function mtz_img_stack( array $images, ?int $fallback_id = null ): string {
+	if ( ! $images && $fallback_id ) {
+		$images = [ [ 'ID' => $fallback_id ] ];
+	}
+	if ( ! $images ) return '';
+
+	$position_sets = [
+		1 => [ 'mid' ],
+		2 => [ 'back', 'front' ],
+		3 => [ 'back', 'mid', 'front' ],
+	];
+
+	$images    = array_slice( $images, 0, 3 );
+	$positions = $position_sets[ count( $images ) ];
+
+	$cards = '';
+	foreach ( $images as $i => $image ) {
+		$cards .= sprintf(
+			'<div class="img-card img-card--%s">%s</div>',
+			esc_attr( $positions[ $i ] ),
+			plura_wp_image( $image['ID'], 'large' )
+		);
+	}
+
+	return '<div class="content-section__media img-stack">'
+		. '<div class="img-ghost img-ghost--1"></div>'
+		. '<div class="img-ghost img-ghost--2"></div>'
+		. $cards
+		. '</div>';
+}

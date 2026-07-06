@@ -36,15 +36,3 @@
 	text-transform: uppercase;
 }
 
-.service-section__cluster {
-	margin-top: var(--mtz-space-lg);
-}
-
-/* ── Image column ─────────────────────────────────────────────────────────── */
-
-.service-section__img {
-	aspect-ratio: 3 / 4;
-	height: auto;
-	object-fit: cover;
-	width: 100%;
-}

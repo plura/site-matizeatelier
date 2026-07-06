@@ -46,18 +46,9 @@ $services = new WP_Query( [
 						<?php if ( $description ) : ?>
 						<div class="service-section__description section-body prose"><?php echo wp_kses_post( $description ); ?></div>
 						<?php endif; ?>
-
-						<?php $cluster = mtz_gallery_cluster( $images ); ?>
-						<?php if ( $cluster ) : ?>
-						<div class="service-section__cluster"><?php echo $cluster; ?></div>
-						<?php endif; ?>
 					</div>
 
-					<?php if ( $thumb_id ) : ?>
-					<div class="content-section__media service-section__image">
-						<?php echo plura_wp_image( $thumb_id, 'large', [ 'class' => 'service-section__img' ] ); ?>
-					</div>
-					<?php endif; ?>
+					<?php echo mtz_img_stack( $images, $thumb_id ); ?>
 
 				</div>
 			</article>
