@@ -26,10 +26,16 @@ $services = new WP_Query( [
 			$description = get_field( 'mtz_service_description' );
 			$images      = get_field( 'mtz_service_gallery' ) ?: [];
 			$thumb_id    = get_post_thumbnail_id();
-			$accent      = get_field( 'mtz_page_theme' );
+
+			// mtz_page_theme is shared with the whole-page background field, so it
+			// also allows 'offwhite'/'charcoal' — neither has a content-section--*
+			// accent class. Fall back to coral, the site's default accent colour.
+			$valid_accents = [ 'coral', 'sage', 'gold', 'teal' ];
+			$accent        = get_field( 'mtz_page_theme' );
+			$accent        = in_array( $accent, $valid_accents, true ) ? $accent : 'coral';
 			?>
 
-			<article class="content-section content-section--split service-section <?php echo $accent ? 'content-section--' . esc_attr( $accent ) : ''; ?>">
+			<article class="content-section content-section--split service-section content-section--<?php echo esc_attr( $accent ); ?>">
 				<div class="content-section__inner">
 
 					<div class="content-section__body">
