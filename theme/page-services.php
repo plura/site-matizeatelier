@@ -19,11 +19,6 @@ $services = new WP_Query( [
 	<?php if ( $services->have_posts() ) : ?>
 	<section class="services-section">
 		<div class="container">
-			<?php
-			/* TODO: replace with ACF colour field on the service CPT */
-			$accent_classes = [ 'content-section--teal', 'content-section--gold', 'content-section--coral', 'content-section--sage' ];
-			$section_index  = 0;
-			?>
 			<?php while ( $services->have_posts() ) : $services->the_post(); ?>
 
 			<?php
@@ -31,9 +26,10 @@ $services = new WP_Query( [
 			$description = get_field( 'mtz_service_description' );
 			$images      = get_field( 'mtz_service_gallery' ) ?: [];
 			$thumb_id    = get_post_thumbnail_id();
+			$accent      = get_field( 'mtz_page_theme' );
 			?>
 
-			<article class="content-section content-section--split service-section <?php echo $accent_classes[ $section_index % count( $accent_classes ) ]; ?>">
+			<article class="content-section content-section--split service-section <?php echo $accent ? 'content-section--' . esc_attr( $accent ) : ''; ?>">
 				<div class="content-section__inner">
 
 					<div class="content-section__body">
@@ -53,7 +49,7 @@ $services = new WP_Query( [
 				</div>
 			</article>
 
-			<?php $section_index++; endwhile; wp_reset_postdata(); ?>
+			<?php endwhile; wp_reset_postdata(); ?>
 		</div>
 	</section>
 	<?php endif; ?>
