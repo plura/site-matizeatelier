@@ -1,0 +1,72 @@
+{
+	"key": "group_mtz_about_accents",
+	"title": "Matize — Sobre (Cores de Secção)",
+	"fields": [
+		{
+			"key": "field_mtz_about_mission_accent",
+			"label": "Missão — Cor de Destaque",
+			"name": "mtz_about_mission_accent",
+			"type": "select",
+			"instructions": "Cor de destaque do cartão desta secção.",
+			"default_value": "teal",
+			"allow_null": 0,
+			"choices": {
+				"coral": "Coral",
+				"sage": "Sage",
+				"gold": "Gold",
+				"teal": "Teal"
+			},
+			"ui": 1,
+			"return_format": "value"
+		},
+		{
+			"key": "field_mtz_about_philosophy_accent",
+			"label": "Filosofia — Cor de Destaque",
+			"name": "mtz_about_philosophy_accent",
+			"type": "select",
+			"instructions": "Cor de destaque do cartão desta secção.",
+			"default_value": "gold",
+			"allow_null": 0,
+			"choices": {
+				"coral": "Coral",
+				"sage": "Sage",
+				"gold": "Gold",
+				"teal": "Teal"
+			},
+			"ui": 1,
+			"return_format": "value"
+		},
+		{
+			"key": "field_mtz_about_cv_accent",
+			"label": "Curriculum — Cor de Destaque",
+			"name": "mtz_about_cv_accent",
+			"type": "select",
+			"instructions": "Cor de destaque do cartão desta secção.",
+			"default_value": "sage",
+			"allow_null": 0,
+			"choices": {
+				"coral": "Coral",
+				"sage": "Sage",
+				"gold": "Gold",
+				"teal": "Teal"
+			},
+			"ui": 1,
+			"return_format": "value"
+		}
+	],
+	"location": [
+		[
+			{
+				"param": "page_template",
+				"operator": "==",
+				"value": "page-about.php"
+			}
+		]
+	],
+	"menu_order": 90,
+	"position": "side",
+	"style": "seamless",
+	"label_placement": "top",
+	"instruction_placement": "label",
+	"active": true
+}
