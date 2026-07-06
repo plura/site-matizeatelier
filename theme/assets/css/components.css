@@ -506,17 +506,17 @@
 /* Rotation sweeps in one even, monotonic step (-20deg to 20deg) across all
    5 layers back-to-front — ghost1, back, mid, front, ghost2 — so the fan
    reads as a single gradual arc rather than independently-chosen angles. */
-.img-card--back  { left: 2%;   top: 2%;    transform: rotate(-10deg); z-index: 1; }
+.img-card--back  { left: 2%;   top: 2%;    transform: rotate(-10deg) translateY(-28px); z-index: 1; }
 .img-card--mid   { left: 50%;  top: 50%;   translate: -50% -50%; transform: rotate(0deg); z-index: 2; }
-.img-card--front { bottom: 2%; right: 2%;  transform: rotate(10deg);  z-index: 3; }
+.img-card--front { bottom: 2%; right: 2%;  transform: rotate(10deg) translateY(28px);   z-index: 3; }
 
 .img-ghost {
 	background: color-mix(in srgb, var(--mtz-section-accent) 30%, var(--mtz-color-offwhite));
 	z-index: 0;
 }
 
-.img-ghost--1 { left: 0; top: 0;       transform: rotate(-20deg) translateY(-18px); }
-.img-ghost--2 { bottom: 0; right: 0;   transform: rotate(20deg)  translateY(18px);  }
+.img-ghost--1 { left: 0; top: 0;       transform: rotate(-20deg) translateY(-40px); }
+.img-ghost--2 { bottom: 0; right: 0;   transform: rotate(20deg)  translateY(40px);  }
 
 /* Single real card (img-card--mid, flat/centred) leaves the base ghost
    corners looking orphaned. Mirror the tight back/front inset used in the
