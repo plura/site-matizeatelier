@@ -101,7 +101,7 @@ function mtz_img_stack( array $images, ?int $fallback_id = null ): string {
 		);
 	}
 
-	return '<div class="content-section__media img-stack">'
+	return sprintf( '<div class="content-section__media img-stack img-stack--%d">', count( $images ) )
 		. '<div class="img-ghost img-ghost--1"></div>'
 		. '<div class="img-ghost img-ghost--2"></div>'
 		. $cards

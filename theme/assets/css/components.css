@@ -503,3 +503,9 @@
 
 .img-ghost--1 { left: 0; top: 0;       transform: rotate(-22deg) translateY(-14px); }
 .img-ghost--2 { bottom: 0; right: 0;   transform: rotate(20deg)  translateY(14px);  }
+
+/* Single real card (img-card--mid, flat/centred) leaves the base ghost
+   corners looking orphaned. Pull them in and soften rotation so they
+   read as a tight trio around the photo instead of stray confetti. */
+.img-stack--1 .img-ghost--1 { left: 10%;   top: 10%;    transform: rotate(-14deg) translateY(-6px); }
+.img-stack--1 .img-ghost--2 { bottom: 10%; right: 10%;  transform: rotate(12deg)  translateY(6px);  }
