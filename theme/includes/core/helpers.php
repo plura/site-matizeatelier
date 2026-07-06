@@ -109,3 +109,33 @@ function mtz_img_stack( array $images, ?int $fallback_id = null ): string {
 		. '</div>'
 		. '</div>';
 }
+
+/**
+ * Renders a decorative furniture line-art SVG, inlined so its stroke
+ * (currentColor) can pick up the wrapper's CSS `color`. Wrapped in a div
+ * carrying positioning custom properties for scattered background use —
+ * absolutely positioned within whatever ancestor establishes the
+ * containing block (see .bg-vector in components.css).
+ *
+ * @param string $name  SVG filename without extension (e.g. 'furniture-armchair').
+ * @param array  $vars  CSS custom properties for the wrapper, e.g.
+ *                      ['--x' => '5%', '--y' => '10%', '--scale' => '1.2',
+ *                       '--rot' => '-8deg', '--opacity' => '.06'].
+ * @return string
+ */
+function mtz_bg_vector( string $name, array $vars = [] ): string {
+	$path = get_template_directory() . "/assets/svgs/{$name}.svg";
+	if ( ! file_exists( $path ) ) return '';
+
+	$style = '';
+	foreach ( $vars as $prop => $value ) {
+		$style .= esc_attr( $prop ) . ':' . esc_attr( $value ) . ';';
+	}
+
+	return sprintf(
+		'<div class="bg-vector bg-vector--%s" style="%s" aria-hidden="true">%s</div>',
+		esc_attr( $name ),
+		$style,
+		file_get_contents( $path )
+	);
+}

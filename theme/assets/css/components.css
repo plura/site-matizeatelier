@@ -524,3 +524,31 @@
    touch the photo's edges instead of floating apart from it. */
 .img-stack--1 .img-ghost--1 { left: 3%;   top: 3%;    transform: rotate(-10deg) translateY(-4px); }
 .img-stack--1 .img-ghost--2 { bottom: 3%; right: 3%;  transform: rotate(9deg)   translateY(4px);  }
+
+/* ─── Background vectors ─────────────────────────────────────────────────────
+   Decorative furniture line-art, scattered behind section content.
+   Positioned via CSS custom properties set inline per instance (mtz_bg_vector()
+   in helpers.php) — --x/--y/--rot/--scale/--opacity, all with safe defaults.
+   Sections allow overflow (no overflow:hidden) so a vector can bleed toward
+   an adjacent section for a continuous, page-wide scattered feel.
+   ─────────────────────────────────────────────────────────────────────────── */
+
+.bg-vector {
+	color: var(--mtz-color-charcoal);
+	left: var(--x, 0);
+	opacity: var(--opacity, .08);
+	pointer-events: none;
+	position: absolute;
+	top: var(--y, 0);
+	transform: rotate(var(--rot, 0deg)) scale(var(--scale, 1));
+	transform-origin: center center;
+	user-select: none;
+	width: 140px;
+	z-index: -1;
+}
+
+.bg-vector svg {
+	display: block;
+	height: auto;
+	width: 100%;
+}
