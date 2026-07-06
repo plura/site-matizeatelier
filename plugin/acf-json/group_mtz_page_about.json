@@ -50,6 +50,21 @@
 					"max_height": "",
 					"max_size": "",
 					"mime_types": ""
+				},
+				{
+					"key": "field_mtz_about_mission_accent",
+					"label": "Cor de Destaque",
+					"name": "accent",
+					"type": "select",
+					"instructions": "Cor de destaque do cartão desta secção.",
+					"required": 0,
+					"conditional_logic": 0,
+					"wrapper": { "width": "", "class": "", "id": "" },
+					"default_value": "teal",
+					"allow_null": 0,
+					"choices": {},
+					"ui": 1,
+					"return_format": "value"
 				}
 			]
 		},
@@ -101,6 +116,21 @@
 					"max_height": "",
 					"max_size": "",
 					"mime_types": ""
+				},
+				{
+					"key": "field_mtz_about_philosophy_accent",
+					"label": "Cor de Destaque",
+					"name": "accent",
+					"type": "select",
+					"instructions": "Cor de destaque do cartão desta secção.",
+					"required": 0,
+					"conditional_logic": 0,
+					"wrapper": { "width": "", "class": "", "id": "" },
+					"default_value": "gold",
+					"allow_null": 0,
+					"choices": {},
+					"ui": 1,
+					"return_format": "value"
 				}
 			]
 		},
@@ -152,6 +182,21 @@
 					"max_height": "",
 					"max_size": "",
 					"mime_types": ""
+				},
+				{
+					"key": "field_mtz_about_cv_accent",
+					"label": "Cor de Destaque",
+					"name": "accent",
+					"type": "select",
+					"instructions": "Cor de destaque do cartão desta secção.",
+					"required": 0,
+					"conditional_logic": 0,
+					"wrapper": { "width": "", "class": "", "id": "" },
+					"default_value": "sage",
+					"allow_null": 0,
+					"choices": {},
+					"ui": 1,
+					"return_format": "value"
 				}
 			]
 		}
@@ -172,7 +217,7 @@
 	"instruction_placement": "label",
 	"hide_on_screen": [ "the_content", "excerpt", "discussion", "comments", "revisions", "author" ],
 	"active": true,
-	"description": "Refinar a regra de localização para apontar apenas para a página Sobre assim que existir no WordPress.",
+	"description": "Refinar a regra de localização para apontar apenas para a página Sobre assim que existir no WordPress. Nota: os sub-campos 'accent' (mission/philosophy/cv) são uma excepção deliberada à separação tema/plugin — o campo vive aqui por proximidade editorial ao conteúdo, mas as suas 'choices' são injectadas em runtime pelo tema via acf/load_field (ver theme/includes/hooks/page-bg.php), mantendo a paleta de cores como fonte única.",
 	"show_in_rest": 0,
 	"modified": 0
 }

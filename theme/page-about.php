@@ -19,7 +19,7 @@ get_template_part( 'template-parts/page-header' ); ?>
 		if ( ! $data ) continue;
 		$text   = $data['text']   ?? '';
 		$images = $data['images'] ?? [];
-		$accent = get_field( "mtz_about_{$key}_accent" );
+		$accent = $data['accent'] ?? '';
 	?>
 
 	<section class="content-section content-section--split about-section about-section--<?php echo esc_attr( $key ); ?> <?php echo $accent ? 'content-section--' . esc_attr( $accent ) : ''; ?>">
