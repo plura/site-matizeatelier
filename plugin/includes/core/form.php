@@ -160,19 +160,25 @@ function mtz_build_email_body( string $form_name, array $fields, string $intro =
 	$logo_url = plugin_dir_url( dirname( __DIR__ ) ) . 'templates/mtz-logo-600x190.png';
 
 	// ── Contact block ─────────────────────────────────────────────────────────
-	$contact       = function_exists( 'get_field' ) ? ( get_field( 'mtz_contact', 'option' ) ?: [] ) : [];
-	$contact_parts = [];
-	if ( ! empty( $contact['mtz_contact_address'] ) ) {
-		$contact_parts[] = wp_kses( $contact['mtz_contact_address'], [ 'br' => [] ] );
-	}
+	// Exposed both as individual pieces (%CONTACT_ADDRESS%/%CONTACT_EMAIL%/
+	// %CONTACT_PHONE%, for templates that lay them out separately, e.g. a
+	// two-column footer) and pre-assembled as %CONTACT_BLOCK% (for templates
+	// that just want the whole thing in one place).
+	$contact         = function_exists( 'get_field' ) ? ( get_field( 'mtz_contact', 'option' ) ?: [] ) : [];
+	$contact_address = ! empty( $contact['mtz_contact_address'] ) ? wp_kses( $contact['mtz_contact_address'], [ 'br' => [] ] ) : '';
+	$contact_email   = '';
+	$contact_phone   = '';
+
 	if ( ! empty( $contact['mtz_contact_email'] ) ) {
-		$email           = esc_attr( $contact['mtz_contact_email'] );
-		$contact_parts[] = '<a href="mailto:' . $email . '">' . esc_html( $contact['mtz_contact_email'] ) . '</a>';
+		$email         = esc_attr( $contact['mtz_contact_email'] );
+		$contact_email = '<a href="mailto:' . $email . '">' . esc_html( $contact['mtz_contact_email'] ) . '</a>';
 	}
 	if ( ! empty( $contact['mtz_contact_phone'] ) ) {
-		$phone           = esc_attr( preg_replace( '/\s+/', '', $contact['mtz_contact_phone'] ) );
-		$contact_parts[] = '<a href="tel:' . $phone . '">' . esc_html( $contact['mtz_contact_phone'] ) . '</a>';
+		$phone         = esc_attr( preg_replace( '/\s+/', '', $contact['mtz_contact_phone'] ) );
+		$contact_phone = '<a href="tel:' . $phone . '">' . esc_html( $contact['mtz_contact_phone'] ) . '</a>';
 	}
+
+	$contact_parts = array_filter( [ $contact_address, $contact_email, $contact_phone ] );
 	$contact_block = $contact_parts
 		? '<p>' . implode( '<br>', $contact_parts ) . '</p>'
 		: '';
@@ -196,8 +202,8 @@ function mtz_build_email_body( string $form_name, array $fields, string $intro =
 		: '';
 
 	$html = str_replace(
-		[ '%SITE_NAME%', '%SITE_URL%', '%LOGO_URL%', '%FORM_NAME%', '%FIELDS%', '%INTRO%', '%CONTACT_BLOCK%', '%SOCIAL_BLOCK%', '%YEAR%' ],
-		[ esc_html( get_bloginfo( 'name' ) ), esc_url( home_url( '/' ) ), esc_url( $logo_url ), esc_html( $form_name ), $fields_html, $intro, $contact_block, $social_block, gmdate( 'Y' ) ],
+		[ '%SITE_NAME%', '%SITE_URL%', '%LOGO_URL%', '%FORM_NAME%', '%FIELDS%', '%INTRO%', '%CONTACT_BLOCK%', '%CONTACT_ADDRESS%', '%CONTACT_EMAIL%', '%CONTACT_PHONE%', '%SOCIAL_BLOCK%', '%YEAR%' ],
+		[ esc_html( get_bloginfo( 'name' ) ), esc_url( home_url( '/' ) ), esc_url( $logo_url ), esc_html( $form_name ), $fields_html, $intro, $contact_block, $contact_address, $contact_email, $contact_phone, $social_block, gmdate( 'Y' ) ],
 		$html
 	);
 
