@@ -5,7 +5,7 @@ document.addEventListener( 'DOMContentLoaded', () => {
 	const hero         = document.querySelector( '.plura-wp-component .hero' );
 	const lettersPath  = hero?.querySelector( '#mtz-logo-matize-letters' );
 	const dot          = hero?.querySelector( '#mtz-logo-matize-dot' );
-	const atelierPaths = [ ...( hero?.querySelectorAll( '#mtz-logo-atelier :is(path, rect, polygon)' ) ?? [] ) ];
+	const atelier      = hero?.querySelector( '#mtz-logo-atelier' );
 	const video        = hero?.querySelector( '.hero__video' );
 	const scrollBtn    = hero?.querySelector( '.hero__scroll' );
 
@@ -29,9 +29,9 @@ document.addEventListener( 'DOMContentLoaded', () => {
 	const length = lettersPath.getTotalLength() || 3000;
 
 	// GSAP owns all initial states — no raw element.style manipulation
-	gsap.set( lettersPath,  { strokeDasharray: length, strokeDashoffset: length, strokeOpacity: 1 } );
-	gsap.set( dot,          { scale: 0, transformOrigin: 'center center' } );
-	gsap.set( atelierPaths, { opacity: 0, y: ( i ) => i % 2 === 0 ? 8 : -8 } );
+	gsap.set( lettersPath, { strokeDasharray: length, strokeDashoffset: length, strokeOpacity: 1 } );
+	gsap.set( dot,         { scale: 0, transformOrigin: 'center center' } );
+	gsap.set( atelier,     { opacity: 0, y: 10 } );
 
 	const tl = gsap.timeline( { delay: 0.3 } );
 
@@ -58,12 +58,11 @@ document.addEventListener( 'DOMContentLoaded', () => {
 		ease:     'back.out(2)',
 	}, '+=0.5' );
 
-	// 3. Atelier letters — alternate slide up/down into place
-	tl.to( atelierPaths, {
+	// 3. Atelier wordmark — simple slide up + fade in, as one unit
+	tl.to( atelier, {
 		opacity:  1,
 		y:        0,
 		duration: 0.5,
-		stagger:  0.07,
 		ease:     'power2.out',
 	}, '-=0.1' );
 
