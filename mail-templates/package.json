@@ -1,0 +1,8 @@
+{
+	"name": "matize-mail-templates",
+	"private": true,
+	"scripts": {
+		"build:contact": "npx mjml contact.mjml -o contact.html --config.allowIncludes true --config.includePath . --config.minify true",
+		"build": "npm run build:contact"
+	}
+}
