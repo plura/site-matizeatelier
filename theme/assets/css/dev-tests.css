@@ -1,0 +1,17 @@
+@charset "UTF-8";
+/* ─── Dev tests ──────────────────────────────────────────────────────────────
+   Loaded only when a relevant ?dev= flag is active (see dev.js) — never
+   shipped on a normal page load. Each test is scoped to its own body class
+   so multiple tests can't accidentally bleed into each other.
+   ─────────────────────────────────────────────────────────────────────────── */
+
+/* ?dev=header-opacity — giant, near-invisible page title; bg-vectors hidden
+   (not display:none, so layout doesn't shift) for a clean comparison. */
+body.dev-header-opacity .page-header__title {
+	font-size: clamp(6rem, 15vw, 16rem);
+	opacity: .05;
+}
+
+body.dev-header-opacity .bg-vector {
+	visibility: hidden;
+}

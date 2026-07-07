@@ -103,6 +103,7 @@ Append `?dev=<action>` to any page URL to activate dev helpers. Multiple actions
 |---|---|
 | `?dev=no-intro` | Skip the home page scroll sections (statement rotator + mood gallery) |
 | `?dev=seed-form` | Fill the contact form with random fixture data and open the modal |
+| `?dev=header-opacity` | Page-header title test: huge font-size, ~5% opacity, bg-vectors hidden. CSS lives in `dev-tests.css`, loaded only when this flag is active. |
 
 ## Notes
 
