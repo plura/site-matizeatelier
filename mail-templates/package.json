@@ -2,7 +2,7 @@
 	"name": "matize-mail-templates",
 	"private": true,
 	"scripts": {
-		"build:generic": "npx mjml generic.mjml -o generic.html --config.allowIncludes true --config.includePath . --config.minify true",
+		"build:generic": "npx mjml generic/generic.mjml -o generic/generic.html --config.allowIncludes true --config.includePath . --config.minify true",
 		"build:contact-en": "npx mjml contact/contact-en.mjml -o contact/contact-en.html --config.allowIncludes true --config.includePath . --config.minify true",
 		"build:contact-pt": "npx mjml contact/contact-pt.mjml -o contact/contact-pt.html --config.allowIncludes true --config.includePath . --config.minify true",
 		"build:contact-reply-en": "npx mjml contact/contact-reply-en.mjml -o contact/contact-reply-en.html --config.allowIncludes true --config.includePath . --config.minify true",

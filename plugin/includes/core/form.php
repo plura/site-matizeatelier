@@ -149,7 +149,7 @@ function mtz_handle_form(): void {
  * @return string
  */
 function mtz_build_email_body( string $form_name, array $fields, string $intro = '', ?string $template = null ): string {
-	$default_template = plugin_dir_path( dirname( __DIR__ ) ) . 'templates/email-generic.html';
+	$default_template = plugin_dir_path( dirname( __DIR__ ) ) . 'templates/generic.html';
 	$template          = $template ?? apply_filters( 'mtz_email_template', $default_template, $form_name );
 
 	if ( ! file_exists( $template ) ) {
