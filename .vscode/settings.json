@@ -18,5 +18,7 @@
     ],
     "intelephense.environment.includePaths": [
         "theme/stubs"
-    ]
+    ],
+    "mjml.allowIncludes": true,
+    "mjml.includePath": ["mail-templates"]
 }
