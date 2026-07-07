@@ -5,6 +5,7 @@ Website for [matizeatelier.pt](https://matizeatelier.pt) — Atelier de Design d
 ## Structure
 
 ```
+/mail-templates MJML email template source (dev-only, not deployed — see "Email templates" below)
 /placeholder    Static coming soon page (live while WordPress is being built)
 /theme          Custom WordPress theme → wp-content/themes/matize/
   /assets
@@ -25,7 +26,7 @@ Website for [matizeatelier.pt](https://matizeatelier.pt) — Atelier de Design d
     /hooks        Page-specific plura_wp_post filters (home.php, services.php)
     /post-types   CPT registration (service.php, brand.php)
   /languages      Translation files (.pot, .po, .mo)
-  /templates      Email templates (email-enquiry.html)
+  /templates      Compiled email templates (built from /mail-templates)
 ```
 
 ## Stack
@@ -77,6 +78,22 @@ The destination address is configured in **Theme Settings → Formulário de Ped
 SMTP is handled by the **WP Mail SMTP** plugin (installed, configured separately — credentials not in codebase).
 
 JS-facing error strings are centralised in `plugin/includes/core/i18n.php` and exposed as `mtzLang` via `wp_localize_script`.
+
+### Email templates
+
+`mtz_build_email_body()` resolves which template to use in this order: an explicit `$template` argument → the `mtz_email_template` filter (lets a theme supply its own bespoke template per form without the plugin needing to know the theme's file structure) → the plugin's own field-agnostic fallback at `plugin/templates/generic.html`.
+
+Templates are authored as MJML in `/mail-templates` (dev-only, not deployed) and compiled to the `.html` files actually used at runtime:
+
+```
+/mail-templates
+  /_partials    Shared branding partials (head/header/footer) — reusable by any future template type
+  /contact      Bespoke, on-brand contact form templates — notification + auto-reply, EN/PT (4 variants,
+                sharing contact/_partials for the fields table)
+  /generic      Field-agnostic fallback — no named field placeholders, works for any [data-mtz-form]
+```
+
+Requires Node. From `/mail-templates`, run `npm run build` (or a specific `build:*` script) — uses `npx mjml`. The compiled `generic.html` is copied to `plugin/templates/generic.html`; the `contact/*.html` variants are intended for the theme once it hooks into `mtz_email_template` (not yet wired).
 
 ## Dev tools
 
