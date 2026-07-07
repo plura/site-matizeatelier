@@ -118,7 +118,7 @@ body:has( .site-header.is-scrolled ) .hero__scroll {
 }
 
 .hero #mtz-logo-matize-dot,
-.hero #mtz-logo-atelier :is(path, rect, polygon) {
+.hero #mtz-logo-atelier {
 	opacity: 0;
 }
 
