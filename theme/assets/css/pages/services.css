@@ -51,13 +51,15 @@
    others natively, so at equal scale they read visibly smaller.
    top kept within a safe 8–75% range: the first service on the page has
    nothing above it but the page title, so any top-bleed there risks
-   overlapping it — the wider horizontal push (-18%/118%) does the "clearly
-   outside the content" job instead. Rotation matches side — left leans
-   left (negative), right leans right (positive). */
-.bg-vector--service-0-1 { left: 118%; top: 72%; opacity: .07; transform: rotate(10deg)  scale(1.2);  }
-.bg-vector--service-0-2 { left: -18%; top: 10%; opacity: .06; transform: rotate(-12deg) scale(1.9);  }
-.bg-vector--service-1-1 { left: 118%; top: 75%; opacity: .07; transform: rotate(8deg)   scale(1.15); }
-.bg-vector--service-1-2 { left: -18%; top: 8%;  opacity: .06; transform: rotate(-9deg)  scale(1.15); }
-.bg-vector--service-2-1 { left: -18%; top: 9%;  opacity: .07; transform: rotate(-11deg) scale(1.2);  }
-.bg-vector--service-2-2 { left: 118%; top: 70%; opacity: .06; transform: rotate(9deg)   scale(1.55); }
+   overlapping it. Horizontal push is -10%/110% — an earlier -18%/118%
+   attempt pushed far enough (combined with the vector's own width) to run
+   past the actual viewport edge on realistic screen widths, getting
+   clipped by .site-main's overflow-x: hidden. Rotation matches side —
+   left leans left (negative), right leans right (positive). */
+.bg-vector--service-0-1 { left: 110%; top: 72%; opacity: .07; transform: rotate(10deg)  scale(1.2);  }
+.bg-vector--service-0-2 { left: -10%; top: 10%; opacity: .06; transform: rotate(-12deg) scale(1.9);  }
+.bg-vector--service-1-1 { left: 110%; top: 75%; opacity: .07; transform: rotate(8deg)   scale(1.15); }
+.bg-vector--service-1-2 { left: -10%; top: 8%;  opacity: .06; transform: rotate(-9deg)  scale(1.15); }
+.bg-vector--service-2-1 { left: -10%; top: 9%;  opacity: .07; transform: rotate(-11deg) scale(1.2);  }
+.bg-vector--service-2-2 { left: 110%; top: 70%; opacity: .06; transform: rotate(9deg)   scale(1.55); }
 
