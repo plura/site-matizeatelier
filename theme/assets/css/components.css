@@ -540,6 +540,13 @@
 
 .bg-vector {
 	color: var(--mtz-color-charcoal);
+	/* Fixed square-ish box (not just width) — icons vary wildly in native
+	   aspect ratio (floor-lamp ~3.5:1, dresser ~1.4:1 landscape). Letting
+	   height:auto follow each one's own ratio made tall pieces reach far
+	   further up/down than others, causing them to cross into neighbouring
+	   sections. Fixing both dimensions and letting the svg scale to fit
+	   (like object-fit: contain) keeps every vector's footprint identical. */
+	height: clamp(160px, 14vw, 340px);
 	opacity: .08;
 	pointer-events: none;
 	position: absolute;
@@ -551,7 +558,7 @@
 
 .bg-vector svg {
 	display: block;
-	height: auto;
+	height: 100%;
 	width: 100%;
 }
 
