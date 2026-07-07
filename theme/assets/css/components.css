@@ -263,13 +263,17 @@
 
 /* ─── Content section ───────────────────────────────────────────────────────
    Shared base for two-column page sections (services, about).
-   position: relative + isolation: isolate contain .section-numeral's
-   z-index: -1 within the section rather than the page stacking context.
+   position: relative anchors absolutely-positioned children (bg-vector,
+   section-numeral). No isolation: bg-vector/section-numeral deliberately
+   bleed into neighbouring sections (z-index: -1) — isolation would trap
+   that z-index inside its own section's stacking context, making a
+   bleeding vector paint OVER the previous section's card instead of
+   behind it (that section, being earlier in the DOM, would otherwise
+   already be fully painted before this one starts).
    Column ratios and child order live in layout.css (.content-section--split).
    ─────────────────────────────────────────────────────────────────────────── */
 
 .content-section {
-	isolation: isolate;
 	padding-block: var(--mtz-space-2xl);
 	position: relative;
 }
@@ -430,7 +434,8 @@
 
 /* ─── Section watermark numeral ──────────────────────────────────────────────
    Large outline numeral — position: absolute within .content-section.
-   z-index: -1 sits behind content within the section's isolation context.
+   z-index: -1 sinks behind any opaque content anywhere on the page (see the
+   isolation note on .content-section above).
    PHP adds <span class="section-numeral" aria-hidden="true">N</span>
    as a direct child of .content-section (PHP pass to follow).
    ─────────────────────────────────────────────────────────────────────────── */
