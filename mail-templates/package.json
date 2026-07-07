@@ -2,10 +2,10 @@
 	"name": "matize-mail-templates",
 	"private": true,
 	"scripts": {
-		"build:contact-en": "npx mjml contact-en.mjml -o contact-en.html --config.allowIncludes true --config.includePath . --config.minify true",
-		"build:contact-pt": "npx mjml contact-pt.mjml -o contact-pt.html --config.allowIncludes true --config.includePath . --config.minify true",
-		"build:contact-reply-en": "npx mjml contact-reply-en.mjml -o contact-reply-en.html --config.allowIncludes true --config.includePath . --config.minify true",
-		"build:contact-reply-pt": "npx mjml contact-reply-pt.mjml -o contact-reply-pt.html --config.allowIncludes true --config.includePath . --config.minify true",
+		"build:contact-en": "npx mjml contact/contact-en.mjml -o contact/contact-en.html --config.allowIncludes true --config.includePath . --config.minify true",
+		"build:contact-pt": "npx mjml contact/contact-pt.mjml -o contact/contact-pt.html --config.allowIncludes true --config.includePath . --config.minify true",
+		"build:contact-reply-en": "npx mjml contact/contact-reply-en.mjml -o contact/contact-reply-en.html --config.allowIncludes true --config.includePath . --config.minify true",
+		"build:contact-reply-pt": "npx mjml contact/contact-reply-pt.mjml -o contact/contact-reply-pt.html --config.allowIncludes true --config.includePath . --config.minify true",
 		"build": "npm run build:contact-en && npm run build:contact-pt && npm run build:contact-reply-en && npm run build:contact-reply-pt"
 	}
 }
