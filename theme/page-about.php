@@ -14,19 +14,20 @@ get_template_part( 'template-parts/page-header' ); ?>
 		'cv'         => [ 'title' => __( 'Curriculum', 'matize' ), 'field' => 'mtz_about_cv'         ],
 	];
 
-	/* TODO: first-pass placement, tune after visual review. Classes defined in pages/about.css */
+	/* TODO: first-pass placement, tune after visual review.
+	   Placement classes auto-generated as bg-vector--{key}-{n}, defined in pages/about.css */
 	$bg_vectors = [
 		'mission'    => [
-			[ 'name' => 'furniture-dresser',    'class' => 'bg-vector--mission-1' ],
-			[ 'name' => 'furniture-floor-lamp', 'class' => 'bg-vector--mission-2' ],
+			[ 'name' => 'furniture-dresser' ],
+			[ 'name' => 'furniture-floor-lamp' ],
 		],
 		'philosophy' => [
-			[ 'name' => 'furniture-vanity-desk', 'class' => 'bg-vector--philosophy-1' ],
-			[ 'name' => 'furniture-mirror',      'class' => 'bg-vector--philosophy-2' ],
+			[ 'name' => 'furniture-vanity-desk' ],
+			[ 'name' => 'furniture-mirror' ],
 		],
 		'cv'         => [
-			[ 'name' => 'furniture-armchair', 'class' => 'bg-vector--cv-1' ],
-			[ 'name' => 'furniture-wardrobe',  'class' => 'bg-vector--cv-2' ],
+			[ 'name' => 'furniture-armchair' ],
+			[ 'name' => 'furniture-wardrobe' ],
 		],
 	];
 
@@ -40,8 +41,8 @@ get_template_part( 'template-parts/page-header' ); ?>
 
 	<section class="content-section content-section--split about-section about-section--<?php echo esc_attr( $key ); ?> <?php echo $accent ? 'content-section--' . esc_attr( $accent ) : ''; ?>">
 
-		<?php foreach ( $bg_vectors[ $key ] ?? [] as $vector ) : ?>
-			<?php echo mtz_bg_vector( $vector['name'], $vector['class'] ); ?>
+		<?php foreach ( $bg_vectors[ $key ] ?? [] as $i => $vector ) : ?>
+			<?php echo mtz_bg_vector( $vector['name'], "bg-vector--{$key}-" . ( $i + 1 ) ); ?>
 		<?php endforeach; ?>
 
 		<div class="container">
