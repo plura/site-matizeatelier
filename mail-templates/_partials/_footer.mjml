@@ -10,10 +10,14 @@
 			padding="0 0 14px"
 		>%SITE_NAME%</mj-text>
 		<mj-raw>
-			<div class="footer" style="text-align:center; color:#A39C8C; font-size:11px; letter-spacing:0.03em; line-height:1.9;">
-				%CONTACT_BLOCK%
-				%SOCIAL_BLOCK%
-			</div>
+			<tr>
+				<td align="center" style="font-size:0; padding:0; word-break:break-word;">
+					<div class="footer" style="text-align:center; color:#A39C8C; font-size:11px; letter-spacing:0.03em; line-height:1.9;">
+						%CONTACT_BLOCK%
+						%SOCIAL_BLOCK%
+					</div>
+				</td>
+			</tr>
 		</mj-raw>
 		<mj-divider border-color="#2A2620" border-width="1px" padding="20px 0" />
 		<mj-text
