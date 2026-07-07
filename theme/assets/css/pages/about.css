@@ -33,17 +33,18 @@
    narrower than the others, so at equal scale they read visibly smaller.
    top kept within a safe 8–75% range (was up to -10%/70%): the first
    section on a page has nothing above it but the page title, so any
-   top-bleed there risks overlapping it. Horizontal push is -10%/110% —
-   wider than the original -8%/105%, but an earlier -18%/118% attempt
-   pushed far enough (combined with the vector's own width) to run past
-   the actual viewport edge on realistic screen widths, getting clipped
-   by .site-main's overflow-x: hidden. Rotation matches side — left leans
-   left (negative), right leans right (positive) — reinforcing the sense
-   that each piece belongs to its margin rather than drifting toward the
-   content column. */
-.bg-vector--mission-1    { left: 110%; top: 72%; opacity: .07; transform: rotate(10deg)  scale(1.2);  }
-.bg-vector--mission-2    { left: -10%; top: 10%; opacity: .06; transform: rotate(-12deg) scale(1.9);  }
-.bg-vector--philosophy-1 { left: 110%; top: 75%; opacity: .07; transform: rotate(8deg)   scale(1.15); }
-.bg-vector--philosophy-2 { left: -10%; top: 8%;  opacity: .06; transform: rotate(-9deg)  scale(1.15); }
-.bg-vector--cv-1         { left: -10%; top: 9%;  opacity: .07; transform: rotate(-11deg) scale(1.2);  }
-.bg-vector--cv-2         { left: 110%; top: 70%; opacity: .06; transform: rotate(9deg)   scale(1.55); }
+   top-bleed there risks overlapping it.
+   Horizontal is -15%/104%, asymmetric on purpose — an earlier symmetric
+   -10%/110% rendered very differently per side (right reaching much
+   further than left despite the mirrored values), so this was tuned
+   empirically from what actually rendered rather than derived from a
+   single formula; re-check both sides together if adjusting either one.
+   Rotation matches side — left leans left (negative), right leans right
+   (positive) — reinforcing the sense that each piece belongs to its
+   margin rather than drifting toward the content column. */
+.bg-vector--mission-1    { left: 104%; top: 72%; opacity: .07; transform: rotate(10deg)  scale(1.2);  }
+.bg-vector--mission-2    { left: -15%; top: 10%; opacity: .06; transform: rotate(-12deg) scale(1.9);  }
+.bg-vector--philosophy-1 { left: 104%; top: 75%; opacity: .07; transform: rotate(8deg)   scale(1.15); }
+.bg-vector--philosophy-2 { left: -15%; top: 8%;  opacity: .06; transform: rotate(-9deg)  scale(1.15); }
+.bg-vector--cv-1         { left: -15%; top: 9%;  opacity: .07; transform: rotate(-11deg) scale(1.2);  }
+.bg-vector--cv-2         { left: 104%; top: 70%; opacity: .06; transform: rotate(9deg)   scale(1.55); }
