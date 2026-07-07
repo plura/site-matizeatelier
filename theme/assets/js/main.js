@@ -31,10 +31,11 @@ if ( document.querySelector( '.gallery' ) ) {
 
 // ── Scroll animations ─────────────────────────────────────────────────────────
 if ( document.querySelector( '.section-header__title, .content-section--split, .grid' ) ) {
-	import( './animations-scroll.js' ).then( ( { mtzAnimSectionHeaders, mtzAnimContentSections, mtzAnimGridItems } ) => {
+	import( './animations-scroll.js' ).then( ( { mtzAnimSectionHeaders, mtzAnimContentSections, mtzAnimGridItems, mtzAnimImgStacks } ) => {
 		mtzAnimSectionHeaders();
 		mtzAnimContentSections();
 		mtzAnimGridItems();
+		mtzAnimImgStacks();
 	} );
 }
 

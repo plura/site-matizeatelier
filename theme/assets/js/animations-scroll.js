@@ -111,3 +111,43 @@ export function mtzAnimContentSections() {
 
 	} );
 }
+
+// ── Image stack — collapsed to spread ──────────────────────────────────────────
+// Each .img-stack's ghosts/cards already have their fanned "spread" position and
+// rotation baked into CSS (transform: rotate() translateY(), etc). Rather than
+// duplicating those values in JS, read each layer's current (already-final)
+// bounding box, and gsap.from() a centred/unrotated starting point back to it —
+// this animates correctly however the CSS positions are tuned, with no JS changes.
+export function mtzAnimImgStacks() {
+	const stacks = document.querySelectorAll( '.img-stack' );
+
+	stacks.forEach( stack => {
+		const layers = [ ...stack.querySelectorAll( '.img-ghost, .img-card' ) ];
+		if ( ! layers.length ) return;
+
+		const stackRect = stack.getBoundingClientRect();
+		const centerX   = stackRect.left + stackRect.width / 2;
+		const centerY   = stackRect.top + stackRect.height / 2;
+
+		const tl = gsap.timeline();
+
+		layers.forEach( ( layer, i ) => {
+			const rect = layer.getBoundingClientRect();
+
+			tl.from( layer, {
+				x:        centerX - ( rect.left + rect.width / 2 ),
+				y:        centerY - ( rect.top + rect.height / 2 ),
+				rotation: 0,
+				duration: 1,
+			}, i * 0.15 );
+		} );
+
+		ScrollTrigger.create( {
+			trigger:   stack,
+			start:     'top 85%',
+			end:       'top 35%',
+			scrub:     1,
+			animation: tl,
+		} );
+	} );
+}
