@@ -130,8 +130,27 @@ function mtz_handle_form(): void {
 
 // ─── Email body ───────────────────────────────────────────────────────────────
 
-function mtz_build_email_body( string $form_name, array $fields, string $intro = '' ): string {
-	$template = plugin_dir_path( dirname( __DIR__ ) ) . 'templates/email-enquiry.html';
+/**
+ * Builds the HTML body for a form-submission email.
+ *
+ * Templates are resolved in this order: the explicit $template argument, if
+ * given; otherwise the 'mtz_email_template' filter, which a theme can hook
+ * into to supply its own bespoke template for a given $form_name (e.g. named
+ * field placeholders, on-brand styling) without this plugin ever needing to
+ * know the theme's file structure; otherwise this plugin's own generic
+ * template, which only relies on %FIELDS% (built dynamically below from
+ * whatever fields were actually submitted) so it works for any form.
+ *
+ * @param string      $form_name
+ * @param array       $fields
+ * @param string      $intro
+ * @param string|null $template  Absolute path to a template file. Bypasses
+ *                                the 'mtz_email_template' filter entirely.
+ * @return string
+ */
+function mtz_build_email_body( string $form_name, array $fields, string $intro = '', ?string $template = null ): string {
+	$default_template = plugin_dir_path( dirname( __DIR__ ) ) . 'templates/email-generic.html';
+	$template          = $template ?? apply_filters( 'mtz_email_template', $default_template, $form_name );
 
 	if ( ! file_exists( $template ) ) {
 		error_log( 'Matize: email template not found at ' . $template );
