@@ -2,10 +2,11 @@
 /**
  * Template Name: About
  */
-get_header();
-get_template_part( 'template-parts/page-header' ); ?>
+get_header(); ?>
 
 <main id="main" class="site-main page-about">
+
+	<?php get_template_part( 'template-parts/page-header' ); ?>
 
 	<?php
 	$sections = [

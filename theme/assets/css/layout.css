@@ -88,9 +88,15 @@
 	}
 }
 
-.site-main > *:first-child:not(.content-section),
-.site-main > *:first-child:not(.content-section) > .container:first-child {
+.page-header + *:not(.content-section),
+.page-header + *:not(.content-section) > .container:first-child {
 	padding-block-start: 0;
+}
+
+/* bg-vector deliberately bleeds past its row (left: -8%/105%) — clip at the
+   main boundary so that never causes a page-wide horizontal scrollbar. */
+.site-main {
+	overflow-x: hidden;
 }
 
 /* ─── Section body ───────────────────────────────────────────────────────────

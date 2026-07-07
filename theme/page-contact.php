@@ -3,10 +3,11 @@
  * Template Name: Contact
  */
 
-get_header();
-get_template_part( 'template-parts/page-header' ); ?>
+get_header(); ?>
 
 <main id="main" class="site-main page-contact">
+
+	<?php get_template_part( 'template-parts/page-header' ); ?>
 
 	<section class="contact">
 		<div class="contact__inner container">

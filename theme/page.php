@@ -1,8 +1,10 @@
 <?php
-get_header();
-get_template_part( 'template-parts/page-header' ); ?>
+get_header(); ?>
 
 <main id="main" class="site-main page-<?php echo esc_attr( get_post_field( 'post_name' ) ); ?>">
+
+	<?php get_template_part( 'template-parts/page-header' ); ?>
+
 	<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
 	<section class="content-section">
 		<div class="container">

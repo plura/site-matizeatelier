@@ -2,10 +2,11 @@
 /**
  * Template Name: Gallery
  */
-get_header();
-get_template_part( 'template-parts/page-header' ); ?>
+get_header(); ?>
 
 <main id="main" class="site-main page-gallery">
+
+	<?php get_template_part( 'template-parts/page-header' ); ?>
 
 	<?php $gallery = get_field( 'mtz_gallery_items' ); ?>
 	<?php if ( $gallery ) : ?>

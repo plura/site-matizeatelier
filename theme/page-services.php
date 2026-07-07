@@ -3,7 +3,6 @@
  * Template Name: Services
  */
 get_header();
-get_template_part( 'template-parts/page-header' );
 
 $services = new WP_Query( [
 	'post_type'      => 'mtz_service',
@@ -15,6 +14,8 @@ $services = new WP_Query( [
 ?>
 
 <main id="main" class="site-main page-services">
+
+	<?php get_template_part( 'template-parts/page-header' ); ?>
 
 	<?php if ( $services->have_posts() ) : ?>
 	<section class="services-section">
