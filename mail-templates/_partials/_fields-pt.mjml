@@ -1,0 +1,20 @@
+<mj-raw>
+	<table class="form-data" role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+		<tr>
+			<td class="label-cell">Nome</td>
+			<td class="value-cell">%mtz_name%</td>
+		</tr>
+		<tr>
+			<td class="label-cell">Email</td>
+			<td class="value-cell">%mtz_email%</td>
+		</tr>
+		<tr>
+			<td class="label-cell">Telefone</td>
+			<td class="value-cell">%mtz_phone%</td>
+		</tr>
+		<tr>
+			<td class="label-cell">Mensagem</td>
+			<td class="value-cell">%mtz_message%</td>
+		</tr>
+	</table>
+</mj-raw>

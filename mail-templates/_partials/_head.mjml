@@ -1,0 +1,70 @@
+<mj-attributes>
+	<mj-all font-family="Helvetica Neue, Helvetica, Arial, sans-serif" />
+	<mj-text color="#0A0907" font-size="14px" line-height="1.7" />
+</mj-attributes>
+
+<mj-style>
+	.badge {
+		background-color: #EC6F63;
+		border-radius: 999px;
+		color: #FFFFFF;
+		display: inline-block;
+		font-size: 10px;
+		font-weight: bold;
+		letter-spacing: 0.18em;
+		padding: 8px 18px;
+		text-transform: uppercase;
+	}
+	.form-data {
+		border-collapse: collapse;
+		width: 100%;
+	}
+	.form-data tr:last-child td {
+		border-bottom: none;
+	}
+	.form-data td {
+		border-bottom: 1px solid #EDE6D6;
+		padding: 14px 0;
+		vertical-align: top;
+	}
+	.label-cell {
+		color: #8C887D;
+		font-size: 10px;
+		font-weight: bold;
+		letter-spacing: 0.12em;
+		padding-right: 20px;
+		padding-top: 16px;
+		text-transform: uppercase;
+		white-space: nowrap;
+		width: 30%;
+	}
+	.value-cell {
+		color: #0A0907;
+		font-size: 14px;
+		line-height: 1.7;
+	}
+	.footer p {
+		font-size: 11px;
+		letter-spacing: 0.03em;
+		line-height: 1.9;
+		margin: 0 0 6px;
+	}
+	.footer-social a {
+		color: #7FB8A4 !important;
+	}
+	@media screen and (max-width: 480px) {
+		.label-cell {
+			border-bottom: none !important;
+			display: block !important;
+			padding-bottom: 2px !important;
+			padding-top: 16px !important;
+			white-space: normal !important;
+			width: 100% !important;
+		}
+		.value-cell {
+			display: block !important;
+			padding-top: 0 !important;
+			width: 100% !important;
+		}
+	}
+</mj-style>

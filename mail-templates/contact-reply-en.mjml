@@ -1,0 +1,33 @@
+<mjml>
+	<mj-head>
+		<mj-title>%FORM_NAME%</mj-title>
+		<mj-preview>%FORM_NAME% — %SITE_NAME%</mj-preview>
+		<mj-include path="./_partials/_head.mjml" />
+	</mj-head>
+
+	<mj-body background-color="#E1D7BE" width="560px">
+
+		<mj-include path="./_partials/_header.mjml" />
+
+		<!-- Body card -->
+		<mj-section background-color="#FFFFFF" border-radius="10px" padding="0">
+			<mj-column padding="40px">
+				<mj-text padding="0 0 20px" font-size="13px" line-height="1.8">
+					Thank you for reaching out, %mtz_name%. We've received your message and will be in touch shortly. For your records, here's a copy of what you sent.
+				</mj-text>
+				<mj-text padding="0 0 28px">
+					<span class="badge">%FORM_NAME%</span>
+				</mj-text>
+				<mj-include path="./_partials/_fields-en.mjml" />
+			</mj-column>
+		</mj-section>
+
+		<!-- Spacer -->
+		<mj-section padding="20px 0 0">
+			<mj-column></mj-column>
+		</mj-section>
+
+		<mj-include path="./_partials/_footer.mjml" />
+
+	</mj-body>
+</mjml>
