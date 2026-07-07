@@ -36,3 +36,17 @@
 	text-transform: uppercase;
 }
 
+/* ─── Background vector placement ────────────────────────────────────────────
+   TODO: first-pass placement, tune after visual review.
+   Cycled per service by index (bg-vector--service-{preset}-{n}) — positioned
+   directly on the .content-section article, which already sits inside the
+   page's capped .container, so no extra wrapper is needed (unlike about.php).
+   ─────────────────────────────────────────────────────────────────────────── */
+
+.bg-vector--service-0-1 { left: -8%;  top: 65%;  opacity: .07; transform: rotate(-6deg) scale(1.2);  }
+.bg-vector--service-0-2 { left: 105%; top: -8%;  opacity: .06; transform: rotate(4deg)  scale(1.15); }
+.bg-vector--service-1-1 { left: 105%; top: 70%;  opacity: .07; transform: rotate(-4deg) scale(1.15); }
+.bg-vector--service-1-2 { left: -8%;  top: -10%; opacity: .06; transform: rotate(6deg)  scale(1.15); }
+.bg-vector--service-2-1 { left: -8%;  top: -6%;  opacity: .07; transform: rotate(-5deg) scale(1.2);  }
+.bg-vector--service-2-2 { left: 105%; top: 55%;  opacity: .06; transform: rotate(3deg)  scale(1.3);  }
+

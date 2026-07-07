@@ -19,6 +19,18 @@ $services = new WP_Query( [
 
 	<div class="page-content">
 
+	<?php
+	/* TODO: first-pass placement, tune after visual review.
+	   Cycled by index since services are CPT-driven (unknown count). Classes
+	   defined in pages/services.css as bg-vector--service-{preset}-{n}. */
+	$bg_vector_presets = [
+		[ [ 'name' => 'furniture-dresser' ],     [ 'name' => 'furniture-floor-lamp' ] ],
+		[ [ 'name' => 'furniture-vanity-desk' ], [ 'name' => 'furniture-mirror' ]     ],
+		[ [ 'name' => 'furniture-armchair' ],    [ 'name' => 'furniture-wardrobe' ]   ],
+	];
+	$service_index = 0;
+	?>
+
 	<?php if ( $services->have_posts() ) : ?>
 	<section class="services-section">
 		<div class="container">
@@ -36,9 +48,17 @@ $services = new WP_Query( [
 			$valid_accents = [ 'coral', 'sage', 'gold', 'teal' ];
 			$accent        = get_field( 'mtz_page_theme' );
 			$accent        = in_array( $accent, $valid_accents, true ) ? $accent : 'coral';
+
+			$preset_index = $service_index % count( $bg_vector_presets );
+			$vectors      = $bg_vector_presets[ $preset_index ];
 			?>
 
 			<article class="content-section content-section--split service-section content-section--<?php echo esc_attr( $accent ); ?>">
+
+				<?php foreach ( $vectors as $i => $vector ) : ?>
+					<?php echo mtz_bg_vector( $vector['name'], "bg-vector--service-{$preset_index}-" . ( $i + 1 ) ); ?>
+				<?php endforeach; ?>
+
 				<div class="content-section__inner">
 
 					<div class="content-section__body">
@@ -58,7 +78,7 @@ $services = new WP_Query( [
 				</div>
 			</article>
 
-			<?php endwhile; wp_reset_postdata(); ?>
+			<?php $service_index++; endwhile; wp_reset_postdata(); ?>
 		</div>
 	</section>
 	<?php endif; ?>

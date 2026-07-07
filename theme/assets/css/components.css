@@ -549,3 +549,9 @@
 	height: auto;
 	width: 100%;
 }
+
+/* Override each SVG's own stroke-width (an Illustrator export default, not a
+   deliberate per-icon choice) — thinner reads better at this low opacity/size. */
+.bg-vector svg * {
+	stroke-width: 1px;
+}
