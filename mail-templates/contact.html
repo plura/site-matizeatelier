@@ -127,37 +127,19 @@
       line-height: 1.7;
     }
 
-    .footer-name {
-      color: #E1D7BE !important;
-      font-size: 11px !important;
-      font-weight: bold;
-      letter-spacing: 0.16em !important;
-      text-transform: uppercase;
-    }
-
+    /* .footer-name and .credit colours moved to direct mj-text attributes
+			   (always inlined by MJML) — a class in this style block can't reach
+			   the raw percent-sign tokens before PHP replaces them with real
+			   tags, so this only styles layout, not colour. */
     .footer p {
-      color: #A39C8C;
       font-size: 11px;
       letter-spacing: 0.03em;
       line-height: 1.9;
       margin: 0 0 6px;
     }
 
-    .footer a {
-      color: #A39C8C;
-      text-decoration: none;
-    }
-
     .footer-social a {
       color: #7FB8A4 !important;
-    }
-
-    .credit,
-    .credit a {
-      color: #6B6558;
-      font-size: 10px;
-      letter-spacing: 0.03em;
-      text-decoration: none;
     }
 
     @media screen and (max-width: 480px) {
@@ -290,7 +272,12 @@
       </table>
     </div>
     <!--[if mso | IE]></td></tr></table><![endif]-->
-    <!-- Footer — dark, matches the site's own footer treatment -->
+    <!-- Footer, dark, matches the site's own footer treatment.
+		     Colours set via mj-text's own attributes (always inlined by MJML)
+		     rather than a style-block class, since some clients ignore
+		     embedded stylesheets and the raw placeholder tokens have no tag
+		     to hang a class off until PHP replaces them - otherwise they'd
+		     render as invisible black-on-black text. -->
     <!--[if mso | IE]><table align="center" border="0" cellpadding="0" cellspacing="0" class="" role="presentation" style="width:560px;" width="560" bgcolor="#0A0907" ><tr><td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]-->
     <div style="background:#0A0907;background-color:#0A0907;margin:0px auto;max-width:560px;border-radius:10px;overflow:hidden;">
       <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="background:#0A0907;background-color:#0A0907;width:100%;border-collapse:separate;">
@@ -302,11 +289,11 @@
                 <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top;" width="100%">
                   <tbody>
                     <tr>
-                      <td align="center" class="footer-name" style="font-size:0px;padding:0 0 14px;word-break:break-word;">
-                        <div style="font-family:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:14px;line-height:1.7;text-align:center;color:#0A0907;">%SITE_NAME%</div>
+                      <td align="center" style="font-size:0px;padding:0 0 14px;word-break:break-word;">
+                        <div style="font-family:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:11px;font-weight:bold;letter-spacing:0.16em;line-height:1.7;text-align:center;text-transform:uppercase;color:#E1D7BE;">%SITE_NAME%</div>
                       </td>
                     </tr>
-                    <div class="footer" style="text-align:center;"> %CONTACT_BLOCK% %SOCIAL_BLOCK% </div>
+                    <div class="footer" style="text-align:center; color:#A39C8C; font-size:11px; letter-spacing:0.03em; line-height:1.9;"> %CONTACT_BLOCK% %SOCIAL_BLOCK% </div>
                     <tr>
                       <td align="center" style="font-size:0px;padding:20px 0;word-break:break-word;">
                         <p style="border-top:solid 1px #2A2620;font-size:1px;margin:0px auto;width:100%;">
@@ -316,8 +303,8 @@
                       </td>
                     </tr>
                     <tr>
-                      <td align="center" class="credit" style="font-size:0px;padding:0 0 20px;word-break:break-word;">
-                        <div style="font-family:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:14px;line-height:1.7;text-align:center;color:#0A0907;">&copy; %YEAR% %SITE_NAME% &mdash; Powered by <a href="https://plura.pt" target="_blank">Plura</a></div>
+                      <td align="center" style="font-size:0px;padding:0 0 20px;word-break:break-word;">
+                        <div style="font-family:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:10px;letter-spacing:0.03em;line-height:1.7;text-align:center;color:#6B6558;">&copy; %YEAR% %SITE_NAME% &mdash; Powered by <a href="https://plura.pt" target="_blank" style="color:#6B6558;">Plura</a></div>
                       </td>
                     </tr>
                   </tbody>
