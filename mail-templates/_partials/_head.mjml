@@ -4,6 +4,12 @@
 </mj-attributes>
 
 <mj-style>
+	.email-intro {
+		color: #0A0907;
+		font-size: 13px;
+		line-height: 1.8;
+		margin: 0 0 28px;
+	}
 	.badge {
 		background-color: #EC6F63;
 		border-radius: 999px;

@@ -1,0 +1,55 @@
+<!-- Generic, field-agnostic fallback template — used by mtz_build_email_body()
+     whenever no theme-supplied template overrides it via the
+     'mtz_email_template' filter (see plugin/includes/core/form.php).
+     Works for any [data-mtz-form], however many fields it has or whatever
+     they're named: %FIELDS% is a dynamically-built table (PHP loops over
+     whatever was actually submitted), not named per-field placeholders like
+     the bespoke contact/ templates use. %INTRO% is optional raw HTML (empty
+     for a plain notification, a "thank you" paragraph for an auto-reply) —
+     PHP supplies it already wrapped in <p class="email-intro">. -->
+<mjml>
+	<mj-head>
+		<mj-title>%FORM_NAME%</mj-title>
+		<mj-preview>%FORM_NAME% — %SITE_NAME%</mj-preview>
+		<mj-include path="./_partials/_head.mjml" />
+	</mj-head>
+
+	<mj-body background-color="#E1D7BE" width="560px">
+
+		<!-- Logo -->
+		<mj-section background-color="#E1D7BE" padding="40px 24px 24px">
+			<mj-column>
+				<mj-image
+					src="%LOGO_URL%"
+					alt="%SITE_NAME%"
+					href="%SITE_URL%"
+					width="200px"
+					padding="0"
+				/>
+			</mj-column>
+		</mj-section>
+
+		<!-- Body card -->
+		<mj-section background-color="#FFFFFF" border-radius="10px" padding="0">
+			<mj-column padding="40px">
+				<mj-raw>%INTRO%</mj-raw>
+				<mj-text padding="0 0 28px">
+					<span class="badge">%FORM_NAME%</span>
+				</mj-text>
+				<mj-raw>
+					<table class="form-data" role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+						%FIELDS%
+					</table>
+				</mj-raw>
+			</mj-column>
+		</mj-section>
+
+		<!-- Spacer -->
+		<mj-section padding="20px 0 0">
+			<mj-column></mj-column>
+		</mj-section>
+
+		<mj-include path="./_partials/_footer.mjml" />
+
+	</mj-body>
+</mjml>
