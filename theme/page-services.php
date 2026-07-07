@@ -17,6 +17,8 @@ $services = new WP_Query( [
 
 	<?php get_template_part( 'template-parts/page-header' ); ?>
 
+	<div class="page-content">
+
 	<?php if ( $services->have_posts() ) : ?>
 	<section class="services-section">
 		<div class="container">
@@ -62,6 +64,8 @@ $services = new WP_Query( [
 	<?php endif; ?>
 
 	<?php get_template_part( 'template-parts/brands' ); ?>
+
+	</div><!-- .page-content -->
 
 </main>
 

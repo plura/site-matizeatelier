@@ -8,6 +8,9 @@ get_header(); ?>
 
 	<?php get_template_part( 'template-parts/page-header' ); ?>
 
+	<div class="page-content">
+	<section class="about-content">
+
 	<?php
 	$sections = [
 		'mission'    => [ 'title' => __( 'Mission',    'matize' ), 'field' => 'mtz_about_mission'    ],
@@ -62,6 +65,9 @@ get_header(); ?>
 	</section>
 
 	<?php endforeach; ?>
+
+	</section>
+	</div><!-- .page-content -->
 
 </main>
 

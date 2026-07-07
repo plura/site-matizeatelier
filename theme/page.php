@@ -5,6 +5,7 @@ get_header(); ?>
 
 	<?php get_template_part( 'template-parts/page-header' ); ?>
 
+	<div class="page-content">
 	<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
 	<section class="content-section">
 		<div class="container">
@@ -14,6 +15,7 @@ get_header(); ?>
 		</div>
 	</section>
 	<?php endwhile; endif; ?>
+	</div><!-- .page-content -->
 </main>
 
 <?php get_footer(); ?>

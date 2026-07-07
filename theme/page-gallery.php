@@ -8,6 +8,7 @@ get_header(); ?>
 
 	<?php get_template_part( 'template-parts/page-header' ); ?>
 
+	<div class="page-content">
 	<?php $gallery = get_field( 'mtz_gallery_items' ); ?>
 	<?php if ( $gallery ) : ?>
 		<section class="gallery">
@@ -29,6 +30,7 @@ get_header(); ?>
 			</div>
 		</section>
 	<?php endif; ?>
+	</div><!-- .page-content -->
 
 </main>
 

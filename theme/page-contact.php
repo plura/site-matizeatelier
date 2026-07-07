@@ -9,6 +9,7 @@ get_header(); ?>
 
 	<?php get_template_part( 'template-parts/page-header' ); ?>
 
+	<div class="page-content">
 	<section class="contact">
 		<div class="contact__inner container">
 
@@ -22,6 +23,7 @@ get_header(); ?>
 
 		</div>
 	</section>
+	</div><!-- .page-content -->
 
 </main>
 

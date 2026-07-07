@@ -88,8 +88,12 @@
 	}
 }
 
-.page-header + *:not(.content-section),
-.page-header + *:not(.content-section) > .container:first-child {
+/* .page-content is a purely structural wrapper (no styling of its own) —
+   this targets whichever page-specific wrapper is its first child, since
+   .page-header already provides the top gap. .content-section is excluded:
+   about.php/page.php rely on its own padding-block as that gap instead. */
+.page-content > *:first-child:not(.content-section),
+.page-content > *:first-child:not(.content-section) > .container:first-child {
 	padding-block-start: 0;
 }
 
