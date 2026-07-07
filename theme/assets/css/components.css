@@ -303,7 +303,7 @@
 
 .content-section__body {
 	background-color: var(--mtz-section-accent);
-	border-radius: var(--mtz-border-radius);
+	border-radius: var(--mtz-radius-lg);
 	padding: var(--mtz-space-xl) var(--mtz-space-lg);
 }
 
@@ -484,7 +484,7 @@
 .img-card,
 .img-ghost {
 	aspect-ratio: 2 / 3;
-	border-radius: var(--mtz-border-radius);
+	border-radius: var(--mtz-radius-md);
 	position: absolute;
 	transform-origin: center center;
 	width: 62%;
