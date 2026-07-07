@@ -97,9 +97,13 @@
 	padding-block-start: 0;
 }
 
-/* bg-vector deliberately bleeds past its row (left: -8%/105%) — clip at the
-   main boundary so that never causes a page-wide horizontal scrollbar. */
-.site-main {
+/* bg-vector deliberately bleeds past its row (left: -8%/105%) — clip here so
+   that never causes a page-wide horizontal scrollbar. Scoped to .page-content
+   (not .site-main): .site-main is an ancestor of the home page's sticky-pinned
+   .home-statement__stage / .mood-gallery__layout, and any overflow other than
+   visible on a position:sticky element's ancestor breaks its stickiness.
+   .page-content doesn't exist on the home page, so this can't reach it. */
+.page-content {
 	overflow-x: hidden;
 }
 
