@@ -14,19 +14,19 @@ get_template_part( 'template-parts/page-header' ); ?>
 		'cv'         => [ 'title' => __( 'Curriculum', 'matize' ), 'field' => 'mtz_about_cv'         ],
 	];
 
-	/* TODO: first-pass placement, tune after visual review */
+	/* TODO: first-pass placement, tune after visual review. Classes defined in pages/about.css */
 	$bg_vectors = [
 		'mission'    => [
-			[ 'name' => 'furniture-dresser',    'vars' => [ '--x' => '4%',  '--y' => '65%', '--scale' => '.9',  '--rot' => '-6deg', '--opacity' => '.07' ] ],
-			[ 'name' => 'furniture-floor-lamp', 'vars' => [ '--x' => '82%', '--y' => '-8%', '--scale' => '1.3', '--rot' => '4deg',  '--opacity' => '.06' ] ],
+			[ 'name' => 'furniture-dresser',    'class' => 'bg-vector--mission-1' ],
+			[ 'name' => 'furniture-floor-lamp', 'class' => 'bg-vector--mission-2' ],
 		],
 		'philosophy' => [
-			[ 'name' => 'furniture-vanity-desk', 'vars' => [ '--x' => '78%', '--y' => '70%', '--scale' => '1.1', '--rot' => '-4deg', '--opacity' => '.07' ] ],
-			[ 'name' => 'furniture-mirror',      'vars' => [ '--x' => '6%',  '--y' => '-10%', '--scale' => '1.4', '--rot' => '6deg',  '--opacity' => '.06' ] ],
+			[ 'name' => 'furniture-vanity-desk', 'class' => 'bg-vector--philosophy-1' ],
+			[ 'name' => 'furniture-mirror',      'class' => 'bg-vector--philosophy-2' ],
 		],
 		'cv'         => [
-			[ 'name' => 'furniture-armchair', 'vars' => [ '--x' => '5%',  '--y' => '-6%', '--scale' => '1.2', '--rot' => '-5deg', '--opacity' => '.07' ] ],
-			[ 'name' => 'furniture-wardrobe',  'vars' => [ '--x' => '80%', '--y' => '55%', '--scale' => '1.3', '--rot' => '3deg',  '--opacity' => '.06' ] ],
+			[ 'name' => 'furniture-armchair', 'class' => 'bg-vector--cv-1' ],
+			[ 'name' => 'furniture-wardrobe',  'class' => 'bg-vector--cv-2' ],
 		],
 	];
 
@@ -41,7 +41,7 @@ get_template_part( 'template-parts/page-header' ); ?>
 	<section class="content-section content-section--split about-section about-section--<?php echo esc_attr( $key ); ?> <?php echo $accent ? 'content-section--' . esc_attr( $accent ) : ''; ?>">
 
 		<?php foreach ( $bg_vectors[ $key ] ?? [] as $vector ) : ?>
-			<?php echo mtz_bg_vector( $vector['name'], $vector['vars'] ); ?>
+			<?php echo mtz_bg_vector( $vector['name'], $vector['class'] ); ?>
 		<?php endforeach; ?>
 
 		<div class="container">

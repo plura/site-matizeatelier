@@ -527,20 +527,17 @@
 
 /* ─── Background vectors ─────────────────────────────────────────────────────
    Decorative furniture line-art, scattered behind section content.
-   Positioned via CSS custom properties set inline per instance (mtz_bg_vector()
-   in helpers.php) — --x/--y/--rot/--scale/--opacity, all with safe defaults.
+   Base rule only — position/rotation/scale/opacity come from a page-specific
+   placement class (mtz_bg_vector()'s $class param), defined in pages/*.css.
    Sections allow overflow (no overflow:hidden) so a vector can bleed toward
    an adjacent section for a continuous, page-wide scattered feel.
    ─────────────────────────────────────────────────────────────────────────── */
 
 .bg-vector {
 	color: var(--mtz-color-charcoal);
-	left: var(--x, 0);
-	opacity: var(--opacity, .08);
+	opacity: .08;
 	pointer-events: none;
 	position: absolute;
-	top: var(--y, 0);
-	transform: rotate(var(--rot, 0deg)) scale(var(--scale, 1));
 	transform-origin: center center;
 	user-select: none;
 	width: 140px;

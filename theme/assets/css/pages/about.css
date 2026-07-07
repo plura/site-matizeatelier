@@ -14,3 +14,15 @@
 		position: static;
 	}
 }
+
+/* ─── Background vector placement ────────────────────────────────────────────
+   TODO: first-pass placement, tune after visual review.
+   .bg-vector (components.css) provides colour/size/absolute positioning base.
+   ─────────────────────────────────────────────────────────────────────────── */
+
+.bg-vector--mission-1    { left: 4%;  top: 65%;  opacity: .07; transform: rotate(-6deg) scale(.9);  }
+.bg-vector--mission-2    { left: 82%; top: -8%;  opacity: .06; transform: rotate(4deg)  scale(1.3); }
+.bg-vector--philosophy-1 { left: 78%; top: 70%;  opacity: .07; transform: rotate(-4deg) scale(1.1); }
+.bg-vector--philosophy-2 { left: 6%;  top: -10%; opacity: .06; transform: rotate(6deg)  scale(1.4); }
+.bg-vector--cv-1         { left: 5%;  top: -6%;  opacity: .07; transform: rotate(-5deg) scale(1.2); }
+.bg-vector--cv-2         { left: 80%; top: 55%;  opacity: .06; transform: rotate(3deg)  scale(1.3); }
