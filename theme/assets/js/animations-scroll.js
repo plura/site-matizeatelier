@@ -151,3 +151,25 @@ export function mtzAnimImgStacks() {
 		} );
 	} );
 }
+
+// ── Background vector parallax ───────────────────────────────────────────────
+// Decorative furniture line-art drifts at a different rate than the page's own
+// scroll — reinforces that these sit behind the content (z-index: -1) rather
+// than competing with it for a reveal moment. Scrubbed to each vector's own
+// scroll-through of the viewport, not a one-shot reveal.
+export function mtzAnimBgVectors() {
+	const vectors = document.querySelectorAll( '.bg-vector' );
+
+	vectors.forEach( vector => {
+		gsap.to( vector, {
+			y:    -60,
+			ease: 'none',
+			scrollTrigger: {
+				trigger: vector,
+				start:   'top bottom',
+				end:     'bottom top',
+				scrub:   true,
+			},
+		} );
+	} );
+}
