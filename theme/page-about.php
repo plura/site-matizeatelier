@@ -41,11 +41,12 @@ get_template_part( 'template-parts/page-header' ); ?>
 
 	<section class="content-section content-section--split about-section about-section--<?php echo esc_attr( $key ); ?> <?php echo $accent ? 'content-section--' . esc_attr( $accent ) : ''; ?>">
 
-		<?php foreach ( $bg_vectors[ $key ] ?? [] as $i => $vector ) : ?>
-			<?php echo mtz_bg_vector( $vector['name'], "bg-vector--{$key}-" . ( $i + 1 ) ); ?>
-		<?php endforeach; ?>
-
 		<div class="container">
+
+			<?php foreach ( $bg_vectors[ $key ] ?? [] as $i => $vector ) : ?>
+				<?php echo mtz_bg_vector( $vector['name'], "bg-vector--{$key}-" . ( $i + 1 ) ); ?>
+			<?php endforeach; ?>
+
 			<div class="content-section__inner">
 
 				<div class="content-section__body">

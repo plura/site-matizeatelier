@@ -484,7 +484,7 @@
 .img-card,
 .img-ghost {
 	aspect-ratio: 2 / 3;
-	border-radius: 6px;
+	border-radius: var(--mtz-border-radius);
 	position: absolute;
 	transform-origin: center center;
 	width: 62%;
@@ -540,7 +540,7 @@
 	position: absolute;
 	transform-origin: center center;
 	user-select: none;
-	width: 220px;
+	width: clamp(160px, 14vw, 340px);
 	z-index: -1;
 }
 

@@ -178,7 +178,7 @@ body[data-mtz-theme="charcoal"] .btn--primary:hover { background-color: var(--mt
 	/* ── Layout ──────────────────────────────────────────────────────────── */
 	--mtz-max-width:    1320px;
 	--mtz-gutter:       clamp(1.5rem, 5vw, 4rem);
-	--mtz-border-radius: 2px;
+	--mtz-border-radius: 6px;
 
 	/* ── Icons ───────────────────────────────────────────────────────────── */
 	--mtz-icon-sm:  14px;
@@ -298,6 +298,7 @@ h3, h4, h5, h6 {
 .container--narrow {
 	margin-inline: auto;
 	padding-inline: var(--mtz-gutter);
+	position: relative;
 	width: 100%;
 }
 
