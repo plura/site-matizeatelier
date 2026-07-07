@@ -25,7 +25,7 @@ $services = new WP_Query( [
 	   defined in pages/services.css as bg-vector--service-{preset}-{n}. */
 	$bg_vector_presets = [
 		[ [ 'name' => 'furniture-dresser' ],     [ 'name' => 'furniture-floor-lamp' ] ],
-		[ [ 'name' => 'furniture-vanity-desk' ], [ 'name' => 'furniture-mirror' ]     ],
+		[ [ 'name' => 'furniture-vanity-desk' ], [ 'name' => 'furniture-stool' ]      ],
 		[ [ 'name' => 'furniture-armchair' ],    [ 'name' => 'furniture-wardrobe' ]   ],
 	];
 	$service_index = 0;

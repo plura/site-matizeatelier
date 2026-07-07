@@ -27,7 +27,7 @@ get_header(); ?>
 		],
 		'philosophy' => [
 			[ 'name' => 'furniture-vanity-desk' ],
-			[ 'name' => 'furniture-mirror' ],
+			[ 'name' => 'furniture-stool' ],
 		],
 		'cv'         => [
 			[ 'name' => 'furniture-armchair' ],
