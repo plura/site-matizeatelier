@@ -4,11 +4,40 @@
      placeholders instead (see mtz_get_contact_placeholders()). -->
 <mj-raw>
 	<meta name="format-detection" content="telephone=no, date=no, address=no, email=no">
+	<!-- Opts out of Gmail/Apple Mail/Outlook.com auto-dark-mode — without this,
+	     clients guess at a dark palette themselves (inverting/recoloring
+	     backgrounds and text), which clashes with the brand's actual colors. -->
+	<meta name="color-scheme" content="light">
+	<meta name="supported-color-schemes" content="light">
 </mj-raw>
 
 <mj-attributes>
 	<mj-all font-family="Helvetica Neue, Helvetica, Arial, sans-serif" />
 	<mj-text color="#0A0907" font-size="14px" line-height="1.7" />
+	<!-- Identical on every template. -->
+	<mj-body background-color="#E1D7BE" width="560px" />
+	<!-- Every rounded box (body-card + footer wrapper) uses the same radius. -->
+	<mj-wrapper border-radius="10px" />
+
+	<!-- Shared horizontal inset for the body-card/footer sections — change
+	     once here instead of in every mj-section across every template.
+	     mtz-card-vpad is the fields-content column's fixed vertical inset;
+	     combine as mj-class="mtz-hpad mtz-card-vpad" (mj-class accepts
+	     multiple space-separated names, merging their attributes). -->
+	<mj-class name="mtz-hpad" padding-left="28px" padding-right="28px" />
+	<mj-class name="mtz-card-vpad" padding-top="40px" padding-bottom="40px" />
+
+	<!-- The body-card's white content section — identical across all 5 templates. -->
+	<mj-class name="mtz-card-body" background-color="#FFFFFF" padding="0" />
+
+	<!-- %FORM_NAME% in the coral title band — identical across all 5 templates. -->
+	<mj-class name="mtz-title-band" color="#FFFFFF" font-weight="bold" font-size="14px" letter-spacing="0.12em" text-transform="uppercase" align="center" padding="0" />
+
+	<!-- Footer text presets — identical between _footer-en.mjml/_footer-pt.mjml. -->
+	<mj-class name="mtz-footer-brand" color="#E1D7BE" font-size="11px" font-weight="bold" letter-spacing="0.16em" text-transform="uppercase" align="center" padding="0" />
+	<mj-class name="mtz-footer-label" color="#6B6558" font-size="9px" font-weight="bold" letter-spacing="0.14em" text-transform="uppercase" align="center" padding="0 0 6px" />
+	<mj-class name="mtz-footer-value" align="center" color="#A39C8C" font-size="11px" letter-spacing="0.03em" line-height="1.9" padding="0" />
+	<mj-class name="mtz-footer-credit" color="#6B6558" font-size="10px" letter-spacing="0.03em" align="center" padding="0 0 20px" />
 </mj-attributes>
 
 <mj-style>
@@ -59,6 +88,19 @@
 			display: block !important;
 			padding-top: 0 !important;
 			width: 100% !important;
+		}
+		/* Mobile-only outer gutter — the wrapper's own div has no explicit
+		   width (only max-width, which only bites on wider viewports), so on
+		   mobile it otherwise renders edge-to-edge against the screen. */
+		.mtz-card {
+			margin-left: 16px !important;
+			margin-right: 16px !important;
+		}
+		/* Address/Contact footer columns stack on mobile instead of sitting
+		   side by side — without this the address block and the "Contact"
+		   label directly below it touch with no breathing room. */
+		.mtz-footer-address {
+			padding-bottom: 20px !important;
 		}
 	}
 </mj-style>

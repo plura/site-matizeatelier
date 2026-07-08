@@ -71,26 +71,50 @@
 	resize: vertical;
 }
 
-/* ── Footer row (feedback + submit) ── */
+/* ── Footer row (feedback + submit) ──
+   Mobile: stacked (feedback above button). Desktop: side by side. */
 
 .mtz-form__footer {
-	align-items: center;
+	align-items: flex-start;
 	display: flex;
-	gap: var(--mtz-space-md);
-	justify-content: space-between;
+	flex-direction: column;
+	gap: var(--mtz-space-sm);
 	margin-top: var(--mtz-space-lg);
 }
 
-/* ── Feedback message ── */
+@media (min-width: 768px) {
+	.mtz-form__footer {
+		align-items: center;
+		flex-direction: row;
+		gap: var(--mtz-space-md);
+		justify-content: space-between;
+	}
+}
+
+/* ── Feedback message ──
+   Body text stays at full contrast (--mtz-color-text); the accent colors
+   are reserved for the ::before marker instead of the whole message, since
+   accent-alt/accent are too pale against --mtz-color-bg for body text. */
 
 .mtz-form__feedback {
+	align-items: center;
+	color: var(--mtz-color-text);
+	display: flex;
 	font-size: var(--mtz-text-caption);
+	gap: var(--mtz-space-xs);
 	letter-spacing: var(--mtz-tracking-body);
 	min-height: 1em;
 }
 
-.mtz-form__feedback--success { color: var(--mtz-color-accent-alt); }
-.mtz-form__feedback--error   { color: var(--mtz-color-accent); }
+.mtz-form__feedback--success::before,
+.mtz-form__feedback--error::before {
+	color: var(--mtz-color-accent);
+	flex-shrink: 0;
+	font-weight: var(--mtz-weight-bold);
+}
+
+.mtz-form__feedback--success::before { content: '✓'; }
+.mtz-form__feedback--error::before   { content: '!'; }
 
 /* ── Submit button ── */
 

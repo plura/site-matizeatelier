@@ -1,0 +1,8 @@
+<!-- Coral %FORM_NAME% band atop the body card — identical across all 5
+     templates, no per-template content, so a full partial (not just an
+     mj-class) removes the whole block from every template. -->
+<mj-section background-color="#EC6F63" mj-class="mtz-hpad" padding-top="18px" padding-bottom="18px">
+	<mj-column>
+		<mj-text mj-class="mtz-title-band">%FORM_NAME%</mj-text>
+	</mj-column>
+</mj-section>

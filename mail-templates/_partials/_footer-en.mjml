@@ -2,34 +2,29 @@
      background — separate sibling mj-sections would each render their own
      rounded box with a gap between them, breaking the "one footer" look.
      Language-forked (see _footer-pt.mjml) only for the Address/Contact
-     column titles below — everything else here is language-neutral data. -->
-<mj-wrapper background-color="#0A0907" border-radius="10px" padding="32px 0 4px">
+     column titles below — everything else here is language-neutral data.
+     css-class="mtz-card" gets the mobile-only outer gutter (see _head.mjml). -->
+<mj-wrapper background-color="#0A0907" padding="32px 0 4px" css-class="mtz-card">
 
-	<mj-section padding="0 40px 20px">
+	<mj-section mj-class="mtz-hpad" padding-top="0" padding-bottom="20px">
 		<mj-column>
-			<mj-text
-				color="#E1D7BE"
-				font-size="11px"
-				font-weight="bold"
-				letter-spacing="0.16em"
-				text-transform="uppercase"
-				align="center"
-				padding="0"
-			>%SITE_NAME%</mj-text>
+			<mj-text mj-class="mtz-footer-brand">%SITE_NAME%</mj-text>
 		</mj-column>
 	</mj-section>
 
-	<!-- Address | Email + Phone -->
-	<mj-section padding="0 40px 16px">
-		<mj-column>
-			<mj-text color="#6B6558" font-size="9px" font-weight="bold" letter-spacing="0.14em" text-transform="uppercase" align="center" padding="0 0 6px">Address</mj-text>
-			<mj-text align="center" color="#A39C8C" font-size="11px" letter-spacing="0.03em" line-height="1.9" padding="0">
+	<!-- Address | Email + Phone. css-class="mtz-footer-address" adds a
+	     mobile-only gap below this column, since it stacks directly above
+	     "Contact" on narrow screens instead of sitting beside it. -->
+	<mj-section mj-class="mtz-hpad" padding-top="0" padding-bottom="16px">
+		<mj-column css-class="mtz-footer-address">
+			<mj-text mj-class="mtz-footer-label">Address</mj-text>
+			<mj-text mj-class="mtz-footer-value">
 				<a href="%CONTACT_ADDRESS_URL%" style="color:#A39C8C !important; text-decoration:none !important;">%CONTACT_ADDRESS%</a>
 			</mj-text>
 		</mj-column>
 		<mj-column>
-			<mj-text color="#6B6558" font-size="9px" font-weight="bold" letter-spacing="0.14em" text-transform="uppercase" align="center" padding="0 0 6px">Contact</mj-text>
-			<mj-text align="center" color="#A39C8C" font-size="11px" letter-spacing="0.03em" line-height="1.9" padding="0">
+			<mj-text mj-class="mtz-footer-label">Contact</mj-text>
+			<mj-text mj-class="mtz-footer-value">
 				<a href="%CONTACT_EMAIL_URL%" style="color:#A39C8C !important; text-decoration:none !important;">%CONTACT_EMAIL%</a><br />
 				<a href="%CONTACT_PHONE_HREF%" style="color:#A39C8C !important; text-decoration:none !important;">%CONTACT_PHONE%</a>
 			</mj-text>
@@ -37,7 +32,7 @@
 	</mj-section>
 
 	<!-- Social links, divider, credit -->
-	<mj-section padding="0 40px">
+	<mj-section mj-class="mtz-hpad" padding-top="0" padding-bottom="0">
 		<mj-column>
 			<!-- Individual per-platform placeholders (not a plugin-built block) so
 			     styling/order/which platforms to show live entirely here.
@@ -55,13 +50,7 @@
 				</tr>
 			</mj-raw>
 			<mj-divider border-color="#2A2620" border-width="1px" padding="0 0 20px" />
-			<mj-text
-				color="#6B6558"
-				font-size="10px"
-				letter-spacing="0.03em"
-				align="center"
-				padding="0 0 20px"
-			>
+			<mj-text mj-class="mtz-footer-credit">
 				&copy; %YEAR% %SITE_NAME% &mdash; Powered by <a href="https://plura.pt" target="_blank" style="color:#6B6558; font-weight:bold;">Plura</a>
 			</mj-text>
 		</mj-column>

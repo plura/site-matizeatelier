@@ -14,7 +14,7 @@
 		<mj-include path="../_partials/_head.mjml" />
 	</mj-head>
 
-	<mj-body background-color="#E1D7BE" width="560px">
+	<mj-body>
 
 		<!-- Logo -->
 		<mj-section background-color="#E1D7BE" padding="40px 24px 24px">
@@ -30,23 +30,12 @@
 		</mj-section>
 
 		<!-- Body card — coral title band + white content, one continuous
-		     rounded box (see _footer-en.mjml/_footer-pt.mjml's mj-wrapper for the same technique). -->
-		<mj-wrapper border-radius="10px" padding="0">
-			<mj-section background-color="#EC6F63" padding="18px 40px">
-				<mj-column>
-					<mj-text
-						color="#FFFFFF"
-						font-weight="bold"
-						font-size="14px"
-						letter-spacing="0.12em"
-						text-transform="uppercase"
-						align="center"
-						padding="0"
-					>%FORM_NAME%</mj-text>
-				</mj-column>
-			</mj-section>
-			<mj-section background-color="#FFFFFF" padding="0">
-				<mj-column padding="40px">
+		     rounded box (see _footer-en.mjml/_footer-pt.mjml's mj-wrapper for the same technique).
+		     css-class="mtz-card" gets the mobile-only outer gutter (see _head.mjml). -->
+		<mj-wrapper padding="0" css-class="mtz-card">
+			<mj-include path="../_partials/_title-band.mjml" />
+			<mj-section mj-class="mtz-card-body">
+				<mj-column mj-class="mtz-hpad mtz-card-vpad">
 					<mj-raw>%INTRO%</mj-raw>
 					<mj-raw>
 						<table class="form-data" role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
