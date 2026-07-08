@@ -2,26 +2,32 @@
 // Imported statically at the top of main.js so this runs before any other
 // module body. Sets window.mtzDev synchronously; all modules can read it.
 //
-// Usage: append ?dev=<action>[,<action>] to any URL.
+// Two independent query params:
+//   ?dev=<action>[,<action>]        stable dev utilities (permanent)
+//   ?dev-test=<test>[,<test>]       disposable client-review design tests
+//                                   (numbered to match client feedback — see
+//                                   dev-tests.css, deleted once a test wins)
 //
-//   ?dev=no-intro        skip home scroll sections (statement + mood gallery)
-//   ?dev=seed-form       fill the contact form with fixture data and open the modal
-//   ?dev=header-opacity  page-header title test: huge font-size, near-invisible
-//                        opacity, bg-vectors hidden (see dev-tests.css)
+//   ?dev=no-intro    skip home scroll sections (statement + mood gallery)
+//   ?dev=seed-form   fill the contact form with fixture data and open the modal
+//   ?dev-test=test1  page-header title test: huge font-size, near-invisible
+//                    opacity, bg-vectors hidden, no hyphenation
 
-const params = new URLSearchParams( location.search );
-const devParam = params.get( 'dev' );
+import { mtzLoadStylesheet } from './utils.js';
+
+const params      = new URLSearchParams( location.search );
+const devParam    = params.get( 'dev' );
+const devTestParam = params.get( 'dev-test' );
+
+const log = ( msg ) => console.info( '%c[mtz:dev]%c ' + msg, 'color:#DA8300;font-weight:bold', '' );
 
 if ( devParam ) {
 	const actions = devParam.toLowerCase().replace( /-/g, '' ).split( ',' );
 
 	window.mtzDev = {
-		noIntro:       actions.includes( 'nointro' ),
-		seedForm:      actions.includes( 'seedform' ),
-		headerOpacity: actions.includes( 'headeropacity' ),
+		noIntro:  actions.includes( 'nointro' ),
+		seedForm: actions.includes( 'seedform' ),
 	};
-
-	const log = ( msg ) => console.info( '%c[mtz:dev]%c ' + msg, 'color:#DA8300;font-weight:bold', '' );
 
 	log( 'dev mode — ' + JSON.stringify( window.mtzDev ) );
 
@@ -33,14 +39,14 @@ if ( devParam ) {
 		log( 'seed-form: filling contact form with fixture data' );
 		import( './dev-seed.js' ).then( ( { mtzSeedContactForm } ) => mtzSeedContactForm() );
 	}
+}
 
-	if ( window.mtzDev.headerOpacity ) {
-		log( 'header-opacity: giant near-invisible title, bg-vectors hidden' );
-		document.body.classList.add( 'dev-header-opacity' );
+if ( devTestParam ) {
+	const tests = devTestParam.toLowerCase().split( ',' );
 
-		const link = document.createElement( 'link' );
-		link.rel  = 'stylesheet';
-		link.href = new URL( '../css/dev-tests.css', import.meta.url ).href;
-		document.head.appendChild( link );
-	}
+	log( 'dev-test — ' + JSON.stringify( tests ) );
+
+	tests.forEach( ( test ) => document.body.classList.add( 'dev-' + test ) );
+
+	mtzLoadStylesheet( '../css/dev-tests.css', import.meta.url );
 }

@@ -1,17 +1,40 @@
 @charset "UTF-8";
 /* ─── Dev tests ──────────────────────────────────────────────────────────────
-   Loaded only when a relevant ?dev= flag is active (see dev.js) — never
-   shipped on a normal page load. Each test is scoped to its own body class
-   so multiple tests can't accidentally bleed into each other.
+   Loaded only when a ?dev-test= flag is active (see dev.js) — never shipped
+   on a normal page load. Each test is scoped to its own body class so
+   multiple tests can't accidentally bleed into each other. Disposable —
+   delete a test's block once the client picks a direction.
    ─────────────────────────────────────────────────────────────────────────── */
 
-/* ?dev=header-opacity — giant, near-invisible page title; bg-vectors hidden
-   (not display:none, so layout doesn't shift) for a clean comparison. */
-body.dev-header-opacity .page-header__title {
-	font-size: clamp(6rem, 15vw, 16rem);
-	opacity: .05;
+/* ═══ Test 1 — "ghost title" ══════════════════════════════════════════════
+   Client feedback: try the page-header title as an oversized, near-invisible
+   background texture instead of a focal element — full-width, no bg-vectors
+   competing for attention. Activate: ?dev-test=test1
+
+   Implementation: giant near-invisible page title; full-width header
+   (reusing .container--wide's max-width instead of .container's); bg-vectors
+   hidden (not display:none, so layout doesn't shift) for a clean comparison.
+   ─────────────────────────────────────────────────────────────────────────── */
+body.dev-test1 .page-header__inner {
+	max-width: 100%;
 }
 
-body.dev-header-opacity .bg-vector {
+body.dev-test1 .page-header__title {
+	font-size: clamp(6rem, 15vw, 16rem);
+	hyphens: none;
+	opacity: .03;
+}
+
+body.dev-test1 .bg-vector {
 	visibility: hidden;
+}
+
+/* ─── Test 1 modifier — header-outline ────────────────────────────────────────
+   Optional variant on top of test1: instead of a faint filled title, make the
+   fill fully transparent and outline it with text-stroke.
+   Activate: ?dev-test=test1,header-outline ─────────────────────────────────── */
+body.dev-test1.dev-header-outline .page-header__title {
+	-webkit-font-smoothing: antialiased; /* prevents RGB fringing on the stroke edge */
+	-webkit-text-stroke: 4px var(--mtz-color-text);
+	color: transparent;
 }

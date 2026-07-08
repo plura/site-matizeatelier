@@ -97,13 +97,16 @@ Requires Node. From `/mail-templates`, run `npm run build` (or a specific `build
 
 ## Dev tools
 
-Append `?dev=<action>` to any page URL to activate dev helpers. Multiple actions can be combined with commas (e.g. `?dev=no-intro,seed-form`). `dev.js` is a static import in `main.js` and is always parsed — the sub-modules it loads are dynamic and cost nothing on normal page loads.
+`dev.js` is a static import in `main.js` and is always parsed — the sub-modules/stylesheets it loads are dynamic and cost nothing on normal page loads. Two independent query params, not to be mixed up:
 
-| Action | Effect |
+- **`?dev=<action>`** — stable dev utilities, permanent. Combine with commas (e.g. `?dev=no-intro,seed-form`).
+- **`?dev-test=<test>`** — disposable client-review design tests, numbered to match client feedback. Each test is scoped to its own `dev-<test>` body class in `dev-tests.css`; delete a test's block once the client picks a direction.
+
+| Param | Effect |
 |---|---|
 | `?dev=no-intro` | Skip the home page scroll sections (statement rotator + mood gallery) |
 | `?dev=seed-form` | Fill the contact form with random fixture data and open the modal |
-| `?dev=header-opacity` | Page-header title test: huge font-size, ~5% opacity, bg-vectors hidden. CSS lives in `dev-tests.css`, loaded only when this flag is active. |
+| `?dev-test=test1` | Page-header test: huge font-size, ~3% opacity, no hyphenation, full-width header, bg-vectors hidden |
 
 ## Notes
 
