@@ -24,14 +24,14 @@
 		<mj-column>
 			<mj-text color="#6B6558" font-size="9px" font-weight="bold" letter-spacing="0.14em" text-transform="uppercase" align="center" padding="0 0 6px">Address</mj-text>
 			<mj-text align="center" color="#A39C8C" font-size="11px" letter-spacing="0.03em" line-height="1.9" padding="0">
-				%CONTACT_ADDRESS%
+				<a href="%CONTACT_ADDRESS_URL%" style="color:#A39C8C !important; text-decoration:none !important;">%CONTACT_ADDRESS%</a>
 			</mj-text>
 		</mj-column>
 		<mj-column>
 			<mj-text color="#6B6558" font-size="9px" font-weight="bold" letter-spacing="0.14em" text-transform="uppercase" align="center" padding="0 0 6px">Contact</mj-text>
 			<mj-text align="center" color="#A39C8C" font-size="11px" letter-spacing="0.03em" line-height="1.9" padding="0">
-				<a href="%CONTACT_EMAIL_URL%" style="color:#A39C8C; text-decoration:none;">%CONTACT_EMAIL%</a><br />
-				<a href="%CONTACT_PHONE_HREF%" style="color:#A39C8C; text-decoration:none;">%CONTACT_PHONE%</a>
+				<a href="%CONTACT_EMAIL_URL%" style="color:#A39C8C !important; text-decoration:none !important;">%CONTACT_EMAIL%</a><br />
+				<a href="%CONTACT_PHONE_HREF%" style="color:#A39C8C !important; text-decoration:none !important;">%CONTACT_PHONE%</a>
 			</mj-text>
 		</mj-column>
 	</mj-section>
@@ -39,11 +39,17 @@
 	<!-- Social links, divider, credit -->
 	<mj-section padding="0 40px">
 		<mj-column>
+			<!-- Individual per-platform placeholders (not a plugin-built block) so
+			     styling/order/which platforms to show live entirely here.
+			     Only Instagram/Facebook for now — add Pinterest/LinkedIn back
+			     (see mtz_get_social_placeholders()) once those are in use. -->
 			<mj-raw>
 				<tr>
 					<td align="center" style="font-size:0; padding:0 0 20px; word-break:break-word;">
-						<div class="footer" style="text-align:center; color:#A39C8C; font-size:11px; letter-spacing:0.03em; line-height:1.9;">
-							%SOCIAL_BLOCK%
+						<div style="text-align:center; font-size:11px; letter-spacing:0.03em; line-height:1.9;">
+							<a href="%SOCIAL_INSTAGRAM_URL%" style="color:#7FB8A4; text-decoration:none;">Instagram</a>
+							&nbsp;&middot;&nbsp;
+							<a href="%SOCIAL_FACEBOOK_URL%" style="color:#7FB8A4; text-decoration:none;">Facebook</a>
 						</div>
 					</td>
 				</tr>

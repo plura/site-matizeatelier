@@ -4,8 +4,9 @@
  * Used in: footer.php, page-contact.php
  */
 
-$contact = mtz_option( 'mtz_contact' );
-$address = $contact['mtz_contact_address'] ?? '';
+$contact     = mtz_option( 'mtz_contact' );
+$address     = $contact['mtz_contact_address'] ?? '';
+$address_url = $contact['mtz_contact_address_url'] ?? '';
 ?>
 
 <div class="contact-info">
@@ -13,7 +14,7 @@ $address = $contact['mtz_contact_address'] ?? '';
 
 	<?php if ( $address ) : ?>
 		<?php
-		$maps_url = 'https://www.google.com/maps/search/?api=1&query=' . rawurlencode( wp_strip_all_tags( $address ) );
+		$maps_url = $address_url ?: 'https://www.google.com/maps/search/?api=1&query=' . rawurlencode( wp_strip_all_tags( $address ) );
 		echo plura_wp_link(
 			'<i data-lucide="map-pin" aria-hidden="true"></i><span>' . wp_kses( $address, [ 'br' => [] ] ) . '</span>',
 			$maps_url,

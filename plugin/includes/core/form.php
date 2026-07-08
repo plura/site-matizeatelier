@@ -131,39 +131,54 @@ function mtz_handle_form(): void {
 // ─── Contact & social placeholders ──────────────────────────────────────────────
 
 /**
+ * Breaks Gmail's phone/email auto-linking (it re-styles any detected number
+ * or address as its own default blue link, ignoring the anchor's own inline
+ * style) by inserting a zero-width non-joiner between characters — invisible
+ * to readers, but enough to stop Gmail's pattern matching from firing.
+ */
+function mtz_break_gmail_autolink( string $escaped_text ): string {
+	return preg_replace( '/([0-9])/', '$1&zwnj;', $escaped_text );
+}
+
+/**
  * Builds the %CONTACT_*% placeholder values from the theme's contact info
  * option (ACF options page).
  *
- * Email/phone are exposed both as raw pieces — display value
- * (%CONTACT_EMAIL%/%CONTACT_PHONE%) separate from the link target
- * (%CONTACT_EMAIL_URL%/%CONTACT_PHONE_HREF%) — so a template can build its
- * own `<a>` tag with its own inline style (MJML compiles mj-text/attribute
- * styling reliably; raw HTML substituted in after the MJML build has none of
- * that, so it needs the style written by hand in the template source), and
- * pre-assembled as %CONTACT_BLOCK% (already-linked, for templates that just
- * want the whole thing in one place, e.g. the field-agnostic generic one).
+ * Email/phone/address are exposed both as raw pieces — display value
+ * (%CONTACT_EMAIL%/%CONTACT_PHONE%/%CONTACT_ADDRESS%) separate from the link
+ * target (%CONTACT_EMAIL_URL%/%CONTACT_PHONE_HREF%/%CONTACT_ADDRESS_URL%) —
+ * so a template can build its own `<a>` tag with its own inline style (MJML
+ * compiles mj-text/attribute styling reliably; raw HTML substituted in after
+ * the MJML build has none of that, so it needs the style written by hand in
+ * the template source), and pre-assembled as %CONTACT_BLOCK% (already-linked,
+ * for templates that just want the whole thing in one place, e.g. the
+ * field-agnostic generic one).
  *
  * @return array<string,string> Placeholder token => HTML value.
  */
 function mtz_get_contact_placeholders(): array {
 	$contact = function_exists( 'get_field' ) ? ( get_field( 'mtz_contact', 'option' ) ?: [] ) : [];
 
-	$contact_address = ! empty( $contact['mtz_contact_address'] ) ? wp_kses( $contact['mtz_contact_address'], [ 'br' => [] ] ) : '';
+	$contact_address     = ! empty( $contact['mtz_contact_address'] ) ? wp_kses( $contact['mtz_contact_address'], [ 'br' => [] ] ) : '';
+	$contact_address_url = ! empty( $contact['mtz_contact_address_url'] )
+		? esc_url( $contact['mtz_contact_address_url'] )
+		: ( $contact_address ? esc_url( 'https://www.google.com/maps/search/?api=1&query=' . rawurlencode( wp_strip_all_tags( $contact['mtz_contact_address'] ) ) ) : '' );
 
-	$contact_email     = ! empty( $contact['mtz_contact_email'] ) ? esc_html( $contact['mtz_contact_email'] ) : '';
+	$contact_email     = ! empty( $contact['mtz_contact_email'] ) ? mtz_break_gmail_autolink( esc_html( $contact['mtz_contact_email'] ) ) : '';
 	$contact_email_url = $contact_email ? 'mailto:' . esc_attr( $contact['mtz_contact_email'] ) : '';
 
-	$contact_phone      = ! empty( $contact['mtz_contact_phone'] ) ? esc_html( $contact['mtz_contact_phone'] ) : '';
+	$contact_phone      = ! empty( $contact['mtz_contact_phone'] ) ? mtz_break_gmail_autolink( esc_html( $contact['mtz_contact_phone'] ) ) : '';
 	$contact_phone_href = $contact_phone ? 'tel:' . esc_attr( preg_replace( '/\s+/', '', $contact['mtz_contact_phone'] ) ) : '';
 
 	$contact_parts = array_filter( [
-		$contact_address,
+		$contact_address_url ? '<a href="' . $contact_address_url . '">' . $contact_address . '</a>' : $contact_address,
 		$contact_email ? '<a href="' . esc_url( $contact_email_url ) . '">' . $contact_email . '</a>' : '',
 		$contact_phone ? '<a href="' . esc_url( $contact_phone_href ) . '">' . $contact_phone . '</a>' : '',
 	] );
 
 	return [
 		'%CONTACT_ADDRESS%'     => $contact_address,
+		'%CONTACT_ADDRESS_URL%' => $contact_address_url,
 		'%CONTACT_EMAIL%'       => $contact_email,
 		'%CONTACT_EMAIL_URL%'   => $contact_email_url,
 		'%CONTACT_PHONE%'       => $contact_phone,
@@ -173,38 +188,22 @@ function mtz_get_contact_placeholders(): array {
 }
 
 /**
- * Builds the %SOCIAL_*% placeholder values from the theme's social links
- * option (ACF options page) — each platform's raw URL (empty string if not
- * set, e.g. %SOCIAL_INSTAGRAM_URL%) for templates that want their own
- * per-icon styling, plus %SOCIAL_BLOCK% pre-assembled as text links,
- * filtered to only the platforms actually configured.
+ * Builds the %SOCIAL_<PLATFORM>_URL% placeholder values from the theme's
+ * social links option (ACF options page) — raw URL only (empty string if not
+ * set). No markup, no styling: which platforms to show, in what order, and
+ * how to style them is entirely up to the template.
  *
- * @return array<string,string> Placeholder token => HTML/URL value.
+ * @return array<string,string> Placeholder token => URL.
  */
 function mtz_get_social_placeholders(): array {
-	$social       = function_exists( 'get_field' ) ? ( get_field( 'mtz_social', 'option' ) ?: [] ) : [];
-	$social_links = [
-		'Instagram' => $social['mtz_social_instagram'] ?? '',
-		'Facebook'  => $social['mtz_social_facebook']  ?? '',
-		'Pinterest' => $social['mtz_social_pinterest'] ?? '',
-		'LinkedIn'  => $social['mtz_social_linkedin']  ?? '',
+	$social = function_exists( 'get_field' ) ? ( get_field( 'mtz_social', 'option' ) ?: [] ) : [];
+
+	return [
+		'%SOCIAL_INSTAGRAM_URL%' => ! empty( $social['mtz_social_instagram'] ) ? esc_url( $social['mtz_social_instagram'] ) : '',
+		'%SOCIAL_FACEBOOK_URL%'  => ! empty( $social['mtz_social_facebook'] )  ? esc_url( $social['mtz_social_facebook'] )  : '',
+		'%SOCIAL_PINTEREST_URL%' => ! empty( $social['mtz_social_pinterest'] ) ? esc_url( $social['mtz_social_pinterest'] ) : '',
+		'%SOCIAL_LINKEDIN_URL%'  => ! empty( $social['mtz_social_linkedin'] )  ? esc_url( $social['mtz_social_linkedin'] )  : '',
 	];
-
-	$placeholders = [];
-	$social_parts = [];
-	foreach ( $social_links as $label => $url ) {
-		$placeholders[ '%SOCIAL_' . strtoupper( $label ) . '_URL%' ] = $url ? esc_url( $url ) : '';
-
-		if ( $url ) {
-			$social_parts[] = '<a href="' . esc_url( $url ) . '" target="_blank">' . esc_html( $label ) . '</a>';
-		}
-	}
-
-	$placeholders['%SOCIAL_BLOCK%'] = $social_parts
-		? '<p class="footer-social">' . implode( ' &nbsp;&middot;&nbsp; ', $social_parts ) . '</p>'
-		: '';
-
-	return $placeholders;
 }
 
 // ─── Email body ───────────────────────────────────────────────────────────────

@@ -45,12 +45,24 @@
 					"instructions": "",
 					"required": 0,
 					"conditional_logic": 0,
-					"wrapper": { "width": "", "class": "", "id": "" },
+					"wrapper": { "width": "50", "class": "", "id": "" },
 					"default_value": "",
 					"placeholder": "",
 					"maxlength": "",
 					"rows": 3,
 					"new_lines": "br"
+				},
+				{
+					"key": "field_mtz_contact_address_url",
+					"label": "Morada (Google Maps)",
+					"name": "mtz_contact_address_url",
+					"type": "url",
+					"instructions": "",
+					"required": 0,
+					"conditional_logic": 0,
+					"wrapper": { "width": "50", "class": "", "id": "" },
+					"default_value": "",
+					"placeholder": "https://maps.app.goo.gl/..."
 				}
 			]
 		},

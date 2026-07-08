@@ -1,3 +1,11 @@
+<!-- Tells clients that DO respect it (mainly Apple Mail) not to auto-link and
+     re-style phone numbers/addresses/dates as their own "smart" links. Gmail
+     ignores this and needs the zero-width-non-joiner trick in the PHP-built
+     placeholders instead (see mtz_get_contact_placeholders()). -->
+<mj-raw>
+	<meta name="format-detection" content="telephone=no, date=no, address=no, email=no">
+</mj-raw>
+
 <mj-attributes>
 	<mj-all font-family="Helvetica Neue, Helvetica, Arial, sans-serif" />
 	<mj-text color="#0A0907" font-size="14px" line-height="1.7" />
@@ -37,15 +45,6 @@
 		color: #0A0907;
 		font-size: 14px;
 		line-height: 1.7;
-	}
-	.footer p {
-		font-size: 11px;
-		letter-spacing: 0.03em;
-		line-height: 1.9;
-		margin: 0 0 6px;
-	}
-	.footer-social a {
-		color: #7FB8A4 !important;
 	}
 	@media screen and (max-width: 480px) {
 		.label-cell {

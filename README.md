@@ -91,13 +91,18 @@ Templates are authored as MJML in `/mail-templates` (dev-only, not deployed) and
 
 ```
 /mail-templates
-  /_partials    Shared branding partials (head/header/footer) — reusable by any future template type
+  /_partials    Shared branding partials — head, header, footer (footer forked per language:
+                _footer-en.mjml/_footer-pt.mjml, for the Address/Contact column titles)
   /contact      Bespoke, on-brand contact form templates — notification + auto-reply, EN/PT (4 variants,
                 sharing contact/_partials for the fields table)
   /generic      Field-agnostic fallback — no named field placeholders, works for any [data-mtz-form]
 ```
 
 Requires Node. From `/mail-templates`, run `npm run build` (or a specific `build:*` script) — uses `npx mjml`. The compiled `generic.html` is copied to `plugin/templates/generic.html`; the `contact/*.html` variants are copied to `theme/templates/contact/`.
+
+Contact/social data is exposed as granular placeholders (e.g. `%CONTACT_EMAIL_URL%`, `%CONTACT_PHONE_HREF%`, `%SOCIAL_INSTAGRAM_URL%`) rather than pre-built, pre-styled HTML — `mtz_get_contact_placeholders()`/`mtz_get_social_placeholders()` (in `plugin/includes/core/form.php`) stay agnostic about styling; the template builds its own `<a>` tags with inline styles (MJML compiles those reliably; raw HTML substituted in after the MJML build has none of that). The contact address links to Google Maps via `mtz_contact_address_url` if set, otherwise a generated Maps search URL from the address text.
+
+Email/phone display values run through `mtz_break_gmail_autolink()`, which inserts an invisible zero-width non-joiner between digits — Gmail auto-detects phone numbers/emails and re-styles them with its own blue link color, ignoring the anchor's inline style, and this breaks that detection. `_head.mjml` also sets a `format-detection` meta tag for Apple Mail (Gmail ignores it).
 
 ## Dev tools
 
