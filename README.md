@@ -13,10 +13,12 @@ Website for [matizeatelier.pt](https://matizeatelier.pt) — Atelier de Design d
     /js           ES modules — main.js (entry), nav.js (toggle + sliding indicator), animations.js, modal.js, gallery.js, home.js, dev.js + dev-seed.js (dev only)
   /components     Plura component system (manifest + HTML + PHP + assets)
   /includes
-    /core         setup.php, enqueue.php, options.php (mtz_option helper)
+    /core         setup.php, enqueue.php, options.php (mtz_option helper), email.php (mtz_email_template hook)
   /languages      Translation files (.pot, .po, .mo)
   /stubs          Intelephense stubs for Plura plugin and ACF
   /template-parts Reusable partials (contact-form, cta, page-header, contact-info, social-links)
+  /templates
+    /contact      Compiled bespoke contact email templates (built from /mail-templates/contact)
 /plugin         Site-specific plugin → wp-content/plugins/matize/
   /acf-json       ACF field groups (Local JSON — auto-synced by ACF on save)
   /assets
@@ -81,7 +83,9 @@ JS-facing error strings are centralised in `plugin/includes/core/i18n.php` and e
 
 ### Email templates
 
-`mtz_build_email_body()` resolves which template to use in this order: an explicit `$template` argument → the `mtz_email_template` filter (lets a theme supply its own bespoke template per form without the plugin needing to know the theme's file structure) → the plugin's own field-agnostic fallback at `plugin/templates/generic.html`.
+`mtz_build_email_body()` resolves which template to use in this order: an explicit `$template` argument → the `mtz_email_template` filter (lets a theme supply its own bespoke template per form without the plugin needing to know the theme's file structure) → the plugin's own field-agnostic fallback at `plugin/templates/generic.html`. Every submitted field is also exposed as its own `%<field_key>%` placeholder (e.g. `%mtz_email%`), alongside the aggregate `%FIELDS%` table, so a bespoke template can lay fields out individually.
+
+`theme/includes/core/email.php` hooks `mtz_email_template` to serve the theme's bespoke contact templates (`theme/templates/contact/contact-{en,pt}.html` for the admin notification, `contact-reply-{en,pt}.html` for the auto-reply) — language picked via WPML's `wpml_current_language` filter, reply vs. notification via the filter's third (`$is_reply`) argument.
 
 Templates are authored as MJML in `/mail-templates` (dev-only, not deployed) and compiled to the `.html` files actually used at runtime:
 
@@ -93,7 +97,7 @@ Templates are authored as MJML in `/mail-templates` (dev-only, not deployed) and
   /generic      Field-agnostic fallback — no named field placeholders, works for any [data-mtz-form]
 ```
 
-Requires Node. From `/mail-templates`, run `npm run build` (or a specific `build:*` script) — uses `npx mjml`. The compiled `generic.html` is copied to `plugin/templates/generic.html`; the `contact/*.html` variants are intended for the theme once it hooks into `mtz_email_template` (not yet wired).
+Requires Node. From `/mail-templates`, run `npm run build` (or a specific `build:*` script) — uses `npx mjml`. The compiled `generic.html` is copied to `plugin/templates/generic.html`; the `contact/*.html` variants are copied to `theme/templates/contact/`.
 
 ## Dev tools
 

@@ -128,6 +128,85 @@ function mtz_handle_form(): void {
 	wp_send_json_success( [ 'message' => implode( ' ', $messages ) ] );
 }
 
+// ─── Contact & social placeholders ──────────────────────────────────────────────
+
+/**
+ * Builds the %CONTACT_*% placeholder values from the theme's contact info
+ * option (ACF options page).
+ *
+ * Email/phone are exposed both as raw pieces — display value
+ * (%CONTACT_EMAIL%/%CONTACT_PHONE%) separate from the link target
+ * (%CONTACT_EMAIL_URL%/%CONTACT_PHONE_HREF%) — so a template can build its
+ * own `<a>` tag with its own inline style (MJML compiles mj-text/attribute
+ * styling reliably; raw HTML substituted in after the MJML build has none of
+ * that, so it needs the style written by hand in the template source), and
+ * pre-assembled as %CONTACT_BLOCK% (already-linked, for templates that just
+ * want the whole thing in one place, e.g. the field-agnostic generic one).
+ *
+ * @return array<string,string> Placeholder token => HTML value.
+ */
+function mtz_get_contact_placeholders(): array {
+	$contact = function_exists( 'get_field' ) ? ( get_field( 'mtz_contact', 'option' ) ?: [] ) : [];
+
+	$contact_address = ! empty( $contact['mtz_contact_address'] ) ? wp_kses( $contact['mtz_contact_address'], [ 'br' => [] ] ) : '';
+
+	$contact_email     = ! empty( $contact['mtz_contact_email'] ) ? esc_html( $contact['mtz_contact_email'] ) : '';
+	$contact_email_url = $contact_email ? 'mailto:' . esc_attr( $contact['mtz_contact_email'] ) : '';
+
+	$contact_phone      = ! empty( $contact['mtz_contact_phone'] ) ? esc_html( $contact['mtz_contact_phone'] ) : '';
+	$contact_phone_href = $contact_phone ? 'tel:' . esc_attr( preg_replace( '/\s+/', '', $contact['mtz_contact_phone'] ) ) : '';
+
+	$contact_parts = array_filter( [
+		$contact_address,
+		$contact_email ? '<a href="' . esc_url( $contact_email_url ) . '">' . $contact_email . '</a>' : '',
+		$contact_phone ? '<a href="' . esc_url( $contact_phone_href ) . '">' . $contact_phone . '</a>' : '',
+	] );
+
+	return [
+		'%CONTACT_ADDRESS%'     => $contact_address,
+		'%CONTACT_EMAIL%'       => $contact_email,
+		'%CONTACT_EMAIL_URL%'   => $contact_email_url,
+		'%CONTACT_PHONE%'       => $contact_phone,
+		'%CONTACT_PHONE_HREF%'  => $contact_phone_href,
+		'%CONTACT_BLOCK%'       => $contact_parts ? '<p>' . implode( '<br>', $contact_parts ) . '</p>' : '',
+	];
+}
+
+/**
+ * Builds the %SOCIAL_*% placeholder values from the theme's social links
+ * option (ACF options page) — each platform's raw URL (empty string if not
+ * set, e.g. %SOCIAL_INSTAGRAM_URL%) for templates that want their own
+ * per-icon styling, plus %SOCIAL_BLOCK% pre-assembled as text links,
+ * filtered to only the platforms actually configured.
+ *
+ * @return array<string,string> Placeholder token => HTML/URL value.
+ */
+function mtz_get_social_placeholders(): array {
+	$social       = function_exists( 'get_field' ) ? ( get_field( 'mtz_social', 'option' ) ?: [] ) : [];
+	$social_links = [
+		'Instagram' => $social['mtz_social_instagram'] ?? '',
+		'Facebook'  => $social['mtz_social_facebook']  ?? '',
+		'Pinterest' => $social['mtz_social_pinterest'] ?? '',
+		'LinkedIn'  => $social['mtz_social_linkedin']  ?? '',
+	];
+
+	$placeholders = [];
+	$social_parts = [];
+	foreach ( $social_links as $label => $url ) {
+		$placeholders[ '%SOCIAL_' . strtoupper( $label ) . '_URL%' ] = $url ? esc_url( $url ) : '';
+
+		if ( $url ) {
+			$social_parts[] = '<a href="' . esc_url( $url ) . '" target="_blank">' . esc_html( $label ) . '</a>';
+		}
+	}
+
+	$placeholders['%SOCIAL_BLOCK%'] = $social_parts
+		? '<p class="footer-social">' . implode( ' &nbsp;&middot;&nbsp; ', $social_parts ) . '</p>'
+		: '';
+
+	return $placeholders;
+}
+
 // ─── Email body ───────────────────────────────────────────────────────────────
 
 /**
@@ -141,6 +220,10 @@ function mtz_handle_form(): void {
  * template, which only relies on %FIELDS% (built dynamically below from
  * whatever fields were actually submitted) so it works for any form.
  *
+ * Every submitted field is also exposed as its own %<field_key>% placeholder
+ * (e.g. %mtz_email%) alongside the aggregate %FIELDS% table, so a bespoke
+ * template can lay fields out individually instead of using the generic table.
+ *
  * @param string      $form_name
  * @param array       $fields
  * @param string      $intro
@@ -150,7 +233,8 @@ function mtz_handle_form(): void {
  */
 function mtz_build_email_body( string $form_name, array $fields, string $intro = '', ?string $template = null ): string {
 	$default_template = plugin_dir_path( dirname( __DIR__ ) ) . 'templates/generic.html';
-	$template          = $template ?? apply_filters( 'mtz_email_template', $default_template, $form_name );
+	$is_reply          = $intro !== '';
+	$template          = $template ?? apply_filters( 'mtz_email_template', $default_template, $form_name, $is_reply );
 
 	if ( ! file_exists( $template ) ) {
 		error_log( 'Matize: email template not found at ' . $template );
@@ -163,8 +247,13 @@ function mtz_build_email_body( string $form_name, array $fields, string $intro =
 		return implode( "\n", $lines );
 	}
 
-	$fields_html = '';
-	foreach ( $fields as $field ) {
+	// $field_placeholders lets a bespoke template reference a submitted field
+	// individually (e.g. %mtz_email%) instead of the generic %FIELDS% table.
+	$fields_html       = '';
+	$field_placeholders = [];
+	foreach ( $fields as $key => $field ) {
+		$field_placeholders[ '%' . $key . '%' ] = nl2br( esc_html( $field['value'] ) );
+
 		if ( ! $field['value'] ) continue;
 		$label        = esc_html( $field['label'] );
 		$value        = nl2br( esc_html( $field['value'] ) );
@@ -175,54 +264,25 @@ function mtz_build_email_body( string $form_name, array $fields, string $intro =
 			</tr>";
 	}
 
-	$html = file_get_contents( $template );
+	$html     = file_get_contents( $template );
 	$logo_url = plugin_dir_url( dirname( __DIR__ ) ) . 'templates/mtz-logo-600x190.png';
 
-	// ── Contact block ─────────────────────────────────────────────────────────
-	// Exposed both as individual pieces (%CONTACT_ADDRESS%/%CONTACT_EMAIL%/
-	// %CONTACT_PHONE%, for templates that lay them out separately, e.g. a
-	// two-column footer) and pre-assembled as %CONTACT_BLOCK% (for templates
-	// that just want the whole thing in one place).
-	$contact         = function_exists( 'get_field' ) ? ( get_field( 'mtz_contact', 'option' ) ?: [] ) : [];
-	$contact_address = ! empty( $contact['mtz_contact_address'] ) ? wp_kses( $contact['mtz_contact_address'], [ 'br' => [] ] ) : '';
-	$contact_email   = '';
-	$contact_phone   = '';
-
-	if ( ! empty( $contact['mtz_contact_email'] ) ) {
-		$email         = esc_attr( $contact['mtz_contact_email'] );
-		$contact_email = '<a href="mailto:' . $email . '">' . esc_html( $contact['mtz_contact_email'] ) . '</a>';
-	}
-	if ( ! empty( $contact['mtz_contact_phone'] ) ) {
-		$phone         = esc_attr( preg_replace( '/\s+/', '', $contact['mtz_contact_phone'] ) );
-		$contact_phone = '<a href="tel:' . $phone . '">' . esc_html( $contact['mtz_contact_phone'] ) . '</a>';
-	}
-
-	$contact_parts = array_filter( [ $contact_address, $contact_email, $contact_phone ] );
-	$contact_block = $contact_parts
-		? '<p>' . implode( '<br>', $contact_parts ) . '</p>'
-		: '';
-
-	// ── Social block ───────────────────────────────────────────────────────────
-	$social       = function_exists( 'get_field' ) ? ( get_field( 'mtz_social', 'option' ) ?: [] ) : [];
-	$social_links = [
-		'Instagram' => $social['mtz_social_instagram'] ?? '',
-		'Facebook'  => $social['mtz_social_facebook']  ?? '',
-		'Pinterest' => $social['mtz_social_pinterest'] ?? '',
-		'LinkedIn'  => $social['mtz_social_linkedin']  ?? '',
-	];
-	$social_parts = [];
-	foreach ( $social_links as $label => $url ) {
-		if ( $url ) {
-			$social_parts[] = '<a href="' . esc_url( $url ) . '" target="_blank">' . esc_html( $label ) . '</a>';
-		}
-	}
-	$social_block = $social_parts
-		? '<p class="footer-social">' . implode( ' &nbsp;&middot;&nbsp; ', $social_parts ) . '</p>'
-		: '';
+	$contact_placeholders = mtz_get_contact_placeholders();
+	$social_placeholders  = mtz_get_social_placeholders();
 
 	$html = str_replace(
-		[ '%SITE_NAME%', '%SITE_URL%', '%LOGO_URL%', '%FORM_NAME%', '%FIELDS%', '%INTRO%', '%CONTACT_BLOCK%', '%CONTACT_ADDRESS%', '%CONTACT_EMAIL%', '%CONTACT_PHONE%', '%SOCIAL_BLOCK%', '%YEAR%' ],
-		[ esc_html( get_bloginfo( 'name' ) ), esc_url( home_url( '/' ) ), esc_url( $logo_url ), esc_html( $form_name ), $fields_html, $intro, $contact_block, $contact_address, $contact_email, $contact_phone, $social_block, gmdate( 'Y' ) ],
+		array_merge(
+			[ '%SITE_NAME%', '%SITE_URL%', '%LOGO_URL%', '%FORM_NAME%', '%FIELDS%', '%INTRO%', '%YEAR%' ],
+			array_keys( $contact_placeholders ),
+			array_keys( $social_placeholders ),
+			array_keys( $field_placeholders )
+		),
+		array_merge(
+			[ esc_html( get_bloginfo( 'name' ) ), esc_url( home_url( '/' ) ), esc_url( $logo_url ), esc_html( $form_name ), $fields_html, $intro, gmdate( 'Y' ) ],
+			array_values( $contact_placeholders ),
+			array_values( $social_placeholders ),
+			array_values( $field_placeholders )
+		),
 		$html
 	);
 

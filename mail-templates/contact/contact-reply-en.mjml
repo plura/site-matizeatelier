@@ -9,25 +9,38 @@
 
 		<mj-include path="../_partials/_header.mjml" />
 
-		<!-- Body card -->
-		<mj-section background-color="#FFFFFF" border-radius="10px" padding="0">
-			<mj-column padding="40px">
-				<mj-text padding="0 0 20px" font-size="13px" line-height="1.8">
-					Thank you for reaching out, %mtz_name%. We've received your message and will be in touch shortly. For your records, here's a copy of what you sent.
-				</mj-text>
-				<mj-text padding="0 0 28px">
-					<span class="badge">%FORM_NAME%</span>
-				</mj-text>
-				<mj-include path="./_partials/_fields-en.mjml" />
-			</mj-column>
-		</mj-section>
+		<!-- Body card — coral title band + white content, one continuous
+		     rounded box (see _footer-en.mjml/_footer-pt.mjml's mj-wrapper for the same technique). -->
+		<mj-wrapper border-radius="10px" padding="0">
+			<mj-section background-color="#EC6F63" padding="18px 40px">
+				<mj-column>
+					<mj-text
+						color="#FFFFFF"
+						font-weight="bold"
+						font-size="14px"
+						letter-spacing="0.12em"
+						text-transform="uppercase"
+						align="center"
+						padding="0"
+					>%FORM_NAME%</mj-text>
+				</mj-column>
+			</mj-section>
+			<mj-section background-color="#FFFFFF" padding="0">
+				<mj-column padding="40px">
+					<mj-text padding="0 0 20px" font-size="12px" line-height="1.8">
+						Thank you for reaching out, <strong>%mtz_name%</strong>. We've received your message and will be in touch shortly. For your records, here's a copy of what you sent.
+					</mj-text>
+					<mj-include path="./_partials/_fields-en.mjml" />
+				</mj-column>
+			</mj-section>
+		</mj-wrapper>
 
 		<!-- Spacer -->
 		<mj-section padding="20px 0 0">
 			<mj-column></mj-column>
 		</mj-section>
 
-		<mj-include path="../_partials/_footer.mjml" />
+		<mj-include path="../_partials/_footer-en.mjml" />
 
 	</mj-body>
 </mjml>

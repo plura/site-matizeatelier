@@ -1,6 +1,8 @@
 <!-- mj-wrapper groups the 3 sub-sections below under one continuous dark
      background — separate sibling mj-sections would each render their own
-     rounded box with a gap between them, breaking the "one footer" look. -->
+     rounded box with a gap between them, breaking the "one footer" look.
+     Language-forked (see _footer-en.mjml) only for the Address/Contact
+     column titles below — everything else here is language-neutral data. -->
 <mj-wrapper background-color="#0A0907" border-radius="10px" padding="32px 0 4px">
 
 	<mj-section padding="0 40px 20px">
@@ -17,16 +19,19 @@
 		</mj-column>
 	</mj-section>
 
-	<!-- Address | Email + Phone -->
+	<!-- Morada | Email + Telefone -->
 	<mj-section padding="0 40px 16px">
 		<mj-column>
+			<mj-text color="#6B6558" font-size="9px" font-weight="bold" letter-spacing="0.14em" text-transform="uppercase" align="center" padding="0 0 6px">Morada</mj-text>
 			<mj-text align="center" color="#A39C8C" font-size="11px" letter-spacing="0.03em" line-height="1.9" padding="0">
 				%CONTACT_ADDRESS%
 			</mj-text>
 		</mj-column>
 		<mj-column>
+			<mj-text color="#6B6558" font-size="9px" font-weight="bold" letter-spacing="0.14em" text-transform="uppercase" align="center" padding="0 0 6px">Contacto</mj-text>
 			<mj-text align="center" color="#A39C8C" font-size="11px" letter-spacing="0.03em" line-height="1.9" padding="0">
-				%CONTACT_EMAIL%<br />%CONTACT_PHONE%
+				<a href="%CONTACT_EMAIL_URL%" style="color:#A39C8C; text-decoration:none;">%CONTACT_EMAIL%</a><br />
+				<a href="%CONTACT_PHONE_HREF%" style="color:#A39C8C; text-decoration:none;">%CONTACT_PHONE%</a>
 			</mj-text>
 		</mj-column>
 	</mj-section>
@@ -51,9 +56,16 @@
 				align="center"
 				padding="0 0 20px"
 			>
-				&copy; %YEAR% %SITE_NAME% &mdash; Powered by <a href="https://plura.pt" target="_blank" style="color:#6B6558;">Plura</a>
+				&copy; %YEAR% %SITE_NAME% &mdash; Powered by <a href="https://plura.pt" target="_blank" style="color:#6B6558; font-weight:bold;">Plura</a>
 			</mj-text>
 		</mj-column>
 	</mj-section>
 
 </mj-wrapper>
+
+<!-- Bottom spacer — mirrors the header's own top margin (see _header.mjml's
+     40px top padding) so the whole email has equal breathing room top/bottom,
+     instead of ending flush against the footer's own tight internal padding. -->
+<mj-section padding="40px 0 0">
+	<mj-column></mj-column>
+</mj-section>

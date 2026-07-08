@@ -29,27 +29,40 @@
 			</mj-column>
 		</mj-section>
 
-		<!-- Body card -->
-		<mj-section background-color="#FFFFFF" border-radius="10px" padding="0">
-			<mj-column padding="40px">
-				<mj-raw>%INTRO%</mj-raw>
-				<mj-text padding="0 0 28px">
-					<span class="badge">%FORM_NAME%</span>
-				</mj-text>
-				<mj-raw>
-					<table class="form-data" role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
-						%FIELDS%
-					</table>
-				</mj-raw>
-			</mj-column>
-		</mj-section>
+		<!-- Body card — coral title band + white content, one continuous
+		     rounded box (see _footer-en.mjml/_footer-pt.mjml's mj-wrapper for the same technique). -->
+		<mj-wrapper border-radius="10px" padding="0">
+			<mj-section background-color="#EC6F63" padding="18px 40px">
+				<mj-column>
+					<mj-text
+						color="#FFFFFF"
+						font-weight="bold"
+						font-size="14px"
+						letter-spacing="0.12em"
+						text-transform="uppercase"
+						align="center"
+						padding="0"
+					>%FORM_NAME%</mj-text>
+				</mj-column>
+			</mj-section>
+			<mj-section background-color="#FFFFFF" padding="0">
+				<mj-column padding="40px">
+					<mj-raw>%INTRO%</mj-raw>
+					<mj-raw>
+						<table class="form-data" role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+							%FIELDS%
+						</table>
+					</mj-raw>
+				</mj-column>
+			</mj-section>
+		</mj-wrapper>
 
 		<!-- Spacer -->
 		<mj-section padding="20px 0 0">
 			<mj-column></mj-column>
 		</mj-section>
 
-		<mj-include path="../_partials/_footer.mjml" />
+		<mj-include path="../_partials/_footer-en.mjml" />
 
 	</mj-body>
 </mjml>
