@@ -113,6 +113,7 @@
 
 .mood-gallery__progress {
 	align-items: center;
+	align-self: stretch;
 	display: flex;
 	gap: var(--mtz-space-sm);
 }
@@ -221,11 +222,16 @@
 	font-size: 12px;
 	font-weight: var(--mtz-weight-bold);
 	letter-spacing: var(--mtz-tracking-kicker);
+	min-width: 0;
+	overflow: hidden;
+	text-overflow: ellipsis;
 	text-transform: uppercase;
+	white-space: nowrap;
 }
 
 .mood-gallery__num {
 	color: var(--mtz-color-charcoal-55);
+	flex-shrink: 0;
 	font-size: 12px;
 	font-weight: var(--mtz-weight-bold);
 	letter-spacing: var(--mtz-tracking-kicker);
