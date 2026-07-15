@@ -44,6 +44,7 @@
 
 .home-statement__headline {
 	font-size: var(--mtz-text-hero);
+	hyphens: none;
 	letter-spacing: var(--mtz-tracking-hero);
 	line-height: var(--mtz-leading-tight);
 	max-width: 82%;
@@ -106,6 +107,7 @@
 	font-family: var(--mtz-font-heading);
 	font-size: var(--mtz-text-hero-sm);
 	font-weight: var(--mtz-weight-bold);
+	hyphens: none;
 	letter-spacing: var(--mtz-tracking-hero);
 	line-height: var(--mtz-leading-tight);
 	text-transform: uppercase;
