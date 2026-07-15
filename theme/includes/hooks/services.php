@@ -21,7 +21,12 @@ add_filter( 'plura_wp_post', function ( array $content, WP_Post $post, ?string $
 			esc_html( get_the_title( $post ) ),
 			$tagline ? '<span class="home-services__strip-tagline">' . esc_html( $tagline ) . '</span>' : ''
 		),
-		'content' => sprintf(
+		// NOT named 'content' — plura_wp_post() unconditionally unsets that key
+		// after running this filter (see plugin/src/includes/core/wp-posts.php:
+		// $ordered_content is reassigned to $filtered_content, then compared
+		// against ITSELF, so the "only unset if nothing changed" guard always
+		// fires). Any filter returning a 'content' key loses it silently.
+		'grid' => sprintf(
 			'<div class="home-services__content"><div class="home-services__number">%1$s</div><div class="home-services__text">%2$s%3$s</div>%4$s</div>',
 			esc_html( $number ),
 			$content['title'] ?? '',
