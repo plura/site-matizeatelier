@@ -54,6 +54,7 @@
 	--mtz-text-body:    clamp(1rem,     0.94rem + 0.27vw, 1.125rem);  /* Body       ~16→18px */
 	--mtz-text-caption: clamp(0.6875rem,0.65rem + 0.2vw,  0.8125rem); /* Caption    ~11→13px */
 	--mtz-text-hero:    clamp(3.5rem, 1.7rem + 6.6vw, 7.375rem);      /* Hero (home-statement) ~56→118px */
+	--mtz-text-hero-sm: clamp(2.5rem, 1.66rem + 3.6vw, 4rem);         /* Hero, smaller cut (mood-gallery) ~40→64px */
 
 	/* Font weights — Vinila ships Regular and Bold in our set (no light/medium) */
 	--mtz-weight-regular: 400;
@@ -70,7 +71,8 @@
 	--mtz-tracking-display: 0.18em; /* Display (h1) */
 	--mtz-tracking-heading: 0.22em; /* Heading 01 (h2) */
 	--mtz-tracking-caps:    0.28em; /* Section (h3+), captions, labels */
-	--mtz-tracking-hero:    0.05em; /* Hero (home-statement) — tighter than display */
+	--mtz-tracking-hero:    0.05em; /* Hero displays (home-statement, mood-gallery headline) */
+	--mtz-tracking-kicker:  0.16em; /* Small caps counters/labels — tighter than tracking-caps */
 
 	/* ── Colour palette ──────────────────────────────────────────────────────
 	   Matize brand manual v1.0. Logo is strictly black/white; the four accents
@@ -103,9 +105,13 @@
 	--mtz-color-teal-60:     color-mix(in srgb, var(--mtz-color-teal) 60%, transparent);
 	--mtz-color-teal-30:     color-mix(in srgb, var(--mtz-color-teal) 30%, transparent);
 
-	/* One-off tint used by the home-statement tagline (kicker at 72% vs the
-	   standard 60% muted level) */
-	--mtz-color-charcoal-72: color-mix(in srgb, var(--mtz-color-charcoal) 72%, transparent);
+	/* Additional one-off tints pulled from the 2026-07 home-sections redesign
+	   (beyond the brand manual's 60/30 swatches) — reused across sections as
+	   they recur, e.g. charcoal-55 is both the mood-gallery card number and
+	   the planned home-services outlined-number stroke. */
+	--mtz-color-charcoal-72: color-mix(in srgb, var(--mtz-color-charcoal) 72%, transparent); /* home-statement tagline */
+	--mtz-color-charcoal-55: color-mix(in srgb, var(--mtz-color-charcoal) 55%, transparent); /* mood-gallery card number */
+	--mtz-color-charcoal-22: color-mix(in srgb, var(--mtz-color-charcoal) 22%, transparent); /* mood-gallery progress track */
 
 	/* Semantic roles. muted/border point at the FIXED Preto tint tokens (60/30).
 	   They must be re-pointed at the Off-white tints in dark contexts — a token

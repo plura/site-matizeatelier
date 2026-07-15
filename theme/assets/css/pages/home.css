@@ -70,13 +70,15 @@
 }
 
 /* ─── Mood gallery ───────────────────────────────────────────────────────────
-   Two-column: text left, image deck right.
-   .mood-gallery__layout is sticky (100svh); section height set by JS
-   to provide scroll space for deck transitions.
+   Two-column: text left, tilted card deck right.
+   .mood-gallery__layout is sticky (100svh); .mood-gallery itself is the
+   fixed-length (500vh) scroll driver — see home.js for the entrance stagger
+   and the progress counter/track update.
    ─────────────────────────────────────────────────────────────────────────── */
 
 .mood-gallery {
 	background-color: var(--mtz-color-bg);
+	height: 500vh;
 }
 
 /* ── Mobile base ─────────────────────────────────────────────────────────── */
@@ -85,6 +87,7 @@
 	display: flex;
 	flex-direction: column;
 	height: 100svh;
+	overflow: hidden;
 	position: sticky;
 	top: 0;
 	z-index: 1;
@@ -94,17 +97,49 @@
 	align-items: flex-start;
 	display: flex;
 	flex-direction: column;
+	gap: var(--mtz-space-md);
 	justify-content: flex-end;
 	padding: calc( var(--mtz-header-height, 0px) + var(--mtz-space-md) ) var(--mtz-gutter) var(--mtz-space-md);
 }
 
 .mood-gallery__text {
 	font-family: var(--mtz-font-heading);
-	font-size: var(--mtz-text-heading);
+	font-size: var(--mtz-text-hero-sm);
 	font-weight: var(--mtz-weight-bold);
-	letter-spacing: var(--mtz-tracking-heading);
-	line-height: var(--mtz-leading-snug);
+	letter-spacing: var(--mtz-tracking-hero);
+	line-height: var(--mtz-leading-tight);
 	text-transform: uppercase;
+}
+
+.mood-gallery__progress {
+	align-items: center;
+	display: flex;
+	gap: var(--mtz-space-sm);
+}
+
+.mood-gallery__counter {
+	color: var(--mtz-color-charcoal-72);
+	flex-shrink: 0;
+	font-size: var(--mtz-text-caption);
+	font-weight: var(--mtz-weight-bold);
+	letter-spacing: var(--mtz-tracking-kicker);
+	min-width: 4em;
+}
+
+.mood-gallery__track {
+	background-color: var(--mtz-color-charcoal-22);
+	height: 2px;
+	max-width: 220px;
+	position: relative;
+	width: 100%;
+}
+
+.mood-gallery__fill {
+	background-color: var(--mtz-color-charcoal);
+	inset: 0;
+	position: absolute;
+	transform: scaleX(0);
+	transform-origin: left center;
 }
 
 .mood-gallery__col--images {
@@ -115,11 +150,9 @@
 }
 
 .mood-gallery__deck {
-	aspect-ratio: 3 / 4;
 	height: 55svh;
-	overflow-x: clip;
 	position: relative;
-	width: auto;
+	width: 100%;
 }
 
 /* ── Desktop ─────────────────────────────────────────────────────────────── */
@@ -127,7 +160,7 @@
 @media (min-width: 768px) {
 	.mood-gallery__layout {
 		display: grid;
-		grid-template-columns: 2fr 3fr;
+		grid-template-columns: 46fr 54fr;
 	}
 
 	.mood-gallery__col--text {
@@ -146,11 +179,20 @@
 }
 
 .mood-gallery__item {
-	background-color: var(--mtz-color-bg);
-	box-shadow: 0 0 0 1px var(--mtz-color-border);
-	inset: 0;
+	aspect-ratio: 4 / 5;
+	background-color: var(--mtz-color-offwhite);
+	box-shadow: 0 24px 60px color-mix(in srgb, var(--mtz-color-charcoal) 35%, transparent);
+	box-sizing: border-box;
+	left: 50%;
+	position: absolute;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	width: min(30vw, 480px);
+}
+
+.mood-gallery__frame {
+	inset: 16px 16px 58px;
 	overflow: hidden;
-	padding: 8px;
 	position: absolute;
 }
 
@@ -159,6 +201,34 @@
 	height: 100%;
 	object-fit: cover;
 	width: 100%;
+}
+
+.mood-gallery__caption {
+	align-items: center;
+	bottom: 0;
+	display: flex;
+	gap: var(--mtz-space-xs);
+	height: 58px;
+	justify-content: space-between;
+	left: 16px;
+	position: absolute;
+	right: 16px;
+}
+
+.mood-gallery__label {
+	color: var(--mtz-color-charcoal);
+	font-family: var(--mtz-font-heading);
+	font-size: 12px;
+	font-weight: var(--mtz-weight-bold);
+	letter-spacing: var(--mtz-tracking-kicker);
+	text-transform: uppercase;
+}
+
+.mood-gallery__num {
+	color: var(--mtz-color-charcoal-55);
+	font-size: 12px;
+	font-weight: var(--mtz-weight-bold);
+	letter-spacing: var(--mtz-tracking-kicker);
 }
 
 /* ─── Home services grid ─────────────────────────────────────────────────────

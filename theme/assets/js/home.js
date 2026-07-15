@@ -4,32 +4,9 @@ export function mtzInitHome() {
 	mtzInitMood();
 }
 
-// ── Shared setup ──────────────────────────────────────────────────────────────
-function initScrollSection( stage, itemSelector, buildTimeline, hold = true ) {
-	const { gsap, ScrollTrigger } = window;
-
-	const items = [ ...( stage?.querySelectorAll( itemSelector ) ?? [] ) ];
-	if ( !stage || items.length < 2 ) return;
-
-	stage.style.height = `${ items.length * 100 }vh`;
-
-	const tl = gsap.timeline();
-	if ( hold ) tl.set( {}, {}, '+=1' );
-	buildTimeline( gsap, items, tl );
-	if ( hold ) tl.set( {}, {}, '+=1' );
-
-	ScrollTrigger.create( {
-		trigger:   stage,
-		start:     'top top',
-		end:       'bottom bottom',
-		scrub:     1,
-		animation: tl,
-	} );
-}
-
 // ── Statements ────────────────────────────────────────────────────────────────
-// Bespoke (not initScrollSection): drives a background colour tween + a
-// per-word stagger alongside the crossfade, on a fixed-duration timeline.
+// Drives a background colour tween + a per-word stagger alongside the
+// crossfade, on a fixed-duration timeline.
 function mtzInitStatements() {
 	const { gsap, ScrollTrigger } = window;
 
@@ -103,28 +80,73 @@ function mtzInitStatements() {
 }
 
 // ── Mood gallery ──────────────────────────────────────────────────────────────
+// Each card gets a fixed resting tilt/offset (deck feel), then flies in from
+// off-screen right in a staggered entrance. A progress counter/track advances
+// from ScrollTrigger's onUpdate, matching the "~55% through a card's tween"
+// threshold from the reference logic.
 function mtzInitMood() {
-	const STEP      = { x: 7, y: 5 };
-	const DEPTH_ROT = [ 0, 0.4, 0.7, 0.5, 0.6 ];
+	const { gsap, ScrollTrigger } = window;
 
-	initScrollSection(
-		document.querySelector( '.mood-gallery' ),
-		'.mood-gallery__item',
-		( gsap, items, tl ) => {
-			items.forEach( ( item, i ) => gsap.set( item, { x: '110%', y: 0, opacity: 0, zIndex: items.length + i } ) );
+	const section = document.querySelector( '.mood-gallery' );
+	const stack   = section?.querySelector( '.mood-gallery__deck' );
+	const items   = [ ...( stack?.querySelectorAll( '.mood-gallery__item' ) ?? [] ) ];
+	if ( !section || !stack || items.length < 2 ) return;
 
-			for ( let i = 0; i < items.length; i++ ) {
-				tl.to( items[ i ], { x: 0, y: 0, opacity: 1, rotation: 0, duration: 1 }, '+=1' );
-				for ( let j = 0; j < i; j++ ) {
-					const depth = i - j;
-					tl.to( items[ j ], {
-						x:        depth * STEP.x,
-						y:        depth * STEP.y,
-						rotation: DEPTH_ROT[ Math.min( depth, DEPTH_ROT.length - 1 ) ],
-						duration: 1,
-					}, '<' );
-				}
-			}
+	const counter = section.querySelector( '.mood-gallery__counter' );
+	const fill    = section.querySelector( '.mood-gallery__fill' );
+
+	const ROTATIONS = [ -4, 3, -2.5, 4.5, -3.5, 2 ];
+	const OFFSETS   = [ { x: -10, y: -8 }, { x: 14, y: 6 }, { x: -16, y: 12 }, { x: 10, y: -14 }, { x: -6, y: 10 }, { x: 12, y: -6 } ];
+
+	items.forEach( ( item, i ) => {
+		const offset = OFFSETS[ i % OFFSETS.length ];
+		gsap.set( item, {
+			xPercent: -50 + offset.x * 0.4,
+			yPercent: -50 + offset.y * 0.4,
+			rotation: ROTATIONS[ i % ROTATIONS.length ],
+			zIndex:   i + 1,
+		} );
+	} );
+
+	const tl = gsap.timeline();
+
+	items.forEach( ( item, i ) => {
+		if ( i === 0 ) return;
+		const rotation = ROTATIONS[ i % ROTATIONS.length ];
+		tl.fromTo( item,
+			{
+				x:        () => window.innerWidth - stack.getBoundingClientRect().left - stack.offsetWidth * 0.5 + item.offsetWidth,
+				rotation: rotation + 14,
+			},
+			{ x: 0, rotation, duration: 1, ease: 'power2.out' },
+			( i - 1 ) * 1.15
+		);
+	} );
+	tl.to( {}, { duration: 0.6 } );
+
+	// Mirrors the timeline's own pacing: card i's tween lands ~55% in around
+	// position (i-1)*1.15 + 0.55, normalized against the full timeline length.
+	const timelineLength = ( items.length - 1 ) * 1.15 + 0.6;
+	const updateProgress = ( progress ) => {
+		let idx = 1;
+		for ( let i = 1; i < items.length; i++ ) {
+			if ( progress >= ( ( i - 1 ) * 1.15 + 0.55 ) / timelineLength ) idx = i + 1;
 		}
-	);
+		if ( counter ) counter.textContent = `${ String( idx ).padStart( 2, '0' ) } / ${ String( items.length ).padStart( 2, '0' ) }`;
+		if ( fill ) gsap.set( fill, { scaleX: idx / items.length } );
+	};
+	updateProgress( 0 );
+
+	// Idempotent: guard against double-init killing/duplicating a live trigger.
+	ScrollTrigger.getById( 'mtz-mood' )?.kill();
+
+	ScrollTrigger.create( {
+		id:        'mtz-mood',
+		trigger:   section,
+		start:     'top top',
+		end:       'bottom bottom',
+		scrub:     0.6,
+		animation: tl,
+		onUpdate:  ( self ) => updateProgress( self.progress ),
+	} );
 }
