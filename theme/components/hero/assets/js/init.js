@@ -20,7 +20,7 @@ document.addEventListener( 'DOMContentLoaded', () => {
 
 	if ( video ) { video.pause(); video.currentTime = 0; }
 
-	if ( new URLSearchParams( location.search ).has( 'test' ) ) {
+	if ( window.mtzDev?.noIntro ) {
 		if ( video ) video.play();
 		hero.classList.add( 'is-intro-done' );
 		return;

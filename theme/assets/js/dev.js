@@ -8,7 +8,7 @@
 //                                   (numbered to match client feedback — see
 //                                   dev-tests.css, deleted once a test wins)
 //
-//   ?dev=no-intro    skip home scroll sections (statement + mood gallery)
+//   ?dev=no-intro    skip the hero's logo-draw intro animation
 //   ?dev=seed-form   fill the contact form with fixture data and open the modal
 //   ?dev-test=test1  page-header title test: huge font-size, near-invisible
 //                    opacity, bg-vectors hidden, no hyphenation
@@ -32,7 +32,7 @@ if ( devParam ) {
 	log( 'dev mode — ' + JSON.stringify( window.mtzDev ) );
 
 	if ( window.mtzDev.noIntro ) {
-		log( 'no-intro: home scroll sections (statement + mood) will be skipped' );
+		log( 'no-intro: hero intro animation will be skipped' );
 	}
 
 	if ( window.mtzDev.seedForm ) {
