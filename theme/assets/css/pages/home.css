@@ -265,6 +265,7 @@
 	flex-direction: column;
 	height: calc( 100vh - 3 * var(--mtz-service-strip) );
 	min-height: 480px;
+	overflow: hidden;
 	position: sticky;
 	text-decoration: none;
 	top: 0;
