@@ -109,9 +109,11 @@
 	   (beyond the brand manual's 60/30 swatches) — reused across sections as
 	   they recur, e.g. charcoal-55 is both the mood-gallery card number and
 	   the planned home-services outlined-number stroke. */
+	--mtz-color-charcoal-82: color-mix(in srgb, var(--mtz-color-charcoal) 82%, transparent); /* "Body" role text (README §1) */
 	--mtz-color-charcoal-72: color-mix(in srgb, var(--mtz-color-charcoal) 72%, transparent); /* home-statement tagline */
-	--mtz-color-charcoal-55: color-mix(in srgb, var(--mtz-color-charcoal) 55%, transparent); /* mood-gallery card number */
+	--mtz-color-charcoal-55: color-mix(in srgb, var(--mtz-color-charcoal) 55%, transparent); /* mood-gallery card number, home-services outlined number */
 	--mtz-color-charcoal-22: color-mix(in srgb, var(--mtz-color-charcoal) 22%, transparent); /* mood-gallery progress track */
+	--mtz-color-charcoal-16: color-mix(in srgb, var(--mtz-color-charcoal) 16%, transparent); /* home-services strip divider */
 
 	/* Semantic roles. muted/border point at the FIXED Preto tint tokens (60/30).
 	   They must be re-pointed at the Off-white tints in dark contexts — a token

@@ -5,20 +5,20 @@
 	<?php /* ── Hero ─────────────────────────────────────────────────────── */ ?>
 	<?php echo plura_wp_component( get_template_directory() . '/components/hero/manifest.json' ); ?>
 
-	<?php /* ── Services (condensed) ─────────────────────────────────────── */ ?>
+	<?php /* ── Services ──────────────────────────────────────────────────── */ ?>
 	<section class="home-services">
-		<div class="container--wide">
+		<div class="home-services__grid">
 			<?php
 			echo plura_wp_posts(
 				type: 'mtz_service',
 				orderby: 'menu_order',
 				order: 'ASC',
-				class: 'home-services__grid',
-				wrap: true,
 				link: 1,
 				context: 'home-services',
+				wrap: false,
 			);
 			?>
+			<div class="home-services__spacer"></div>
 		</div>
 	</section>
 

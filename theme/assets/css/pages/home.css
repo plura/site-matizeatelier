@@ -239,70 +239,139 @@
 	letter-spacing: var(--mtz-tracking-kicker);
 }
 
-/* ─── Home services grid ─────────────────────────────────────────────────────
-   Cards: image + title + tagline + excerpt.
+/* ─── Home services ───────────────────────────────────────────────────────────
+   Sticky-stacking editorial list — pure CSS (no GSAP) for the stack itself;
+   home.js only plays each card's one-shot entry animation. Each
+   .plura-wp-post *is* the sticky card (the WP loop wrapper — see
+   theme/includes/hooks/services.php for the strip/content markup and the
+   per-card accent tint via [data-service-accent]).
    ─────────────────────────────────────────────────────────────────────────── */
 
 .home-services {
-	padding-block: var(--mtz-space-2xl);
+	background-color: var(--mtz-color-bg);
 }
 
 .home-services__grid {
-	display: grid;
-	gap: var(--mtz-space-md);
-	grid-template-columns: 1fr;
-}
-
-@media (min-width: 640px) {
-	.home-services__grid {
-		grid-template-columns: repeat(2, 1fr);
-	}
-}
-
-@media (min-width: 1024px) {
-	.home-services__grid {
-		grid-template-columns: repeat(4, 1fr);
-	}
+	/* Default 76px strip, shrinking (down to a 40px floor) only once the
+	   viewport is too short for 3 strips + the 480px card minimum. */
+	--mtz-service-strip: min(76px, max(40px, calc((100vh - 480px) / 3)));
 }
 
 .home-services__grid .plura-wp-post {
+	box-shadow: 0 -18px 40px color-mix(in srgb, var(--mtz-color-charcoal) 14%, transparent);
+	box-sizing: border-box;
+	color: inherit;
 	display: flex;
 	flex-direction: column;
+	height: calc( 100vh - 3 * var(--mtz-service-strip) );
+	min-height: 480px;
+	position: sticky;
 	text-decoration: none;
+	top: 0;
 }
 
-.home-services__grid .plura-wp-post-featured-image {
-	transition: opacity var(--mtz-transition);
+.home-services__grid .plura-wp-post[data-service-accent="teal"]  { background-color: color-mix(in srgb, var(--mtz-color-teal) 26%, var(--mtz-color-offwhite)); }
+.home-services__grid .plura-wp-post[data-service-accent="gold"]  { background-color: color-mix(in srgb, var(--mtz-color-gold) 20%, var(--mtz-color-offwhite)); }
+.home-services__grid .plura-wp-post[data-service-accent="coral"] { background-color: color-mix(in srgb, var(--mtz-color-coral) 24%, var(--mtz-color-offwhite)); }
+.home-services__grid .plura-wp-post[data-service-accent="sage"]  { background-color: color-mix(in srgb, var(--mtz-color-sage) 24%, var(--mtz-color-offwhite)); }
+
+/* Stack offsets — explicit per position since CSS can't multiply a sibling
+   index by --mtz-service-strip without it. Headroom past today's 4 services. */
+.home-services__grid .plura-wp-post:nth-child(2) { top: var(--mtz-service-strip); }
+.home-services__grid .plura-wp-post:nth-child(3) { top: calc( var(--mtz-service-strip) * 2 ); }
+.home-services__grid .plura-wp-post:nth-child(4) { top: calc( var(--mtz-service-strip) * 3 ); }
+.home-services__grid .plura-wp-post:nth-child(5) { top: calc( var(--mtz-service-strip) * 4 ); }
+.home-services__grid .plura-wp-post:nth-child(6) { top: calc( var(--mtz-service-strip) * 5 ); }
+.home-services__grid .plura-wp-post:nth-child(7) { top: calc( var(--mtz-service-strip) * 6 ); }
+.home-services__grid .plura-wp-post:nth-child(8) { top: calc( var(--mtz-service-strip) * 7 ); }
+
+.home-services__spacer {
+	height: 40vh;
 }
 
-.home-services__grid .plura-wp-post:hover .plura-wp-post-featured-image {
-	opacity: 0.85;
+.home-services__strip {
+	align-items: center;
+	border-bottom: 1px solid var(--mtz-color-charcoal-16);
+	box-sizing: border-box;
+	display: flex;
+	flex: 0 0 var(--mtz-service-strip);
+	gap: var(--mtz-space-md);
+	height: var(--mtz-service-strip);
+	justify-content: space-between;
+	padding: 0 var(--mtz-gutter);
 }
 
-.home-services__grid .plura-wp-post-featured-image {
-	aspect-ratio: 4 / 3;
-	height: auto;
-	object-fit: cover;
-	width: 100%;
-}
-
-.home-services__grid .plura-wp-post-title {
-	font-size: var(--mtz-text-section);
-	margin-top: var(--mtz-space-md);
-}
-
-.home-services__grid .plura-wp-post-tagline {
-	color: var(--mtz-color-accent);
-	font-size: var(--mtz-text-caption);
-	font-weight: var(--mtz-weight-regular);
-	letter-spacing: var(--mtz-tracking-caps);
-	margin-top: var(--mtz-space-xs);
+.home-services__strip-title {
+	color: var(--mtz-color-charcoal);
+	font-family: var(--mtz-font-heading);
+	font-size: 15px;
+	font-weight: var(--mtz-weight-bold);
+	letter-spacing: 0.08em;
 	text-transform: uppercase;
 }
 
-.home-services__grid .plura-wp-post-excerpt {
-	color: var(--mtz-color-muted);
-	font-size: var(--mtz-text-body);
+.home-services__strip-tagline {
+	color: var(--mtz-color-charcoal-60);
+	flex-shrink: 0;
+	font-size: 11px;
+	font-weight: var(--mtz-weight-bold);
+	letter-spacing: var(--mtz-tracking-kicker);
+	text-align: right;
+	text-transform: uppercase;
+}
+
+.home-services__content {
+	align-items: center;
+	box-sizing: border-box;
+	column-gap: clamp(24px, 4vw, 64px);
+	display: grid;
+	flex: 1;
+	grid-template-columns: clamp(110px, 13vw, 240px) minmax(0, 1fr) clamp(150px, 19vw, 260px);
+	padding: 24px var(--mtz-gutter);
+}
+
+.home-services__number {
+	-webkit-text-stroke: 2px var(--mtz-color-charcoal-55);
+	color: transparent;
+	font-family: var(--mtz-font-heading);
+	font-size: clamp(72px, 10vw, 150px);
+	font-weight: var(--mtz-weight-bold);
+	line-height: 1;
+}
+
+.home-services__text {
+	display: flex;
+	flex-direction: column;
+	gap: 18px;
+	max-width: 560px;
+}
+
+.home-services__text .plura-wp-post-title {
+	font-size: clamp(22px, 2.4vw, 34px);
+	letter-spacing: 0.03em;
+	line-height: 1.15;
+}
+
+.home-services__excerpt {
+	color: var(--mtz-color-charcoal-82);
+	font-size: clamp(13px, 1.1vw, 16px);
 	line-height: var(--mtz-leading-normal);
-	margin-top: var(--mtz-space-sm);
+}
+
+.home-services__photo {
+	aspect-ratio: 22 / 27;
+	box-shadow: 0 12px 28px color-mix(in srgb, var(--mtz-color-charcoal) 22%, transparent);
+	justify-self: end;
+	position: relative;
+	width: clamp(150px, 18vw, 220px);
+}
+
+.home-services__grid .plura-wp-post:nth-child(odd)  .home-services__photo { transform: rotate(2.5deg); }
+.home-services__grid .plura-wp-post:nth-child(even) .home-services__photo { transform: rotate(-2.5deg); }
+
+.home-services__photo img {
+	display: block;
+	height: 100%;
+	object-fit: cover;
+	width: 100%;
 }

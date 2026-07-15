@@ -2,6 +2,7 @@ export function mtzInitHome() {
 	if ( window.mtzDev?.noIntro ) return;
 	mtzInitStatements();
 	mtzInitMood();
+	mtzInitServices();
 }
 
 // ── Statements ────────────────────────────────────────────────────────────────
@@ -148,5 +149,49 @@ function mtzInitMood() {
 		scrub:     0.6,
 		animation: tl,
 		onUpdate:  ( self ) => updateProgress( self.progress ),
+	} );
+}
+
+// ── Services ──────────────────────────────────────────────────────────────────
+// The sticky stack itself is pure CSS (see home.css) — this only plays each
+// card's one-shot entry, time-based rather than scrubbed. Card 1 has no
+// scroll runway above it (already pinned at load), so it plays once on load;
+// cards 2+ play/reverse off their own ScrollTrigger.
+function mtzInitServices() {
+	const { gsap, ScrollTrigger } = window;
+
+	const cards = [ ...document.querySelectorAll( '.home-services__grid .plura-wp-post' ) ];
+	if ( !cards.length ) return;
+
+	cards.forEach( ( card, i ) => {
+		const num   = card.querySelector( '.home-services__number' );
+		const txt   = [ ...card.querySelectorAll( '.home-services__text > *' ) ];
+		const photo = card.querySelector( '.home-services__photo' );
+		const rest  = i % 2 === 0 ? 2.5 : -2.5;
+
+		const build = ( tl ) => {
+			tl.fromTo( num, { y: 160, xPercent: -12, autoAlpha: 0 }, { y: 0, xPercent: 0, autoAlpha: 1, duration: 0.7, ease: 'power2.out' }, 0 )
+			  .fromTo( txt, { y: 70, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 0.6, stagger: 0.16, ease: 'power2.out' }, 0.18 );
+			if ( photo ) {
+				tl.fromTo( photo, { rotation: rest * 7, scale: 1.28, y: 140, autoAlpha: 0.4 }, { rotation: rest, scale: 1, y: 0, autoAlpha: 1, duration: 0.9, ease: 'power3.out' }, 0.05 );
+			}
+		};
+
+		if ( i === 0 ) {
+			build( gsap.timeline( { delay: 0.15 } ) );
+			return;
+		}
+
+		// Idempotent: guard against double-init killing/duplicating a live trigger.
+		ScrollTrigger.getById( `mtz-service-${ i }` )?.kill();
+
+		build( gsap.timeline( {
+			scrollTrigger: {
+				id:            `mtz-service-${ i }`,
+				trigger:       card,
+				start:         'top 45%',
+				toggleActions: 'play none none reverse',
+			},
+		} ) );
 	} );
 }
