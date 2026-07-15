@@ -12,12 +12,15 @@ if ( typeof lucide !== 'undefined' ) {
 }
 
 // ── Header height CSS variable ────────────────────────────────────────────────
+// ResizeObserver (not just a window resize listener) so this also tracks
+// height changes with no viewport resize behind them — e.g. a web font swap
+// reflowing the nav, since Vinila is still a placeholder font (see base.css).
 const header = document.querySelector( '.site-header' );
 if ( header ) {
 	const setHeaderHeight = () =>
 		document.documentElement.style.setProperty( '--mtz-header-height', header.offsetHeight + 'px' );
 	setHeaderHeight();
-	window.addEventListener( 'resize', setHeaderHeight );
+	new ResizeObserver( setHeaderHeight ).observe( header );
 }
 
 // ── Page title animation ──────────────────────────────────────────────────────

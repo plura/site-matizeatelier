@@ -16,10 +16,10 @@
 
 .home-statement__stage {
 	background-color: var(--mtz-color-bg);
-	height: 100svh;
+	height: calc( 100svh - var(--mtz-header-height, 0px) );
 	overflow: hidden;
 	position: sticky;
-	top: 0;
+	top: var(--mtz-header-height, 0px);
 	z-index: 1;
 }
 
@@ -87,10 +87,10 @@
 .mood-gallery__layout {
 	display: flex;
 	flex-direction: column;
-	height: 100svh;
+	height: calc( 100svh - var(--mtz-header-height, 0px) );
 	overflow: hidden;
 	position: sticky;
-	top: 0;
+	top: var(--mtz-header-height, 0px);
 	z-index: 1;
 }
 
@@ -100,7 +100,7 @@
 	flex-direction: column;
 	gap: var(--mtz-space-md);
 	justify-content: flex-end;
-	padding: calc( var(--mtz-header-height, 0px) + var(--mtz-space-md) ) var(--mtz-gutter) var(--mtz-space-md);
+	padding: var(--mtz-space-md) var(--mtz-gutter);
 }
 
 .mood-gallery__text {
@@ -177,7 +177,7 @@
 	}
 
 	.mood-gallery__deck {
-		height: calc( 100svh - var(--mtz-space-2xl) * 2 );
+		height: calc( 100svh - var(--mtz-header-height, 0px) - var(--mtz-space-2xl) * 2 );
 	}
 }
 
@@ -253,8 +253,9 @@
 
 .home-services__grid {
 	/* Default 76px strip, shrinking (down to a 40px floor) only once the
-	   viewport is too short for 3 strips + the 480px card minimum. */
-	--mtz-service-strip: min(76px, max(40px, calc((100vh - 480px) / 3)));
+	   viewport (minus the sticky header) is too short for 3 strips + the
+	   480px card minimum. */
+	--mtz-service-strip: min(76px, max(40px, calc((100vh - var(--mtz-header-height, 0px) - 480px) / 3)));
 }
 
 .home-services__grid .plura-wp-post {
@@ -263,12 +264,12 @@
 	color: inherit;
 	display: flex;
 	flex-direction: column;
-	height: calc( 100vh - 3 * var(--mtz-service-strip) );
+	height: calc( 100vh - var(--mtz-header-height, 0px) - 3 * var(--mtz-service-strip) );
 	min-height: 480px;
 	overflow: hidden;
 	position: sticky;
 	text-decoration: none;
-	top: 0;
+	top: var(--mtz-header-height, 0px);
 }
 
 .home-services__grid .plura-wp-post[data-service-accent="teal"]  { background-color: color-mix(in srgb, var(--mtz-color-teal) 26%, var(--mtz-color-offwhite)); }
@@ -277,14 +278,16 @@
 .home-services__grid .plura-wp-post[data-service-accent="sage"]  { background-color: color-mix(in srgb, var(--mtz-color-sage) 24%, var(--mtz-color-offwhite)); }
 
 /* Stack offsets — explicit per position since CSS can't multiply a sibling
-   index by --mtz-service-strip without it. Headroom past today's 4 services. */
-.home-services__grid .plura-wp-post:nth-child(2) { top: var(--mtz-service-strip); }
-.home-services__grid .plura-wp-post:nth-child(3) { top: calc( var(--mtz-service-strip) * 2 ); }
-.home-services__grid .plura-wp-post:nth-child(4) { top: calc( var(--mtz-service-strip) * 3 ); }
-.home-services__grid .plura-wp-post:nth-child(5) { top: calc( var(--mtz-service-strip) * 4 ); }
-.home-services__grid .plura-wp-post:nth-child(6) { top: calc( var(--mtz-service-strip) * 5 ); }
-.home-services__grid .plura-wp-post:nth-child(7) { top: calc( var(--mtz-service-strip) * 6 ); }
-.home-services__grid .plura-wp-post:nth-child(8) { top: calc( var(--mtz-service-strip) * 7 ); }
+   index by --mtz-service-strip without it. Headroom past today's 4 services.
+   Each adds the header height on top of its multiple of the strip, matching
+   the base rule's own top offset. */
+.home-services__grid .plura-wp-post:nth-child(2) { top: calc( var(--mtz-header-height, 0px) + var(--mtz-service-strip) ); }
+.home-services__grid .plura-wp-post:nth-child(3) { top: calc( var(--mtz-header-height, 0px) + var(--mtz-service-strip) * 2 ); }
+.home-services__grid .plura-wp-post:nth-child(4) { top: calc( var(--mtz-header-height, 0px) + var(--mtz-service-strip) * 3 ); }
+.home-services__grid .plura-wp-post:nth-child(5) { top: calc( var(--mtz-header-height, 0px) + var(--mtz-service-strip) * 4 ); }
+.home-services__grid .plura-wp-post:nth-child(6) { top: calc( var(--mtz-header-height, 0px) + var(--mtz-service-strip) * 5 ); }
+.home-services__grid .plura-wp-post:nth-child(7) { top: calc( var(--mtz-header-height, 0px) + var(--mtz-service-strip) * 6 ); }
+.home-services__grid .plura-wp-post:nth-child(8) { top: calc( var(--mtz-header-height, 0px) + var(--mtz-service-strip) * 7 ); }
 
 .home-services__spacer {
 	height: 40vh;
