@@ -1,4 +1,5 @@
 .claude/
+.design_handoff/
 .vscode/*
 !.vscode/settings.json
 !.vscode/sftp.json.example

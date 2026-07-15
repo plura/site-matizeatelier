@@ -4,57 +4,68 @@
    ─────────────────────────────────────────────────────────────────────────── */
 
 /* ─── Statement ─────────────────────────────────────────────────────────────
-   Pinned section — JS controls which item is visible via opacity.
+   Pinned section — JS crossfades items and tweens the stage background
+   through the accent sequence (gold → teal → coral) as the timeline scrubs.
    Stage fills the viewport; items stack on top of each other.
    ─────────────────────────────────────────────────────────────────────────── */
 
 .home-statement {
 	background-color: var(--mtz-color-bg);
+	height: 350vh;
 }
 
 .home-statement__stage {
 	background-color: var(--mtz-color-bg);
 	height: 100svh;
+	overflow: hidden;
 	position: sticky;
 	top: 0;
 	z-index: 1;
 }
 
 .home-statement__item {
+	box-sizing: border-box;
 	display: flex;
 	flex-direction: column;
 	inset: 0;
 	justify-content: center;
 	opacity: 0;
-	padding: var(--mtz-space-2xl) var(--mtz-gutter);
+	padding: 0 var(--mtz-gutter);
 	pointer-events: none;
 	position: absolute;
+	visibility: hidden;
 }
 
 .home-statement__item:first-child {
 	opacity: 1;
 	pointer-events: auto;
+	visibility: visible;
 }
 
 .home-statement__headline {
-	font-size: var(--mtz-text-display);
-	letter-spacing: var(--mtz-tracking-display);
+	font-size: var(--mtz-text-hero);
+	letter-spacing: var(--mtz-tracking-hero);
 	line-height: var(--mtz-leading-tight);
+	max-width: 82%;
+}
+
+.home-statement__word {
+	display: inline-block;
 }
 
 .home-statement__tagline {
-	color: var(--mtz-color-muted);
+	color: var(--mtz-color-charcoal-72);
 	font-size: var(--mtz-text-caption);
 	font-weight: var(--mtz-weight-regular);
 	letter-spacing: var(--mtz-tracking-caps);
-	margin-top: var(--mtz-space-md);
-	max-width: 40ch;
+	margin-top: 44px;
+	max-width: 340px;
 	text-transform: uppercase;
 }
 
 @media (min-width: 768px) {
 	.home-statement__tagline {
-		margin-left: 33.333%;
+		margin-left: 26vw;
 	}
 }
 
