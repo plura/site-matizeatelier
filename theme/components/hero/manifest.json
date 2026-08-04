@@ -10,7 +10,8 @@
 			"handle": "matize-hero-style"
 		},
 		"assets/js/init.js": {
-			"handle": "matize-hero-init"
+			"handle": "matize-hero-init",
+			"module": true
 		}
 	}
 }
