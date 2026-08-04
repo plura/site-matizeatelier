@@ -55,6 +55,7 @@
 	--mtz-text-caption: clamp(0.6875rem,0.65rem + 0.2vw,  0.8125rem); /* Caption    ~11→13px */
 	--mtz-text-hero:    clamp(3.5rem, 1.7rem + 6.6vw, 7.375rem);      /* Hero (home-statement) ~56→118px */
 	--mtz-text-hero-sm: clamp(2.5rem, 1.66rem + 3.6vw, 4rem);         /* Hero, smaller cut (mood-gallery) ~40→64px */
+	--mtz-text-watermark: clamp(4.5rem, 2.78rem + 7.32vw, 9.375rem);  /* Watermark (page-header title) ~72→150px */
 
 	/* Font weights — Vinila ships Regular and Bold in our set (no light/medium) */
 	--mtz-weight-regular: 400;
@@ -71,7 +72,7 @@
 	--mtz-tracking-display: 0.18em; /* Display (h1) */
 	--mtz-tracking-heading: 0.22em; /* Heading 01 (h2) */
 	--mtz-tracking-caps:    0.28em; /* Section (h3+), captions, labels */
-	--mtz-tracking-hero:    0.05em; /* Hero displays (home-statement, mood-gallery headline) */
+	--mtz-tracking-hero:    0.05em; /* Hero displays (home-statement, mood-gallery headline, page-header watermark) */
 	--mtz-tracking-kicker:  0.16em; /* Small caps counters/labels — tighter than tracking-caps */
 
 	/* ── Colour palette ──────────────────────────────────────────────────────

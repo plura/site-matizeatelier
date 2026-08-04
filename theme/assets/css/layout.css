@@ -23,14 +23,33 @@
 	}
 }
 
+/* Watermark treatment — faint printed title, not a heavy black slab.
+   Faintness lives on `color` (via color-mix), never `opacity`: the GSAP
+   reveal (mtzAnimPageTitle) animates opacity on the split words, and an
+   opacity-based fade here would fight that tween and end up solid. */
 .page-header__title {
-	font-size: var(--mtz-text-display);
+	color: color-mix(in srgb, var(--mtz-color-text) 3.5%, transparent);
+	font-size: var(--mtz-text-watermark);
+	letter-spacing: var(--mtz-tracking-hero);
+	line-height: 1;
+	overflow-x: hidden;
 	visibility: hidden;
+	white-space: nowrap;
+}
+
+/* Off-white ink on Preto reads fainter than ink-on-light at the same
+   percentage — bumped for the same perceived weight. */
+body[data-mtz-theme="charcoal"] .page-header__title {
+	color: color-mix(in srgb, var(--mtz-color-text) 5%, transparent);
 }
 
 .page-header .page-intro {
+	color: color-mix(in srgb, var(--mtz-color-text) 40%, transparent);
+	font-size: var(--mtz-text-caption);
+	letter-spacing: var(--mtz-tracking-caps);
 	margin-block-end: 0;
 	margin-block-start: var(--mtz-space-sm);
+	text-transform: uppercase;
 }
 
 /* ─── Page intro ─────────────────────────────────────────────────────────────
