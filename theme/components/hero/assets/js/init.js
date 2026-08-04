@@ -33,12 +33,19 @@ if ( hero ) {
 	let introSeen = false;
 	try { introSeen = sessionStorage.getItem( INTRO_SEEN_KEY ) === '1'; } catch {}
 
-	if ( window.mtzDev?.noIntro || introSeen ) {
-		revealHero();
-	} else {
+	const skipIntro = window.mtzDev?.noIntro || introSeen;
+
+	// Build the timeline either way: the logo's own parts start CSS-hidden
+	// (FOUC guard in style.css) and only GSAP's tweens ever reveal them, so a
+	// skipped intro still needs to jump straight to that finished state
+	// rather than leaving the logo invisible.
+	const tl = mtzHeroIntroAnim( logo );
+
+	if ( tl && !skipIntro ) {
 		try { sessionStorage.setItem( INTRO_SEEN_KEY, '1' ); } catch {}
-		const tl = mtzHeroIntroAnim( logo );
-		if ( tl ) tl.eventCallback( 'onComplete', revealHero );
-		else revealHero();
+		tl.eventCallback( 'onComplete', revealHero );
+	} else {
+		tl?.progress( 1 );
+		revealHero();
 	}
 }
