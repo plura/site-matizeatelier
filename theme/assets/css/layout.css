@@ -32,7 +32,10 @@
 	font-size: var(--mtz-text-watermark);
 	letter-spacing: var(--mtz-tracking-hero);
 	line-height: 1;
-	overflow-x: hidden;
+	/* Both axes, not just overflow-x: line-height:1 sits tighter than the
+	   font's own box, and per spec a lone non-visible overflow-x forces
+	   overflow-y to auto rather than visible — that rendered a scrollbar. */
+	overflow: hidden;
 	visibility: hidden;
 	white-space: nowrap;
 }
