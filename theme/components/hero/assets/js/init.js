@@ -2,11 +2,12 @@
 // the intro animation (unless skipped). type="module" (see manifest.json)
 // runs this after the document is parsed, same timing as DOMContentLoaded —
 // no listener needed.
-import { mtzHeroIntroAnim } from './anim.js';
+import { mtzHeroIntroAnim } from './anim-logo.js';
 
 gsap.registerPlugin( ScrollToPlugin );
 
 const hero      = document.querySelector( '.plura-wp-component .hero' );
+const logo      = hero?.querySelector( '#mtz-logo' );
 const video     = hero?.querySelector( '.hero__video' );
 const scrollBtn = hero?.querySelector( '.hero__scroll' );
 
@@ -28,7 +29,7 @@ if ( hero ) {
 	if ( window.mtzDev?.noIntro ) {
 		revealHero();
 	} else {
-		const tl = mtzHeroIntroAnim( hero );
+		const tl = mtzHeroIntroAnim( logo );
 		if ( tl ) tl.eventCallback( 'onComplete', revealHero );
 		else revealHero();
 	}

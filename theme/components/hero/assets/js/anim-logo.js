@@ -1,11 +1,11 @@
-// Matize — hero intro animation: logo draw-on, dot pop, wordmark reveal.
-// Owns the logo SVG's internal structure and nothing past it — returns the
-// timeline (or null if the markup doesn't have the expected logo parts) and
-// leaves what happens on completion to the caller.
-export function mtzHeroIntroAnim( hero ) {
-	const lettersPath = hero.querySelector( '#mtz-logo-matize-letters' );
-	const dot         = hero.querySelector( '#mtz-logo-matize-dot' );
-	const atelier     = hero.querySelector( '#mtz-logo-atelier' );
+// Matize — hero logo intro animation: draw-on, dot pop, wordmark reveal.
+// Scoped to the #mtz-logo SVG itself and nothing past it — returns the
+// timeline (or null if the expected logo parts aren't found) and leaves
+// what happens on completion to the caller.
+export function mtzHeroIntroAnim( logo ) {
+	const lettersPath = logo?.querySelector( '#mtz-logo-matize-letters' );
+	const dot         = logo?.querySelector( '#mtz-logo-matize-dot' );
+	const atelier     = logo?.querySelector( '#mtz-logo-atelier' );
 
 	if ( !lettersPath ) return null;
 
