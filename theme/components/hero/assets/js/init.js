@@ -6,14 +6,11 @@ import { mtzHeroIntroAnim } from './anim.js';
 
 gsap.registerPlugin( ScrollToPlugin );
 
-const hero        = document.querySelector( '.plura-wp-component .hero' );
-const lettersPath = hero?.querySelector( '#mtz-logo-matize-letters' );
-const dot         = hero?.querySelector( '#mtz-logo-matize-dot' );
-const atelier     = hero?.querySelector( '#mtz-logo-atelier' );
-const video       = hero?.querySelector( '.hero__video' );
-const scrollBtn   = hero?.querySelector( '.hero__scroll' );
+const hero      = document.querySelector( '.plura-wp-component .hero' );
+const video     = hero?.querySelector( '.hero__video' );
+const scrollBtn = hero?.querySelector( '.hero__scroll' );
 
-if ( hero && lettersPath ) {
+if ( hero ) {
 	if ( scrollBtn ) {
 		scrollBtn.addEventListener( 'click', ( e ) => {
 			const target = hero.closest( '.plura-wp-component' )?.nextElementSibling;
@@ -23,10 +20,16 @@ if ( hero && lettersPath ) {
 
 	if ( video ) { video.pause(); video.currentTime = 0; }
 
-	if ( window.mtzDev?.noIntro ) {
-		if ( video ) video.play();
+	const revealHero = () => {
 		hero.classList.add( 'is-intro-done' );
+		if ( video ) video.play();
+	};
+
+	if ( window.mtzDev?.noIntro ) {
+		revealHero();
 	} else {
-		mtzHeroIntroAnim( { hero, lettersPath, dot, atelier, video } );
+		const tl = mtzHeroIntroAnim( hero );
+		if ( tl ) tl.eventCallback( 'onComplete', revealHero );
+		else revealHero();
 	}
 }

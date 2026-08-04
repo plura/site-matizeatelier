@@ -1,5 +1,14 @@
 // Matize — hero intro animation: logo draw-on, dot pop, wordmark reveal.
-export function mtzHeroIntroAnim( { hero, lettersPath, dot, atelier, video } ) {
+// Owns the logo SVG's internal structure and nothing past it — returns the
+// timeline (or null if the markup doesn't have the expected logo parts) and
+// leaves what happens on completion to the caller.
+export function mtzHeroIntroAnim( hero ) {
+	const lettersPath = hero.querySelector( '#mtz-logo-matize-letters' );
+	const dot         = hero.querySelector( '#mtz-logo-matize-dot' );
+	const atelier     = hero.querySelector( '#mtz-logo-atelier' );
+
+	if ( !lettersPath ) return null;
+
 	const length = lettersPath.getTotalLength() || 3000;
 
 	// GSAP owns all initial states — no raw element.style manipulation
@@ -40,11 +49,8 @@ export function mtzHeroIntroAnim( { hero, lettersPath, dot, atelier, video } ) {
 		ease:     'power2.out',
 	}, '-=0.1' );
 
-	// 4. Hold the complete logo for a beat, then reveal video
-	tl.add( () => {
-		hero.classList.add( 'is-intro-done' );
-		if ( video ) video.play();
-	}, '+=1' );
+	// 4. Hold the complete logo for a beat before the timeline (and intro) ends
+	tl.to( {}, { duration: 1 } );
 
 	return tl;
 }
