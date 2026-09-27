@@ -10,10 +10,11 @@ Website for [matizeatelier.pt](https://matizeatelier.pt) — Atelier de Design d
 /theme          Custom WordPress theme → wp-content/themes/matize/
   /assets
     /css          Global + page-specific stylesheets (each enqueued individually)
-    /js           ES modules — main.js (entry), nav.js (toggle + sliding indicator), animations.js, modal.js, gallery.js, home.js, dev.js + dev-seed.js (dev only)
+    /js           ES modules — main.js (entry), nav.js (toggle + sliding indicator), animations.js, animations-scroll.js, modal.js, gallery.js, home.js, utils.js, dev.js + dev-seed.js (dev only)
   /components     Plura component system (manifest + HTML + PHP + assets)
   /includes
-    /core         setup.php, enqueue.php, options.php (mtz_option helper), email.php (mtz_email_template hook)
+    /core         setup.php, enqueue.php, gutenberg.php, helpers.php (mtz_logo, mtz_icon, mtz_img_stack, mtz_bg_vector), options.php (mtz_option helper), email.php (mtz_email_template hook)
+    /hooks        plura_wp_post / ACF filters (brands.php, services.php, page-bg.php — per-page colour theme + accent palette)
   /languages      Translation files (.pot, .po, .mo)
   /stubs          Intelephense stubs for Plura plugin and ACF
   /template-parts Reusable partials (contact-form, cta, page-header, contact-info, social-links)
@@ -35,15 +36,16 @@ Website for [matizeatelier.pt](https://matizeatelier.pt) — Atelier de Design d
 
 - **WordPress** with a fully custom theme (no page builders, no Gutenberg)
 - **ACF Pro** — sole data layer, no `the_content()` used (Pro required for Gallery and Repeater fields)
-- **GSAP** — animations (CDN)
+- **GSAP** — animations (CDN, deferred)
+- **Icons** — Lucide SVGs inlined server-side by `mtz_icon()` (no icon library loaded)
 - **WPML** — PT/EN multilingual
 - **Plura plugin** — shared utility layer (components, post rendering, WPML helpers)
 - **Placeholder** — static HTML, self-contained, no dependencies
 
 ## Deploy (SFTP)
 
-Three contexts defined in `.vscode/sftp.json` (gitignored — contains credentials).
-Copy `.vscode/settings.json.example` to `.vscode/settings.json` for Intelephense support.
+Three contexts defined in `.vscode/sftp.json` (gitignored — contains credentials; copy `.vscode/sftp.json.example` and fill in host/username/password).
+`.vscode/settings.json` is committed — Intelephense stubs (`theme/stubs`) and MJML include paths.
 
 | Context     | Local        | Remote                                            |
 |-------------|--------------|---------------------------------------------------|

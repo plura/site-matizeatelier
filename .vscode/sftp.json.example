@@ -18,7 +18,7 @@
         "syncOption": {
             "delete": false
         },
-        "ignore": [".gitkeep", ".git", ".gitignore", ".claude"]
+        "ignore": [".gitkeep", ".git", ".gitignore", ".claude", "*.code-workspace"]
     },
     {
         "name": "Matize — Theme",
@@ -39,7 +39,7 @@
         "syncOption": {
             "delete": true
         },
-        "ignore": [".gitkeep", ".git", ".gitignore", ".claude", "stubs"]
+        "ignore": [".gitkeep", ".git", ".gitignore", ".claude", "*.code-workspace", "stubs"]
     },
     {
         "name": "Matize — Plugin",
@@ -60,6 +60,6 @@
         "syncOption": {
             "delete": true
         },
-        "ignore": [".gitkeep", ".git", ".gitignore", ".claude"]
+        "ignore": [".gitkeep", ".git", ".gitignore", ".claude", "*.code-workspace"]
     }
 ]
