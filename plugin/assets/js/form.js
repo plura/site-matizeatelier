@@ -75,11 +75,12 @@ export function mtzInitForm( form ) {
 			submit.disabled = true;
 
 			try {
-				const res = await fetch( mtzForms.ajaxUrl, { method: 'POST', body } );
-				if ( ! res.ok ) throw new Error( `HTTP ${ res.status }` );
+				const res  = await fetch( mtzForms.ajaxUrl, { method: 'POST', body } );
+				// Error statuses (403/422/429) still carry a JSON message worth
+				// showing — only a non-JSON body lands in the generic catch below.
 				const data = await res.json();
 
-				setFeedback( data.data?.message ?? '', data.success );
+				setFeedback( data.data?.message ?? ( data.success ? '' : mtzLang.form.error ), data.success );
 
 				if ( data.success ) form.reset();
 			} catch {

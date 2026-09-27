@@ -12,6 +12,12 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 // Will be replaced by a Theme Settings toggle (ACF) in a future update.
 define( 'MTZ_FORM_AUTO_REPLY', true );
 
+// Max sent submissions per IP per hour. The auto-reply mails whatever address
+// was typed in and quotes the message back, so an unthrottled form doubles as
+// a spam relay. Behind a reverse proxy REMOTE_ADDR is the proxy's, making this
+// one bucket shared by every visitor — raise it or read the forwarded IP then.
+define( 'MTZ_FORM_RATE_LIMIT', 5 );
+
 // ─── Localize script data ─────────────────────────────────────────────────────
 
 add_action( 'wp_enqueue_scripts', function () {
@@ -38,11 +44,21 @@ function mtz_handle_form(): void {
 		wp_send_json_success(); // Silent discard
 	}
 
+	// ── Rate limit ────────────────────────────────────────────────────────────
+	$rate_key   = 'mtz_form_' . md5( $_SERVER['REMOTE_ADDR'] ?? '' );
+	$sent_count = (int) get_transient( $rate_key );
+	if ( $sent_count >= MTZ_FORM_RATE_LIMIT ) {
+		wp_send_json_error( [ 'message' => __( 'Too many messages sent. Please try again later.', 'matize' ) ], 429 );
+	}
+
 	// ── Sanitize fields by input type ─────────────────────────────────────────
 	$raw    = $_POST['fields'] ?? [];
 	$fields = [];
 
-	foreach ( $raw as $key => $field ) {
+	foreach ( is_array( $raw ) ? $raw : [] as $key => $field ) {
+		// Malformed (array-valued) parts would TypeError in the sanitizers below.
+		if ( ! is_array( $field ) || ! is_string( $field['value'] ?? '' ) || ! is_string( $field['type'] ?? '' ) ) continue;
+
 		$key   = sanitize_key( $key );
 		$type  = sanitize_key( $field['type']  ?? 'text' );
 		$value = wp_unslash(   $field['value'] ?? '' );
@@ -94,7 +110,8 @@ function mtz_handle_form(): void {
 
 	$headers = [ 'Content-Type: text/html; charset=UTF-8' ];
 	if ( $reply_to ) {
-		$safe_name  = str_replace( [ "\r", "\n" ], '', sanitize_text_field( $reply_name ) );
+		// wp_mail() splits Reply-To on commas, so one in the name would truncate it.
+		$safe_name  = str_replace( [ "\r", "\n", ',' ], '', sanitize_text_field( $reply_name ) );
 		$safe_email = sanitize_email( $reply_to );
 		$headers[]  = "Reply-To: {$safe_name} <{$safe_email}>";
 	}
@@ -105,9 +122,11 @@ function mtz_handle_form(): void {
 		wp_send_json_error( [ 'message' => __( 'Something went wrong. Please try again.', 'matize' ) ], 500 );
 	}
 
+	set_transient( $rate_key, $sent_count + 1, HOUR_IN_SECONDS );
+
 	// ── Confirmation email to submitter ───────────────────────────────────────
 	$reply_sent = false;
-	if ( MTZ_FORM_AUTO_REPLY ) {
+	if ( MTZ_FORM_AUTO_REPLY && $reply_to ) {
 		$confirm_subject = sprintf( '%s — %s', get_bloginfo( 'name' ), __( 'We received your enquiry', 'matize' ) );
 		$confirm_headers = [
 			'Content-Type: text/html; charset=UTF-8',
@@ -263,27 +282,22 @@ function mtz_build_email_body( string $form_name, array $fields, string $intro =
 			</tr>";
 	}
 
-	$html     = file_get_contents( $template );
 	$logo_url = plugin_dir_url( dirname( __DIR__ ) ) . 'templates/mtz-logo-600x190.png';
 
-	$contact_placeholders = mtz_get_contact_placeholders();
-	$social_placeholders  = mtz_get_social_placeholders();
-
-	$html = str_replace(
-		array_merge(
-			[ '%SITE_NAME%', '%SITE_URL%', '%LOGO_URL%', '%FORM_NAME%', '%FIELDS%', '%INTRO%', '%YEAR%' ],
-			array_keys( $contact_placeholders ),
-			array_keys( $social_placeholders ),
-			array_keys( $field_placeholders )
-		),
-		array_merge(
-			[ esc_html( get_bloginfo( 'name' ) ), esc_url( home_url( '/' ) ), esc_url( $logo_url ), esc_html( $form_name ), $fields_html, $intro, gmdate( 'Y' ) ],
-			array_values( $contact_placeholders ),
-			array_values( $social_placeholders ),
-			array_values( $field_placeholders )
-		),
-		$html
-	);
-
-	return $html;
+	// strtr() replaces in a single pass, so placeholder-like text inside a
+	// submitted value (e.g. "%CONTACT_EMAIL%" typed in the message) stays literal.
+	return strtr( file_get_contents( $template ), array_merge(
+		[
+			'%SITE_NAME%' => esc_html( get_bloginfo( 'name' ) ),
+			'%SITE_URL%'  => esc_url( home_url( '/' ) ),
+			'%LOGO_URL%'  => esc_url( $logo_url ),
+			'%FORM_NAME%' => esc_html( $form_name ),
+			'%FIELDS%'    => $fields_html,
+			'%INTRO%'     => $intro,
+			'%YEAR%'      => gmdate( 'Y' ),
+		],
+		mtz_get_contact_placeholders(),
+		mtz_get_social_placeholders(),
+		$field_placeholders
+	) );
 }
