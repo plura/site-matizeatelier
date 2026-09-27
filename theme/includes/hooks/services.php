@@ -37,17 +37,13 @@ add_filter( 'plura_wp_post', function ( array $content, WP_Post $post, ?string $
 }, 10, 4 );
 
 // ── Home services: per-card accent tint ─────────────────────────────────────
-// Reuses the same 'mtz_page_theme' field (and coral fallback) that
-// page-services.php already uses for its own per-service colour theme.
+// Same accent as the service's section on page-services.php.
 add_filter( 'plura_wp_post_atts', function ( array $atts, WP_Post $post, ?string $context ): array {
 	if ( $context !== 'home-services' || $post->post_type !== 'mtz_service' ) {
 		return $atts;
 	}
 
-	$valid_accents = [ 'coral', 'sage', 'gold', 'teal' ];
-	$accent        = get_field( 'mtz_page_theme', $post->ID );
-
-	$atts['data-service-accent'] = in_array( $accent, $valid_accents, true ) ? $accent : 'coral';
+	$atts['data-service-accent'] = mtz_post_accent( $post->ID );
 
 	return $atts;
 }, 10, 3 );

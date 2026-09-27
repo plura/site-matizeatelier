@@ -23,7 +23,7 @@ get_header(); ?>
 					?>
 					<figure class="gallery__item">
 						<a href="<?php echo esc_url( $image['url'] ); ?>" data-fancybox="gallery" data-caption="<?php echo esc_attr( $image['caption'] ?? '' ); ?>">
-							<?php echo plura_wp_image( $image['ID'], 'large', [ 'class' => 'gallery__img' ] ); ?>
+							<?php echo plura_wp_image( attachment: $image['ID'], size: 'large', atts: [ 'class' => 'gallery__img' ] ); ?>
 						</a>
 					</figure>
 				<?php endforeach; ?>

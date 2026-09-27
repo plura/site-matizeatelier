@@ -255,7 +255,7 @@
 	/* Default 76px strip, shrinking (down to a 40px floor) only once the
 	   viewport (minus the sticky header) is too short for 3 strips + the
 	   480px card minimum. */
-	--mtz-service-strip: min(76px, max(40px, calc((100vh - var(--mtz-header-height, 0px) - 480px) / 3)));
+	--mtz-service-strip: min(76px, max(40px, calc((100svh - var(--mtz-header-height, 0px) - 480px) / 3)));
 }
 
 .home-services__grid .plura-wp-post {
@@ -264,7 +264,7 @@
 	color: inherit;
 	display: flex;
 	flex-direction: column;
-	height: calc( 100vh - var(--mtz-header-height, 0px) - 3 * var(--mtz-service-strip) );
+	height: calc( 100svh - var(--mtz-header-height, 0px) - 3 * var(--mtz-service-strip) );
 	min-height: 480px;
 	overflow: hidden;
 	position: sticky;

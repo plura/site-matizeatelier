@@ -51,10 +51,8 @@ export function mtzAnimContentSections() {
 	const isDesktop = window.innerWidth >= 768;
 
 	sections.forEach( section => {
-		const body        = section.querySelector( '.section-body' );
-		const media       = section.querySelector( '.content-section__media' );
-		const clusterImgs = media?.querySelectorAll( '.gallery-cluster__img' );
-		const hasCluster  = !! clusterImgs?.length;
+		const body  = section.querySelector( '.section-body' );
+		const media = section.querySelector( '.content-section__media' );
 
 		// Shared trigger — media animations use the same start point
 		const trigger = {
@@ -75,10 +73,9 @@ export function mtzAnimContentSections() {
 		}
 
 		if ( media ) {
-			// Single images (service sections) slide in from their visual edge.
-			// Cluster media just fades — the cluster images animate independently below.
+			// Slides in from its visual edge on desktop; fades up when stacked.
 			let xFrom = 0;
-			if ( isDesktop && ! hasCluster ) {
+			if ( isDesktop ) {
 				const bodyEl   = section.querySelector( '.content-section__body' );
 				const fromLeft = bodyEl
 					? media.getBoundingClientRect().left < bodyEl.getBoundingClientRect().left
@@ -89,24 +86,11 @@ export function mtzAnimContentSections() {
 			gsap.from( media, {
 				autoAlpha: 0,
 				x:         xFrom,
-				y:         isDesktop && ! hasCluster ? 0 : 20,
+				y:         isDesktop ? 0 : 20,
 				duration:  0.8,
 				ease:      'power2.out',
 				scrollTrigger: { ...trigger, start: 'top 82%' },
 			} );
-
-			// Cluster images stagger in individually after the container fades in
-			if ( hasCluster ) {
-				gsap.from( clusterImgs, {
-					autoAlpha: 0,
-					y:         20,
-					stagger:   0.1,
-					duration:  0.6,
-					delay:     0.2,
-					ease:      'power2.out',
-					scrollTrigger: { ...trigger, start: 'top 82%' },
-				} );
-			}
 		}
 
 	} );

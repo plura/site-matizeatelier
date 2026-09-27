@@ -29,6 +29,20 @@ function mtz_accent_choices(): array {
 	];
 }
 
+/**
+ * Returns a post's accent colour for its card/section tint.
+ * 'mtz_page_theme' is shared with the page-background field, so it also
+ * allows 'offwhite'/'charcoal', which have no accent class — those fall
+ * back to coral, the site's default accent.
+ *
+ * @param int $post_id
+ * @return string  One of mtz_accent_choices()' keys.
+ */
+function mtz_post_accent( int $post_id ): string {
+	$accent = get_field( 'mtz_page_theme', $post_id );
+	return in_array( $accent, array_keys( mtz_accent_choices() ), true ) ? $accent : 'coral';
+}
+
 function mtz_inject_accent_choices( array $field ): array {
 	$field['choices'] = mtz_accent_choices();
 	return $field;
