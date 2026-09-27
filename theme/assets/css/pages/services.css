@@ -14,6 +14,11 @@
 	padding-block: var(--mtz-space-2xl);
 }
 
+/* Anchor target of the home-page service cards — land below the sticky header */
+.service-section {
+	scroll-margin-top: var(--mtz-header-height, 0px);
+}
+
 @media (min-width: 768px) {
 	.service-section.content-section--split .content-section__inner {
 		grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);

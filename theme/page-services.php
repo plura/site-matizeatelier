@@ -47,7 +47,8 @@ $services = new WP_Query( [
 			$vectors      = $bg_vector_presets[ $preset_index ];
 			?>
 
-			<article class="content-section content-section--split service-section content-section--<?php echo esc_attr( $accent ); ?>">
+			<?php // id = slug: anchor target for the home-page service cards (mtz_service_url()). ?>
+			<article id="<?php echo esc_attr( get_post_field( 'post_name' ) ); ?>" class="content-section content-section--split service-section content-section--<?php echo esc_attr( $accent ); ?>">
 
 				<?php foreach ( $vectors as $i => $vector ) : ?>
 					<?php echo mtz_bg_vector( $vector['name'], "bg-vector--service-{$preset_index}-" . ( $i + 1 ) ); ?>
