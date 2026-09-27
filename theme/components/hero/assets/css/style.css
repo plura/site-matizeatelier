@@ -79,6 +79,12 @@ body:has( .site-header.is-scrolled ) .hero__scroll {
 	50%       { transform: translateY(6px); }
 }
 
+@media (prefers-reduced-motion: reduce) {
+	.hero.is-intro-done .hero__scroll {
+		animation: none;
+	}
+}
+
 .hero__logo-svg,
 .hero__logo svg {
 	width: 80vw;
@@ -147,6 +153,24 @@ body:has( .hero:not(.is-intro-done) ) .site-header__actions {
 
 body:has( .hero:not(.is-intro-done) ) .cta__btn {
 	animation-play-state: paused;
+}
+
+/* Failsafe — only init.js adds .is-intro-done. If it never runs (GSAP CDN or
+   JS failure), these 0s animations snap to the finished state after 10s
+   instead of leaving the page scroll-locked with no nav. Animations outrank
+   the declarations above, and stop applying as soon as .is-intro-done lands. */
+@keyframes hero-failsafe-unlock { to { overflow: visible; } }
+@keyframes hero-failsafe-reveal { to { color: var(--mtz-color-linen); fill-opacity: 1; opacity: 1; visibility: visible; } }
+
+body:has( .hero:not(.is-intro-done) ) {
+	animation: hero-failsafe-unlock 0s 10s forwards;
+}
+
+body:has( .hero:not(.is-intro-done) ) :is(#site-nav, .site-header__actions),
+.hero:not(.is-intro-done),
+.hero:not(.is-intro-done)::after,
+.hero:not(.is-intro-done) :is(.hero__video, #mtz-logo-matize-letters, #mtz-logo-matize-dot, #mtz-logo-atelier) {
+	animation: hero-failsafe-reveal 0s 10s forwards;
 }
 
 /* Everything turns light once intro animation completes */
