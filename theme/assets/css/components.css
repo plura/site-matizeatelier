@@ -137,16 +137,20 @@
 	letter-spacing: var(--mtz-tracking-caps);
 	padding: var(--mtz-space-sm) var(--mtz-space-md);
 	text-transform: uppercase;
-	transition: background-color var(--mtz-transition);
+	transition:
+		background-color var(--mtz-transition),
+		color var(--mtz-transition);
 }
 
+/* Charcoal on coral is 6.7:1 — off-white on coral was 2.1:1, below WCAG AA */
 .btn--primary {
 	background-color: var(--mtz-color-accent);
-	color: var(--mtz-color-linen);
+	color: var(--mtz-color-charcoal);
 }
 
 .btn--primary:hover {
 	background-color: var(--mtz-color-charcoal);
+	color: var(--mtz-color-offwhite);
 }
 
 .btn--primary svg {
