@@ -233,14 +233,12 @@ body[data-mtz-theme="charcoal"] .btn--primary:hover { background-color: var(--mt
 	padding: 0;
 }
 
+/* No `scroll-behavior: smooth` here: ScrollTrigger's refresh on page load
+   jumps to 0 to measure, cancelling a smooth scroll to a #fragment that's
+   still in progress — /servicos/#<slug> links landed at the top. In-page
+   smooth scrolling (hero arrow) goes through GSAP's ScrollToPlugin instead. */
 html {
 	-webkit-text-size-adjust: 100%;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-	html {
-		scroll-behavior: smooth;
-	}
 }
 
 body {
