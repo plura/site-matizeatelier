@@ -36,11 +36,11 @@ get_header(); ?>
 	];
 
 	foreach ( $sections as $key => $section ) :
-		$data = get_field( $section['field'] );
-		if ( ! $data ) continue;
+		$data   = get_field( $section['field'] ) ?: [];
 		$text   = $data['text']   ?? '';
-		$images = $data['images'] ?? [];
+		$images = ( $data['images'] ?? [] ) ?: []; // ACF returns false for an empty gallery
 		$accent = $data['accent'] ?? '';
+		if ( ! $text && ! $images ) continue;
 	?>
 
 	<section class="content-section content-section--split about-section about-section--<?php echo esc_attr( $key ); ?> <?php echo $accent ? 'content-section--' . esc_attr( $accent ) : ''; ?>">
