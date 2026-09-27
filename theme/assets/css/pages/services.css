@@ -27,7 +27,7 @@
 /* ── Tagline — service-specific, about has none ───────────────────────────── */
 
 .service-section__tagline {
-	color: rgba(10, 9, 7, 0.55);
+	color: var(--mtz-color-muted);
 	font-family: var(--mtz-font-body);
 	font-size: var(--mtz-text-caption);
 	font-weight: var(--mtz-weight-regular);

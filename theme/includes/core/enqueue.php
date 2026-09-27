@@ -10,9 +10,6 @@ add_action( 'wp_enqueue_scripts', function () {
 		'https://cdn.jsdelivr.net/npm/gsap@3.15/dist/ScrollTrigger.min.js' => [ 'handle' => 'gsap-scrolltrigger', 'deps' => [ 'matize-gsap' ] ],
 		'https://cdn.jsdelivr.net/npm/gsap@3.15/dist/SplitText.min.js'     => [ 'handle' => 'gsap-splittext',     'deps' => [ 'matize-gsap' ] ],
 
-		// Lucide icons (CDN)
-		'https://unpkg.com/lucide@latest/dist/umd/lucide.min.js' => [ 'handle' => 'lucide' ],
-
 		// Theme CSS — each file enqueued individually so filemtime() cache-busts correctly
 		"$dir/assets/css/base.css",
 		"$dir/assets/css/layout.css",
@@ -46,6 +43,27 @@ add_action( 'wp_enqueue_scripts', function () {
 
 	plura_wp_enqueue( scripts: $scripts, cache: true, prefix: 'matize-', admin: false );
 
+	// plura_wp_enqueue() prints every script in <head>, render-blocking. Deferred
+	// classic scripts still run in document order before the (deferred) main.js
+	// module, so every module keeps seeing gsap/ScrollTrigger/Fancybox as globals.
+	foreach ( [ 'matize-gsap', 'matize-gsap-scrolltrigger', 'matize-gsap-splittext', 'matize-fancybox-js' ] as $handle ) {
+		wp_script_add_data( $handle, 'strategy', 'defer' );
+	}
+
+} );
+
+// Preload the two cuts every page renders above the fold (body + titles), so
+// they don't wait for base.css to be parsed. Keep in sync with its @font-face.
+add_filter( 'wp_preload_resources', function ( array $resources ): array {
+	foreach ( [ 'vinila-regular', 'vinila-extended-bold' ] as $font ) {
+		$resources[] = [
+			'href'        => get_template_directory_uri() . "/assets/fonts/vinila/{$font}.woff2",
+			'as'          => 'font',
+			'type'        => 'font/woff2',
+			'crossorigin' => 'anonymous',
+		];
+	}
+	return $resources;
 } );
 
 // Deregister jQuery on the frontend — ACF Free and WPML don't need it there.
@@ -62,7 +80,9 @@ add_action( 'wp_enqueue_scripts', function () {
 
 	// Sets a language cookie — redundant with directory-based URLs (/en/).
 	// Uncomment only after confirming browser-language redirect and
-	// "remember visitor's language" are both disabled in WPML → Languages.
+	// "remember visitor's language" are both disabled in WPML → Languages,
+	// AND the contact form sends its language explicitly — its AJAX handler
+	// currently gets the language (email template, messages) from this cookie.
 	// wp_dequeue_script( 'wpml-cookie' );
 	// wp_deregister_script( 'wpml-cookie' );
 }, 100 );

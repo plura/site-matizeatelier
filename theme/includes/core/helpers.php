@@ -13,7 +13,7 @@ function mtz_logo( string $extra_class = '' ): string {
 	$a_class = trim( 'site-logo ' . $extra_class );
 
 	if ( $logo_id ) {
-		$inner = plura_img2svg( plura_wp_image( $logo_id, 'full', [ 'class' => 'site-logo__img' ] ) );
+		$inner = plura_img2svg( html: plura_wp_image( attachment: $logo_id, size: 'full', atts: [ 'class' => 'site-logo__img' ] ) ?? '' );
 	} else {
 		$inner = esc_html( get_bloginfo( 'name' ) );
 	}
@@ -44,22 +44,31 @@ function mtz_social_username( string $url ): string {
 }
 
 /**
- * Renders a gallery cluster — 2-col grid of small images.
- * Returns empty string if no images are provided.
+ * Returns an inline Lucide icon (v1.48.0, ISC licence) as decorative SVG.
+ * Inlined server-side instead of loading the Lucide library: the site uses
+ * only these few icons, and inline markup renders with no post-load swap.
  *
- * @param array $images  ACF gallery array (each item has at least 'ID').
- * @param int   $max     Maximum number of images to show. Default 3.
- * @return string
+ * @param string $name  Icon name, e.g. 'menu' — a key of the map below.
+ * @return string       SVG markup, or '' for an unknown name.
  */
-function mtz_gallery_cluster( array $images, int $max = 3 ): string {
-	if ( ! $images ) return '';
+function mtz_icon( string $name ): string {
+	$icons = [
+		'chevron-down' => '<path d="m6 9 6 6 6-6"/>',
+		'mail'         => '<path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"/><rect x="2" y="4" width="20" height="16" rx="2"/>',
+		'map-pin'      => '<path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/>',
+		'menu'         => '<path d="M4 5h16"/><path d="M4 12h16"/><path d="M4 19h16"/>',
+		'phone'        => '<path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384"/>',
+		'send'         => '<path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z"/><path d="m21.854 2.147-10.94 10.939"/>',
+		'x'            => '<path d="M18 6 6 18"/><path d="m6 6 12 12"/>',
+	];
 
-	$imgs = '';
-	foreach ( array_slice( $images, 0, $max ) as $img ) {
-		$imgs .= plura_wp_image( $img['ID'], 'medium', [ 'class' => 'gallery-cluster__img' ] );
-	}
+	if ( ! isset( $icons[ $name ] ) ) return '';
 
-	return '<div class="gallery-cluster">' . $imgs . '</div>';
+	return sprintf(
+		'<svg class="lucide lucide-%s" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">%s</svg>',
+		esc_attr( $name ),
+		$icons[ $name ]
+	);
 }
 
 /**
@@ -97,7 +106,7 @@ function mtz_img_stack( array $images, ?int $fallback_id = null ): string {
 		$cards .= sprintf(
 			'<div class="img-card img-card--%s">%s</div>',
 			esc_attr( $positions[ $i ] ),
-			plura_wp_image( $image['ID'], 'large' )
+			plura_wp_image( attachment: $image['ID'], size: 'large' )
 		);
 	}
 

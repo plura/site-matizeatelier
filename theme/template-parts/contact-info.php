@@ -16,9 +16,10 @@ $address_url = $contact['mtz_contact_address_url'] ?? '';
 		<?php
 		$maps_url = $address_url ?: 'https://www.google.com/maps/search/?api=1&query=' . rawurlencode( wp_strip_all_tags( $address ) );
 		echo plura_wp_link(
-			'<i data-lucide="map-pin" aria-hidden="true"></i><span>' . wp_kses( $address, [ 'br' => [] ] ) . '</span>',
-			$maps_url,
-			[ 'class' => 'contact-address' ]
+			html:   mtz_icon( 'map-pin' ) . '<span>' . wp_kses( $address, [ 'br' => [] ] ) . '</span>',
+			target: $maps_url,
+			atts:   [ 'class' => 'contact-address' ],
+			rel:    true,
 		);
 		?>
 	<?php endif; ?>

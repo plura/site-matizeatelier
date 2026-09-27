@@ -10,3 +10,6 @@ export function mtzLoadStylesheet( relativePath, moduleUrl ) {
 	document.head.appendChild( link );
 	return link;
 }
+
+// True when the visitor has asked the OS for reduced motion.
+export const mtzReducedMotion = () => matchMedia( '(prefers-reduced-motion: reduce)' ).matches;

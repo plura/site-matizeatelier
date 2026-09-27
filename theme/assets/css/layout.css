@@ -289,7 +289,7 @@ body[data-mtz-theme="charcoal"] .page-header__title {
 	outline: none;
 }
 
-/* Icon swap — targets wrapper spans (Lucide replaces <i> with <svg>) */
+/* Icon swap — toggles the wrapper spans around each icon */
 .site-header__menu-toggle .icon-open,
 .site-header__menu-toggle .icon-close {
 	display: flex;
@@ -331,12 +331,19 @@ body[data-mtz-theme="charcoal"] .page-header__title {
 		right: 0;
 		top: var(--mtz-header-height, 0px);
 		transform: translateX(100%);
-		transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+		/* visibility (flipped only once the slide-out ends) keeps the closed,
+		   off-screen menu out of the tab order and the accessibility tree */
+		transition:
+			transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+			visibility 0s 0.4s;
+		visibility: hidden;
 		z-index: 99;
 	}
 
 	.site-nav.is-open {
 		transform: translateX(0);
+		transition-delay: 0s;
+		visibility: visible;
 	}
 
 	.site-nav__list {
@@ -500,3 +507,20 @@ body[data-mtz-theme="charcoal"] .page-header__title {
 	}
 }
 
+
+/* ─── 404 ────────────────────────────────────────────────────────────────── */
+
+.error-404 {
+	padding-block: var(--mtz-space-2xl);
+}
+
+.error-404__text {
+	color: var(--mtz-color-muted);
+	margin-block: var(--mtz-space-md) var(--mtz-space-lg);
+	max-width: 640px;
+}
+
+.error-404__link {
+	text-decoration: underline;
+	text-underline-offset: 0.2em;
+}

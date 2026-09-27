@@ -1,19 +1,26 @@
-// Handles hamburger open/close and outside-click dismissal on mobile.
+// Handles hamburger open/close, plus outside-click and Esc dismissal, on mobile.
 function mtzNavToggle() {
 	const toggle = document.querySelector( '.site-header__menu-toggle' );
 	const nav    = document.querySelector( '#site-nav' );
 
 	if ( ! toggle || ! nav ) return;
 
-	toggle.addEventListener( 'click', () => {
-		const isOpen = nav.classList.toggle( 'is-open' );
-		toggle.setAttribute( 'aria-expanded', isOpen );
-	} );
+	const isOpen  = () => nav.classList.contains( 'is-open' );
+	const setOpen = ( open ) => {
+		nav.classList.toggle( 'is-open', open );
+		toggle.setAttribute( 'aria-expanded', open );
+	};
+
+	toggle.addEventListener( 'click', () => setOpen( ! isOpen() ) );
 
 	document.addEventListener( 'click', ( e ) => {
-		if ( nav.classList.contains( 'is-open' ) && ! nav.contains( e.target ) && ! toggle.contains( e.target ) ) {
-			nav.classList.remove( 'is-open' );
-			toggle.setAttribute( 'aria-expanded', 'false' );
+		if ( isOpen() && ! nav.contains( e.target ) && ! toggle.contains( e.target ) ) setOpen( false );
+	} );
+
+	document.addEventListener( 'keydown', ( e ) => {
+		if ( e.key === 'Escape' && isOpen() ) {
+			setOpen( false );
+			toggle.focus();
 		}
 	} );
 }
@@ -25,6 +32,7 @@ function createIndicator( list, items, active ) {
 
 	const indicator = document.createElement( 'span' );
 	indicator.className = 'site-nav__indicator';
+	indicator.setAttribute( 'aria-hidden', 'true' );
 	list.appendChild( indicator );
 
 	const moveTo = ( el, duration = 0.25 ) => gsap.to( indicator, {
@@ -33,11 +41,12 @@ function createIndicator( list, items, active ) {
 
 	let current = active ?? null;
 
-	if ( current ) {
-		gsap.set( indicator, { x: current.offsetLeft, width: current.offsetWidth, opacity: 1 } );
-	} else {
-		gsap.set( indicator, { opacity: 0 } );
-	}
+	const snapToCurrent = () => {
+		if ( current ) gsap.set( indicator, { x: current.offsetLeft, width: current.offsetWidth } );
+	};
+
+	gsap.set( indicator, { opacity: current ? 1 : 0 } );
+	snapToCurrent();
 
 	items.forEach( el => {
 		el.addEventListener( 'mouseenter', () => {
@@ -57,9 +66,9 @@ function createIndicator( list, items, active ) {
 		else gsap.to( indicator, { opacity: 0, duration: 0.2 } );
 	} );
 
-	window.addEventListener( 'resize', () => {
-		if ( current ) gsap.set( indicator, { x: current.offsetLeft, width: current.offsetWidth } );
-	} );
+	// Offsets also shift once the web fonts swap in (font-display: swap).
+	window.addEventListener( 'resize', snapToCurrent );
+	document.fonts.ready.then( snapToCurrent );
 }
 
 // Entry point — wires up mobile toggle and sliding indicators for both

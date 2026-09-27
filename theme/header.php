@@ -8,6 +8,8 @@
 <body <?php body_class(); ?><?php mtz_body_theme_attr(); ?>>
 <?php wp_body_open(); ?>
 
+<a class="skip-link" href="#main"><?php esc_html_e( 'Skip to content', 'matize' ); ?></a>
+
 <header id="site-header" class="site-header">
 	<div class="site-header__inner">
 
@@ -27,12 +29,12 @@
 		<div class="site-header__actions">
 			<button
 				class="site-header__menu-toggle"
-				aria-label="<?php esc_attr_e( 'Open menu', 'matize' ); ?>"
+				aria-label="<?php esc_attr_e( 'Menu', 'matize' ); ?>"
 				aria-expanded="false"
 				aria-controls="site-nav"
 			>
-				<span class="icon-open"><i data-lucide="menu" aria-hidden="true"></i></span>
-				<span class="icon-close"><i data-lucide="x" aria-hidden="true"></i></span>
+				<span class="icon-open"><?php echo mtz_icon( 'menu' ); ?></span>
+				<span class="icon-close"><?php echo mtz_icon( 'x' ); ?></span>
 			</button>
 		</div>
 

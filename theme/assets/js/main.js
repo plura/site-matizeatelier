@@ -5,11 +5,7 @@ import './dev.js'; // reads URL params, sets window.mtzDev — must run first
 import { mtzInitNav }                            from './nav.js';
 import { mtzInitModal }                         from './modal.js';
 import { mtzAnimPageTitle, mtzAnimGalleryItems } from './animations.js';
-
-// ── Lucide icons ─────────────────────────────────────────────────────────────
-if ( typeof lucide !== 'undefined' ) {
-	lucide.createIcons();
-}
+import { mtzReducedMotion }                     from './utils.js';
 
 // ── Header height CSS variable ────────────────────────────────────────────────
 // ResizeObserver (not just a window resize listener) so this also tracks
@@ -38,8 +34,11 @@ if ( document.querySelector( '.section-header__title, .content-section--split, .
 		mtzAnimSectionHeaders();
 		mtzAnimContentSections();
 		mtzAnimGridItems();
-		mtzAnimImgStacks();
-		mtzAnimBgVectors();
+		// Purely decorative motion (fan-out, parallax) — skipped under reduced motion.
+		if ( ! mtzReducedMotion() ) {
+			mtzAnimImgStacks();
+			mtzAnimBgVectors();
+		}
 	} );
 }
 

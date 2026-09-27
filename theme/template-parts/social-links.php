@@ -31,7 +31,7 @@ $social = array_filter( $social, fn( $s ) => ! empty( $s['url'] ) );
 if ( ! $social ) return;
 ?>
 
-<nav class="social-links" aria-label="<?php esc_attr_e( 'Redes sociais', 'matize' ); ?>">
+<nav class="social-links" aria-label="<?php esc_attr_e( 'Social media', 'matize' ); ?>">
 	<?php foreach ( $social as $label => $s ) : ?>
 		<a
 			href="<?php echo esc_url( $s['url'] ); ?>"

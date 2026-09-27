@@ -244,6 +244,11 @@
 	position: relative;
 }
 
+.contact-modal__title {
+	font-size: var(--mtz-text-section);
+	margin-block-end: var(--mtz-space-lg);
+}
+
 .contact-modal__close {
 	background: none;
 	border: none;
@@ -306,6 +311,9 @@
 }
 
 .content-section__body {
+	/* Muted text (body, tagline) at the default 60% is 3.3–3.9:1 on the
+	   accents — below WCAG AA. 82% gives 4.9–6.7:1. */
+	--mtz-color-muted: var(--mtz-color-charcoal-82);
 	background-color: var(--mtz-section-accent);
 	border-radius: var(--mtz-radius-lg);
 	padding: var(--mtz-space-xl) var(--mtz-space-lg);
@@ -329,36 +337,6 @@
 .content-section__body .section-body {
 	color: var(--mtz-color-muted);
 	margin-top: var(--mtz-space-md);
-}
-
-/* ─── Gallery cluster ────────────────────────────────────────────────────────
-   Small image group — used in service sections and about sections.
-   1 image: full width. 2–3 images: 2-col grid, last image spans if odd.
-   ─────────────────────────────────────────────────────────────────────────── */
-
-.gallery-cluster {
-	display: grid;
-	gap: var(--mtz-space-xs);
-	grid-template-columns: repeat(2, 1fr);
-}
-
-.gallery-cluster__img {
-	aspect-ratio: 1;
-	height: auto;
-	object-fit: cover;
-	width: 100%;
-}
-
-/* Single image: span both columns */
-.gallery-cluster__img:only-child {
-	grid-column: 1 / -1;
-	aspect-ratio: 4 / 3;
-}
-
-/* Three images: last one spans full width */
-.gallery-cluster__img:first-child:nth-last-child(3) ~ .gallery-cluster__img:last-child {
-	grid-column: 1 / -1;
-	aspect-ratio: 16 / 9;
 }
 
 /* ─── Brands grid ────────────────────────────────────────────────────────────

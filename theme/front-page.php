@@ -3,7 +3,7 @@
 <main id="main" class="site-main page-home">
 
 	<?php /* ── Hero ─────────────────────────────────────────────────────── */ ?>
-	<?php echo plura_wp_component( get_template_directory() . '/components/hero/manifest.json' ); ?>
+	<?php echo plura_wp_component( manifest: get_template_directory() . '/components/hero/manifest.json' ); ?>
 
 	<?php /* ── Services ──────────────────────────────────────────────────── */ ?>
 	<section class="home-services">
@@ -27,8 +27,9 @@
 	<?php if ( $statements ) : ?>
 		<section class="home-statement" data-mtz-theme="gold">
 			<div class="home-statement__stage">
-				<?php foreach ( $statements as $i => $item ) : ?>
-					<div class="home-statement__item" <?php if ( $i === 0 ) echo 'aria-hidden="false"'; else echo 'aria-hidden="true"'; ?>>
+				<?php // No aria-hidden: CSS/GSAP visibility already hides not-yet-shown items from AT. ?>
+				<?php foreach ( $statements as $item ) : ?>
+					<div class="home-statement__item">
 						<?php if ( $item['headline'] ) : ?>
 							<h2 class="home-statement__headline"><?php echo esc_html( $item['headline'] ); ?></h2>
 						<?php endif; ?>
@@ -61,7 +62,7 @@
 						<?php foreach ( $mood['gallery'] as $i => $image ) : ?>
 							<figure class="mood-gallery__item">
 								<div class="mood-gallery__frame">
-									<?php echo plura_wp_image( $image['ID'], 'large', [ 'class' => 'mood-gallery__img', 'alt' => esc_attr( $image['alt'] ) ] ); ?>
+									<?php echo plura_wp_image( attachment: $image['ID'], size: 'large', atts: [ 'class' => 'mood-gallery__img' ] ); ?>
 								</div>
 								<figcaption class="mood-gallery__caption">
 									<span class="mood-gallery__label"><?php echo esc_html( $image['title'] ); ?></span>

@@ -41,9 +41,12 @@ export function mtzInitModal( { modal, trigger, closeBtn } ) {
 	if ( trigger ) trigger.addEventListener( 'click', open );
 	if ( closeBtn ) closeBtn.addEventListener( 'click', close );
 
-	// Close on backdrop click
+	// Close on backdrop click — only if the press also started there, so a text
+	// selection dragged out of the form doesn't dismiss the dialog.
+	let pressedBackdrop = false;
+	modal.addEventListener( 'pointerdown', ( e ) => { pressedBackdrop = e.target === modal; } );
 	modal.addEventListener( 'click', ( e ) => {
-		if ( e.target === modal ) close();
+		if ( pressedBackdrop && e.target === modal ) close();
 	} );
 
 }
