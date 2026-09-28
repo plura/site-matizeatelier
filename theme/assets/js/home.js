@@ -100,7 +100,13 @@ function mtzInitMood() {
 
 	items.forEach( ( item, i ) => {
 		const offset = OFFSETS[ i % OFFSETS.length ];
+		// x/y: 0 explicitly — GSAP folds the CSS translate(-50%, -50%) into x/y and
+		// only recognises it as -50% when offsetWidth/Height/2 rounds to match;
+		// at some card sizes it didn't, leaving a stray px offset on top of the
+		// yPercent below (cards shifted up over the headline, e.g. 440×956).
 		gsap.set( item, {
+			x:        0,
+			y:        0,
 			xPercent: -50 + offset.x * 0.4,
 			yPercent: -50 + offset.y * 0.4,
 			rotation: ROTATIONS[ i % ROTATIONS.length ],
