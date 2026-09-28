@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2026-04-19 19:05+0100\n"
-"PO-Revision-Date: 2026-04-19 19:06+0100\n"
+"POT-Creation-Date: 2026-09-28 01:21+0100\n"
+"PO-Revision-Date: 2026-09-28 01:22+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: pt_PT\n"
@@ -34,25 +34,33 @@ msgstr "Menu de Rodapé"
 msgid "Built by Plura"
 msgstr "Built by Plura"
 
-#: header.php:16 includes/core/setup.php:61
+#: header.php:11
+msgid "Skip to content"
+msgstr "Ir para o conteúdo"
+
+#: header.php:18 includes/core/setup.php:61
 msgid "Primary Menu"
 msgstr "Menu Principal"
 
-#: header.php:30
-msgid "Open menu"
-msgstr "Abrir menu"
+#: header.php:32
+msgid "Menu"
+msgstr "Menu"
 
-#: page-about.php:12
+#: page-about.php:16
 msgid "Mission"
 msgstr "Missão"
 
-#: page-about.php:13
+#: page-about.php:17
 msgid "Philosophy"
 msgstr "Filosofia"
 
-#: page-about.php:14
+#: page-about.php:18
 msgid "Curriculum"
 msgstr "Curriculum"
+
+#: template-parts/brands.php:21
+msgid "Brands"
+msgstr "Marcas"
 
 #: template-parts/contact-form.php:12
 msgid "New Enquiry"
@@ -107,8 +115,14 @@ msgid "Close"
 msgstr "Fechar"
 
 #: template-parts/social-links.php:34
-msgid "Redes sociais"
-msgstr "Social media"
+msgid "Social media"
+msgstr "Redes Sociais"
+
+#~ msgid "Open menu"
+#~ msgstr "Abrir menu"
+
+#~ msgid "Redes sociais"
+#~ msgstr "Social media"
 
 #~ msgid "Theme Settings"
 #~ msgstr "Configurações do tema"
