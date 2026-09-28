@@ -102,9 +102,13 @@ body:has( .site-header.is-scrolled ) .hero__scroll {
 	fill: currentColor;
 }
 
-/* Matize letters: stroke draw-on → fill cross-fade handled by GSAP */
-.hero #mtz-logo-matize-letters {
+/* Pen strokes the intro draws over the letters (created by anim-logo.js),
+   then cross-fades to the fill. Butt caps: a stroke not yet started is a
+   zero-length dash, and a round/square cap would render it as a dot. */
+.hero .mtz-logo-stroke {
+	fill: none;
 	stroke: currentColor;
+	stroke-linecap: butt;
 	stroke-width: 2;
 }
 
@@ -120,7 +124,6 @@ body:has( .site-header.is-scrolled ) .hero__scroll {
 
 .hero #mtz-logo-matize-letters {
 	fill-opacity: 0;
-	stroke-opacity: 0;
 }
 
 .hero #mtz-logo-matize-dot,
