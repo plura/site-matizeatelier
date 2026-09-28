@@ -311,7 +311,9 @@
 	align-items: start;
 	display: grid;
 	gap: var(--mtz-space-lg) var(--mtz-space-2xl);
-	grid-template-columns: 1fr;
+	/* minmax(0, …): a plain 1fr grows to its longest word, so titles like
+	   "ACONSELHAMENTO" pushed the card past the viewport on mobile */
+	grid-template-columns: minmax(0, 1fr);
 }
 
 .content-section__body {
@@ -492,9 +494,13 @@
 
 /* Rotation sweeps in one even, monotonic step (-20deg to 20deg) across all
    5 layers back-to-front — ghost1, back, mid, front, ghost2 — so the fan
-   reads as a single gradual arc rather than independently-chosen angles. */
+   reads as a single gradual arc rather than independently-chosen angles.
+   Mid is centred without transforms (left 19% = (100 − 62) / 2; the -46.5%
+   margin is half its 93%-of-width height, as % margins resolve against width):
+   GSAP folds a CSS `translate` into its own transform and at some viewport
+   sizes misread the -50%, drifting the card half its width off-centre. */
 .img-card--back  { left: 2%;   top: 2%;    transform: rotate(-10deg) translateY(-56px); z-index: 1; }
-.img-card--mid   { left: 50%;  top: 50%;   translate: -50% -50%; transform: rotate(0deg); z-index: 2; }
+.img-card--mid   { left: 19%;  top: 50%;   margin-top: -46.5%; transform: rotate(0deg); z-index: 2; }
 .img-card--front { bottom: 2%; right: 2%;  transform: rotate(10deg) translateY(56px);   z-index: 3; }
 
 .img-ghost {
