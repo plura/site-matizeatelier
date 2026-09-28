@@ -146,9 +146,9 @@ export function mtzAnimBgVectors() {
 
 	vectors.forEach( vector => {
 		gsap.to( vector, {
-			// TODO: diagnostic magnitude — confirm the effect is visible/firing,
-			// then dial back down (was -60, nearly imperceptible over this range).
-			y:    -250,
+			// -60 was nearly imperceptible over this range; -250 pulled vectors far
+			// from their tuned placement (see pages/*.css).
+			y:    -120,
 			ease: 'none',
 			scrollTrigger: {
 				trigger: vector,
