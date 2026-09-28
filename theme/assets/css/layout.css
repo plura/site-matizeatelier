@@ -36,10 +36,16 @@
 	   font's own box, and per spec a lone non-visible overflow-x forces
 	   overflow-y to auto rather than visible — that rendered a scrollbar. */
 	overflow: hidden;
-	/* Single words fit (see --mtz-text-watermark); multi-word titles like
-	   "Política de Privacidade" wrap instead of being clipped. */
+	/* Single words fit (see --mtz-text-watermark and --long below); multi-word
+	   titles like "Política de Privacidade" wrap instead of being clipped. */
 	text-wrap: balance;
 	visibility: hidden;
+}
+
+/* A word over 8 letters (e.g. "PRIVACIDADE", ≈8.5em) — flagged in
+   page-header.php — steps down to 10vw so it still fits on a phone. */
+.page-header__title--long {
+	font-size: clamp(2rem, 10vw, 8.75rem);
 }
 
 /* Off-white ink on Preto reads fainter than ink-on-light at the same

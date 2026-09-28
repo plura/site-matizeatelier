@@ -55,7 +55,7 @@
 	--mtz-text-caption: clamp(0.6875rem,0.65rem + 0.2vw,  0.8125rem); /* Caption    ~11→13px */
 	--mtz-text-hero:    clamp(2rem, 9.6vw, 3.5rem);                   /* Hero (home-statement) ~37px mobile — desktop below */
 	--mtz-text-hero-sm: clamp(2rem, 8.2vw, 3rem);                     /* Hero, smaller cut (mood-gallery) ~32px mobile — desktop below */
-	--mtz-text-watermark: clamp(2rem, 10vw, 8.75rem);                 /* Watermark (page-header title) ~39→140px; keeps the longest title word ("PRIVACIDADE" ≈ 8.5em) inside the container at any width */
+	--mtz-text-watermark: clamp(2rem, 12vw, 9.375rem);                /* Watermark (page-header title) ~47→150px; fits words up to ≈7em ("CONTACTO") at any width — longer ones use .page-header__title--long */
 
 	/* Font weights — Vinila ships Regular and Bold in our set (no light/medium) */
 	--mtz-weight-regular: 400;
