@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2026-04-21 00:48+0100\n"
-"PO-Revision-Date: 2026-04-21 00:50+0100\n"
+"POT-Creation-Date: 2026-09-28 16:51+0100\n"
+"PO-Revision-Date: 2026-09-28 16:52+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: pt_PT\n"
@@ -18,31 +18,35 @@ msgstr ""
 msgid "Theme Settings"
 msgstr "Definições do Tema"
 
-#: core/form.php:33
+#: core/form.php:39
 msgid "Security check failed."
 msgstr "Verificação de segurança falhou."
 
-#: core/form.php:66 core/i18n.php:14
+#: core/form.php:51
+msgid "Too many messages sent. Please try again later."
+msgstr "Muitas mensagens enviadas. Por favor, tente mais tarde."
+
+#: core/form.php:82 core/i18n.php:14
 msgid "Please fill in all required fields."
 msgstr "Por favor preencha todos os campos obrigatórios."
 
-#: core/form.php:69
+#: core/form.php:85
 msgid "Please enter a valid email address."
 msgstr "Por favor introduza um endereço de email válido."
 
-#: core/form.php:74
+#: core/form.php:90
 msgid "Form Submission"
 msgstr "Envio de Formulário"
 
-#: core/form.php:105 core/i18n.php:15
+#: core/form.php:122 core/i18n.php:15
 msgid "Something went wrong. Please try again."
 msgstr "Algo correu mal. Por favor tente novamente."
 
-#: core/form.php:111
+#: core/form.php:130
 msgid "We received your enquiry"
 msgstr "Recebemos o seu pedido"
 
-#: core/form.php:117
+#: core/form.php:136
 #, php-format
 msgid ""
 "Dear %s, thank you for getting in touch. We have received your message and "
@@ -53,11 +57,11 @@ msgstr ""
 "entraremos em contacto consigo em breve. Em baixo encontra uma cópia da sua "
 "mensagem para que possa consultar mais tarde."
 
-#: core/form.php:124
+#: core/form.php:143
 msgid "Thank you for reaching out. We'll be in touch soon."
 msgstr "Obrigado pela sua mensagem. Entraremos em breve em contacto consigo."
 
-#: core/form.php:126
+#: core/form.php:145
 msgid "A copy of your message has been sent to your email address."
 msgstr "Foi enviada uma cópia da sua mensagem para o seu endereço de email."
 
