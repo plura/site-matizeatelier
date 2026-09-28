@@ -6,14 +6,16 @@
 //
 // The letters are a filled outline, not a pen centreline, so the "pen" is the
 // outline traced from its leftmost point (the start of the "m") along both
-// edges at once, towards the tail. Sharp turns in the outline become beats:
-// each stroke between them speeds up and slows down, with a short hold at the
-// turn — the rhythm of handwriting rather than one even sweep.
+// edges at once, towards the tail. It moves as one continuous stroke whose
+// speed dips at the outline's sharp turns and flows back out — a hand slowing
+// into a curve, never a dead stop — easing on at the start and off the tail.
 
 const NS = 'http://www.w3.org/2000/svg';
 
-const DRAW_TIME = 2.4;          // seconds of pen movement, holds excluded
-const MAX_BEATS = 9;            // pauses along the word
+const DRAW_TIME = 2.8;          // seconds for the whole word
+const MAX_BEATS = 12;           // turns where the pen slows
+const DIP       = 0.62;         // slowdown at the sharpest turn: 0 = none, 1 = full stop
+const DIP_WIDTH = 0.03;         // how gradually it slows/recovers, in word-progress units
 const SEED      = 7;            // fixed: the "hand" writes the same way every visit
 
 export function mtzHeroIntroAnim( logo ) {
@@ -52,12 +54,16 @@ export function mtzHeroIntroAnim( logo ) {
 	const picked = [];
 	turns
 		.map( ( t, i ) => ( { t, i } ) )
-		.filter( ( c ) => c.t > 1 )
+		.filter( ( c ) => c.t > 0.8 )
 		.sort( ( a, b ) => b.t - a.t )
 		.forEach( ( c ) => {
-			if ( picked.length < MAX_BEATS && picked.every( ( i ) => Math.abs( i - c.i ) > minGap ) ) picked.push( c.i );
+			if ( picked.length < MAX_BEATS && picked.every( ( p ) => Math.abs( p.i - c.i ) > minGap ) ) picked.push( c );
 		} );
-	const beats = [ 0, ...picked.sort( ( a, b ) => a - b ).map( ( i ) => ( ahead[ i ].s - split ) / span ), 1 ];
+	// Dip depth scales with how sharp the turn is (π = a full reversal)
+	const beats = picked.map( ( c ) => ( {
+		u:     ( ahead[ c.i ].s - split ) / span,
+		depth: DIP * Math.min( 1, c.t / Math.PI + 0.25 ) * jitter( 0.85, 1 ),
+	} ) );
 
 	// ── Initial states ──
 	const pen = { u: 0 };
@@ -72,27 +78,22 @@ export function mtzHeroIntroAnim( logo ) {
 
 	const tl = gsap.timeline( { delay: 0.3 } );
 
-	// 1. Write the word: one tween per stroke, holds at the beats. Short strokes
-	//    get proportionally more time (length^0.8), as a hand slows for detail.
-	const weights = beats.slice( 1 ).map( ( u, i ) => ( u - beats[ i ] ) ** 0.8 * jitter( 0.85, 1.15 ) );
-	const total   = weights.reduce( ( a, b ) => a + b, 0 );
-	const strokeTimes = []; // [start, end, uFrom, uTo] for placing the counters
-	let t = 0;
-	weights.forEach( ( wgt, i ) => {
-		const duration = DRAW_TIME * wgt / total;
-		tl.to( pen, { u: beats[ i + 1 ], duration, ease: 'power2.inOut', onUpdate: renderPen }, t );
-		strokeTimes.push( [ t, t + duration, beats[ i ], beats[ i + 1 ] ] );
-		t += duration + ( i < weights.length - 1 ? jitter( 0.05, 0.14 ) : 0 );
+	// 1. Write the word: a single tween, eased by the pen's speed profile
+	const { ease, timeAt } = mtzSpeedEase( ( u ) => {
+		// Ease on at the start and off the tail…
+		let v = Math.min( 1, 0.3 + ( 0.7 * u ) / 0.08, 0.3 + ( 0.7 * ( 1 - u ) ) / 0.1 );
+		// …and slow into each turn, recovering after it (gaussian dips)
+		for ( const b of beats ) v *= 1 - b.depth * Math.exp( -( ( ( u - b.u ) / DIP_WIDTH ) ** 2 ) );
+		return v;
 	} );
+	tl.to( pen, { u: 1, duration: DRAW_TIME, ease, onUpdate: renderPen }, 0 );
 
 	// 1b. Counters (the "e" eye, the "z" loop): drawn when the pen reaches them
 	counters.forEach( ( c ) => {
 		const cl   = c.getTotalLength();
 		const minX = Math.min( ...mtzSample( c, cl, 4 ).map( ( p ) => p.x ) );
 		const hit  = ahead.find( ( p ) => p.x >= minX ) ?? ahead[ ahead.length - 1 ];
-		const u    = ( hit.s - split ) / span;
-		const [ s0, s1, u0, u1 ] = strokeTimes.find( ( [ , , a, b ] ) => u >= a && u <= b ) ?? strokeTimes[ strokeTimes.length - 1 ];
-		const at   = s0 + ( s1 - s0 ) * ( ( u - u0 ) / ( u1 - u0 || 1 ) );
+		const at   = DRAW_TIME * timeAt( ( hit.s - split ) / span );
 		const draw = { v: 0 };
 		tl.to( draw, { v: 1, duration: 0.35, ease: 'power1.inOut', onUpdate: () => mtzShowRange( c, 0, draw.v * cl, cl ) }, at );
 	} );
@@ -194,6 +195,36 @@ function mtzSample( el, length, step ) {
 function mtzShowRange( el, from, to, length ) {
 	el.style.strokeDasharray  = `${ Math.max( 0, to - from ) } ${ length * 2 }`;
 	el.style.strokeDashoffset = -from;
+}
+
+/**
+ * Turns a speed profile over the path into a GSAP ease. Time to reach
+ * progress u is the integral of 1/speed; the ease is its inverse (time →
+ * progress), read from a lookup table.
+ *
+ * @param {function(number): number} speed  Relative speed (> 0) at progress u ∈ [0, 1].
+ * @param {number}                   [n]    Lookup table resolution.
+ * @returns {{ease: function(number): number, timeAt: function(number): number}}
+ *          ease: normalised time → progress; timeAt: progress → normalised time.
+ */
+function mtzSpeedEase( speed, n = 1000 ) {
+	const times = [ 0 ];
+	for ( let i = 1; i <= n; i++ ) times.push( times[ i - 1 ] + 1 / speed( ( i - 0.5 ) / n ) );
+	const total = times[ n ];
+	for ( let i = 0; i <= n; i++ ) times[ i ] /= total;
+
+	return {
+		ease: ( p ) => {
+			let lo = 0, hi = n;
+			while ( hi - lo > 1 ) {
+				const mid = ( lo + hi ) >> 1;
+				times[ mid ] < p ? ( lo = mid ) : ( hi = mid );
+			}
+			const f = ( p - times[ lo ] ) / ( times[ hi ] - times[ lo ] || 1 );
+			return ( lo + f ) / n;
+		},
+		timeAt: ( u ) => times[ Math.round( Math.min( 1, Math.max( 0, u ) ) * n ) ],
+	};
 }
 
 /**
