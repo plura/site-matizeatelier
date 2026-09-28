@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2026-09-28 01:21+0100\n"
-"PO-Revision-Date: 2026-09-28 01:22+0100\n"
+"POT-Creation-Date: 2026-09-28 16:49+0100\n"
+"PO-Revision-Date: 2026-09-28 16:50+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: pt_PT\n"
@@ -11,7 +11,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 3.9\n"
 "X-Poedit-Basepath: ..\n"
-"X-Poedit-KeywordsList: __;_e;_x;_ex;_n;_nx;esc_attr_e;esc_html_e\n"
+"X-Poedit-KeywordsList: "
+"__;_e;_x;_ex;_n;_nx;esc_attr_e;esc_html_e;esc_attr__;esc_html__\n"
 "X-Poedit-SearchPath-0: .\n"
 
 #: 404.php:7
@@ -26,6 +27,10 @@ msgstr "A página que procura não existe ou foi removida."
 msgid "Back to home"
 msgstr "Voltar à página inicial"
 
+#: components/hero/index.php:23
+msgid "Scroll to content"
+msgstr "Ir para o conteúdo"
+
 #: footer.php:19 includes/core/setup.php:62
 msgid "Footer Menu"
 msgstr "Menu de Rodapé"
@@ -36,7 +41,7 @@ msgstr "Built by Plura"
 
 #: header.php:11
 msgid "Skip to content"
-msgstr "Ir para o conteúdo"
+msgstr "Saltar para o conteúdo"
 
 #: header.php:18 includes/core/setup.php:61
 msgid "Primary Menu"
