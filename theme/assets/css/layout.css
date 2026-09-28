@@ -36,8 +36,10 @@
 	   font's own box, and per spec a lone non-visible overflow-x forces
 	   overflow-y to auto rather than visible — that rendered a scrollbar. */
 	overflow: hidden;
+	/* Single words fit (see --mtz-text-watermark); multi-word titles like
+	   "Política de Privacidade" wrap instead of being clipped. */
+	text-wrap: balance;
 	visibility: hidden;
-	white-space: nowrap;
 }
 
 /* Off-white ink on Preto reads fainter than ink-on-light at the same
@@ -382,10 +384,19 @@ body[data-mtz-theme="charcoal"] .page-header__title {
 	}
 }
 
-/* Mobile nav: social icons row */
+/* Mobile nav: full-screen menu — larger type, social icons in a row */
 @media (max-width: 767px) {
+	.site-nav__list a {
+		font-size: var(--mtz-text-section);
+	}
+
+	.site-nav__list .wpml-ls-item .wpml-ls-native::after {
+		font-size: var(--mtz-text-body);
+	}
+
 	.site-nav .social-links {
 		display: flex;
+		flex-direction: row;
 		gap: var(--mtz-space-md);
 		justify-content: center;
 	}
@@ -442,8 +453,9 @@ body[data-mtz-theme="charcoal"] .page-header__title {
 	width: auto;
 }
 
-.site-footer__logo svg,
-.site-footer__logo svg * {
+/* Logo follows the text colour: black on light, white on dark (footer, the
+   open mobile menu over the hero, charcoal-themed pages) — per brand rules. */
+:is(.site-header__logo, .site-footer__logo) :is(svg, svg *) {
 	fill: currentColor;
 }
 

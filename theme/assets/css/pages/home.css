@@ -47,7 +47,6 @@
 	hyphens: none;
 	letter-spacing: var(--mtz-tracking-hero);
 	line-height: var(--mtz-leading-tight);
-	max-width: 82%;
 }
 
 .home-statement__word {
@@ -65,6 +64,11 @@
 }
 
 @media (min-width: 768px) {
+	/* Full width on mobile — --mtz-text-hero is sized so the longest word fits either way */
+	.home-statement__headline {
+		max-width: 82%;
+	}
+
 	.home-statement__tagline {
 		margin-left: 26vw;
 	}
@@ -145,15 +149,18 @@
 	transform-origin: left center;
 }
 
+/* Mobile: the deck takes whatever height the headline leaves; it's a size
+   container so the cards can fit both its width and height (cqw/cqh). */
 .mood-gallery__col--images {
-	align-items: flex-start;
 	display: flex;
-	justify-content: center;
-	padding: 0 var(--mtz-gutter) var(--mtz-space-xl);
+	flex: 1;
+	min-height: 0;
+	padding: 0 var(--mtz-gutter) var(--mtz-space-lg);
 }
 
 .mood-gallery__deck {
-	height: 55svh;
+	container-type: size;
+	height: 100%;
 	position: relative;
 	width: 100%;
 }
@@ -190,7 +197,16 @@
 	position: absolute;
 	top: 50%;
 	transform: translate(-50%, -50%);
-	width: min(30vw, 480px);
+	/* 72% of the deck's width, or 87.5% of its height (70cqh at 4:5), whichever
+	   is smaller; 62vw first for browsers without container query units */
+	width: 62vw;
+	width: min(72cqw, 70cqh);
+}
+
+@media (min-width: 768px) {
+	.mood-gallery__item {
+		width: min(30vw, 480px);
+	}
 }
 
 .mood-gallery__frame {
@@ -305,48 +321,67 @@
 	padding: 0 var(--mtz-gutter);
 }
 
+/* The strip is a fixed-height sticky tab: the title gets two lines max on
+   mobile, and the tagline only shows where there's room beside it. */
 .home-services__strip-title {
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 2;
 	color: var(--mtz-color-charcoal);
+	display: -webkit-box;
 	font-family: var(--mtz-font-heading);
-	font-size: 15px;
+	font-size: 12px;
 	font-weight: var(--mtz-weight-bold);
 	letter-spacing: 0.08em;
+	line-height: 1.25;
+	overflow: hidden;
 	text-transform: uppercase;
 }
 
 .home-services__strip-tagline {
 	color: var(--mtz-color-charcoal-60);
-	flex-shrink: 0;
+	display: none;
 	font-size: 11px;
 	font-weight: var(--mtz-weight-bold);
 	letter-spacing: var(--mtz-tracking-kicker);
+	min-width: 0;
+	overflow: hidden;
 	text-align: right;
+	text-overflow: ellipsis;
 	text-transform: uppercase;
+	white-space: nowrap;
 }
 
+/* Mobile: number + photo side by side, title/excerpt full width beneath.
+   Desktop: one row — number | text | photo. */
 .home-services__content {
-	align-items: center;
+	align-content: start;
 	box-sizing: border-box;
-	column-gap: clamp(24px, 4.5vw, 72px);
 	display: grid;
 	flex: 1;
-	grid-template-columns: clamp(120px, 15vw, 280px) minmax(0, 1fr) clamp(170px, 22vw, 300px);
-	padding: 24px var(--mtz-gutter);
+	gap: var(--mtz-space-md);
+	grid-template-areas:
+		"number photo"
+		"text   text";
+	grid-template-columns: minmax(0, 1fr) auto;
+	padding: var(--mtz-space-md) var(--mtz-gutter);
 }
 
 .home-services__number {
 	-webkit-text-stroke: 2px var(--mtz-color-charcoal-55);
+	align-self: end;
 	color: transparent;
 	font-family: var(--mtz-font-heading);
 	font-size: clamp(80px, 12vw, 190px);
 	font-weight: var(--mtz-weight-bold);
+	grid-area: number;
 	line-height: 1;
 }
 
 .home-services__text {
 	display: flex;
 	flex-direction: column;
-	gap: 20px;
+	gap: var(--mtz-space-sm);
+	grid-area: text;
 	max-width: 620px;
 }
 
@@ -357,18 +392,61 @@
 	line-height: 1.15;
 }
 
+/* Capped on mobile so a long excerpt ends in an ellipsis, not mid-line at
+   the card's clipped edge — the card links to the full description anyway. */
 .home-services__excerpt {
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 5;
 	color: var(--mtz-color-charcoal-82);
+	display: -webkit-box;
 	font-size: var(--mtz-text-body);
 	line-height: var(--mtz-leading-normal);
+	overflow: hidden;
 }
 
 .home-services__photo {
 	aspect-ratio: 22 / 27;
 	box-shadow: 0 12px 28px color-mix(in srgb, var(--mtz-color-charcoal) 22%, transparent);
+	grid-area: photo;
 	justify-self: end;
 	position: relative;
-	width: clamp(170px, 22vw, 300px);
+	width: 34vw;
+}
+
+@media (min-width: 768px) {
+	.home-services__strip-title {
+		flex-shrink: 0;
+		font-size: 15px;
+	}
+
+	.home-services__strip-tagline {
+		display: block;
+	}
+
+	.home-services__content {
+		align-content: normal;
+		align-items: center;
+		column-gap: clamp(24px, 4.5vw, 72px);
+		grid-template-areas: "number text photo";
+		grid-template-columns: clamp(120px, 15vw, 280px) minmax(0, 1fr) clamp(170px, 22vw, 300px);
+		padding: 24px var(--mtz-gutter);
+	}
+
+	.home-services__number {
+		align-self: auto;
+	}
+
+	.home-services__text {
+		gap: 20px;
+	}
+
+	.home-services__excerpt {
+		-webkit-line-clamp: none;
+	}
+
+	.home-services__photo {
+		width: clamp(170px, 22vw, 300px);
+	}
 }
 
 .home-services__grid .plura-wp-post:nth-child(odd)  .home-services__photo { transform: rotate(2.5deg); }

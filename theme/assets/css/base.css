@@ -53,9 +53,9 @@
 	--mtz-text-lead:    clamp(1.125rem, 1rem    + 0.54vw, 1.375rem);  /* Lead       ~18→22px */
 	--mtz-text-body:    clamp(1rem,     0.94rem + 0.27vw, 1.125rem);  /* Body       ~16→18px */
 	--mtz-text-caption: clamp(0.6875rem,0.65rem + 0.2vw,  0.8125rem); /* Caption    ~11→13px */
-	--mtz-text-hero:    clamp(3.5rem, 1.7rem + 6.6vw, 7.375rem);      /* Hero (home-statement) ~56→118px */
-	--mtz-text-hero-sm: clamp(2.5rem, 1.66rem + 3.6vw, 4rem);         /* Hero, smaller cut (mood-gallery) ~40→64px */
-	--mtz-text-watermark: clamp(4.5rem, 2.78rem + 7.32vw, 9.375rem);  /* Watermark (page-header title) ~72→150px */
+	--mtz-text-hero:    clamp(2rem, 9.6vw, 3.5rem);                   /* Hero (home-statement) ~37px mobile — desktop below */
+	--mtz-text-hero-sm: clamp(2rem, 8.2vw, 3rem);                     /* Hero, smaller cut (mood-gallery) ~32px mobile — desktop below */
+	--mtz-text-watermark: clamp(2rem, 10vw, 8.75rem);                 /* Watermark (page-header title) ~39→140px; keeps the longest title word ("PRIVACIDADE" ≈ 8.5em) inside the container at any width */
 
 	/* Font weights — Vinila ships Regular and Bold in our set (no light/medium) */
 	--mtz-weight-regular: 400;
@@ -126,6 +126,17 @@
 	--mtz-color-border:     var(--mtz-color-charcoal-30);
 	--mtz-color-accent:     var(--mtz-color-coral);
 	--mtz-color-accent-alt: var(--mtz-color-teal);
+}
+
+/* Hero sizes follow the layout, since hyphenation is off on these headlines:
+   the longest word (statement "ASSINATURA." ≈ 8.6em, mood "REFERÊNCIAS"
+   ≈ 8.7em) must fit full width on mobile, and from 768px the statement's 82%
+   max-width / the mood's 46% text column. Re-check if the copy gains a longer word. */
+@media (min-width: 768px) {
+	:root {
+		--mtz-text-hero:    clamp(3.5rem, 8.2vw, 7.375rem);        /* ~63→118px */
+		--mtz-text-hero-sm: clamp(1.875rem, 5vw - 0.6rem, 4rem);   /* ~30→62px */
+	}
 }
 
 /* ─── Dark theme ─────────────────────────────────────────────────────────────
