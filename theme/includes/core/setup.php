@@ -1,7 +1,8 @@
 <?php
 
 add_action( 'init', function () {
-	load_theme_textdomain( 'matize', get_template_directory() . '/languages' );
+	// Not load_theme_textdomain(): it expects languages/<locale>.mo, while Poedit writes matize-<locale>.mo.
+	load_textdomain( 'matize', get_template_directory() . '/languages/matize-' . determine_locale() . '.mo' );
 } );
 
 // ── Remove unnecessary WordPress head output ──────────────────────────────────
