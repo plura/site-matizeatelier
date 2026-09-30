@@ -7,33 +7,88 @@
 	padding-block: var(--mtz-space-xl);
 }
 
+/* Filter bar — sticks under the header. One scrollable row on mobile (keeps the sticky bar slim);
+   wraps from 768px. Chips match .btn (caps, square); the colour lives in a swatch dot only, since
+   full-colour buttons would fight the earthy palette and fail text contrast (e.g. yellow). */
+/* layout.css clips .page-content with overflow-x:hidden, which makes it a scroll container and
+   kills sticky for the bar below. clip hides the overflow the same way without that side effect. */
+.page-gallery .page-content {
+	overflow-x: clip;
+}
+
+.gallery__bar {
+	background-color: var(--mtz-color-bg);
+	border-bottom: 1px solid var(--mtz-color-border);
+	margin-bottom: var(--mtz-space-md);
+	position: sticky;
+	top: var(--mtz-header-height, 0);
+	z-index: 10; /* below the header (100) */
+}
+
 .gallery__filters {
 	display: flex;
-	flex-wrap: wrap;
 	gap: var(--mtz-space-xs);
-	margin-bottom: var(--mtz-space-md);
+	overflow-x: auto;
+	padding-block: var(--mtz-space-xs);
+	scrollbar-width: none;
 }
 
 .gallery__filter {
-	border: 1px solid var(--mtz-color-muted);
-	border-radius: 999px;
+	--swatch: transparent;
+	align-items: center;
 	background: transparent;
+	border: 1px solid var(--mtz-color-border);
 	color: var(--mtz-color-text);
 	cursor: pointer;
+	display: inline-flex;
+	flex: none;
+	font-family: var(--mtz-font-body);
+	font-size: var(--mtz-text-caption);
+	gap: var(--mtz-space-xs);
+	letter-spacing: var(--mtz-tracking-caps);
 	padding: var(--mtz-space-xs) var(--mtz-space-sm);
+	text-transform: uppercase;
+	transition:
+		background-color var(--mtz-transition),
+		border-color var(--mtz-transition),
+		color var(--mtz-transition);
 }
 
-.gallery__filter:hover,
+.gallery__filter::before {
+	background: var(--swatch);
+	border-radius: 50%;
+	box-shadow: 0 0 0 1px var(--mtz-color-border);
+	content: '';
+	height: 0.85em;
+	width: 0.85em;
+}
+
+.gallery__filter:hover {
+	border-color: var(--mtz-color-text);
+}
+
 .gallery__filter.is-active {
-	border-color: var(--mtz-color-accent);
-	background: var(--mtz-color-accent);
-	color: var(--mtz-color-charcoal);
+	background-color: var(--mtz-color-text);
+	border-color: var(--mtz-color-text);
+	color: var(--mtz-color-bg);
 }
 
 .gallery__filter:focus-visible {
 	outline: 2px solid var(--mtz-color-accent);
-	outline-offset: 3px;
+	outline-offset: 2px;
 }
+
+/* Swatches: content colours, slightly earthy to sit with the palette */
+.gallery__filter[data-gallery-filter="all"]     { --swatch: conic-gradient(#c8453b, #e07b2a, #e3b93c, #5e8c55, #3f6fa8, #7a5a9a, #c8453b); }
+.gallery__filter[data-gallery-filter="red"]     { --swatch: #c8453b; }
+.gallery__filter[data-gallery-filter="orange"]  { --swatch: #e07b2a; }
+.gallery__filter[data-gallery-filter="yellow"]  { --swatch: #e3b93c; }
+.gallery__filter[data-gallery-filter="green"]   { --swatch: #5e8c55; }
+.gallery__filter[data-gallery-filter="blue"]    { --swatch: #3f6fa8; }
+.gallery__filter[data-gallery-filter="purple"]  { --swatch: #7a5a9a; }
+.gallery__filter[data-gallery-filter="pink"]    { --swatch: #e08fa3; }
+.gallery__filter[data-gallery-filter="brown"]   { --swatch: #7a5230; }
+.gallery__filter[data-gallery-filter="neutral"] { --swatch: linear-gradient(90deg, var(--mtz-color-charcoal) 50%, var(--mtz-color-offwhite) 50%); }
 
 .gallery__grid {
 	columns: 2;
@@ -56,6 +111,11 @@
 }
 
 @media (min-width: 768px) {
+	.gallery__filters {
+		flex-wrap: wrap;
+		overflow: visible;
+	}
+
 	.gallery__grid {
 		columns: 3;
 	}
