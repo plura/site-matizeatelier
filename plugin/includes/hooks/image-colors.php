@@ -38,19 +38,23 @@ function mtz_detect_image_color( int $attachment_id ): string|WP_Error {
 		if ( is_wp_error( $resized ) ) {
 			return $resized;
 		}
-		$size = $editor->get_size();
 	}
 
-	$image  = $editor->get_image();
-	$counts = array_fill_keys( array_keys( mtz_image_color_labels() ), 0 );
-	$width  = $size['width'];
-	$height = $size['height'];
+	// WP_Image_Editor exposes no pixel access (its resource is protected), so round-trip via a tiny PNG.
+	require_once ABSPATH . 'wp-admin/includes/file.php';
+	$tmp   = wp_tempnam( 'mtz-color.png' );
+	$saved = $editor->save( $tmp, 'image/png' );
+	if ( is_wp_error( $saved ) ) {
+		@unlink( $tmp );
+		return $saved;
+	}
 
-	if ( class_exists( 'Imagick' ) && $image instanceof Imagick ) {
-		// CMYK pixels would otherwise be read as if their channels were RGB.
-		if ( Imagick::COLORSPACE_CMYK === $image->getImageColorspace() ) {
-			$image->transformImageColorspace( Imagick::COLORSPACE_SRGB );
-		}
+	$counts = array_fill_keys( array_keys( mtz_image_color_labels() ), 0 );
+
+	if ( class_exists( 'Imagick' ) ) {
+		$image  = new Imagick( $saved['path'] );
+		$width  = $image->getImageWidth();
+		$height = $image->getImageHeight();
 		for ( $y = 0; $y < $height; $y++ ) {
 			for ( $x = 0; $x < $width; $x++ ) {
 				$pixel = $image->getImagePixelColor( $x, $y )->getColor( true );
@@ -66,11 +70,15 @@ function mtz_detect_image_color( int $attachment_id ): string|WP_Error {
 				$counts[ $color ]++;
 			}
 		}
-	} elseif ( function_exists( 'imagecolorat' ) && ( is_resource( $image ) || is_object( $image ) ) ) {
+		$image->clear();
+	} elseif ( function_exists( 'imagecreatefrompng' ) ) {
+		$image  = imagecreatefrompng( $saved['path'] );
+		$width  = imagesx( $image );
+		$height = imagesy( $image );
 		for ( $y = 0; $y < $height; $y++ ) {
 			for ( $x = 0; $x < $width; $x++ ) {
 				$pixel = imagecolorsforindex( $image, imagecolorat( $image, $x, $y ) );
-				if ( isset( $pixel['alpha'] ) && $pixel['alpha'] > 120 ) {
+				if ( $pixel['alpha'] > 120 ) {
 					continue;
 				}
 				$color = mtz_image_color_from_rgb( $pixel['red'], $pixel['green'], $pixel['blue'] );
@@ -78,9 +86,11 @@ function mtz_detect_image_color( int $attachment_id ): string|WP_Error {
 			}
 		}
 	} else {
+		@unlink( $saved['path'] );
 		return new WP_Error( 'mtz_image_color_unsupported_editor', __( 'The active image editor does not support color analysis.', 'matize' ) );
 	}
 
+	@unlink( $saved['path'] );
 	arsort( $counts );
 	$color = array_key_first( $counts );
 	if ( ! $color || $counts[ $color ] === 0 ) {
