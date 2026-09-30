@@ -63,6 +63,12 @@ Field groups live in `plugin/acf-json/` as Local JSON. ACF reads them automatica
 
 The "Sincronização disponível" notice in ACF is expected — it reflects that JSON is the source of truth and no DB sync is needed.
 
+### Gallery image colors
+
+Image attachments are automatically classified into a predominant color when WordPress generates their image metadata. Editors can override the classification in the attachment's **Cor predominante** field. The gallery page uses that classification for its color filters.
+
+To classify images already in the media library, go to **Tools → Image color backfill** and process batches until the backfill is complete. Failures are recorded in the PHP error log; rerunning the backfill is safe and preserves manual overrides.
+
 ## Translations
 
 Strings are internationalised with the `matize` text domain (both theme and plugin). Translation files go in `theme/languages/` and `plugin/languages/`.

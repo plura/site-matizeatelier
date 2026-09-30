@@ -1,0 +1,53 @@
+{
+	"key": "group_mtz_attachment_image_color",
+	"title": "Matize — Cor da Imagem",
+	"fields": [
+		{
+			"key": "field_mtz_image_color_override",
+			"label": "Cor predominante",
+			"name": "mtz_image_color_override",
+			"type": "select",
+			"instructions": "Opcional. Escolha uma cor para substituir a classificação automática apresentada na galeria.",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": { "width": "", "class": "", "id": "" },
+			"choices": {
+				"red": "Vermelho",
+				"orange": "Laranja",
+				"yellow": "Amarelo",
+				"green": "Verde",
+				"blue": "Azul",
+				"purple": "Roxo",
+				"pink": "Rosa",
+				"brown": "Castanho",
+				"neutral": "Neutro"
+			},
+			"default_value": "",
+			"allow_null": 1,
+			"multiple": 0,
+			"ui": 1,
+			"ajax": 0,
+			"return_format": "value",
+			"placeholder": "Usar cor detetada"
+		}
+	],
+	"location": [
+		[
+			{
+				"param": "attachment",
+				"operator": "==",
+				"value": "image"
+			}
+		]
+	],
+	"menu_order": 0,
+	"position": "side",
+	"style": "default",
+	"label_placement": "top",
+	"instruction_placement": "label",
+	"hide_on_screen": [],
+	"active": true,
+	"description": "",
+	"show_in_rest": 0,
+	"modified": 0
+}

@@ -11,7 +11,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 3.9\n"
 "X-Poedit-Basepath: ../includes\n"
-"X-Poedit-KeywordsList: ;__;_e;_x;_ex;_n;_nx;esc_attr_e;esc_html_e\n"
+"X-Poedit-KeywordsList: ;__;_e;_x;_ex;_n;_nx;esc_attr_e;esc_html_e;esc_attr__;esc_html__\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SearchPath-0: .\n"
 
 #: core/acf.php:26 core/acf.php:27
@@ -148,3 +149,93 @@ msgstr "Nenhum serviço encontrado no lixo"
 #: post-types/service.php:41
 msgid "Excerpt"
 msgstr "Excerto"
+
+#: hooks/image-colors.php
+msgid "Red"
+msgstr "Vermelho"
+
+#: hooks/image-colors.php
+msgid "Orange"
+msgstr "Laranja"
+
+#: hooks/image-colors.php
+msgid "Yellow"
+msgstr "Amarelo"
+
+#: hooks/image-colors.php
+msgid "Green"
+msgstr "Verde"
+
+#: hooks/image-colors.php
+msgid "Blue"
+msgstr "Azul"
+
+#: hooks/image-colors.php
+msgid "Purple"
+msgstr "Roxo"
+
+#: hooks/image-colors.php
+msgid "Pink"
+msgstr "Rosa"
+
+#: hooks/image-colors.php
+msgid "Brown"
+msgstr "Castanho"
+
+#: hooks/image-colors.php
+msgid "Neutral"
+msgstr "Neutro"
+
+#: hooks/image-colors.php
+msgid "The image file could not be found."
+msgstr "Não foi possível encontrar o ficheiro da imagem."
+
+#: hooks/image-colors.php
+msgid "The active image editor does not support color analysis."
+msgstr "O editor de imagem ativo não suporta a análise de cores."
+
+#: hooks/image-colors.php
+msgid "No visible pixels could be analyzed."
+msgstr "Não foi possível analisar píxeis visíveis."
+
+#: core/image-color-backfill.php
+msgid "Image color backfill"
+msgstr "Classificação de cores das imagens"
+
+#: core/image-color-backfill.php
+msgid "You do not have permission to access this page."
+msgstr "Não tem permissão para aceder a esta página."
+
+#: core/image-color-backfill.php
+msgid "Analyze existing image attachments in batches. Existing manual color overrides are preserved."
+msgstr "Analise as imagens existentes em lotes. As cores definidas manualmente serão preservadas."
+
+#: core/image-color-backfill.php
+msgid "Processed in this batch: %1$d. Scanned in total: %2$d."
+msgstr "Processadas neste lote: %1$d. Analisadas no total: %2$d."
+
+#: core/image-color-backfill.php
+msgid "%d image could not be analyzed. Check the PHP error log for details."
+msgid_plural "%d images could not be analyzed. Check the PHP error log for details."
+msgstr[0] "Não foi possível analisar %d imagem. Consulte o registo de erros do PHP para mais detalhes."
+msgstr[1] "Não foi possível analisar %d imagens. Consulte o registo de erros do PHP para mais detalhes."
+
+#: core/image-color-backfill.php
+msgid "Backfill complete."
+msgstr "Classificação concluída."
+
+#: core/image-color-backfill.php
+msgid "Progress — scanned: %1$d, failed: %2$d."
+msgstr "Progresso — analisadas: %1$d, falhadas: %2$d."
+
+#: core/image-color-backfill.php
+msgid "Process next batch"
+msgstr "Processar próximo lote"
+
+#: core/image-color-backfill.php
+msgid "Start again from the beginning"
+msgstr "Recomeçar desde o início"
+
+#: core/image-color-backfill.php
+msgid "You do not have permission to perform this action."
+msgstr "Não tem permissão para executar esta ação."

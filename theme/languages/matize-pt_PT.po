@@ -13,6 +13,7 @@ msgstr ""
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-KeywordsList: "
 "__;_e;_x;_ex;_n;_nx;esc_attr_e;esc_html_e;esc_attr__;esc_html__\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SearchPath-0: .\n"
 
 #: 404.php:7
@@ -122,6 +123,20 @@ msgstr "Fechar"
 #: template-parts/social-links.php:34
 msgid "Social media"
 msgstr "Redes Sociais"
+
+#: template-parts/gallery-filters.php:16
+msgid "Filter by color"
+msgstr "Filtrar por cor"
+
+#: template-parts/gallery-filters.php:17 template-parts/gallery-filters.php:18
+msgid "%d image shown"
+msgid_plural "%d images shown"
+msgstr[0] "%d imagem visível"
+msgstr[1] "%d imagens visíveis"
+
+#: template-parts/gallery-filters.php:19
+msgid "All colors"
+msgstr "Todas as cores"
 
 #~ msgid "Open menu"
 #~ msgstr "Abrir menu"
