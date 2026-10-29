@@ -23,11 +23,11 @@
 	}
 }
 
-/* Watermark treatment — outlined title, not a heavy filled slab. High-
+/* Watermark treatment — outlined title, not a heavy filled slab. Soft, low-
    contrast stroke against the bg; fill stays transparent so it reads as a
-   hollow watermark rather than solid type. */
+   faint hollow watermark rather than solid type. */
 .page-header__title {
-	-webkit-text-stroke: 2px var(--mtz-color-text);
+	-webkit-text-stroke: 2px color-mix(in srgb, var(--mtz-color-text) 16%, transparent);
 	color: transparent;
 	font-size: var(--mtz-text-watermark);
 	letter-spacing: var(--mtz-tracking-hero);
