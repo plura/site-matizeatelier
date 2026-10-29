@@ -330,6 +330,20 @@
 	letter-spacing: var(--mtz-tracking-display);
 }
 
+/* --mtz-text-section scales with viewport width, but this heading only ever
+   gets the 7fr share of .content-section--split's grid (odd rows: column 1;
+   even rows: reordered into column 2, which is 7fr there too) once that grid
+   kicks in at 768px — plus the card's own padding further narrows it. Long
+   titles (e.g. "Consultoria e Aconselhamento") wrapped to 3-4 hyphenated
+   lines from 768px up to just under 1280px, where the column is finally
+   wide enough in absolute px despite the same fr-share. Confirmed via
+   Playwright across 375/768/1024/1280px. */
+@media (min-width: 768px) and (max-width: 1279px) {
+	.content-section__body .section-header__title {
+		font-size: clamp(1.25rem, 0.59rem + 1.37vw, 1.6875rem);
+	}
+}
+
 /* Hairline divider between title/tagline and body text */
 .content-section__body .section-body::before {
 	background: rgba(10, 9, 7, 0.2);
