@@ -242,7 +242,9 @@
 	background-color: var(--mtz-color-text);
 }
 
-@media (max-width: 767px) {
+/* Hidden whenever the hamburger nav is active — see the 1023px note below
+   for why that's a wider range than the site's usual 768px breakpoint. */
+@media (max-width: 1023px) {
 	.site-nav__indicator {
 		display: none;
 	}
@@ -309,8 +311,12 @@
 	display: flex;
 }
 
-/* Mobile: nav hidden off-screen */
-@media (max-width: 767px) {
+/* Hamburger nav: hidden off-screen until opened. Extends through the 768px
+   tablet range (not just <768px like most of the site's breakpoints) —
+   the horizontal desktop nav's own content (5 items + the WPML language
+   switcher) doesn't fit in a 768px viewport; confirmed via Playwright,
+   33px of real horizontal overflow site-wide at exactly that width. */
+@media (max-width: 1023px) {
 	/* Logo and actions must paint above the nav within the header's stacking context */
 	.site-header__logo,
 	.site-header__actions {
@@ -373,8 +379,9 @@
 	}
 }
 
-/* Tablet+: actions hidden (hamburger not needed, preserves space-between) */
-@media (min-width: 768px) {
+/* Laptop+: actions hidden (hamburger not needed, preserves space-between).
+   1024px, not the usual 768px — see the hamburger-nav block above. */
+@media (min-width: 1024px) {
 	.site-header__actions {
 		display: none;
 	}
@@ -384,8 +391,8 @@
 	}
 }
 
-/* Mobile nav: full-screen menu — larger type, social icons in a row */
-@media (max-width: 767px) {
+/* Hamburger nav: full-screen menu — larger type, social icons in a row */
+@media (max-width: 1023px) {
 	.site-nav__list a {
 		font-size: var(--mtz-text-section);
 	}
