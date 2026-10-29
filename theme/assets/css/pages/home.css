@@ -260,7 +260,7 @@
    home.js only plays each card's one-shot entry animation. Each
    .plura-wp-post *is* the sticky card (the WP loop wrapper — see
    theme/includes/hooks/services.php for the strip/content markup and the
-   per-card accent tint via [data-service-accent]).
+   per-card accent colour via [data-service-accent]).
    ─────────────────────────────────────────────────────────────────────────── */
 
 .home-services {
@@ -288,10 +288,10 @@
 	top: var(--mtz-header-height, 0px);
 }
 
-.home-services__grid .plura-wp-post[data-service-accent="teal"]  { background-color: color-mix(in srgb, var(--mtz-color-teal) 26%, var(--mtz-color-offwhite)); }
-.home-services__grid .plura-wp-post[data-service-accent="gold"]  { background-color: color-mix(in srgb, var(--mtz-color-gold) 20%, var(--mtz-color-offwhite)); }
-.home-services__grid .plura-wp-post[data-service-accent="coral"] { background-color: color-mix(in srgb, var(--mtz-color-coral) 24%, var(--mtz-color-offwhite)); }
-.home-services__grid .plura-wp-post[data-service-accent="sage"]  { background-color: color-mix(in srgb, var(--mtz-color-sage) 24%, var(--mtz-color-offwhite)); }
+.home-services__grid .plura-wp-post[data-service-accent="teal"]  { background-color: var(--mtz-color-teal); }
+.home-services__grid .plura-wp-post[data-service-accent="gold"]  { background-color: var(--mtz-color-gold); }
+.home-services__grid .plura-wp-post[data-service-accent="coral"] { background-color: var(--mtz-color-coral); }
+.home-services__grid .plura-wp-post[data-service-accent="sage"]  { background-color: var(--mtz-color-sage); }
 
 /* Stack offsets — explicit per position since CSS can't multiply a sibling
    index by --mtz-service-strip without it. Headroom past today's 4 services.
