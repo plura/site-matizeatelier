@@ -126,9 +126,18 @@
    (not .site-main): .site-main is an ancestor of the home page's sticky-pinned
    .home-statement__stage / .mood-gallery__layout, and any overflow other than
    visible on a position:sticky element's ancestor breaks its stickiness.
-   .page-content doesn't exist on the home page, so this can't reach it. */
+   .page-content doesn't exist on the home page, so this can't reach it.
+   `clip`, not `hidden`: a lone non-visible overflow-x forces overflow-y to
+   compute as auto (not visible) on the other axis — with `hidden` that makes
+   .page-content an actual scroll container, which (a) broke position:sticky
+   for any descendant relying on the viewport as its scroll ancestor (see
+   gallery.css, which had to patch around this for its filter bar) and (b)
+   produced a real, visible inner scrollbar on pages where content was even
+   a few px taller than the box (margin trapped by the new block formatting
+   context — confirmed on /sobre/). `clip` paints the same bleed-clip without
+   ever establishing a scroll container, so neither side effect applies. */
 .page-content {
-	overflow-x: hidden;
+	overflow-x: clip;
 }
 
 /* ─── Section body ───────────────────────────────────────────────────────────

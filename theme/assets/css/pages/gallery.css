@@ -9,12 +9,9 @@
 
 /* Filter bar — sticks under the header. One scrollable row on mobile (keeps the sticky bar slim);
    wraps from 768px. Chips match .btn (caps, square); the colour lives in a swatch dot only, since
-   full-colour buttons would fight the earthy palette and fail text contrast (e.g. yellow). */
-/* layout.css clips .page-content with overflow-x:hidden, which makes it a scroll container and
-   kills sticky for the bar below. clip hides the overflow the same way without that side effect. */
-.page-gallery .page-content {
-	overflow-x: clip;
-}
+   full-colour buttons would fight the earthy palette and fail text contrast (e.g. yellow).
+   The sticky positioning here is why .page-content needed overflow-x: clip in the first place —
+   that base rule now lives in layout.css, this page-specific override is no longer needed. */
 
 .gallery__bar {
 	background-color: var(--mtz-color-bg);
