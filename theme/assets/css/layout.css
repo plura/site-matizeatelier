@@ -26,10 +26,11 @@
 	font-size: var(--mtz-text-watermark);
 	letter-spacing: var(--mtz-tracking-hero);
 	line-height: 1;
-	/* Both axes, not just overflow-x: line-height:1 sits tighter than the
-	   font's own box, and per spec a lone non-visible overflow-x forces
-	   overflow-y to auto rather than visible — that rendered a scrollbar. */
-	overflow: hidden;
+	/* clip, not hidden: line-height:1 sits tighter than the glyphs, so any
+	   vertical clipping cut descenders ("Ç" in SERVIÇOS) — and a lone
+	   overflow-x: hidden forces overflow-y to auto (a scrollbar). clip on one
+	   axis leaves the other visible. */
+	overflow-x: clip;
 	/* Single words fit (see --mtz-text-watermark and --long below); multi-word
 	   titles like "Política de Privacidade" wrap instead of being clipped. */
 	text-wrap: balance;
