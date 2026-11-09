@@ -37,6 +37,17 @@
 	visibility: hidden;
 }
 
+/* Phones/small tablets: size to the content width instead of a flat 12vw,
+   which was capped by the 24px gutters at 320px and left room at 375+.
+   6.9 = widest single word in use, CONTACTO (≈6.77em at this tracking),
+   plus ~2% slack — re-measure if a page gets a wider one-word title. */
+@media (max-width: 767px) {
+	.page-header__title {
+		font-size: calc((100vw - 2 * var(--mtz-gutter)) / 6.9);
+		letter-spacing: 0.025em;
+	}
+}
+
 /* A word over 8 letters (e.g. "PRIVACIDADE", ≈8.5em) — flagged in
    page-header.php — steps down to 10vw so it still fits on a phone. */
 .page-header__title--long {
