@@ -322,7 +322,15 @@
 	--mtz-color-muted: var(--mtz-color-charcoal-82);
 	background-color: var(--mtz-section-accent);
 	border-radius: var(--mtz-radius-lg);
-	padding: var(--mtz-space-xl) var(--mtz-space-lg);
+	/* 40px inline left a ~26-character measure — on phones, and again from
+	   768px where the split grid gives the card only ~343px */
+	padding: var(--mtz-space-lg) var(--mtz-space-md);
+}
+
+@media (min-width: 1024px) {
+	.content-section__body {
+		padding: var(--mtz-space-xl) var(--mtz-space-lg);
+	}
 }
 
 .content-section__body .section-header__title {

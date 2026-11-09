@@ -3,23 +3,17 @@
    Common title section for all inner pages (not front page).
    ─────────────────────────────────────────────────────────────────────────── */
 
+/* The bottom padding is the only gap between title (or intro) and content on
+   every page — see the first-child reset below. No min-height: a fixed box
+   left ~115px of dead space under the short mobile title, and titles already
+   share the same top offset, so pages with an intro are simply taller. */
 .page-header {
-	padding-block: var(--mtz-space-2xl) var(--mtz-space-md);
+	padding-block: var(--mtz-space-xl) var(--mtz-space-lg);
 }
 
 @media (min-width: 768px) {
 	.page-header {
-		padding-block-end: var(--mtz-space-lg);
-	}
-}
-
-.page-header__inner {
-	min-height: 160px;
-}
-
-@media (min-width: 768px) {
-	.page-header__inner {
-		min-height: 200px;
+		padding-block: var(--mtz-space-2xl) var(--mtz-space-xl);
 	}
 }
 
@@ -112,12 +106,13 @@
 	}
 }
 
-/* .page-content is a purely structural wrapper (no styling of its own) —
-   this targets whichever page-specific wrapper is its first child, since
-   .page-header already provides the top gap. .content-section is excluded:
-   about.php/page.php rely on its own padding-block as that gap instead. */
-.page-content > *:first-child:not(.content-section),
-.page-content > *:first-child:not(.content-section) > .container:first-child {
+/* .page-header provides the top gap, so whatever opens .page-content starts
+   flush: the page wrapper itself (contact, gallery, page.php's section), its
+   first .container (contact, services), and a first .content-section nested
+   one or two levels down (about, services). */
+.page-content > :first-child,
+.page-content > :first-child > :is(.container, .content-section):first-child,
+.page-content > :first-child > .container:first-child > .content-section:first-child {
 	padding-block-start: 0;
 }
 
@@ -147,7 +142,15 @@
 .section-body {
 	color: var(--mtz-color-muted);
 	font-size: var(--mtz-text-body);
-	line-height: var(--mtz-leading-loose);
+	line-height: var(--mtz-leading-normal);
+}
+
+/* Loose leading only once the measure is wide enough to need it (matches
+   .content-section__body's padding step) */
+@media (min-width: 1024px) {
+	.section-body {
+		line-height: var(--mtz-leading-loose);
+	}
 }
 
 /* ─── Header ─────────────────────────────────────────────────────────────────
