@@ -285,11 +285,14 @@ ul, ol {
 
 /* Headings — Vinila Extended, caps-only per the brand manual.
    3 levels only: Display (h1) Bold .18 · Heading 01 (h2) Bold .22 · Section (h3+) Regular .28
-   hyphens: auto relies on lang="pt" / lang="en" set by WordPress on <html>. */
+   No auto hyphenation (client call): Safari hyphenates even words that would
+   fit on the next line ("INTERIO-RES"). Long-word headings are sized to fit
+   instead; break-word is only a last resort for a word wider than its box. */
 h1, h2, h3, h4, h5, h6 {
 	font-family: var(--mtz-font-heading);
 	font-weight: var(--mtz-weight-bold);
-	hyphens: auto;
+	hyphens: manual;
+	overflow-wrap: break-word;
 	letter-spacing: var(--mtz-tracking-display);
 	line-height: var(--mtz-leading-tight);
 	text-transform: uppercase;

@@ -385,11 +385,19 @@
 	max-width: 620px;
 }
 
+/* Phones: capped so ACOMPANHAMENTO (≈12.5em at this tracking) fits the
+   full-width text row — headings don't hyphenate (base.css). */
 .home-services__text .plura-wp-post-title {
-	font-size: clamp(24px, 3vw, 44px);
+	font-size: min(24px, (100vw - 2 * var(--mtz-gutter)) / 12.9);
 	font-weight: var(--mtz-weight-bold);
 	letter-spacing: 0.03em;
 	line-height: 1.15;
+}
+
+@media (min-width: 768px) {
+	.home-services__text .plura-wp-post-title {
+		font-size: clamp(24px, 3vw, 44px);
+	}
 }
 
 /* Capped on mobile so a long excerpt ends in an ellipsis, not mid-line at

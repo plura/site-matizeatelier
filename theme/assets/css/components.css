@@ -336,6 +336,17 @@
 .content-section__body .section-header__title {
 	font-size: var(--mtz-text-section);
 	letter-spacing: var(--mtz-tracking-display);
+	text-wrap: balance;
+}
+
+/* Phones: sized so the longest word, ACOMPANHAMENTO (≈14.6em with this
+   tracking), always fits the card's text column (viewport minus gutters and
+   card padding) — headings don't hyphenate, so a title takes a 3rd line
+   rather than splitting a word. 15 = 14.6em + slack. */
+@media (max-width: 767px) {
+	.content-section__body .section-header__title {
+		font-size: min(1.375rem, (100vw - 2 * var(--mtz-gutter) - 2 * var(--mtz-space-md)) / 15);
+	}
 }
 
 /* --mtz-text-section scales with viewport width, but this heading only ever
@@ -346,16 +357,6 @@
    lines from 768px up to just under 1280px, where the column is finally
    wide enough in absolute px despite the same fr-share. Confirmed via
    Playwright across 375/768/1024/1280px. */
-/* Phones: the longest words (ACONSELHAMENTO, ACOMPANHAMENTO ≈ 14.6em with
-   tracking) overflowed the card's text column at 22px up to 414px wide and
-   got hyphenated. 5vw keeps them on one line from ~360px up; 320px still
-   hyphenates rather than dropping below 16px. */
-@media (max-width: 767px) {
-	.content-section__body .section-header__title {
-		font-size: clamp(1rem, 5vw, 1.375rem);
-	}
-}
-
 @media (min-width: 768px) and (max-width: 1279px) {
 	.content-section__body .section-header__title {
 		font-size: clamp(1.25rem, 0.59rem + 1.37vw, 1.6875rem);
