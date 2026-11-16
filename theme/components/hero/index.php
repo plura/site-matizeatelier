@@ -2,14 +2,14 @@
 // Shortcodes for index.html — the parts a static component template can't
 // hold: ACF data, translated strings, the shared icon helper.
 
-// Hero video: ACF "Página Inicial → Hero → Vídeo" when set, else the original upload.
+// Hero video: ACF "Página Inicial → Hero → Vídeo" when set, else the latest default upload.
 add_shortcode( 'matize-hero-video', function () {
 
 	$video = ( get_field( 'mtz_home_hero' ) ?: [] )['mtz_hero_video'] ?? null;
 
 	return sprintf(
 		'<video class="hero__video" autoplay loop muted playsinline disablepictureinpicture aria-hidden="true"><source src="%s" type="%s"></video>',
-		esc_url( $video['url'] ?? wp_get_upload_dir()['baseurl'] . '/2026/04/mtz-hero-20260411.webm' ),
+		esc_url( $video['url'] ?? wp_get_upload_dir()['baseurl'] . '/2026/11/mtz-hero-20261116.webm' ),
 		esc_attr( $video['mime_type'] ?? 'video/webm' )
 	);
 
