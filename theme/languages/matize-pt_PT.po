@@ -128,6 +128,21 @@ msgstr "Obrigado pelo seu contacto. Responderemos em breve."
 msgid "A copy of your message has been sent to your email address."
 msgstr "Enviámos uma cópia da sua mensagem para o seu email."
 
+#: plugin/includes/core/form.php
+msgid "We received your enquiry"
+msgstr "Recebemos a sua mensagem"
+
+#: plugin/includes/core/form.php
+#, php-format
+msgid ""
+"Dear %s, thank you for getting in touch. We have received your message and "
+"will be in touch with you shortly. Below you will find a copy of your "
+"message for your records."
+msgstr ""
+"Olá %s, obrigado pelo seu contacto. Recebemos a sua mensagem e entraremos em "
+"contacto brevemente. Para sua referência, fica aqui uma cópia do que nos "
+"enviou."
+
 #: template-parts/cta.php:9
 msgid "Get in Touch"
 msgstr "Entrar em Contacto"

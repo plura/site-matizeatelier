@@ -108,7 +108,7 @@ add_filter( 'pre_determine_locale', function ( $locale ) {
 	if ( ! wp_doing_ajax() || 'mtz_form' !== ( $_POST['action'] ?? '' ) || ! is_string( $_POST['mtz_lang'] ?? null ) ) {
 		return $locale;
 	}
-	return 'en' === matize_brevo_lang( $_POST['mtz_lang'] ) ? 'en_US' : 'pt_PT';
+	return 'pt' === mtz_email_lang( $_POST['mtz_lang'] ) ? 'pt_PT' : 'en_US';
 } );
 
 // Runs only after the enquiry was sent; honeypot and rate-limited requests exit earlier.
