@@ -44,13 +44,23 @@ add_filter( 'body_class', fn() => [] );
 add_filter( 'rank_math/opengraph/type', fn( $type ) => is_page() ? 'website' : $type );
 
 // ── RankMath: sitemap — EN front page at /en/, not its /en/home/ redirect ─────
+// Cached sitemap files skip this filter and survive code deploys; the site is small enough to build each time.
+add_filter( 'rank_math/sitemap/enable_caching', '__return_false' );
+
 add_filter( 'rank_math/sitemap/entry', function ( $url, $type, $object ) {
+	static $en_front = null;
+
 	// Not typed as WP_Post: Rank Math's provider can pass plain row objects.
 	if ( 'post' !== $type || ! is_array( $url ) || empty( $object->ID ) ) return $url;
 
-	$en_front = apply_filters( 'wpml_object_id', (int) get_option( 'page_on_front' ), 'page', false, 'en' );
+	// Read the translation group: Rank Math disables WPML's ID adjustment while building.
+	if ( null === $en_front ) {
+		$trid         = apply_filters( 'wpml_element_trid', null, (int) get_option( 'page_on_front' ), 'post_page' );
+		$translations = $trid ? apply_filters( 'wpml_get_element_translations', null, $trid, 'post_page' ) : [];
+		$en_front     = (int) ( $translations['en']->element_id ?? 0 );
+	}
 
-	if ( $en_front && (int) $en_front === (int) $object->ID ) {
+	if ( $en_front && $en_front === (int) $object->ID ) {
 		$url['loc'] = apply_filters( 'wpml_permalink', home_url( '/' ), 'en' );
 	}
 
