@@ -178,6 +178,19 @@
 					"maxlength": ""
 				}
 			]
+		},
+		{
+			"key": "field_mtz_brevo_api_key",
+			"label": "Newsletter: Chave API do Brevo",
+			"name": "mtz_brevo_api_key",
+			"type": "password",
+			"instructions": "Se vazio, a opção de newsletter não aparece no formulário.",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": { "width": "", "class": "", "id": "" },
+			"placeholder": "",
+			"prepend": "",
+			"append": ""
 		}
 	],
 	"location": [

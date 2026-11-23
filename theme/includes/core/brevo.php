@@ -1,11 +1,14 @@
 <?php
 /**
  * Optional newsletter signup on the contact form, via Brevo double opt-in.
- * Credentials live in wp-config.php: if any constant is missing, the checkbox
- * isn't rendered and nothing is sent.
+ * The API key is set in Theme Settings: while it's empty, the checkbox isn't
+ * rendered and nothing is sent.
  */
 
 if ( ! defined( 'ABSPATH' ) ) exit;
+
+const MTZ_BREVO_LIST_ID       = 3;
+const MTZ_BREVO_DOI_TEMPLATES = [ 'pt' => 1, 'en' => 2 ];
 
 /**
  * Reduces a WPML code (Portuguese is "pt-pt") or posted value to pt or en.
@@ -18,15 +21,23 @@ function matize_brevo_lang( ?string $lang ): string {
 }
 
 /**
- * Whether every Brevo constant is defined and non-empty.
+ * Reads the API key from Theme Settings. Uses the raw options because ACF can
+ * store options per WPML language, and get_field() on /en/ would miss a key
+ * saved while the admin was in PT.
+ *
+ * @return string The key, or an empty string if unset.
+ */
+function matize_brevo_api_key(): string {
+	return trim( (string) ( get_option( 'options_mtz_brevo_api_key' ) ?: get_option( 'options_en_mtz_brevo_api_key' ) ) );
+}
+
+/**
+ * Whether the Brevo API key has been set.
  *
  * @return bool
  */
 function matize_brevo_is_configured(): bool {
-	foreach ( [ 'MATIZE_BREVO_API_KEY', 'MATIZE_BREVO_LIST_ID', 'MATIZE_BREVO_DOI_TEMPLATE_ID_PT', 'MATIZE_BREVO_DOI_TEMPLATE_ID_EN' ] as $name ) {
-		if ( ! defined( $name ) || ! constant( $name ) ) return false;
-	}
-	return true;
+	return '' !== matize_brevo_api_key();
 }
 
 /**
@@ -71,14 +82,14 @@ function matize_brevo_subscribe( string $email, string $name, string $lang ): bo
 		'timeout' => 3,
 		'headers' => [
 			'accept'       => 'application/json',
-			'api-key'      => MATIZE_BREVO_API_KEY,
+			'api-key'      => matize_brevo_api_key(),
 			'content-type' => 'application/json',
 		],
 		'body'    => wp_json_encode( [
 			'email'          => $email,
 			'attributes'     => array_filter( [ 'FIRSTNAME' => strtok( trim( $name ), ' ' ), 'LANGUAGE' => $lang ] ),
-			'includeListIds' => [ (int) MATIZE_BREVO_LIST_ID ],
-			'templateId'     => (int) ( 'en' === $lang ? MATIZE_BREVO_DOI_TEMPLATE_ID_EN : MATIZE_BREVO_DOI_TEMPLATE_ID_PT ),
+			'includeListIds' => [ MTZ_BREVO_LIST_ID ],
+			'templateId'     => MTZ_BREVO_DOI_TEMPLATES[ $lang ],
 			'redirectionUrl' => $redirect,
 		] ),
 	] );
