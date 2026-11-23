@@ -90,14 +90,15 @@ function mtz_form_option( string $key ): array {
 
 function mtz_handle_form(): void {
 
+	// ── Language ──────────────────────────────────────────────────────────────
+	// Only selects translations, so it's safe before the nonce. Error exits end
+	// the request, so only the success path restores it.
+	mtz_form_switch_language( mtz_form_language() );
+
 	// ── Nonce ─────────────────────────────────────────────────────────────────
 	if ( ! check_ajax_referer( 'mtz_form', 'nonce', false ) ) {
 		wp_send_json_error( [ 'message' => __( 'Security check failed.', 'matize' ) ], 403 );
 	}
-
-	// ── Language ──────────────────────────────────────────────────────────────
-	// Error exits below end the request, so only the success path restores it.
-	mtz_form_switch_language( mtz_form_language() );
 
 	// ── Honeypot ──────────────────────────────────────────────────────────────
 	if ( ! empty( $_POST['mtz_website'] ) ) {
