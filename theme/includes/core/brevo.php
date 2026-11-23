@@ -113,23 +113,12 @@ function matize_brevo_subscribe( string $email, string $name, string $lang ): bo
 	return false;
 }
 
-// admin-ajax otherwise takes its locale from WPML's cookie, which can disagree
-// with the page the visitor actually submitted from.
-add_filter( 'pre_determine_locale', function ( $locale ) {
-	if ( ! wp_doing_ajax() || 'mtz_form' !== ( $_POST['action'] ?? '' ) || ! is_string( $_POST['mtz_lang'] ?? null ) ) {
-		return $locale;
-	}
-	return 'pt' === mtz_email_lang( $_POST['mtz_lang'] ) ? 'pt_PT' : 'en_US';
-} );
-
 // Runs only after the enquiry was sent; honeypot and rate-limited requests exit earlier.
 add_filter( 'mtz_form_success_messages', function ( array $messages, array $fields ): array {
 	if ( '1' !== ( $_POST['newsletter_optin'] ?? '' ) ) return $messages;
 
 	try {
-		$lang = is_string( $_POST['mtz_lang'] ?? null ) ? $_POST['mtz_lang'] : (string) apply_filters( 'wpml_current_language', null );
-
-		if ( matize_brevo_subscribe( $fields['mtz_email']['value'] ?? '', $fields['mtz_name']['value'] ?? '', sanitize_key( $lang ) ) ) {
+		if ( matize_brevo_subscribe( $fields['mtz_email']['value'] ?? '', $fields['mtz_name']['value'] ?? '', mtz_form_language() ) ) {
 			$messages[] = __( 'You will receive an email to confirm your subscription.', 'matize' );
 		}
 	} catch ( \Throwable $e ) {

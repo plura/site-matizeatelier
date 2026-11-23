@@ -15,7 +15,6 @@ msgstr ""
 "X-Poedit-KeywordsList: "
 "__;_e;_x;_ex;_n;_nx;esc_attr_e;esc_html_e;esc_attr__;esc_html__\n"
 "X-Poedit-SearchPath-0: .\n"
-"X-Poedit-SearchPath-1: ../plugin\n"
 
 #: 404.php:7
 msgid "Page not found"
@@ -120,49 +119,6 @@ msgstr "Política de privacidade"
 #: includes/core/brevo.php
 msgid "You will receive an email to confirm your subscription."
 msgstr "Vai receber um email para confirmar a subscrição."
-
-#: plugin/includes/core/form.php
-msgid "Thank you for reaching out. We'll be in touch soon."
-msgstr "Obrigado pelo seu contacto. Responderemos em breve."
-
-#: plugin/includes/core/form.php
-msgid "A copy of your message has been sent to your email address."
-msgstr "Enviámos uma cópia da sua mensagem para o seu email."
-
-#: plugin/includes/core/form.php
-msgid "We received your enquiry"
-msgstr "Recebemos a sua mensagem"
-
-#: plugin/includes/core/form.php
-#, php-format
-msgid ""
-"Dear %s, thank you for getting in touch. We have received your message and "
-"will be in touch with you shortly. Below you will find a copy of your "
-"message for your records."
-msgstr ""
-"Olá %s, obrigado pelo seu contacto. Recebemos a sua mensagem e entraremos em "
-"contacto brevemente. Para sua referência, fica aqui uma cópia do que nos "
-"enviou."
-
-#: plugin/includes/core/form.php
-msgid "Security check failed."
-msgstr "A verificação de segurança falhou."
-
-#: plugin/includes/core/form.php
-msgid "Too many messages sent. Please try again later."
-msgstr "Foram enviadas demasiadas mensagens. Tente novamente mais tarde."
-
-#: plugin/includes/core/form.php plugin/includes/core/i18n.php
-msgid "Please fill in all required fields."
-msgstr "Preencha todos os campos obrigatórios."
-
-#: plugin/includes/core/form.php
-msgid "Please enter a valid email address."
-msgstr "Introduza um endereço de email válido."
-
-#: plugin/includes/core/form.php plugin/includes/core/i18n.php
-msgid "Something went wrong. Please try again."
-msgstr "Ocorreu um erro. Tente novamente."
 
 #: template-parts/cta.php:9
 msgid "Get in Touch"

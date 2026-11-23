@@ -32,12 +32,72 @@ add_action( 'wp_enqueue_scripts', function () {
 add_action( 'wp_ajax_nopriv_mtz_form', 'mtz_handle_form' );
 add_action( 'wp_ajax_mtz_form',        'mtz_handle_form' );
 
+/**
+ * Language of the page the form was submitted from.
+ *
+ * @return string "pt" or "en"; anything else falls back to "pt".
+ */
+function mtz_form_language(): string {
+	$lang = is_string( $_POST['mtz_lang'] ?? null ) ? sanitize_key( wp_unslash( $_POST['mtz_lang'] ) ) : '';
+	return in_array( $lang, [ 'pt', 'en' ], true ) ? $lang : 'pt';
+}
+
+/**
+ * Switches WPML and the 'matize' catalogs for this request. admin-ajax keeps the
+ * PT plugin catalog loaded, and switch_to_locale() can't reload the theme's
+ * custom-named .mo. English needs no catalog because msgids are English.
+ *
+ * @param string|null $lang "pt" or "en", or null to restore the previous state.
+ * @return void
+ */
+function mtz_form_switch_language( ?string $lang ): void {
+	do_action( 'wpml_switch_language', null === $lang ? null : ( 'en' === $lang ? 'en' : 'pt-pt' ) );
+
+	// Non-reloadable while switched, or just-in-time loading would bring PT back.
+	unload_textdomain( 'matize', null === $lang );
+
+	if ( 'pt' === $lang ) {
+		load_textdomain( 'matize', plugin_dir_path( dirname( __DIR__ ) ) . 'languages/matize-pt_PT.mo' );
+	}
+
+	if ( null !== $lang ) {
+		/**
+		 * Lets the theme load its own catalog after a form language switch.
+		 *
+		 * @param string $lang "pt" or "en".
+		 */
+		do_action( 'mtz_form_language_switched', $lang );
+	}
+}
+
+/**
+ * Reads an ACF options group from the default language. Options are stored per
+ * language and the EN set is incomplete, which would change the enquiry
+ * recipient and leave empty links in the email footer.
+ *
+ * @param string $key Options field name.
+ * @return array Field value, or an empty array.
+ */
+function mtz_form_option( string $key ): array {
+	if ( ! function_exists( 'get_field' ) ) return [];
+
+	add_filter( 'acf/settings/current_language', '__return_false' );
+	$value = get_field( $key, 'option' ) ?: [];
+	remove_filter( 'acf/settings/current_language', '__return_false' );
+
+	return is_array( $value ) ? $value : [];
+}
+
 function mtz_handle_form(): void {
 
 	// ── Nonce ─────────────────────────────────────────────────────────────────
 	if ( ! check_ajax_referer( 'mtz_form', 'nonce', false ) ) {
 		wp_send_json_error( [ 'message' => __( 'Security check failed.', 'matize' ) ], 403 );
 	}
+
+	// ── Language ──────────────────────────────────────────────────────────────
+	// Error exits below end the request, so only the success path restores it.
+	mtz_form_switch_language( mtz_form_language() );
 
 	// ── Honeypot ──────────────────────────────────────────────────────────────
 	if ( ! empty( $_POST['mtz_website'] ) ) {
@@ -88,7 +148,7 @@ function mtz_handle_form(): void {
 
 	// ── Build and send email ──────────────────────────────────────────────────
 	$form_name  = sanitize_text_field( wp_unslash( $_POST['form_name'] ?? __( 'Form Submission', 'matize' ) ) );
-	$cta        = function_exists( 'get_field' ) ? ( get_field( 'mtz_cta_enquiry', 'option' ) ?: [] ) : [];
+	$cta        = mtz_form_option( 'mtz_cta_enquiry' );
 	$to_email   = $cta['mtz_cta_enquiry_email'] ?? '';
 	$to_name    = $cta['mtz_cta_enquiry_name']  ?? '';
 	$to         = $to_email
@@ -153,6 +213,8 @@ function mtz_handle_form(): void {
 	 */
 	$messages = apply_filters( 'mtz_form_success_messages', $messages, $fields );
 
+	mtz_form_switch_language( null );
+
 	wp_send_json_success( [ 'message' => implode( ' ', $messages ) ] );
 }
 
@@ -185,7 +247,7 @@ function mtz_break_gmail_autolink( string $escaped_text ): string {
  * @return array<string,string> Placeholder token => HTML value.
  */
 function mtz_get_contact_placeholders(): array {
-	$contact = function_exists( 'get_field' ) ? ( get_field( 'mtz_contact', 'option' ) ?: [] ) : [];
+	$contact = mtz_form_option( 'mtz_contact' );
 
 	$contact_address     = ! empty( $contact['mtz_contact_address'] ) ? wp_kses( $contact['mtz_contact_address'], [ 'br' => [] ] ) : '';
 	$contact_address_url = ! empty( $contact['mtz_contact_address_url'] )
@@ -224,7 +286,7 @@ function mtz_get_contact_placeholders(): array {
  * @return array<string,string> Placeholder token => URL.
  */
 function mtz_get_social_placeholders(): array {
-	$social = function_exists( 'get_field' ) ? ( get_field( 'mtz_social', 'option' ) ?: [] ) : [];
+	$social = mtz_form_option( 'mtz_social' );
 
 	return [
 		'%SOCIAL_INSTAGRAM_URL%' => ! empty( $social['mtz_social_instagram'] ) ? esc_url( $social['mtz_social_instagram'] ) : '',
