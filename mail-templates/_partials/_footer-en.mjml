@@ -41,7 +41,7 @@
 			<mj-raw>
 				<tr>
 					<td align="center" style="font-size:0; padding:0 0 20px; word-break:break-word;">
-						<div style="text-align:center; font-size:11px; letter-spacing:0.03em; line-height:1.9;">
+						<div style="color:#6B6558; font-family:Helvetica Neue, Helvetica, Arial, sans-serif; text-align:center; font-size:11px; letter-spacing:0.03em; line-height:1.9;">
 							<a href="%SOCIAL_INSTAGRAM_URL%" style="color:#7FB8A4; text-decoration:none;">Instagram</a>
 							&nbsp;&middot;&nbsp;
 							<a href="%SOCIAL_FACEBOOK_URL%" style="color:#7FB8A4; text-decoration:none;">Facebook</a>

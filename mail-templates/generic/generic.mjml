@@ -36,11 +36,16 @@
 			<mj-include path="../_partials/_title-band.mjml" />
 			<mj-section mj-class="mtz-card-body">
 				<mj-column mj-class="mtz-hpad mtz-card-vpad">
-					<mj-raw>%INTRO%</mj-raw>
+					<!-- The <tr><td> keeps HTML5 parsers from closing the outer tables early. -->
 					<mj-raw>
-						<table class="form-data" role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
-							%FIELDS%
-						</table>
+						<tr>
+							<td style="padding:0; font-family:Helvetica Neue, Helvetica, Arial, sans-serif;">
+								%INTRO%
+								<table class="form-data" style="font-family:Helvetica Neue, Helvetica, Arial, sans-serif;" role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+									%FIELDS%
+								</table>
+							</td>
+						</tr>
 					</mj-raw>
 				</mj-column>
 			</mj-section>
