@@ -89,11 +89,20 @@ SMTP is handled by the **WP Mail SMTP** plugin (installed, configured separately
 
 JS-facing error strings are centralised in `plugin/includes/core/i18n.php` and exposed as `mtzLang` via `wp_localize_script`.
 
+### Newsletter opt-in
+
+`theme/includes/core/brevo.php` adds an optional checkbox that subscribes the contact through Brevo double opt-in, after the enquiry email has been sent.
+
+- **API key:** Theme Settings → Newsletter: Chave API do Brevo. While empty, the checkbox isn't rendered.
+- **List and DOI template IDs:** constants at the top of `brevo.php`.
+- **Confirmation pages:** `newsletter-confirmada` and its WPML translation, falling back to the language's homepage.
+- **Failures:** logged with `error_log` only; they never affect the form response.
+
 ### Email templates
 
 `mtz_build_email_body()` resolves which template to use in this order: an explicit `$template` argument → the `mtz_email_template` filter (lets a theme supply its own bespoke template per form without the plugin needing to know the theme's file structure) → the plugin's own field-agnostic fallback at `plugin/templates/generic.html`. Every submitted field is also exposed as its own `%<field_key>%` placeholder (e.g. `%mtz_email%`), alongside the aggregate `%FIELDS%` table, so a bespoke template can lay fields out individually.
 
-`theme/includes/core/email.php` hooks `mtz_email_template` to serve the theme's bespoke contact templates (`theme/templates/contact/contact-{en,pt}.html` for the admin notification, `contact-reply-{en,pt}.html` for the auto-reply) — language picked via WPML's `wpml_current_language` filter, reply vs. notification via the filter's third (`$is_reply`) argument.
+`theme/includes/core/email.php` hooks `mtz_email_template` to serve the theme's bespoke contact templates (`theme/templates/contact/contact-{en,pt}.html` for the admin notification, `contact-reply-{en,pt}.html` for the auto-reply) — language taken from the form's posted `mtz_lang`, falling back to WPML's `wpml_current_language`, reply vs. notification via the filter's third (`$is_reply`) argument.
 
 Templates are authored as MJML in `/mail-templates` (dev-only, not deployed) and compiled to the `.html` files actually used at runtime:
 
