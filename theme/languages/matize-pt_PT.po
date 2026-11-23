@@ -108,6 +108,26 @@ msgstr "A sua mensagem"
 msgid "Send"
 msgstr "Enviar"
 
+#: template-parts/contact-form.php
+msgid "I'd like to receive news from Matize Atelier by email."
+msgstr "Quero receber novidades da Matize Atelier por email."
+
+#: template-parts/contact-form.php
+msgid "Privacy policy"
+msgstr "Política de privacidade"
+
+#: includes/core/brevo.php
+msgid "You will receive an email to confirm your subscription."
+msgstr "Vai receber um email para confirmar a subscrição."
+
+#: plugin/includes/core/form.php
+msgid "Thank you for reaching out. We'll be in touch soon."
+msgstr "Obrigado pelo seu contacto. Responderemos em breve."
+
+#: plugin/includes/core/form.php
+msgid "A copy of your message has been sent to your email address."
+msgstr "Enviámos uma cópia da sua mensagem para o seu email."
+
 #: template-parts/cta.php:9
 msgid "Get in Touch"
 msgstr "Entrar em Contacto"

@@ -144,6 +144,15 @@ function mtz_handle_form(): void {
 	if ( $reply_sent ) {
 		$messages[] = __( 'A copy of your message has been sent to your email address.', 'matize' );
 	}
+
+	/**
+	 * Filters the success messages after the enquiry has been sent.
+	 *
+	 * @param string[] $messages Sentences joined into the response.
+	 * @param array    $fields   Sanitized submitted fields.
+	 */
+	$messages = apply_filters( 'mtz_form_success_messages', $messages, $fields );
+
 	wp_send_json_success( [ 'message' => implode( ' ', $messages ) ] );
 }
 

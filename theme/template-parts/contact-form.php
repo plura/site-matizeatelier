@@ -4,12 +4,16 @@
  * Used in: template-parts/cta.php (modal), page-contact.php
  * Submission handled via AJAX — see plugin/includes/core/form.php
  */
+
+$lang        = matize_brevo_lang( apply_filters( 'wpml_current_language', null ) );
+$privacy_url = matize_brevo_page_url( 'politica-de-privacidade', $lang );
 ?>
 
 <form
 	class="contact-form mtz-form"
 	data-mtz-form
 	data-form-name="<?php esc_attr_e( 'New Enquiry', 'matize' ); ?>"
+	data-lang="<?php echo esc_attr( $lang ); ?>"
 	novalidate
 >
 	<!-- Honeypot — hidden from real users, bots fill it -->
@@ -34,6 +38,19 @@
 		<?php esc_html_e( 'Message', 'matize' ); ?>
 		<textarea name="mtz_message" required placeholder="<?php esc_attr_e( 'Your message', 'matize' ); ?>" rows="5"></textarea>
 	</label>
+
+	<?php if ( matize_brevo_is_configured() ) : ?>
+		<!-- Link sits outside the label so opening it doesn't toggle the checkbox. -->
+		<div class="mtz-form__optin">
+			<label>
+				<input type="checkbox" name="newsletter_optin" value="1">
+				<span><?php esc_html_e( "I'd like to receive news from Matize Atelier by email.", 'matize' ); ?></span>
+			</label>
+			<?php if ( $privacy_url ) : ?>
+				<a href="<?php echo esc_url( $privacy_url ); ?>" target="_blank" rel="noopener"><?php esc_html_e( 'Privacy policy', 'matize' ); ?></a>
+			<?php endif; ?>
+		</div>
+	<?php endif; ?>
 
 	<div class="mtz-form__footer">
 		<p class="mtz-form__feedback" aria-live="polite"></p>

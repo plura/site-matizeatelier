@@ -71,6 +71,43 @@
 	resize: vertical;
 }
 
+/* ── Newsletter opt-in ── */
+
+.mtz-form__optin {
+	--mtz-optin-box: 1.125rem;
+	display: grid;
+	font-size: var(--mtz-text-body);
+	gap: var(--mtz-space-xs);
+	line-height: 1.4;
+}
+
+.mtz-form__optin label {
+	cursor: pointer;
+	display: flex;
+	gap: var(--mtz-space-xs);
+}
+
+.mtz-form__optin input {
+	accent-color: var(--mtz-color-text);
+	flex: none;
+	height: var(--mtz-optin-box);
+	margin: 0.1em 0 0;
+	width: var(--mtz-optin-box);
+}
+
+.mtz-form__optin a {
+	color: var(--mtz-color-text);
+	font-size: var(--mtz-text-caption);
+	justify-self: start;
+	margin-left: calc(var(--mtz-optin-box) + var(--mtz-space-xs));
+	text-decoration: underline;
+}
+
+.mtz-form__optin :is(input, a):focus-visible {
+	outline: 2px solid var(--mtz-color-text);
+	outline-offset: 2px;
+}
+
 /* ── Footer row (feedback + submit) ──
    Mobile: stacked (feedback above button). Desktop: side by side. */
 

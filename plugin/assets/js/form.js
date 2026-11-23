@@ -8,7 +8,9 @@ function mtzBuildFormData( form ) {
 	const fields   = {};
 
 	form.querySelectorAll( '[name]' ).forEach( el => {
-		if ( el.name === 'mtz_website' ) return; // honeypot — sent separately
+		// Sent separately: the honeypot, and the opt-in, whose .value is "1" even
+		// when unchecked and which must stay out of the enquiry email.
+		if ( [ 'mtz_website', 'newsletter_optin' ].includes( el.name ) ) return;
 		const type = el.tagName === 'TEXTAREA' ? 'textarea' : ( el.type || 'text' );
 		fields[ el.name ] = {
 			label:    el.closest( 'label' )?.firstChild?.textContent?.trim() ?? el.name,
@@ -23,6 +25,8 @@ function mtzBuildFormData( form ) {
 	body.append( 'nonce',       mtzForms.nonce );
 	body.append( 'form_name',   formName );
 	body.append( 'mtz_website', form.querySelector( '[name="mtz_website"]' )?.value ?? '' );
+	if ( form.dataset.lang ) body.append( 'mtz_lang', form.dataset.lang );
+	if ( form.querySelector( '[name="newsletter_optin"]' )?.checked ) body.append( 'newsletter_optin', '1' );
 
 	Object.entries( fields ).forEach( ( [ key, field ] ) => {
 		body.append( `fields[${ key }][label]`,    field.label );
