@@ -73,7 +73,8 @@ function mtz_form_switch_language( ?string $lang ): void {
 /**
  * Reads an ACF options group from the default language. Options are stored per
  * language and the EN set is incomplete, which would change the enquiry
- * recipient and leave empty links in the email footer.
+ * recipient and leave empty links in the email footer. WPML is switched too
+ * because ACFML can resolve the options ID from it, past ACF's own setting.
  *
  * @param string $key Options field name.
  * @return array Field value, or an empty array.
@@ -81,9 +82,14 @@ function mtz_form_switch_language( ?string $lang ): void {
 function mtz_form_option( string $key ): array {
 	if ( ! function_exists( 'get_field' ) ) return [];
 
+	$current = apply_filters( 'wpml_current_language', null );
+	do_action( 'wpml_switch_language', apply_filters( 'wpml_default_language', null ) );
 	add_filter( 'acf/settings/current_language', '__return_false' );
+
 	$value = get_field( $key, 'option' ) ?: [];
+
 	remove_filter( 'acf/settings/current_language', '__return_false' );
+	do_action( 'wpml_switch_language', $current );
 
 	return is_array( $value ) ? $value : [];
 }
