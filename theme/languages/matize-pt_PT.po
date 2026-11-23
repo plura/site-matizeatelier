@@ -15,6 +15,7 @@ msgstr ""
 "X-Poedit-KeywordsList: "
 "__;_e;_x;_ex;_n;_nx;esc_attr_e;esc_html_e;esc_attr__;esc_html__\n"
 "X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPath-1: ../plugin\n"
 
 #: 404.php:7
 msgid "Page not found"
@@ -142,6 +143,26 @@ msgstr ""
 "Olá %s, obrigado pelo seu contacto. Recebemos a sua mensagem e entraremos em "
 "contacto brevemente. Para sua referência, fica aqui uma cópia do que nos "
 "enviou."
+
+#: plugin/includes/core/form.php
+msgid "Security check failed."
+msgstr "A verificação de segurança falhou."
+
+#: plugin/includes/core/form.php
+msgid "Too many messages sent. Please try again later."
+msgstr "Foram enviadas demasiadas mensagens. Tente novamente mais tarde."
+
+#: plugin/includes/core/form.php plugin/includes/core/i18n.php
+msgid "Please fill in all required fields."
+msgstr "Preencha todos os campos obrigatórios."
+
+#: plugin/includes/core/form.php
+msgid "Please enter a valid email address."
+msgstr "Introduza um endereço de email válido."
+
+#: plugin/includes/core/form.php plugin/includes/core/i18n.php
+msgid "Something went wrong. Please try again."
+msgstr "Ocorreu um erro. Tente novamente."
 
 #: template-parts/cta.php:9
 msgid "Get in Touch"
