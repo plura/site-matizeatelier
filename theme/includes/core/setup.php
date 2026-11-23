@@ -43,6 +43,20 @@ add_filter( 'body_class', fn() => [] );
 // ── RankMath: og:type — pages should be 'website', not 'article' ──────────────
 add_filter( 'rank_math/opengraph/type', fn( $type ) => is_page() ? 'website' : $type );
 
+// ── RankMath: sitemap — EN front page at /en/, not its /en/home/ redirect ─────
+add_filter( 'rank_math/sitemap/entry', function ( $url, $type, $object ) {
+	// Not typed as WP_Post: Rank Math's provider can pass plain row objects.
+	if ( 'post' !== $type || ! is_array( $url ) || empty( $object->ID ) ) return $url;
+
+	$en_front = apply_filters( 'wpml_object_id', (int) get_option( 'page_on_front' ), 'page', false, 'en' );
+
+	if ( $en_front && (int) $en_front === (int) $object->ID ) {
+		$url['loc'] = apply_filters( 'wpml_permalink', home_url( '/' ), 'en' );
+	}
+
+	return $url;
+}, 10, 3 );
+
 add_action( 'after_setup_theme', function () {
 
 	add_theme_support( 'title-tag' );
