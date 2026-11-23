@@ -1,0 +1,16 @@
+<!-- Three flush 4:5 photos. mj-group keeps them side by side on phones. Use JPG
+     or PNG (Outlook desktop can't show WebP), about 768px wide. -->
+<mj-section background-color="#0A0907" padding="0">
+	<mj-group>
+		<mj-column>
+			<!-- EDIT: src and alt -->
+			<mj-image src="https://placehold.co/768x960/E1D7BE/0A0907.jpg?text=1" alt="Descrição da imagem" padding="0" />
+		</mj-column>
+		<mj-column>
+			<mj-image src="https://placehold.co/768x960/E1D7BE/0A0907.jpg?text=2" alt="Descrição da imagem" padding="0" />
+		</mj-column>
+		<mj-column>
+			<mj-image src="https://placehold.co/768x960/E1D7BE/0A0907.jpg?text=3" alt="Descrição da imagem" padding="0" />
+		</mj-column>
+	</mj-group>
+</mj-section>

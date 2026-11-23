@@ -1,0 +1,89 @@
+<!-- SUBJECT OPTIONS (under 50 characters, set in Brevo):
+     1. O nosso novo site já está online
+     2. Temos site novo. Venha conhecer
+     3. Matize Atelier: novo site online
+
+     PREHEADER OPTIONS (A is in mj-preview below):
+     A. Um novo espaço para conhecer o nosso trabalho.
+     B. Fica o convite para nos visitar em matizeatelier.pt. -->
+<mjml lang="pt-PT">
+	<mj-head>
+		<mj-title>O nosso novo site já está online</mj-title>
+		<mj-preview>Um novo espaço para conhecer o nosso trabalho.</mj-preview>
+		<mj-include path="../../_partials/_head.mjml" />
+	</mj-head>
+
+	<mj-body>
+
+		<mj-include path="../_partials/_header-static.mjml" />
+
+		<mj-wrapper padding="0" css-class="mtz-card">
+
+			<!-- _blocks/_title-band -->
+			<mj-section background-color="#EC6F63" mj-class="mtz-hpad" padding-top="18px" padding-bottom="18px">
+				<mj-column>
+					<mj-text mj-class="mtz-title-band">Novo site</mj-text>
+				</mj-column>
+			</mj-section>
+
+			<!-- _blocks/_hero-image. TODO: upload mtz-email-site-launch.png so this URL
+			     resolves. The teal background keeps the block on-brand if images are off. -->
+			<mj-section background-color="#7FB8A4" padding="0">
+				<mj-column>
+					<mj-image
+						src="https://matizeatelier.pt/wp/wp-content/uploads/2026/11/mtz-email-site-launch.png"
+						alt="O nosso novo site já está online."
+						href="https://matizeatelier.pt?utm_source=brevo&amp;utm_medium=email&amp;utm_campaign=site-launch"
+						width="560px"
+						padding="0"
+					/>
+				</mj-column>
+			</mj-section>
+
+			<!-- _blocks/_photo-strip -->
+			<mj-section background-color="#0A0907" padding="0">
+				<mj-group>
+					<mj-column>
+						<mj-image src="https://matizeatelier.pt/wp/wp-content/uploads/2026/04/matize.atelier_1769788266_3821583425333674237_59883028079-768x961.jpg" alt="Aparador com papel de parede botânico e candeeiros" padding="0" />
+					</mj-column>
+					<mj-column>
+						<mj-image src="https://matizeatelier.pt/wp/wp-content/uploads/2026/04/matize.atelier_1759702577_3736978527258950927_59883028079-768x961.jpg" alt="Quarto azul com candeeiro de palhinha" padding="0" />
+					</mj-column>
+					<mj-column>
+						<mj-image src="https://matizeatelier.pt/wp/wp-content/uploads/2026/04/matize.atelier_1768249820_3808678005975823684_59883028079-768x960.jpg" alt="Candeeiro metálico e espelho em tons de cobre" padding="0" />
+					</mj-column>
+				</mj-group>
+			</mj-section>
+
+			<!-- _blocks/_editorial-text + _blocks/_button, sharing one section so the
+			     button lines up under the lead. -->
+			<mj-section mj-class="mtz-card-body mtz-hpad" padding-top="44px" padding-bottom="36px">
+				<mj-column width="32%" padding="0 16px 14px 0">
+					<mj-text font-size="11px" font-weight="bold" letter-spacing="0.2em" line-height="1.9" text-transform="uppercase" padding="0">Bem-vindos</mj-text>
+				</mj-column>
+				<mj-column width="68%">
+					<mj-text font-size="20px" font-weight="bold" line-height="1.4" padding="0 0 16px">Criámos um novo espaço para dar a conhecer o nosso trabalho e a forma como pensamos cada projeto.</mj-text>
+					<mj-text font-size="15px" padding="0 0 28px">A quem tem feito parte deste percurso, o nosso obrigado. Fica o convite para nos visitar.</mj-text>
+					<mj-button
+						href="https://matizeatelier.pt?utm_source=brevo&amp;utm_medium=email&amp;utm_campaign=site-launch"
+						background-color="#EC6F63"
+						color="#0A0907"
+						font-size="14px"
+						font-weight="bold"
+						letter-spacing="0.14em"
+						text-transform="uppercase"
+						border-radius="6px"
+						inner-padding="18px 24px"
+						width="100%"
+						padding="0 0 24px"
+					>Visitar o site</mj-button>
+					<mj-text font-size="10px" font-weight="bold" letter-spacing="0.14em" text-transform="uppercase" align="center" padding="0">Atelier de Design de Interiores</mj-text>
+				</mj-column>
+			</mj-section>
+
+		</mj-wrapper>
+
+		<mj-include path="../_partials/_footer-static.mjml" />
+
+	</mj-body>
+</mjml>

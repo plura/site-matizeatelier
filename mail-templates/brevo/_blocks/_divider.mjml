@@ -1,0 +1,5 @@
+<mj-section mj-class="mtz-card-body">
+	<mj-column mj-class="mtz-hpad" padding-top="8px" padding-bottom="8px">
+		<mj-divider border-color="#E1D7BE" border-width="1px" padding="0" />
+	</mj-column>
+</mj-section>

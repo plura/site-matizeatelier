@@ -1,0 +1,12 @@
+<!-- Source image: 1200px wide (retina), displayed at 560px. Public https URL only. -->
+<mj-section mj-class="mtz-card-body">
+	<mj-column>
+		<!-- EDIT: src and alt -->
+		<mj-image
+			src="https://placehold.co/1200x675/E1D7BE/0A0907.png?text=HERO+PLACEHOLDER+1200px"
+			alt="Descrição da imagem"
+			width="560px"
+			padding="0"
+		/>
+	</mj-column>
+</mj-section>

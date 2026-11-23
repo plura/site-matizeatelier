@@ -1,0 +1,13 @@
+<!-- Literal counterpart of ../../_partials/_header.mjml: Brevo has no PHP step
+     to fill %SITE_NAME%/%SITE_URL%. -->
+<mj-section background-color="#E1D7BE" padding="40px 24px 24px">
+	<mj-column>
+		<mj-image
+			src="https://matizeatelier.pt/wp/wp-content/uploads/2026/07/mtz-logo-black-700x225-1.png"
+			alt="Matize Atelier"
+			href="https://matizeatelier.pt"
+			width="200px"
+			padding="0"
+		/>
+	</mj-column>
+</mj-section>
