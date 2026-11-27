@@ -113,7 +113,10 @@
             "*.json",
             "*.md",
             "*.txt",
-            "/brevo/*/*.png"
+            "/brevo/*/*.png",
+            "_*",
+            "/contact",
+            "/generic"
         ]
     }
 ]
