@@ -44,7 +44,7 @@ Website for [matizeatelier.pt](https://matizeatelier.pt) — Atelier de Design d
 
 ## Deploy (SFTP)
 
-Three contexts defined in `.vscode/sftp.json` (gitignored — contains credentials; copy `.vscode/sftp.json.example` and fill in host/username/password).
+Four contexts defined in `.vscode/sftp.json` (gitignored — contains credentials; copy `.vscode/sftp.json.example` and fill in host/username/password).
 `.vscode/settings.json` is committed — Intelephense stubs (`theme/stubs`) and MJML include paths.
 
 | Context     | Local        | Remote                                            |
@@ -52,6 +52,9 @@ Three contexts defined in `.vscode/sftp.json` (gitignored — contains credentia
 | Placeholder | /placeholder | /public_html/                                     |
 | Theme       | /theme       | /public_html/wp/wp-content/themes/matize/         |
 | Plugin      | /plugin      | /public_html/wp/wp-content/plugins/matize/        |
+| Email images | /mail-templates | /public_html/email/                          |
+
+Email images live in `mail-templates/images/` (shared, e.g. the logo) and `mail-templates/brevo/<issue>/images/`, not in the media library, so editing media can't break sent emails. The email context uploads image files only and never deletes remotely.
 
 ## Dependencies
 

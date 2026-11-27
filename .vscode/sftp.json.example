@@ -18,7 +18,13 @@
         "syncOption": {
             "delete": false
         },
-        "ignore": [".gitkeep", ".git", ".gitignore", ".claude", "*.code-workspace"]
+        "ignore": [
+            ".gitkeep",
+            ".git",
+            ".gitignore",
+            ".claude",
+            "*.code-workspace"
+        ]
     },
     {
         "name": "Matize — Theme",
@@ -39,7 +45,14 @@
         "syncOption": {
             "delete": true
         },
-        "ignore": [".gitkeep", ".git", ".gitignore", ".claude", "*.code-workspace", "stubs"]
+        "ignore": [
+            ".gitkeep",
+            ".git",
+            ".gitignore",
+            ".claude",
+            "*.code-workspace",
+            "stubs"
+        ]
     },
     {
         "name": "Matize — Plugin",
@@ -60,6 +73,47 @@
         "syncOption": {
             "delete": true
         },
-        "ignore": [".gitkeep", ".git", ".gitignore", ".claude", "*.code-workspace"]
+        "ignore": [
+            ".gitkeep",
+            ".git",
+            ".gitignore",
+            ".claude",
+            "*.code-workspace"
+        ]
+    },
+    {
+        "name": "Matize — Email images",
+        "context": "mail-templates",
+        "host": "",
+        "protocol": "ftp",
+        "port": 21,
+        "username": "",
+        "password": "",
+        "remotePath": "/public_html/email/",
+        "uploadOnSave": false,
+        "useTempFile": false,
+        "openSsh": false,
+        "secure": true,
+        "secureOptions": {
+            "rejectUnauthorized": false
+        },
+        "syncOption": {
+            "delete": false
+        },
+        "ignore": [
+            ".gitkeep",
+            ".git",
+            ".gitignore",
+            ".claude",
+            "*.code-workspace",
+            "node_modules",
+            "*.mjml",
+            "*.html",
+            "*.bak",
+            "*.json",
+            "*.md",
+            "*.txt",
+            "/brevo/*/*.png"
+        ]
     }
 ]
