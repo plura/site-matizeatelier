@@ -38,9 +38,10 @@
 
 			<mj-section background-color="#EC6F63" padding="40px 32px 36px">
 				<mj-column>
-					<!-- Pill label. Right padding is 2px less to offset the trailing letter-spacing.
+					<!-- Pill label. Caps have no descenders, so top padding is 2px more to centre them;
+					     right padding is 2px less to offset the trailing letter-spacing.
 					     Outlook desktop drops the radius and padding: a plain beige box. -->
-					<mj-text font-size="11px" font-weight="bold" letter-spacing="0.18em" line-height="1.4" text-transform="uppercase" padding="0 0 18px"><span style="display:inline-block; background-color:#E1D7BE; border-radius:999px; padding:6px 12px 6px 14px;">Novo site</span></mj-text>
+					<mj-text font-size="11px" font-weight="bold" letter-spacing="0.18em" line-height="1.4" text-transform="uppercase" padding="0 0 18px"><span style="display:inline-block; background-color:#E1D7BE; border-radius:999px; line-height:1; padding:8px 12px 6px 14px;">Novo site</span></mj-text>
 					<mj-text font-family="Verdana, Geneva, sans-serif" font-size="38px" font-weight="bold" letter-spacing="0.06em" line-height="1.12" text-transform="uppercase" padding="0 0 24px">Já está<br />online.</mj-text>
 					<!-- Brevo merge tag; contacts without a first name get "Olá!" -->
 					<mj-text font-size="15px" line-height="1.7" padding="0 0 12px">Olá{% if contact.FIRSTNAME %} {{ contact.FIRSTNAME }}{% endif %}!</mj-text>
