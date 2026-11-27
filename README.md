@@ -118,7 +118,7 @@ Templates are authored as MJML in `/mail-templates` (dev-only, not deployed) and
   /generic      Field-agnostic fallback — no named field placeholders, works for any [data-mtz-form]
 ```
 
-Requires Node. From `/mail-templates`, run `npm run build` (or a specific `build:*` script) — uses `npx mjml`. The compiled `generic.html` is copied to `plugin/templates/generic.html`; the `contact/*.html` variants are copied to `theme/templates/contact/`.
+Requires Node. From `/mail-templates`, run `npm run build` (all), `npm run build:site` or `npm run build:brevo` — `build.js`, using `npx mjml`. The site build copies `generic.html` to `plugin/templates/` and the `contact/*.html` variants to `theme/templates/contact/`.
 
 Contact/social data is exposed as granular placeholders (e.g. `%CONTACT_EMAIL_URL%`, `%CONTACT_PHONE_HREF%`, `%SOCIAL_INSTAGRAM_URL%`) rather than pre-built, pre-styled HTML — `mtz_get_contact_placeholders()`/`mtz_get_social_placeholders()` (in `plugin/includes/core/form.php`) stay agnostic about styling; the template builds its own `<a>` tags with inline styles (MJML compiles those reliably; raw HTML substituted in after the MJML build has none of that). The contact address links to Google Maps via `mtz_contact_address_url` if set, otherwise a generated Maps search URL from the address text.
 

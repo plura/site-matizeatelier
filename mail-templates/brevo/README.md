@@ -1,6 +1,6 @@
 # Brevo newsletters
 
-MJML source for Matize Atelier campaigns. Issues include the same head, header and footer as the site emails (`../_partials/`). The compiled HTML never passes through WordPress, so `build.js` fills their `%PLACEHOLDERS%` from `values.json` (update it if the theme options change) and the current year.
+MJML source for Matize Atelier campaigns. Issues include the same head, header and footer as the site emails (`../_partials/`). The compiled HTML never passes through WordPress, so `../build.js` fills their `%PLACEHOLDERS%` from `values.json` (update it if the theme options change) and the current year.
 
 ## New issue
 
@@ -36,7 +36,7 @@ Brevo appends its own footer with an unsubscribe link when the email has none, s
 Brevo fills merge tags when sending. For a greeting that falls back cleanly when a contact has no first name:
 
 ```html
-Olá{% if contact.FIRSTNAME %} {{ contact.FIRSTNAME }}{% endif %},
+Olá{% if contact.FIRSTNAME %} {{ contact.FIRSTNAME }}{% endif %}!
 ```
 
 ## Test checklist

@@ -41,8 +41,8 @@
 					<mj-text font-size="11px" font-weight="bold" letter-spacing="0.18em" line-height="1.4" text-transform="uppercase" padding="0 0 18px">Novo site</mj-text>
 					<mj-text font-family="Verdana, Geneva, sans-serif" font-size="38px" font-weight="bold" letter-spacing="0.06em" line-height="1.12" text-transform="uppercase" padding="0 0 14px">Já está<br />online.</mj-text>
 					<mj-text font-size="16px" font-weight="bold" line-height="1.5" padding="0 0 22px">Cada espaço conta uma história.</mj-text>
-					<!-- Brevo merge tag; contacts without a first name get "Olá," -->
-					<mj-text font-size="15px" line-height="1.7" padding="0 0 6px">Olá{% if contact.FIRSTNAME %} {{ contact.FIRSTNAME }}{% endif %},</mj-text>
+					<!-- Brevo merge tag; contacts without a first name get "Olá!" -->
+					<mj-text font-size="15px" line-height="1.7" padding="0 0 6px">Olá{% if contact.FIRSTNAME %} {{ contact.FIRSTNAME }}{% endif %}!</mj-text>
 					<mj-text font-size="15px" line-height="1.7" padding="0 0 28px">Começamos por ouvir quem vai viver nele. No novo site encontra os nossos serviços e as referências que inspiram o nosso trabalho.</mj-text>
 					<mj-button
 						href="https://matizeatelier.pt?utm_source=brevo&amp;utm_medium=email&amp;utm_campaign=site-launch"
