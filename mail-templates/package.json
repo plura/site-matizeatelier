@@ -7,8 +7,7 @@
 		"build:contact-pt": "npx mjml contact/contact-pt.mjml -o contact/contact-pt.html --config.allowIncludes true --config.includePath . --config.minify true",
 		"build:contact-reply-en": "npx mjml contact/contact-reply-en.mjml -o contact/contact-reply-en.html --config.allowIncludes true --config.includePath . --config.minify true",
 		"build:contact-reply-pt": "npx mjml contact/contact-reply-pt.mjml -o contact/contact-reply-pt.html --config.allowIncludes true --config.includePath . --config.minify true",
-		"build:brevo-announcement": "npx mjml brevo/announcement-2026-11/announcement-pt.mjml -o brevo/announcement-2026-11/announcement-pt.html --config.allowIncludes true --config.includePath . --config.minify true --config.keepComments false",
-		"build:brevo": "node -e \"const fs=require('fs'),{execSync}=require('child_process');for(const d of fs.readdirSync('brevo',{withFileTypes:true})){if(!d.isDirectory()||d.name[0]==='_')continue;for(const f of fs.readdirSync('brevo/'+d.name)){if(!f.endsWith('.mjml'))continue;const p='brevo/'+d.name+'/'+f;console.log(p);execSync('npx mjml '+p+' -o '+p.replace(/mjml$/,'html')+' --config.allowIncludes true --config.includePath . --config.minify true --config.keepComments false',{stdio:'inherit'})}}\"",
+		"build:brevo": "node brevo/build.js",
 		"build": "npm run build:generic && npm run build:contact-en && npm run build:contact-pt && npm run build:contact-reply-en && npm run build:contact-reply-pt"
 	}
 }

@@ -51,7 +51,7 @@
 			</mj-raw>
 			<mj-divider border-color="#2A2620" border-width="1px" padding="0 0 20px" />
 			<mj-text mj-class="mtz-footer-credit">
-				&copy; %YEAR% %SITE_NAME% &mdash; Powered by <a href="https://plura.pt" target="_blank" style="color:#6B6558; font-weight:bold;">Plura</a>
+				&copy; %YEAR% %SITE_NAME% &middot; Powered by <a href="https://plura.pt" target="_blank" style="color:#6B6558; font-weight:bold;">Plura</a>
 			</mj-text>
 		</mj-column>
 	</mj-section>
