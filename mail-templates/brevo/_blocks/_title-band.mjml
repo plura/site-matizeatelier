@@ -1,8 +1,0 @@
-<!-- Paste into the issue's card wrapper. mj-include takes no parameters, so
-     blocks with per-issue copy are pasted, not included. -->
-<mj-section background-color="#EC6F63" mj-class="mtz-hpad" padding-top="18px" padding-bottom="18px">
-	<mj-column>
-		<!-- EDIT: short label -->
-		<mj-text mj-class="mtz-title-band">Etiqueta</mj-text>
-	</mj-column>
-</mj-section>
