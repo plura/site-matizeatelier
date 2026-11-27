@@ -7,7 +7,7 @@ MJML source for Matize Atelier campaigns. Issues include the same head, header a
 1. Copy `announcement-2026-11/` to `<type>-YYYY-MM/` and rename the `.mjml`.
 2. Replace the body sections between the header and footer includes. Use `_footer-en.mjml` for an English issue.
 3. Update the subject options, `mj-title`, `mj-preview` and UTM campaign.
-4. Put images in the issue's `images/` folder and link them as `https://matizeatelier.pt/email/brevo/<issue>/images/<file>`, then upload with the `mail-templates` SFTP context. Hero images are 1200px wide, displayed at 560px. Use JPG or PNG, since Outlook desktop can't show WebP.
+4. Put images in the issue's `images/` folder and link them as `https://matizeatelier.pt/email/brevo/<issue>/images/<file>`, then upload with the `mail-templates` SFTP context. Export images at twice their display size (the hero shows at 560px, so 1120px wide). Use JPG or PNG, since Outlook desktop can't show WebP.
 
 ## Build
 
