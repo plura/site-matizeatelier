@@ -4,12 +4,16 @@
      3. Matize Atelier: novo site online
 
      PREHEADER OPTIONS (A is in mj-preview below):
-     A. Um novo espaço para conhecer o nosso trabalho.
-     B. Fica o convite para nos visitar em matizeatelier.pt. -->
+     A. Cada espaço conta uma história. Venha conhecer o novo site.
+     B. Fica o convite para nos visitar em matizeatelier.pt.
+
+     IMAGES (files in ./images/): served from matizeatelier.pt/email/ via the
+     "mail-templates" SFTP context. Sync before previewing or sending.
+     Layout B: hero 560x380 (file 1120x760), four service tiles 272x272 (files 560x560). -->
 <mjml lang="pt-PT">
 	<mj-head>
 		<mj-title>O nosso novo site já está online</mj-title>
-		<mj-preview>Um novo espaço para conhecer o nosso trabalho.</mj-preview>
+		<mj-preview>Cada espaço conta uma história. Venha conhecer o novo site.</mj-preview>
 		<mj-include path="../../_partials/_head.mjml" />
 	</mj-head>
 
@@ -17,22 +21,14 @@
 
 		<mj-include path="../_partials/_header-static.mjml" />
 
+		<!-- Hero photo + coral panel, one rounded card -->
 		<mj-wrapper padding="0" css-class="mtz-card">
 
-			<!-- _blocks/_title-band -->
-			<mj-section background-color="#EC6F63" mj-class="mtz-hpad" padding-top="18px" padding-bottom="18px">
-				<mj-column>
-					<mj-text mj-class="mtz-title-band">Novo site</mj-text>
-				</mj-column>
-			</mj-section>
-
-			<!-- _blocks/_hero-image. TODO: upload mtz-email-site-launch.png so this URL
-			     resolves. The teal background keeps the block on-brand if images are off. -->
-			<mj-section background-color="#7FB8A4" padding="0">
+			<mj-section background-color="#EC6F63" padding="0">
 				<mj-column>
 					<mj-image
-						src="https://matizeatelier.pt/wp/wp-content/uploads/2026/11/mtz-email-site-launch.png"
-						alt="O nosso novo site já está online."
+						src="https://matizeatelier.pt/email/brevo/announcement-2026-11/images/mtz-launch-hero.jpg"
+						alt="Aparador com candeeiro, vasos e quadros sobre parede cor de salmão"
 						href="https://matizeatelier.pt?utm_source=brevo&amp;utm_medium=email&amp;utm_campaign=site-launch"
 						width="560px"
 						padding="0"
@@ -40,45 +36,96 @@
 				</mj-column>
 			</mj-section>
 
-			<!-- _blocks/_photo-strip -->
-			<mj-section background-color="#0A0907" padding="0">
-				<mj-group>
-					<mj-column>
-						<mj-image src="https://matizeatelier.pt/wp/wp-content/uploads/2026/04/matize.atelier_1769788266_3821583425333674237_59883028079-768x961.jpg" alt="Aparador com papel de parede botânico e candeeiros" padding="0" />
-					</mj-column>
-					<mj-column>
-						<mj-image src="https://matizeatelier.pt/wp/wp-content/uploads/2026/04/matize.atelier_1759702577_3736978527258950927_59883028079-768x961.jpg" alt="Quarto azul com candeeiro de palhinha" padding="0" />
-					</mj-column>
-					<mj-column>
-						<mj-image src="https://matizeatelier.pt/wp/wp-content/uploads/2026/04/matize.atelier_1768249820_3808678005975823684_59883028079-768x960.jpg" alt="Candeeiro metálico e espelho em tons de cobre" padding="0" />
-					</mj-column>
-				</mj-group>
-			</mj-section>
-
-			<!-- _blocks/_editorial-text + _blocks/_button, sharing one section so the
-			     button lines up under the lead. -->
-			<mj-section mj-class="mtz-card-body mtz-hpad" padding-top="44px" padding-bottom="36px">
-				<mj-column width="32%" padding="0 16px 14px 0">
-					<mj-text font-size="11px" font-weight="bold" letter-spacing="0.2em" line-height="1.9" text-transform="uppercase" padding="0">Bem-vindos</mj-text>
-				</mj-column>
-				<mj-column width="68%">
-					<mj-text font-size="20px" font-weight="bold" line-height="1.4" padding="0 0 16px">Criámos um novo espaço para dar a conhecer o nosso trabalho e a forma como pensamos cada projeto.</mj-text>
-					<mj-text font-size="15px" padding="0 0 28px">A quem tem feito parte deste percurso, o nosso obrigado. Fica o convite para nos visitar.</mj-text>
+			<mj-section background-color="#EC6F63" padding="40px 32px 36px">
+				<mj-column>
+					<mj-text font-size="11px" font-weight="bold" letter-spacing="0.18em" line-height="1.4" text-transform="uppercase" padding="0 0 18px">Novo site</mj-text>
+					<mj-text font-family="Verdana, Geneva, sans-serif" font-size="38px" font-weight="bold" letter-spacing="0.06em" line-height="1.12" text-transform="uppercase" padding="0 0 14px">Já está<br />online.</mj-text>
+					<mj-text font-size="16px" font-weight="bold" line-height="1.5" padding="0 0 22px">Cada espaço conta uma história.</mj-text>
+					<mj-text font-size="15px" line-height="1.7" padding="0 0 28px">Começamos por ouvir quem vai viver nele. No novo site encontra os nossos serviços e as referências que inspiram o nosso trabalho.</mj-text>
 					<mj-button
 						href="https://matizeatelier.pt?utm_source=brevo&amp;utm_medium=email&amp;utm_campaign=site-launch"
-						background-color="#EC6F63"
-						color="#0A0907"
+						align="left"
+						background-color="#0A0907"
+						color="#E1D7BE"
 						font-size="14px"
 						font-weight="bold"
 						letter-spacing="0.14em"
 						text-transform="uppercase"
 						border-radius="6px"
-						inner-padding="18px 24px"
-						width="100%"
-						padding="0 0 24px"
+						inner-padding="18px 28px"
+						padding="0"
 					>Visitar o site</mj-button>
-					<mj-text font-size="10px" font-weight="bold" letter-spacing="0.14em" text-transform="uppercase" align="center" padding="0">Atelier de Design de Interiores</mj-text>
 				</mj-column>
+			</mj-section>
+
+		</mj-wrapper>
+
+		<!-- Services 2x2. Each tile links to its section on /servicos/. mj-group keeps
+		     two tiles per row on phones. Corners match the card (10px). -->
+		<mj-wrapper padding="0" css-class="mtz-card">
+
+			<mj-section padding="36px 0 12px">
+				<mj-column>
+					<mj-text font-size="11px" font-weight="bold" letter-spacing="0.2em" line-height="1.4" text-transform="uppercase" padding="0">Os nossos serviços</mj-text>
+				</mj-column>
+			</mj-section>
+
+			<mj-section padding="0">
+				<mj-group>
+					<mj-column padding="0 8px 16px 0">
+						<mj-image
+							src="https://matizeatelier.pt/email/brevo/announcement-2026-11/images/mtz-launch-servico-design-interiores.jpg"
+							alt="Design de Interiores"
+							href="https://matizeatelier.pt/servicos/?utm_source=brevo&amp;utm_medium=email&amp;utm_campaign=site-launch#design-de-interiores"
+							border-radius="10px"
+							padding="0"
+						/>
+						<mj-text font-size="10px" font-weight="bold" letter-spacing="0.12em" line-height="1.5" text-transform="uppercase" padding="12px 0 0">
+							<a href="https://matizeatelier.pt/servicos/?utm_source=brevo&amp;utm_medium=email&amp;utm_campaign=site-launch#design-de-interiores" style="color:#0A0907; text-decoration:none;">Design de Interiores &rarr;</a>
+						</mj-text>
+					</mj-column>
+					<mj-column padding="0 0 16px 8px">
+						<mj-image
+							src="https://matizeatelier.pt/email/brevo/announcement-2026-11/images/mtz-launch-servico-consultoria.jpg"
+							alt="Consultoria e Aconselhamento"
+							href="https://matizeatelier.pt/servicos/?utm_source=brevo&amp;utm_medium=email&amp;utm_campaign=site-launch#consultoria-e-aconselhamento"
+							border-radius="10px"
+							padding="0"
+						/>
+						<mj-text font-size="10px" font-weight="bold" letter-spacing="0.12em" line-height="1.5" text-transform="uppercase" padding="12px 0 0">
+							<a href="https://matizeatelier.pt/servicos/?utm_source=brevo&amp;utm_medium=email&amp;utm_campaign=site-launch#consultoria-e-aconselhamento" style="color:#0A0907; text-decoration:none;">Consultoria e Aconselhamento &rarr;</a>
+						</mj-text>
+					</mj-column>
+				</mj-group>
+			</mj-section>
+
+			<mj-section padding="0">
+				<mj-group>
+					<mj-column padding="0 8px 0 0">
+						<mj-image
+							src="https://matizeatelier.pt/email/brevo/announcement-2026-11/images/mtz-launch-servico-decoracao-styling.jpg"
+							alt="Decoração e Styling"
+							href="https://matizeatelier.pt/servicos/?utm_source=brevo&amp;utm_medium=email&amp;utm_campaign=site-launch#decoracao-e-styling"
+							border-radius="10px"
+							padding="0"
+						/>
+						<mj-text font-size="10px" font-weight="bold" letter-spacing="0.12em" line-height="1.5" text-transform="uppercase" padding="12px 0 0">
+							<a href="https://matizeatelier.pt/servicos/?utm_source=brevo&amp;utm_medium=email&amp;utm_campaign=site-launch#decoracao-e-styling" style="color:#0A0907; text-decoration:none;">Decoração e Styling &rarr;</a>
+						</mj-text>
+					</mj-column>
+					<mj-column padding="0 0 0 8px">
+						<mj-image
+							src="https://matizeatelier.pt/email/brevo/announcement-2026-11/images/mtz-launch-servico-gestao-obra.jpg"
+							alt="Gestão e Acompanhamento de Obra"
+							href="https://matizeatelier.pt/servicos/?utm_source=brevo&amp;utm_medium=email&amp;utm_campaign=site-launch#gestao-e-acompanhamento-de-obra"
+							border-radius="10px"
+							padding="0"
+						/>
+						<mj-text font-size="10px" font-weight="bold" letter-spacing="0.12em" line-height="1.5" text-transform="uppercase" padding="12px 0 0">
+							<a href="https://matizeatelier.pt/servicos/?utm_source=brevo&amp;utm_medium=email&amp;utm_campaign=site-launch#gestao-e-acompanhamento-de-obra" style="color:#0A0907; text-decoration:none;">Gestão e Acompanhamento de Obra &rarr;</a>
+						</mj-text>
+					</mj-column>
+				</mj-group>
 			</mj-section>
 
 		</mj-wrapper>
